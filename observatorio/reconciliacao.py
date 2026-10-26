@@ -20,7 +20,7 @@ from pathlib import Path
 
 import duckdb
 
-from .config import PROCESSADOS, RESULTADOS
+from .config import logs_concluidos, PROCESSADOS, RESULTADOS
 
 T = PROCESSADOS / "tabelas"
 
@@ -38,9 +38,10 @@ def preparar(con: duckdb.DuckDBPyConnection, ano: int) -> list[str]:
         con.execute(f"""CREATE OR REPLACE VIEW bubin AS
           SELECT CAST(regexp_extract(filename, '_(\\d)t_', 1) AS INT) turno,
                  regexp_extract(filename, '_([A-Z]{{2}})\\.parquet', 1) uf,
-                 CAST(substr(arquivo, 8, 5) AS INT) cd_municipio, CAST(substr(arquivo, 13, 4) AS INT) nr_zona,
-                 CAST(substr(arquivo, 17, 4) AS INT) nr_secao, *
-          FROM read_parquet('{PROCESSADOS}/bu/{ano}_*.parquet', union_by_name=true, filename=true)""")
+                 CAST(regexp_extract(arquivo, '^o\\d{{5}}(?:-|[a-z]{{2}})(\\d{{5}})(\\d{{4}})(\\d{{4}})', 1) AS INT) cd_municipio,
+                 CAST(regexp_extract(arquivo, '^o\\d{{5}}(?:-|[a-z]{{2}})(\\d{{5}})(\\d{{4}})(\\d{{4}})', 2) AS INT) nr_zona,
+                 CAST(regexp_extract(arquivo, '^o\\d{{5}}(?:-|[a-z]{{2}})(\\d{{5}})(\\d{{4}})(\\d{{4}})', 3) AS INT) nr_secao, *
+          FROM read_parquet({logs_concluidos(ano, 'bu')}, union_by_name=true, filename=true)""")
         disponiveis.append("bubin")
     if _existe(f"{PROCESSADOS}/logs/{ano}_*.parquet"):
         con.execute(f"""CREATE OR REPLACE VIEW logs AS
@@ -49,7 +50,7 @@ def preparar(con: duckdb.DuckDBPyConnection, ano: int) -> list[str]:
                  len(list_filter(dur_voto_mod, lambda x: x = 1)) bio_votou,
                  len(list_filter(dur_voto_mod, lambda x: x = 2)) sembio_votou,
                  len(list_filter(dur_voto_mod, lambda x: x = 0)) semetapa_votou
-          FROM read_parquet('{PROCESSADOS}/logs/{ano}_*.parquet', union_by_name=true)""")
+          FROM read_parquet({logs_concluidos(ano)}, union_by_name=true)""")
         disponiveis.append("logs")
     if (T / f"detalhe_secao_{ano}.parquet").exists():
         con.execute(f"""CREATE OR REPLACE VIEW dsec AS SELECT

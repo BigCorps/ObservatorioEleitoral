@@ -65,3 +65,20 @@ FUSO_MUNICIPIO: dict[int, int] = {
 # em todo o território nacional (ver docs/metodologia.md para a base normativa).
 INICIO_VOTACAO_BRT = 8
 FIM_VOTACAO_BRT = 17
+
+
+def logs_concluidos(ano: int, pasta: str = "logs") -> str:
+    """Lista SQL (DuckDB) dos Parquets de pacotes de urna já concluídos e registrados em
+    manifestos/cobertura_arquivos_urna.csv (evita ler arquivos em processamento)."""
+    import csv
+    cob = MANIFESTOS / "cobertura_arquivos_urna.csv"
+    arqs = []
+    if cob.exists():
+        with cob.open(encoding="utf-8") as f:
+            for r in csv.DictReader(f):
+                p = PROCESSADOS / pasta / f"{r['ano']}_{r['turno']}t_{r['uf']}.parquet"
+                if r["ano"] == str(ano) and p.exists() and p.stat().st_size > 0:
+                    arqs.append(f"'{p}'")
+    if not arqs:
+        raise FileNotFoundError(f"nenhum pacote concluído para {ano} em {pasta}")
+    return "[" + ",".join(sorted(arqs)) + "]"

@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import duckdb
 
-from .config import PROCESSADOS, RESULTADOS
+from .config import logs_concluidos, PROCESSADOS, RESULTADOS
 from .fusos import sql_desloc_brt, sql_fuso
 
 H8, H17, H18, H19 = 8 * 3600, 17 * 3600, 18 * 3600, 19 * 3600
@@ -21,7 +21,7 @@ def view_secoes(con: duckdb.DuckDBPyConnection, ano: int) -> None:
     con.execute(f"""
     CREATE OR REPLACE VIEW sec_base AS
       SELECT *, {d} AS desloc, {sql_fuso()} AS fuso_legal
-      FROM read_parquet('{PROCESSADOS}/logs/{ano}_*.parquet', union_by_name=true)
+      FROM read_parquet({logs_concluidos(ano)}, union_by_name=true)
       WHERE tem_log;
     CREATE OR REPLACE VIEW sec AS
       SELECT ano, turno, uf, cd_municipio, nr_zona, nr_secao, arquivo, fuso_legal, desloc,

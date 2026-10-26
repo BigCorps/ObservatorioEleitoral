@@ -1,0 +1,11 @@
+turno,indicador,referencia,diferenca_ingenua_pp,diferenca_mesmo_local_pp,ic95_inf,ic95_sup,locais_comparaveis,secoes_ref,secoes_outras
+1,pct_validos_22,UE 2020,2.4607,0.4197,-0.271,1.0571,133,690,660
+1,pct_validos_13,UE 2020,-4.328,-0.4862,-1.1586,0.1733,133,690,660
+1,pct_comparecimento,UE 2020,1.8782,-0.2422,-1.1432,0.664,133,690,660
+1,pct_brancos_nulos,UE 2020,0.1232,0.1013,-0.0825,0.2871,133,690,660
+1,pct_biometria_nh,UE 2020,-6.8724,-4.9584,-5.6286,-4.3118,133,690,660
+2,pct_validos_22,UE 2020,3.3949,0.3743,-0.2751,1.0358,161,737,979
+2,pct_validos_13,UE 2020,-3.3949,-0.3743,-1.044,0.272,161,737,979
+2,pct_comparecimento,UE 2020,1.9052,-0.2896,-1.012,0.4173,161,737,979
+2,pct_brancos_nulos,UE 2020,0.2586,0.0965,-0.127,0.3129,161,737,979
+2,pct_biometria_nh,UE 2020,-6.3866,-4.6064,-5.2048,-4.0469,161,737,979

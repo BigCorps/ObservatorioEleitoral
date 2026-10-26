@@ -39,8 +39,15 @@ def consolidar(ano: int) -> Path:
     con = duckdb.connect()
     con.execute("SET enable_progress_bar=false")
     lista = "[" + ",".join(f"'{a}'" for a in arquivos) + "]"
+    import pyarrow.parquet as pq
+    cols = set(pq.read_schema(arquivos[0]).names)
+    # nomes que mudaram entre 2022 e 2026 (ver docs/dicionario-dados.md)
+    col_nh = "QT_ELEITORES_BIOMETRIA_NH" if "QT_ELEITORES_BIOMETRIA_NH" in cols else "QT_ELEI_BIOM_SEM_HABILITACAO"
+    col_agr = "DS_AGREGADAS" if "DS_AGREGADAS" in cols else "DS_SECOES_AGREGADAS"
     con.execute(f"""
-    CREATE VIEW l AS SELECT * FROM read_parquet({lista}, union_by_name=true);
+    CREATE VIEW l AS SELECT * REPLACE (CAST(QT_VOTOS AS VARCHAR) AS QT_VOTOS),
+        {col_nh} AS QT_ELEITORES_BIOMETRIA_NH_N, {col_agr} AS DS_AGREGADAS_N
+      FROM read_parquet({lista}, union_by_name=true);
     COPY (
     SELECT
       CAST(ANO_ELEICAO AS INT) ano, CAST(NR_TURNO AS INT) turno, SG_UF uf,
@@ -70,11 +77,11 @@ def consolidar(ano: int) -> Path:
       any_value(CD_CARGA_1_URNA_EFETIVADA) cd_carga_1, any_value(CD_CARGA_2_URNA_EFETIVADA) cd_carga_2,
       any_value(CD_FLASHCARD_URNA_EFETIVADA) cd_flashcard,
       any_value(DT_CARGA_URNA_EFETIVADA) dt_carga,
-      any_value(DS_AGREGADAS) ds_agregadas,
+      any_value(DS_AGREGADAS_N) ds_agregadas,
       any_value(DT_ABERTURA) dt_abertura, any_value(DT_ENCERRAMENTO) dt_encerramento,
       any_value(DT_EMISSAO_BU) dt_emissao_bu, any_value(DT_BU_RECEBIDO) dt_bu_recebido,
-      any_value(TRY_CAST(QT_ELEITORES_BIOMETRIA_NH AS INT)) qt_eleitores_biometria_nh,
-      any_value(QT_ELEITORES_BIOMETRIA_NH) qt_eleitores_biometria_nh_txt,
+      any_value(TRY_CAST(QT_ELEITORES_BIOMETRIA_NH_N AS INT)) qt_eleitores_biometria_nh,
+      any_value(QT_ELEITORES_BIOMETRIA_NH_N) qt_eleitores_biometria_nh_txt,
       any_value(NR_JUNTA_APURADORA) nr_junta, any_value(NR_TURMA_APURADORA) nr_turma,
       any_value(DT_GERACAO || ' ' || HH_GERACAO) dt_geracao_arquivo,
       any_value(filename) arquivo_origem
