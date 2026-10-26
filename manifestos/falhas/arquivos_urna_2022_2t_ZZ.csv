@@ -1,0 +1,166 @@
+ano,turno,uf,arquivo,cd_pleito,cd_municipio,nr_zona,nr_secao,erro
+2022,2,ZZ,o00407-2917300010494,407,29173,1,494,"ValueError('min() iterable argument is empty') Traceback (most recent call last):
+  File ""/home/user/ObservatorioEleitoral/observatorio/arquivos_urna.py"", line 117, in _processar_secao
+    ini = min(m.offset_cabecalho for m in membros)
+ValueError: min() iterable argument is empty
+"
+2022,2,ZZ,o00407-2925400010001,407,29254,1,1,"ValueError('min() iterable argument is empty') Traceback (most recent call last):
+  File ""/home/user/ObservatorioEleitoral/observatorio/arquivos_urna.py"", line 117, in _processar_secao
+    ini = min(m.offset_cabecalho for m in membros)
+ValueError: min() iterable argument is empty
+"
+2022,2,ZZ,o00407-2929700010495,407,29297,1,495,"ValueError('min() iterable argument is empty') Traceback (most recent call last):
+  File ""/home/user/ObservatorioEleitoral/observatorio/arquivos_urna.py"", line 117, in _processar_secao
+    ini = min(m.offset_cabecalho for m in membros)
+ValueError: min() iterable argument is empty
+"
+2022,2,ZZ,o00407-2927000010003,407,29270,1,3,"ValueError('min() iterable argument is empty') Traceback (most recent call last):
+  File ""/home/user/ObservatorioEleitoral/observatorio/arquivos_urna.py"", line 117, in _processar_secao
+    ini = min(m.offset_cabecalho for m in membros)
+ValueError: min() iterable argument is empty
+"
+2022,2,ZZ,o00407-2937800011735,407,29378,1,1735,"ValueError('min() iterable argument is empty') Traceback (most recent call last):
+  File ""/home/user/ObservatorioEleitoral/observatorio/arquivos_urna.py"", line 117, in _processar_secao
+    ini = min(m.offset_cabecalho for m in membros)
+ValueError: min() iterable argument is empty
+"
+2022,2,ZZ,o00407-2939400010028,407,29394,1,28,"ValueError('min() iterable argument is empty') Traceback (most recent call last):
+  File ""/home/user/ObservatorioEleitoral/observatorio/arquivos_urna.py"", line 117, in _processar_secao
+    ini = min(m.offset_cabecalho for m in membros)
+ValueError: min() iterable argument is empty
+"
+2022,2,ZZ,o00407-2958000010096,407,29580,1,96,"ValueError('min() iterable argument is empty') Traceback (most recent call last):
+  File ""/home/user/ObservatorioEleitoral/observatorio/arquivos_urna.py"", line 117, in _processar_secao
+    ini = min(m.offset_cabecalho for m in membros)
+ValueError: min() iterable argument is empty
+"
+2022,2,ZZ,o00407-2964500010380,407,29645,1,380,"ValueError('min() iterable argument is empty') Traceback (most recent call last):
+  File ""/home/user/ObservatorioEleitoral/observatorio/arquivos_urna.py"", line 117, in _processar_secao
+    ini = min(m.offset_cabecalho for m in membros)
+ValueError: min() iterable argument is empty
+"
+2022,2,ZZ,o00407-2977700010127,407,29777,1,127,"ValueError('min() iterable argument is empty') Traceback (most recent call last):
+  File ""/home/user/ObservatorioEleitoral/observatorio/arquivos_urna.py"", line 117, in _processar_secao
+    ini = min(m.offset_cabecalho for m in membros)
+ValueError: min() iterable argument is empty
+"
+2022,2,ZZ,o00407-2975000011703,407,29750,1,1703,"ValueError('min() iterable argument is empty') Traceback (most recent call last):
+  File ""/home/user/ObservatorioEleitoral/observatorio/arquivos_urna.py"", line 117, in _processar_secao
+    ini = min(m.offset_cabecalho for m in membros)
+ValueError: min() iterable argument is empty
+"
+2022,2,ZZ,o00407-2988200010390,407,29882,1,390,"ValueError('min() iterable argument is empty') Traceback (most recent call last):
+  File ""/home/user/ObservatorioEleitoral/observatorio/arquivos_urna.py"", line 117, in _processar_secao
+    ini = min(m.offset_cabecalho for m in membros)
+ValueError: min() iterable argument is empty
+"
+2022,2,ZZ,o00407-2987400010146,407,29874,1,146,"ValueError('min() iterable argument is empty') Traceback (most recent call last):
+  File ""/home/user/ObservatorioEleitoral/observatorio/arquivos_urna.py"", line 117, in _processar_secao
+    ini = min(m.offset_cabecalho for m in membros)
+ValueError: min() iterable argument is empty
+"
+2022,2,ZZ,o00407-2991200010150,407,29912,1,150,"ValueError('min() iterable argument is empty') Traceback (most recent call last):
+  File ""/home/user/ObservatorioEleitoral/observatorio/arquivos_urna.py"", line 117, in _processar_secao
+    ini = min(m.offset_cabecalho for m in membros)
+ValueError: min() iterable argument is empty
+"
+2022,2,ZZ,o00407-3016300010647,407,30163,1,647,"ValueError('min() iterable argument is empty') Traceback (most recent call last):
+  File ""/home/user/ObservatorioEleitoral/observatorio/arquivos_urna.py"", line 117, in _processar_secao
+    ini = min(m.offset_cabecalho for m in membros)
+ValueError: min() iterable argument is empty
+"
+2022,2,ZZ,o00407-3017100011340,407,30171,1,1340,"ValueError('min() iterable argument is empty') Traceback (most recent call last):
+  File ""/home/user/ObservatorioEleitoral/observatorio/arquivos_urna.py"", line 117, in _processar_secao
+    ini = min(m.offset_cabecalho for m in membros)
+ValueError: min() iterable argument is empty
+"
+2022,2,ZZ,o00407-3033300010353,407,30333,1,353,"ValueError('min() iterable argument is empty') Traceback (most recent call last):
+  File ""/home/user/ObservatorioEleitoral/observatorio/arquivos_urna.py"", line 117, in _processar_secao
+    ini = min(m.offset_cabecalho for m in membros)
+ValueError: min() iterable argument is empty
+"
+2022,2,ZZ,o00407-3043000010384,407,30430,1,384,"ValueError('min() iterable argument is empty') Traceback (most recent call last):
+  File ""/home/user/ObservatorioEleitoral/observatorio/arquivos_urna.py"", line 117, in _processar_secao
+    ini = min(m.offset_cabecalho for m in membros)
+ValueError: min() iterable argument is empty
+"
+2022,2,ZZ,o00407-3054600011764,407,30546,1,1764,"ValueError('min() iterable argument is empty') Traceback (most recent call last):
+  File ""/home/user/ObservatorioEleitoral/observatorio/arquivos_urna.py"", line 117, in _processar_secao
+    ini = min(m.offset_cabecalho for m in membros)
+ValueError: min() iterable argument is empty
+"
+2022,2,ZZ,o00407-3059700011182,407,30597,1,1182,"ValueError('min() iterable argument is empty') Traceback (most recent call last):
+  File ""/home/user/ObservatorioEleitoral/observatorio/arquivos_urna.py"", line 117, in _processar_secao
+    ini = min(m.offset_cabecalho for m in membros)
+ValueError: min() iterable argument is empty
+"
+2022,2,ZZ,o00407-3063500011231,407,30635,1,1231,"ValueError('min() iterable argument is empty') Traceback (most recent call last):
+  File ""/home/user/ObservatorioEleitoral/observatorio/arquivos_urna.py"", line 117, in _processar_secao
+    ini = min(m.offset_cabecalho for m in membros)
+ValueError: min() iterable argument is empty
+"
+2022,2,ZZ,o00407-3070800010444,407,30708,1,444,"ValueError('min() iterable argument is empty') Traceback (most recent call last):
+  File ""/home/user/ObservatorioEleitoral/observatorio/arquivos_urna.py"", line 117, in _processar_secao
+    ini = min(m.offset_cabecalho for m in membros)
+ValueError: min() iterable argument is empty
+"
+2022,2,ZZ,o00407-3080500011693,407,30805,1,1693,"ValueError('min() iterable argument is empty') Traceback (most recent call last):
+  File ""/home/user/ObservatorioEleitoral/observatorio/arquivos_urna.py"", line 117, in _processar_secao
+    ini = min(m.offset_cabecalho for m in membros)
+ValueError: min() iterable argument is empty
+"
+2022,2,ZZ,o00407-3082100011524,407,30821,1,1524,"ValueError('min() iterable argument is empty') Traceback (most recent call last):
+  File ""/home/user/ObservatorioEleitoral/observatorio/arquivos_urna.py"", line 117, in _processar_secao
+    ini = min(m.offset_cabecalho for m in membros)
+ValueError: min() iterable argument is empty
+"
+2022,2,ZZ,o00407-3090200013134,407,30902,1,3134,"ValueError('min() iterable argument is empty') Traceback (most recent call last):
+  File ""/home/user/ObservatorioEleitoral/observatorio/arquivos_urna.py"", line 117, in _processar_secao
+    ini = min(m.offset_cabecalho for m in membros)
+ValueError: min() iterable argument is empty
+"
+2022,2,ZZ,o00407-3896200010558,407,38962,1,558,"ValueError('min() iterable argument is empty') Traceback (most recent call last):
+  File ""/home/user/ObservatorioEleitoral/observatorio/arquivos_urna.py"", line 117, in _processar_secao
+    ini = min(m.offset_cabecalho for m in membros)
+ValueError: min() iterable argument is empty
+"
+2022,2,ZZ,o00407-3902000011004,407,39020,1,1004,"ValueError('min() iterable argument is empty') Traceback (most recent call last):
+  File ""/home/user/ObservatorioEleitoral/observatorio/arquivos_urna.py"", line 117, in _processar_secao
+    ini = min(m.offset_cabecalho for m in membros)
+ValueError: min() iterable argument is empty
+"
+2022,2,ZZ,o00407-3906300013030,407,39063,1,3030,"ValueError('min() iterable argument is empty') Traceback (most recent call last):
+  File ""/home/user/ObservatorioEleitoral/observatorio/arquivos_urna.py"", line 117, in _processar_secao
+    ini = min(m.offset_cabecalho for m in membros)
+ValueError: min() iterable argument is empty
+"
+2022,2,ZZ,o00407-3910200010712,407,39102,1,712,"ValueError('min() iterable argument is empty') Traceback (most recent call last):
+  File ""/home/user/ObservatorioEleitoral/observatorio/arquivos_urna.py"", line 117, in _processar_secao
+    ini = min(m.offset_cabecalho for m in membros)
+ValueError: min() iterable argument is empty
+"
+2022,2,ZZ,o00407-3932200010490,407,39322,1,490,"ValueError('min() iterable argument is empty') Traceback (most recent call last):
+  File ""/home/user/ObservatorioEleitoral/observatorio/arquivos_urna.py"", line 117, in _processar_secao
+    ini = min(m.offset_cabecalho for m in membros)
+ValueError: min() iterable argument is empty
+"
+2022,2,ZZ,o00407-9915500011504,407,99155,1,1504,"ValueError('min() iterable argument is empty') Traceback (most recent call last):
+  File ""/home/user/ObservatorioEleitoral/observatorio/arquivos_urna.py"", line 117, in _processar_secao
+    ini = min(m.offset_cabecalho for m in membros)
+ValueError: min() iterable argument is empty
+"
+2022,2,ZZ,o00407-9918000011228,407,99180,1,1228,"ValueError('min() iterable argument is empty') Traceback (most recent call last):
+  File ""/home/user/ObservatorioEleitoral/observatorio/arquivos_urna.py"", line 117, in _processar_secao
+    ini = min(m.offset_cabecalho for m in membros)
+ValueError: min() iterable argument is empty
+"
+2022,2,ZZ,o00407-9928700011259,407,99287,1,1259,"ValueError('min() iterable argument is empty') Traceback (most recent call last):
+  File ""/home/user/ObservatorioEleitoral/observatorio/arquivos_urna.py"", line 117, in _processar_secao
+    ini = min(m.offset_cabecalho for m in membros)
+ValueError: min() iterable argument is empty
+"
+2022,2,ZZ,o00407-9947300011327,407,99473,1,1327,"ValueError('min() iterable argument is empty') Traceback (most recent call last):
+  File ""/home/user/ObservatorioEleitoral/observatorio/arquivos_urna.py"", line 117, in _processar_secao
+    ini = min(m.offset_cabecalho for m in membros)
+ValueError: min() iterable argument is empty
+"
