@@ -25,7 +25,7 @@ from py7zr.io import BytesIOFactory
 
 # Códigos de modalidade de habilitação (por eleitor habilitado)
 HAB_BIOMETRICA = 1          # "Tipo de habilitação do eleitor [biométrica]"
-HAB_SEM_BIOMETRIA = 2       # "O eleitor não possui biometria" (sem digital cadastrada)
+HAB_SEM_BIOMETRIA = 2       # 2022: "O eleitor não possui biometria"; 2026: ano de nascimento sem falha biométrica prévia
 HAB_MANUAL_APOS_FALHA = 3   # "Solicitação de dado pessoal do eleitor para habilitação manual"
 HAB_INDETERMINADA = 0       # nenhuma das mensagens acima (ex.: urnas no exterior, sem leitor biométrico)
 
@@ -39,6 +39,11 @@ MODALIDADES = {
 M_PRONTA = "Urna pronta para receber votos"
 M_TITULO = "Título digitado pelo mesário"
 M_AGUARDA_TITULO = "Aguardando digitação do título"
+# 2026: o mesário pode digitar título ou CPF ("identificador")
+M_IDENT = "Identificador do eleitor digitado pelo mesário"
+M_AGUARDA_IDENT = "Aguardando digitação do identificador do eleitor"
+# 2026: habilitação pelo ano de nascimento (eleitor sem biometria cadastrada, Res. 23.751/2026 art. 134)
+M_ANO_NASC_OK = "Ano de nascimento digitado é igual ao do cadastro"
 M_TIPO_BIO = "Tipo de habilitação do eleitor [biométrica]"
 M_TIPO_PREFIXO = "Tipo de habilitação do eleitor ["
 M_SEM_BIO = "O eleitor não possui biometria"
@@ -68,15 +73,26 @@ M_DESLIGADA = "Urna desligada pela chave"
 M_VERSAO = "Versão da aplicação: "
 
 
-def extrair_7z(dados: bytes, profundidade: int = 0) -> list[tuple[str, bytes]]:
-    """Retorna [(nome, conteúdo)] de um 7z, abrindo .jez aninhados recursivamente."""
+def _membros(dados: bytes) -> list[tuple[str, bytes]]:
+    """Abre o pacote de log pelo tipo real (assinatura): 7z em 2022, ZIP em 2026."""
+    if dados[:2] == b"PK":
+        import zipfile
+        with zipfile.ZipFile(io.BytesIO(dados)) as z:
+            return [(n, z.read(n)) for n in z.namelist() if not n.endswith("/")]
     fab = BytesIOFactory(1 << 31)
     with py7zr.SevenZipFile(io.BytesIO(dados)) as z:
         z.extractall(factory=fab)
     saida = []
     for nome, bio in fab.products.items():
         bio.seek(0)
-        conteudo = bio.read()
+        saida.append((nome, bio.read()))
+    return saida
+
+
+def extrair_7z(dados: bytes, profundidade: int = 0) -> list[tuple[str, bytes]]:
+    """Retorna [(nome, conteúdo)] de um pacote de log (7z ou ZIP), abrindo .jez aninhados."""
+    saida = []
+    for nome, conteudo in _membros(dados):
         if nome.lower().endswith(".jez") and profundidade < 3:
             try:
                 for n2, c2 in extrair_7z(conteudo, profundidade + 1):
@@ -86,6 +102,54 @@ def extrair_7z(dados: bytes, profundidade: int = 0) -> list[tuple[str, bytes]]:
                 pass
         saida.append((nome, conteudo))
     return saida
+
+
+def identificacao(conteudo: bytes, data_eleicao: str) -> set[tuple[int, int, int]]:
+    """Seções (município, zona, seção) declaradas nas linhas GAP do dia da eleição.
+
+    A urna registra "Município: N", "Zona Eleitoral: N" e "Seção Eleitoral: N" ao
+    iniciar. Seção 0 identifica urna de contingência sem seção atribuída.
+    """
+    ids = set()
+    mun = zona = None
+    for linha in conteudo.decode("latin-1").splitlines():
+        if linha[:10] != data_eleicao or "\tGAP\t" not in linha:
+            continue
+        msg = linha.split("\t")[4] if linha.count("\t") >= 4 else ""
+        try:
+            if msg.startswith("Município: "):
+                mun = int(msg[11:])
+            elif msg.startswith("Zona Eleitoral: "):
+                zona = int(msg[16:])
+            elif msg.startswith("Seção Eleitoral: ") and mun is not None and zona is not None:
+                ids.add((mun, zona, int(msg[17:])))
+        except ValueError:
+            continue
+    return ids
+
+
+def selecionar_arquivos(arquivos: list[tuple[str, bytes]], data_eleicao: str,
+                        alvo: tuple[int, int, int] | None):
+    """Separa os logs da seção-alvo dos logs de outras seções presentes no mesmo pacote.
+
+    Mantém: arquivos que declaram a seção-alvo; arquivos de contingência (seção 0) do
+    mesmo município e zona; arquivos sem identificação. Exclui arquivos que declaram
+    apenas outras seções (ex.: urna de contingência de cartório que recuperou resultados
+    de várias seções e carrega os logs de todas elas).
+    """
+    if alvo is None:
+        return arquivos, []
+    mantidos, outros = [], []
+    for nome, cont in arquivos:
+        ids = identificacao(cont, data_eleicao)
+        if (not ids or alvo in ids
+                or any(i[0] == alvo[0] and i[1] == alvo[1] and i[2] == 0 for i in ids)):
+            mantidos.append((nome, cont))
+        else:
+            outros.append((nome, sorted(ids)))
+    if not mantidos:  # nenhum arquivo compatível: não descarta nada, mas sinaliza
+        return arquivos, [("SEM_ARQUIVO_DA_SECAO", [])]
+    return mantidos, outros
 
 
 def hms(s: str) -> int:
@@ -192,10 +256,14 @@ def interpretar(arquivos: list[tuple[str, bytes]], data_eleicao: str, data_segui
                 ultimo_hab, ultimo_hab_mod = t, mod
                 estado_mod = None
                 continue
-            if msg == M_TITULO or msg == M_AGUARDA_TITULO:
+            if msg in (M_TITULO, M_AGUARDA_TITULO, M_IDENT, M_AGUARDA_IDENT):
                 estado_mod = None
-                if msg == M_TITULO:
+                if msg in (M_TITULO, M_IDENT):
                     r.ev("titulo", t)
+                continue
+            if msg == M_ANO_NASC_OK:
+                if estado_mod is None:  # sem pedido de habilitação manual antes: sem biometria
+                    estado_mod = HAB_SEM_BIOMETRIA
                 continue
             if msg.startswith(M_TIPO_PREFIXO):
                 if msg == M_TIPO_BIO:

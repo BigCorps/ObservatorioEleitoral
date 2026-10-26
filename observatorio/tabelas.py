@@ -19,7 +19,7 @@ from .config import DADOS, PROCESSADOS
 
 def csv_zip_para_parquet(zip_path: Path, saida: Path, padrao: str = "*.csv",
                          filtro_sql: str | None = None, colunas: str = "*",
-                         agrupar: str | None = None, prefiltro: bytes | None = None) -> int:
+                         agrupar: str | None = None, prefiltro: bytes | tuple | None = None) -> int:
     """Extrai os CSVs que casam com `padrao` e grava um Parquet. Retorna nº de linhas.
 
     `prefiltro`: se informado, só são copiadas para o disco a linha de cabeçalho e as
@@ -38,9 +38,10 @@ def csv_zip_para_parquet(zip_path: Path, saida: Path, padrao: str = "*.csv",
                         if prefiltro is None:
                             shutil.copyfileobj(src, dst, 1 << 22)
                         else:
+                            alts = prefiltro if isinstance(prefiltro, tuple) else (prefiltro,)
                             dst.write(src.readline())
                             for linha in src:
-                                if prefiltro in linha:
+                                if any(a in linha for a in alts):
                                     dst.write(linha)
                     arquivos.append(str(destino))
         if not arquivos:

@@ -11,21 +11,22 @@ import asn1tools
 
 from .config import RAIZ
 
-SPEC = RAIZ / "especificacoes" / "asn1_2022" / "bu.asn1"
+SPECS = {2022: RAIZ / "especificacoes" / "asn1_2022" / "bu.asn1",
+         2026: RAIZ / "especificacoes" / "asn1_2026" / "bu.asn1"}
 
 
-@lru_cache(maxsize=1)
-def _conv():
-    return asn1tools.compile_files([str(SPEC)], codec="ber")
+@lru_cache(maxsize=4)
+def _conv(ano: int = 2022):
+    return asn1tools.compile_files([str(SPECS[ano])], codec="ber")
 
 
 def _str(v):
     return v[1] if isinstance(v, tuple) else v
 
 
-def decodificar(dados: bytes) -> dict:
+def decodificar(dados: bytes, ano: int = 2022) -> dict:
     """Retorna um resumo plano do BU, apenas com o cargo Presidente detalhado."""
-    c = _conv()
+    c = _conv(ano)
     env = c.decode("EntidadeEnvelopeGenerico", dados)
     bu = c.decode("EntidadeBoletimUrna", env["conteudo"])
     urna = bu.get("urna", {})
@@ -49,6 +50,16 @@ def decodificar(dados: bytes) -> dict:
         "bu_qtd_comp_biometrico": bu.get("qtdEleitoresCompBiometrico"),
         "bu_n_historico_correspondencias": len(bu.get("historicoCorrespondencias", []) or []),
     }
+    if ano >= 2026:
+        det = bu.get("detalhamentoComparecimento") or {}
+        out.update(
+            bu_qtd_compareceram=bu.get("qtdEleitoresCompareceram"),
+            bu_qtd_sem_biometria=det.get("qtdEleitoresCompareceramSemBiometria"),
+            bu_qtd_hab_biometria=det.get("qtdEleitoresHabilitadosPorBiometria"),
+            bu_qtd_hab_biografia=det.get("qtdEleitoresHabilitadosPorBiografia"),
+            bu_n_historico_codigos_carga=len(bu.get("historicoCodigosCarga") or []),
+            bu_versao_votacao=urna.get("versaoVotacao"),
+        )
     dados_sa = bu.get("dadosSecaoSA")
     if isinstance(dados_sa, tuple):
         out["bu_dados_secao_sa"] = dados_sa[0]
@@ -64,6 +75,8 @@ def decodificar(dados: bytes) -> dict:
                     continue
                 out["bu_id_eleicao"] = el.get("idEleicao")
                 out["bu_qtd_aptos"] = el.get("qtdEleitoresAptos")
+                out["bu_qtd_aptos_secao"] = el.get("qtdEleitoresAptosSecao")
+                out["bu_qtd_aptos_tte"] = el.get("qtdEleitoresAptosTTE")
                 out["bu_qtd_comparecimento"] = rv.get("qtdComparecimento")
                 votos = {}
                 brancos = nulos = nominais = outros = 0
@@ -85,19 +98,21 @@ def decodificar(dados: bytes) -> dict:
     return out
 
 
-def decodificar_zip(caminho_zip, saida_parquet) -> int:
+def decodificar_zip(caminho_zip, saida_parquet, ano: int | None = None) -> int:
     """Decodifica todos os .bu de um ZIP local e grava Parquet (uma linha por seção)."""
     import zipfile
 
     import pyarrow as pa
     import pyarrow.parquet as pq
 
+    if ano is None:
+        ano = int(str(caminho_zip).rsplit("/", 1)[-1][:4])
     linhas = []
     with zipfile.ZipFile(caminho_zip) as z:
         for n in z.namelist():
             base = {"arquivo": n.rsplit(".", 1)[0]}
             try:
-                d = decodificar(z.read(n))
+                d = decodificar(z.read(n), ano)
                 d["bu_votos_candidato"] = [{"k": k, "v": v} for k, v in d.get("bu_votos_candidato", {}).items()]
                 linhas.append({**base, **d, "erro_bu": ""})
             except Exception as e:  # registra erro real, sem descartar a seção

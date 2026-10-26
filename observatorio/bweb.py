@@ -37,6 +37,7 @@ def consolidar(ano: int) -> Path:
     arquivos = sorted(glob.glob(str(DIR / f"presidente_{ano}_*t_*.parquet")))
     saida = PROCESSADOS / f"secoes_bu_{ano}.parquet"
     con = duckdb.connect()
+    con.execute("SET enable_progress_bar=false")
     lista = "[" + ",".join(f"'{a}'" for a in arquivos) + "]"
     con.execute(f"""
     CREATE VIEW l AS SELECT * FROM read_parquet({lista}, union_by_name=true);
@@ -51,9 +52,12 @@ def consolidar(ano: int) -> Path:
       any_value(CAST(QT_APTOS AS INT)) qt_aptos,
       any_value(CAST(QT_COMPARECIMENTO AS INT)) qt_comparecimento,
       any_value(CAST(QT_ABSTENCOES AS INT)) qt_abstencoes,
-      sum(CASE WHEN DS_TIPO_VOTAVEL='Nominal' THEN CAST(QT_VOTOS AS INT) END) votos_nominais,
-      sum(CASE WHEN DS_TIPO_VOTAVEL='Branco' THEN CAST(QT_VOTOS AS INT) END) votos_brancos,
-      sum(CASE WHEN DS_TIPO_VOTAVEL='Nulo' THEN CAST(QT_VOTOS AS INT) END) votos_nulos,
+      -- O BU relaciona apenas os votáveis que receberam votos: a ausência da linha de
+      -- branco/nulo/nominal significa zero voto naquele tipo. A regra é verificada pelo
+      -- teste B1 (comparecimento = soma dos votos) em 100% das seções; não é imputação.
+      coalesce(sum(CASE WHEN DS_TIPO_VOTAVEL='Nominal' THEN CAST(QT_VOTOS AS INT) END), 0) votos_nominais,
+      coalesce(sum(CASE WHEN DS_TIPO_VOTAVEL='Branco' THEN CAST(QT_VOTOS AS INT) END), 0) votos_brancos,
+      coalesce(sum(CASE WHEN DS_TIPO_VOTAVEL='Nulo' THEN CAST(QT_VOTOS AS INT) END), 0) votos_nulos,
       sum(CASE WHEN DS_TIPO_VOTAVEL NOT IN ('Nominal','Branco','Nulo') THEN CAST(QT_VOTOS AS INT) END) votos_outros_tipos,
       string_agg(DISTINCT DS_TIPO_VOTAVEL, '|') tipos_votavel,
       sum(CAST(QT_VOTOS AS INT)) votos_total,

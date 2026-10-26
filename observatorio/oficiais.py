@@ -23,19 +23,19 @@ def _zip(tipo: str, ano: int, uf: str | None = None):
 def detalhe_secao(ano: int) -> int:
     return csv_zip_para_parquet(_zip("detalhe_votacao_secao", ano), parquet(f"detalhe_secao_{ano}"),
                                 "*_BRASIL.csv", filtro_sql="CD_CARGO = '1'",
-                                prefiltro=b'"Presidente"')
+                                prefiltro=(b'"Presidente"', b'"PRESIDENTE"'))
 
 
 def detalhe_munzona(ano: int) -> int:
     return csv_zip_para_parquet(_zip("detalhe_votacao_munzona", ano), parquet(f"detalhe_munzona_{ano}"),
                                 "*_BRASIL.csv", filtro_sql="CD_CARGO = '1'",
-                                prefiltro=b'"Presidente"')
+                                prefiltro=(b'"Presidente"', b'"PRESIDENTE"'))
 
 
 def candidato_munzona(ano: int) -> int:
     return csv_zip_para_parquet(_zip("votacao_candidato_munzona", ano), parquet(f"candidato_munzona_{ano}"),
                                 "*_BRASIL.csv", filtro_sql="CD_CARGO = '1'",
-                                prefiltro=b'"Presidente"')
+                                prefiltro=(b'"Presidente"', b'"PRESIDENTE"'))
 
 
 def secoes_agregadas(ano: int) -> int:
@@ -43,16 +43,10 @@ def secoes_agregadas(ano: int) -> int:
 
 
 def votacao_secao(ano: int) -> int:
-    """Votação por seção (Presidente), por UF; caminho independente do bweb (Teste K)."""
-    total = 0
-    for uf in UFS_COM_EXTERIOR:
-        try:
-            total += csv_zip_para_parquet(_zip("votacao_secao", ano, uf),
-                                          parquet(f"votacao_secao/{ano}_{uf}"), "*.csv",
-                                          filtro_sql="CD_CARGO = '1'", prefiltro=b'"Presidente"')
-        except FileNotFoundError as e:
-            print("ausente:", e)
-    return total
+    """Votação por seção do cargo Presidente (arquivo nacional "BR"); caminho
+    independente do bweb (Teste K). Os arquivos por UF trazem apenas os demais cargos."""
+    return csv_zip_para_parquet(_zip("votacao_secao", ano, "BR"), parquet(f"votacao_secao/{ano}_BR"), "*.csv",
+                                filtro_sql="CD_CARGO = '1'", prefiltro=(b'"Presidente"', b'"PRESIDENTE"'))
 
 
 def perfil_secao(ano: int) -> int:

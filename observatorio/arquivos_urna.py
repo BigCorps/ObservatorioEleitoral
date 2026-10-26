@@ -34,8 +34,24 @@ DATAS_ELEICAO = {
     (2022, 1): date(2022, 10, 2), (2022, 2): date(2022, 10, 30),
     (2026, 1): date(2026, 10, 4), (2026, 2): date(2026, 10, 25),
 }
-EXTENSOES = ("bu", "imgbu", "logjez", "rdv", "vscmr")
+EXTENSOES = {2022: ("bu", "imgbu", "logjez", "rdv", "vscmr"), 2026: ("bu", "imgbu", "logjez", "rdv", "vscmr")}
+# 2022: o00406-0111200060046.bu   |   2026: o03220ac0101500020088-bu.dat
 RE_NOME = re.compile(r"^o(\d{5})-(\d{5})(\d{4})(\d{4})\.(\w+)$")
+RE_NOME_2026 = re.compile(r"^o(\d{5})[a-z]{2}(\d{5})(\d{4})(\d{4})-([a-z]+)\.(\w+)$")
+TIPOS_2026 = {("bu", "dat"): "bu", ("busa", "dat"): "busa", ("rdv", "dat"): "rdv", ("imgbu", "dat"): "imgbu",
+              ("log", "jez"): "logjez", ("vota", "vsc"): "vscmr"}
+
+
+def analisar_nome(nome: str):
+    """(stem, tipo, pleito, município, zona, seção) ou None para nomes fora do padrão."""
+    m = RE_NOME.match(nome)
+    if m:
+        return nome.rsplit(".", 1)[0], m.group(5), *map(int, m.group(1, 2, 3, 4))
+    m = RE_NOME_2026.match(nome)
+    if m:
+        tipo = TIPOS_2026.get((m.group(5), m.group(6)), f"{m.group(5)}.{m.group(6)}")
+        return nome.split("-", 1)[0], tipo, *map(int, m.group(1, 2, 3, 4))
+    return None
 COBERTURA = MANIFESTOS / "cobertura_arquivos_urna.csv"
 _trava = threading.Lock()
 
@@ -111,7 +127,12 @@ def resumir(r: L.ResumoLog) -> dict:
     return d
 
 
-def _processar_secao(url: str, stem: str, membros: list[Membro], d_eleicao: str, d_seguinte: str):
+def _tipo(nome: str) -> str:
+    return analisar_nome(nome)[1]
+
+
+def _processar_secao(url: str, stem: str, membros: list[Membro], d_eleicao: str, d_seguinte: str,
+                     chave_secao: tuple):
     """Executado em processo filho. Retorna (linha, bytes_do_bu, erro)."""
     try:
         if not membros:  # seção sem .bu e sem .logjez no pacote: registrada como ausência
@@ -119,16 +140,23 @@ def _processar_secao(url: str, stem: str, membros: list[Membro], d_eleicao: str,
         ini = min(m.offset_cabecalho for m in membros)
         fim = max(fim_membro(m) for m in membros)
         bloco = _faixa(url, ini, fim)
-        conteudos = {m.nome.rsplit(".", 1)[1]: extrair_de_bloco(bloco, ini, m) for m in membros}
+        conteudos = {_tipo(m.nome): extrair_de_bloco(bloco, ini, m) for m in membros}
         linha = {"tem_bu": "bu" in conteudos, "tem_log": "logjez" in conteudos}
         if "logjez" in conteudos:
             try:
                 arqs = L.extrair_7z(conteudos["logjez"])
-                linha.update(resumir(L.interpretar(arqs, d_eleicao, d_seguinte)))
+                alvo = tuple(chave_secao[1:4])
+                sel, outros = L.selecionar_arquivos(arqs, d_eleicao, alvo)
+                linha.update(resumir(L.interpretar(sel, d_eleicao, d_seguinte)))
+                linha["log_n_arquivos_total"] = len(arqs)
+                linha["log_arquivos_outras_secoes"] = "; ".join(
+                    f"{n}={'/'.join('-'.join(map(str, i)) for i in ids)}" for n, ids in outros)
+                linha["log_n_arquivos_outras_secoes"] = len(outros)
                 linha["erro_log"] = ""
             except Exception as e:
                 linha["erro_log"] = repr(e)[:300]
-        return stem, linha, conteudos.get("bu"), ""
+        linha["bu_tipo_arquivo_origem"] = "bu" if "bu" in conteudos else ("busa" if "busa" in conteudos else "")
+        return stem, linha, conteudos.get("bu", conteudos.get("busa")), ""
     except Exception as e:
         return stem, None, None, repr(e)[:300] + " " + traceback.format_exc(limit=2)[-300:]
 
@@ -173,16 +201,19 @@ def processar(ano: int, turno: int, uf: str, workers: int = 8, limite: int | Non
     membros = listar_membros(arq)
     por_secao: dict[str, dict[str, Membro]] = defaultdict(dict)
     inesperados = []
+    esperadas = set(EXTENSOES[ano])
+    chaves_secao = {}
     for m in membros:
-        mm = RE_NOME.match(m.nome)
-        if not mm or mm.group(5) not in EXTENSOES:
+        a = analisar_nome(m.nome)
+        if not a or a[1] not in esperadas | {"busa"}:
             inesperados.append(m.nome)
             continue
-        stem = m.nome.rsplit(".", 1)[0]
-        if mm.group(5) in por_secao[stem]:
+        stem, tipo = a[0], a[1]
+        chaves_secao[stem] = a[2:]
+        if tipo in por_secao[stem]:
             inesperados.append("DUPLICADO:" + m.nome)
-        por_secao[stem][mm.group(5)] = m
-    incompletas = {s: sorted(set(EXTENSOES) - set(v)) for s, v in por_secao.items() if set(v) != set(EXTENSOES)}
+        por_secao[stem][tipo] = m
+    incompletas = {s: sorted(esperadas - set(v)) for s, v in por_secao.items() if not esperadas <= set(v)}
     stems = sorted(por_secao)
     if limite:
         stems = stems[:limite]
@@ -191,21 +222,20 @@ def processar(ano: int, turno: int, uf: str, workers: int = 8, limite: int | Non
     with ProcessPoolExecutor(workers) as ex:
         futs = []
         for s in stems:
-            ms = [por_secao[s][e] for e in ("bu", "logjez") if e in por_secao[s]]
-            futs.append(ex.submit(_processar_secao, url, s, ms, d_eleicao, d_seguinte))
+            ms = [por_secao[s][e] for e in ("bu", "busa", "logjez") if e in por_secao[s]]
+            futs.append(ex.submit(_processar_secao, url, s, ms, d_eleicao, d_seguinte, chaves_secao[s]))
         for i, f in enumerate(as_completed(futs), 1):
             stem, linha, bu, erro = f.result()
-            mm = RE_NOME.match(stem + ".bu")
+            pl, mun, zon, sec = chaves_secao[stem]
             chave = {"ano": ano, "turno": turno, "uf": uf, "arquivo": stem,
-                     "cd_pleito": int(mm.group(1)), "cd_municipio": int(mm.group(2)),
-                     "nr_zona": int(mm.group(3)), "nr_secao": int(mm.group(4))}
+                     "cd_pleito": pl, "cd_municipio": mun, "nr_zona": zon, "nr_secao": sec}
             if erro:
                 falhas.append({**chave, "erro": erro})
                 continue
             linha["extensoes_presentes"] = "|".join(sorted(por_secao[stem]))
             linhas.append({**chave, **linha})
             if bu is not None:
-                zbu.writestr(stem + ".bu", bu)
+                zbu.writestr(stem + (".bu" if linha.get("bu_tipo_arquivo_origem") != "busa" else ".busa"), bu)
             if progresso and i % 2000 == 0:
                 print(f"  {uf} {turno}t: {i}/{len(stems)} seções ({time.time() - inicio:.0f}s)", flush=True)
     zbu.close()

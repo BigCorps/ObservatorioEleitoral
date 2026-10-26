@@ -93,7 +93,8 @@ def _diff(con, teste: str, descricao: str, fonte_a: str, fonte_b: str, sql_join:
     uniao = " UNION ALL ".join(partes)
     con.execute(f"""INSERT INTO incompat SELECT teste, turno, uf, cd_municipio, nr_zona, nr_secao, campo,
             valor_a, '{fonte_a}', valor_b, '{fonte_b}', valor_a - valor_b,
-            CASE WHEN valor_a IS NULL OR valor_b IS NULL THEN 'ausente' ELSE 'diferente' END
+            CASE WHEN valor_a IS NULL OR valor_b IS NULL THEN 'ausente' ELSE 'diferente' END,
+            'Incompatibilidade documental', ''
         FROM ({uniao}) WHERE valor_a IS DISTINCT FROM valor_b""")
     for nome, _, _ in campos:
         r = con.execute(f"""SELECT count(*) FILTER (WHERE campo='{nome}'),
@@ -104,13 +105,48 @@ def _diff(con, teste: str, descricao: str, fonte_a: str, fonte_b: str, sql_join:
                     [teste, descricao, nome, fonte_a, fonte_b, total, r[0], r[1], int(r[2])])
 
 
+def explicar(con, disp) -> None:
+    """Aplica explicações documentais verificáveis. Só reclassifica para
+    'Diferença explicada' quando a regra e a fonte da explicação são objetivas."""
+    regras = [
+        ("teste='B2' AND campo='biometria_nh_vs_lib_codigo' AND valor_b IS NULL AND uf='ZZ' AND valor_a=0",
+         "Exterior: urnas sem identificação biométrica; o campo opcional qtdEleitoresLibCodigo é omitido no .bu "
+         "(Res.-TSE 23.669/2021, art. 178, parágrafo único) e o CSV publica 0."),
+        ("teste='B5' AND uf='ZZ' AND valor_a IS NULL AND valor_b=0",
+         "Município do exterior presente na tabela por município/zona com todos os valores zero e sem seção no BU."),
+    ]
+    if "dsec" in disp:
+        regras.append(("teste='A3' AND valor_b IS NULL AND EXISTS (SELECT 1 FROM dsec d WHERE d.turno=incompat.turno "
+                       "AND d.uf=incompat.uf AND d.cd_municipio=incompat.cd_municipio AND d.nr_zona=incompat.nr_zona "
+                       "AND d.nr_secao=incompat.nr_secao AND d.ST_SECAO_INSTALADA IN ('Não','N'))",
+                       "Seção não instalada (ST_SECAO_INSTALADA = Não no Detalhe por seção): não há BU."))
+        regras.append(("teste='A2' AND valor_b IS NULL AND EXISTS (SELECT 1 FROM dsec d WHERE d.turno=incompat.turno "
+                       "AND d.uf=incompat.uf AND d.cd_municipio=incompat.cd_municipio AND d.nr_zona=incompat.nr_zona "
+                       "AND d.nr_secao=incompat.nr_secao AND d.DS_ORIGEM_VOTO IN ('Sistema de apuração','Totalização'))",
+                       "Resultado da seção não originado na urna eletrônica (DS_ORIGEM_VOTO = Sistema de apuração "
+                       "ou Totalização, inclusive seções anuladas): não há arquivos de urna no pacote."))
+    if "dmz" in disp:
+        regras.append(("teste='B5' AND campo='aptos' AND valor_b - coalesce(valor_a, 0) = (SELECT "
+                       "sum(CAST(QT_ELEITORES_SECOES_NAO_INSTALADAS AS BIGINT)) FROM dmz_raw m WHERE "
+                       "CAST(m.NR_TURNO AS INT)=incompat.turno AND m.SG_UF=incompat.uf AND "
+                       "CAST(m.CD_MUNICIPIO AS INT)=incompat.cd_municipio AND CAST(m.NR_ZONA AS INT)=incompat.nr_zona)",
+                       "A tabela por município/zona inclui em QT_APTOS os eleitores de seções não instaladas "
+                       "(QT_ELEITORES_SECOES_NAO_INSTALADAS), que não têm BU; a diferença é exatamente esse número."))
+    for cond, txt in regras:
+        con.execute(f"UPDATE incompat SET classificacao='Diferença explicada', explicacao=? WHERE {cond}", [txt])
+    con.execute("""ALTER TABLE resumo ADD COLUMN explicadas BIGINT""")
+    con.execute("""UPDATE resumo SET explicadas = (SELECT count(*) FROM incompat i WHERE i.teste=resumo.teste
+                   AND i.campo=resumo.campo AND i.classificacao='Diferença explicada')""")
+
+
 def executar(ano: int) -> dict:
     con = duckdb.connect()
     con.execute("SET enable_progress_bar=false")
     disp = preparar(con, ano)
     con.execute("""CREATE TABLE incompat (teste VARCHAR, turno INT, uf VARCHAR, cd_municipio INT, nr_zona INT,
         nr_secao INT, campo VARCHAR, valor_a BIGINT, fonte_a VARCHAR, valor_b BIGINT, fonte_b VARCHAR,
-        diferenca BIGINT, situacao VARCHAR)""")
+        diferenca BIGINT, situacao VARCHAR, classificacao VARCHAR DEFAULT 'Incompatibilidade documental',
+        explicacao VARCHAR DEFAULT '')""")
     con.execute("""CREATE TABLE resumo (teste VARCHAR, descricao VARCHAR, campo VARCHAR, fonte_a VARCHAR,
         fonte_b VARCHAR, registros_comparados BIGINT, divergencias BIGINT, ausencias BIGINT,
         soma_abs_diferencas BIGINT)""")
@@ -127,30 +163,31 @@ def executar(ano: int) -> dict:
     if "bubin" in disp:
         # B2 — BU publicado (CSV) x BU binário transmitido pela urna
         _diff(con, "B2", "BU-CSV x BU binário (.bu)", "BWEB", "BUBIN",
-              f"""SELECT b.turno, b.uf, b.cd_municipio, b.nr_zona, b.nr_secao, b.*, u.* EXCLUDE ({CHAVE})
+              f"""SELECT b.turno, b.uf, b.cd_municipio, b.nr_zona, b.nr_secao,
+                    b.qt_aptos a1, u.bu_qtd_aptos a2, b.qt_comparecimento c1, u.bu_qtd_comparecimento c2,
+                    b.votos_nominais n1, u.bu_votos_nominais n2, b.votos_brancos br1, u.bu_votos_brancos br2,
+                    b.votos_nulos nu1, u.bu_votos_nulos nu2,
+                    b.qt_eleitores_biometria_nh nh, u.bu_qtd_lib_codigo lib,
+                    list_sum(list_transform(map_keys(b.votos_candidato), lambda k: abs(b.votos_candidato[k]
+                      - coalesce(list_sum(list_transform(list_filter(u.bu_votos_candidato, lambda e: e.k = k),
+                                                        lambda e: e.v)), 0)))) dif_cand
                   FROM bweb b JOIN bubin u USING ({CHAVE})""",
-              [("aptos", "b.qt_aptos", "u.bu_qtd_aptos"),
-               ("comparecimento", "b.qt_comparecimento", "u.bu_qtd_comparecimento"),
-               ("votos_nominais", "b.votos_nominais", "u.bu_votos_nominais"),
-               ("brancos", "b.votos_brancos", "u.bu_votos_brancos"),
-               ("nulos", "b.votos_nulos", "u.bu_votos_nulos"),
-               ("biometria_nh_vs_lib_codigo", "b.qt_eleitores_biometria_nh", "u.bu_qtd_lib_codigo"),
-               ("votos_por_candidato_soma_dif_abs",
-                "list_sum(list_transform(map_keys(b.votos_candidato), lambda k: abs(b.votos_candidato[k] - coalesce(list_sum(list_transform(list_filter(u.bu_votos_candidato, lambda e: e.k = k), lambda e: e.v)), 0))))",
-                "0")])
+              [("aptos", "a1", "a2"), ("comparecimento", "c1", "c2"), ("votos_nominais", "n1", "n2"),
+               ("brancos", "br1", "br2"), ("nulos", "nu1", "nu2"),
+               ("biometria_nh_vs_lib_codigo", "nh", "lib"),
+               ("votos_por_candidato_soma_dif_abs", "dif_cand", "0")])
         # B2c — votos por candidato no binário que não aparecem no CSV
         _diff(con, "B2c", "Candidatos presentes no .bu e ausentes no BU-CSV", "BUBIN", "BWEB",
               f"""SELECT b.turno, b.uf, b.cd_municipio, b.nr_zona, b.nr_secao, b.votos_candidato, u.bu_votos_candidato
                   FROM bweb b JOIN bubin u USING ({CHAVE})""",
-              [("votos_extra_no_bu", "list_sum(list_transform(list_filter(bu_votos_candidato, lambda e: NOT list_contains(map_keys(votos_candidato), e.k)), lambda e: e.v))", "0")])
+              [("votos_extra_no_bu", "coalesce(list_sum(list_transform(list_filter(bu_votos_candidato, lambda e: NOT list_contains(map_keys(votos_candidato), e.k)), lambda e: e.v)), 0)", "0")])
         # cobertura entre BWEB e BUBIN
         _diff(con, "A2", "Seção presente no BU-CSV e ausente no pacote de arquivos de urna (e vice-versa)", "BWEB", "BUBIN",
               f"""SELECT coalesce(b.turno,u.turno) turno, coalesce(b.uf,u.uf) uf, coalesce(b.cd_municipio,u.cd_municipio) cd_municipio,
                   coalesce(b.nr_zona,u.nr_zona) nr_zona, coalesce(b.nr_secao,u.nr_secao) nr_secao,
                   CASE WHEN b.nr_secao IS NULL THEN NULL ELSE 1 END pa, CASE WHEN u.nr_secao IS NULL THEN NULL ELSE 1 END pb
                   FROM bweb b FULL JOIN bubin u USING ({CHAVE})
-                  WHERE coalesce(b.turno,u.turno) IN (SELECT DISTINCT turno FROM bubin)
-                    AND coalesce(b.uf,u.uf) IN (SELECT DISTINCT uf FROM bubin)""",
+                  WHERE (coalesce(b.turno,u.turno), coalesce(b.uf,u.uf)) IN (SELECT DISTINCT (turno, uf) FROM bubin)""",
               [("presenca", "pa", "pb")])
     if "logs" in disp:
         _diff(con, "B6", "BU-CSV x log da urna (contagens)", "BWEB", "LOG",
@@ -222,6 +259,7 @@ def executar(ano: int) -> dict:
               [("aptos", "a1", "a2"), ("comparecimento", "c1", "c2"), ("abstencoes", "ab1", "ab2"),
                ("brancos", "br1", "br2"), ("nulos", "n1", "n2"), ("validos", "v1", "v2")])
 
+    explicar(con, disp)
     out = RESULTADOS / str(ano)
     out.mkdir(parents=True, exist_ok=True)
     con.execute(f"COPY (SELECT * FROM resumo ORDER BY teste, campo) TO '{out}/reconciliacao_resumo.csv' (HEADER)")
