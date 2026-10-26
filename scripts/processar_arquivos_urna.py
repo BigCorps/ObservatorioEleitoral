@@ -6,6 +6,7 @@ Pula UF/turno já registrados em manifestos/cobertura_arquivos_urna.csv (exceto 
 Ordem: pacotes menores primeiro. Falha de uma UF não interrompe as demais.
 """
 import csv
+import os
 import sys
 import traceback
 
@@ -29,7 +30,7 @@ fila = [(t, uf) for t in turnos for uf in ufs if (str(t), uf) in tam and (str(an
 fila.sort(key=lambda x: tam[(str(x[0]), x[1])])
 for t, uf in fila:
     try:
-        c = processar(ano, t, uf, workers=16, progresso=False)
+        c = processar(ano, t, uf, workers=int(os.environ.get("OBS_WORKERS", "32")), progresso=False)
         print("OK", ano, t, uf, c["secoes_no_pacote"], c["secoes_processadas"], c["secoes_com_falha"],
               c["duracao_s"], flush=True)
     except Exception:

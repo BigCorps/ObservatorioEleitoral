@@ -41,9 +41,25 @@ DATASETS = {
 FUSO_UF = {uf: -3 for uf in UFS}
 FUSO_UF.update({"AM": -4, "RR": -4, "RO": -4, "MT": -4, "MS": -4, "AC": -5})
 
-# Exceções por código TSE de município (CD_MUNICIPIO).
-# Preenchido em observatorio/fusos.py a partir dos nomes oficiais.
-FUSO_MUNICIPIO: dict[int, int] = {}
+# Exceções por código TSE de município (CD_MUNICIPIO). Base legal: Decreto 2.784/1913
+# na redação da Lei 12.876/2013 (linha Tabatinga–Porto Acre no AM; Fernando de Noronha
+# em UTC-2). A lei define uma linha geográfica, não uma lista; a lista abaixo (TRE-AM via
+# imprensa) foi confirmada nos dados: são exatamente os municípios do AM cujo BU de 2022
+# registra abertura às 6h locais. Ver docs/referencias-normativas.md, seção 5.
+FUSO_MUNICIPIO: dict[int, int] = {
+    2917: -5,   # Amaturá
+    2054: -5,   # Atalaia do Norte
+    2135: -5,   # Benjamin Constant
+    2291: -5,   # Eirunepé
+    2313: -5,   # Envira
+    2020: -5,   # Guajará
+    2399: -5,   # Ipixuna
+    98370: -5,  # Itamarati
+    2496: -5,   # Jutaí
+    2755: -5,   # São Paulo de Olivença
+    98477: -5,  # Tabatinga
+    30015: -2,  # Fernando de Noronha (PE)
+}
 
 # Horário oficial de votação em 2022 e 2026: 8h às 17h no horário de Brasília (UTC-3)
 # em todo o território nacional (ver docs/metodologia.md para a base normativa).

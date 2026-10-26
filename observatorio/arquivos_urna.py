@@ -210,7 +210,9 @@ def processar(ano: int, turno: int, uf: str, workers: int = 8, limite: int | Non
                 print(f"  {uf} {turno}t: {i}/{len(stems)} seções ({time.time() - inicio:.0f}s)", flush=True)
     zbu.close()
     if linhas:
-        tabela = pa.Table.from_pylist(linhas)
+        # schema pela união das chaves (from_pylist usa só a 1ª linha: perderia colunas)
+        chaves = list(dict.fromkeys(k for l in linhas for k in l))
+        tabela = pa.Table.from_pylist([{k: l.get(k) for k in chaves} for l in linhas])
         pq.write_table(tabela, saida, compression="zstd")
     cob = {
         "ano": ano, "turno": turno, "uf": uf, "url": url, "etag": arq.etag,

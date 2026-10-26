@@ -28,7 +28,8 @@ def converter(ano: int, turno: int, uf: str) -> int:
     if not z.exists():
         raise FileNotFoundError(f"{z} ainda não baixado")
     saida = DIR / f"presidente_{ano}_{turno}t_{uf}.parquet"
-    return csv_zip_para_parquet(z, saida, "bweb_*.csv", filtro_sql="CD_CARGO_PERGUNTA = '1'")
+    return csv_zip_para_parquet(z, saida, "bweb_*.csv", filtro_sql="CD_CARGO_PERGUNTA = '1'",
+                                prefiltro=b'"Presidente";')
 
 
 def consolidar(ano: int) -> Path:

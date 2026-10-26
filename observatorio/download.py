@@ -108,16 +108,26 @@ def baixar(url: str, sess: requests.Session | None = None, forcar: bool = False,
             if etag:
                 cab["If-Range"] = f'"{etag}"'
             with sess.get(url, headers=cab, stream=True, timeout=120) as r:
-                if ja and r.status_code == 200:  # servidor ignorou Range: recomeça
-                    ja = 0
+                if r.status_code == 416:  # parcial inconsistente com o arquivo remoto
+                    parcial.unlink(missing_ok=True)
+                    raise RuntimeError("HTTP 416: parcial descartado")
+                if r.status_code == 206:
+                    cr = r.headers.get("Content-Range", "")
+                    if not cr.startswith(f"bytes {ja}-"):
+                        parcial.unlink(missing_ok=True)
+                        raise RuntimeError(f"Content-Range inesperado: {cr!r}")
+                    modo = "ab"
+                elif r.status_code == 200:  # servidor ignorou Range ou versão mudou: recomeça
                     modo = "wb"
-                elif r.status_code in (200, 206):
-                    modo = "ab" if ja else "wb"
                 else:
                     raise RuntimeError(f"HTTP {r.status_code}")
                 with parcial.open(modo) as f:
-                    for bloco in r.iter_content(1 << 20):
+                    # bytes crus: sem decodificação de Content-Encoding
+                    for bloco in r.raw.stream(1 << 20, decode_content=False):
                         f.write(bloco)
+            if total and parcial.stat().st_size > total:
+                parcial.unlink()
+                raise RuntimeError("parcial maior que o arquivo remoto: descartado")
             if not total or parcial.stat().st_size == total:
                 break
         except Exception as e:  # registra e tenta de novo com espera exponencial
