@@ -134,6 +134,22 @@ def explicar(con, disp) -> None:
                        "AND d.nr_secao=incompat.nr_secao AND d.DS_ORIGEM_VOTO IN ('Sistema de apuração','Totalização'))",
                        "Resultado da seção não originado na urna eletrônica (DS_ORIGEM_VOTO = Sistema de apuração "
                        "ou Totalização, inclusive seções anuladas): não há arquivos de urna no pacote."))
+    if "logs" in disp and "bubin" in disp:
+        regras.append(("teste='B8' AND campo='habilitados_por_biometria' AND valor_a > valor_b AND valor_a - valor_b = "
+                       "(SELECT l.semetapa_votou FROM logs l WHERE l.turno=incompat.turno AND l.uf=incompat.uf AND "
+                       "l.cd_municipio=incompat.cd_municipio AND l.nr_zona=incompat.nr_zona AND l.nr_secao=incompat.nr_secao)",
+                       "O BU conta como biométricas habilitações em que o log registra 'Solicita digital' e 'Capturada a "
+                       "digital' seguidas de 'Eleitor foi habilitado', sem a mensagem 'Tipo de habilitação do eleitor "
+                       "[biométrica]'; a diferença é igual ao número dessas habilitações sem etapa classificada no log "
+                       "(padrão conferido nas seções AC 1007/9/475, 1040/4/160, 1058/6/56, 1074/4/42 e 1074/4/322 do 2º turno de 2026)."))
+    for t in (1, 2):
+        if con.execute(f"SELECT count(*) FROM duckdb_views() WHERE view_name='ofic{t}'").fetchone()[0]:
+            regras.append((f"teste='A2o' AND turno={t} AND valor_b IS NULL AND EXISTS (SELECT 1 FROM ofic{t} o WHERE "
+                           "o.uf=incompat.uf AND o.cd_municipio=incompat.cd_municipio AND o.nr_zona=incompat.nr_zona "
+                           "AND o.nr_secao=incompat.nr_secao AND (o.st_instalada IN ('Não','N') OR o.ds_origem_voto IN "
+                           "('Sistema de apuração','Totalização')))",
+                           "Seção não instalada ou com resultado não originado na urna eletrônica (Sistema de apuração/"
+                           "Totalização, inclusive seções anuladas): não há arquivos de urna."))
     if "dmz" in disp:
         regras.append(("teste='B5' AND campo='aptos' AND valor_b - coalesce(valor_a, 0) = (SELECT "
                        "sum(CAST(QT_ELEITORES_SECOES_NAO_INSTALADAS AS BIGINT)) FROM dmz_raw m WHERE "
@@ -272,7 +288,8 @@ def executar(ano: int) -> dict:
                   coalesce(b.nr_zona,u.nr_zona) nr_zona, coalesce(b.nr_secao,u.nr_secao) nr_secao,
                   CASE WHEN b.nr_secao IS NULL THEN NULL ELSE 1 END pa, CASE WHEN u.nr_secao IS NULL THEN NULL ELSE 1 END pb
                   FROM bweb b FULL JOIN bubin u USING ({CHAVE})
-                  WHERE (coalesce(b.turno,u.turno), coalesce(b.uf,u.uf)) IN (SELECT DISTINCT (turno, uf) FROM bubin)""",
+                  WHERE (coalesce(b.turno,u.turno), coalesce(b.uf,u.uf)) IN (SELECT DISTINCT (turno, uf) FROM bubin)
+                    AND coalesce(b.turno,u.turno) IN (SELECT DISTINCT turno FROM bweb)""",
               [("presenca", "pa", "pb")])
     tem_ofic = [t for t in (1, 2) if (PROCESSADOS / f"secoes_oficiais_{ano}_{t}t.parquet").exists()
                 and t not in {r[0] for r in con.execute("SELECT DISTINCT turno FROM bweb").fetchall()}]
@@ -281,15 +298,25 @@ def executar(ano: int) -> dict:
         of = PROCESSADOS / f"secoes_oficiais_{ano}_{t}t.parquet"
         con.execute(f"CREATE OR REPLACE VIEW ofic{t} AS SELECT * FROM '{of}'")
         if "bubin" in disp:
+            _diff(con, "A2o", "Seção no resultado oficial por seção e ausente no pacote de arquivos de urna (e vice-versa), "
+                  "turno sem BU-CSV", "DSEC+VSEC", "BUBIN",
+                  f"""SELECT coalesce(o.turno,u.turno) turno, coalesce(o.uf,u.uf) uf, coalesce(o.cd_municipio,u.cd_municipio) cd_municipio,
+                      coalesce(o.nr_zona,u.nr_zona) nr_zona, coalesce(o.nr_secao,u.nr_secao) nr_secao,
+                      CASE WHEN o.nr_secao IS NULL THEN NULL ELSE 1 END pa, CASE WHEN u.nr_secao IS NULL THEN NULL ELSE 1 END pb
+                      FROM ofic{t} o FULL JOIN (SELECT * FROM bubin WHERE turno={t}) u USING ({CHAVE})
+                      WHERE coalesce(o.uf,u.uf) IN (SELECT DISTINCT uf FROM bubin WHERE turno={t})""",
+                  [("presenca", "pa", "pb")])
             _diff(con, f"B7", "Resultado oficial por seção (DSEC+VSEC) x BU binário (.bu), turno sem BU-CSV",
                   "DSEC+VSEC", "BUBIN",
                   f"""SELECT o.turno, o.uf, o.cd_municipio, o.nr_zona, o.nr_secao,
                         o.qt_aptos a1, u.bu_qtd_aptos a2, o.qt_comparecimento c1, u.bu_qtd_comparecimento c2,
                         o.votos_nominais n1, u.bu_votos_nominais n2, o.votos_brancos br1, u.bu_votos_brancos br2,
                         o.votos_nulos nu1, u.bu_votos_nulos nu2,
-                        list_sum(list_transform(map_keys(o.votos_candidato), lambda k: abs(o.votos_candidato[k]
+                        CASE WHEN o.votos_candidato IS NULL AND o.qt_comparecimento = 0
+                               AND coalesce(len(u.bu_votos_candidato), 0) = 0 THEN 0  -- seção sem votantes nas duas fontes
+                        ELSE list_sum(list_transform(map_keys(o.votos_candidato), lambda k: abs(o.votos_candidato[k]
                           - coalesce(list_sum(list_transform(list_filter(u.bu_votos_candidato, lambda e: e.k = k),
-                                                            lambda e: e.v)), 0)))) dif_cand
+                                                            lambda e: e.v)), 0)))) END dif_cand
                       FROM ofic{t} o JOIN bubin u USING ({CHAVE})""",
                   [("aptos", "a1", "a2"), ("comparecimento", "c1", "c2"), ("votos_nominais", "n1", "n2"),
                    ("brancos", "br1", "br2"), ("nulos", "nu1", "nu2"),
