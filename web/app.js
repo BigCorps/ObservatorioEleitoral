@@ -898,10 +898,12 @@ let simRates=null;
 const simKeys=['reducao','terceira','flavio'];
 const simIds={reducao:'simReducao',terceira:'simTerceira',flavio:'simFlavio'};
 function simMetrics(){
- const r=data?.votesByYear?.['2026']?.get('BR');if(!r)return null;
- const n=k=>numeric(r[k]);
+ const rows=data?.votesByYear?.['2026'];
+ if(!rows||rows.size!==28)return null;
+ const all=[...rows.values()];
+ const n=k=>all.reduce((total,r)=>total+Number(r[k]),0);
  const required=['validos_1t','votos_13_1t','votos_22_1t','votos_13_2t','brancos_1t','nulos_1t','brancos_2t','nulos_2t','abstencoes_1t','abstencoes_2t'];
- if(required.some(k=>n(k)===null))return null;
+ if(all.some(r=>required.some(k=>numeric(r[k])===null)))return null;
  const third=n('validos_1t')-n('votos_13_1t')-n('votos_22_1t');
  const invalid=n('brancos_1t')+n('nulos_1t')-n('brancos_2t')-n('nulos_2t');
  const abstention=n('abstencoes_1t')-n('abstencoes_2t');
