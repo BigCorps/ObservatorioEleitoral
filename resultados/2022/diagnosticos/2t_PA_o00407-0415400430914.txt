@@ -1,0 +1,49 @@
+=== logd.dat: 2911 linhas do dia; ids={'2200428': 2911}
+    {'Urna pronta para receber votos': 2, 'Eleitor foi habilitado': 310, 'Voto confirmado para [Presidente]': 310, 'O voto do eleitor foi computado': 309, 'Inicio do Encerramento': 1}
+      06:55:31 INFO   2200428 LOGD  Urna ligada em 30/10/2022 às 06:55:10
+      06:55:50 INFO   2200428 GAP   Iniciando aplicação - Oficial - 2º turno
+      06:55:50 INFO   2200428 GAP   Identificação do Modelo de Urna: UE2020
+      06:55:59 INFO   2200428 GAP   Identificação do Modelo de Urna: UE2020
+      06:56:03 INFO   2200428 GAP   Modo de carga da UE - Votação
+      06:56:03 INFO   2200428 GAP   Município: 04154
+      06:56:03 INFO   2200428 GAP   Zona Eleitoral: 0043
+      06:56:03 INFO   2200428 GAP   Seção Eleitoral: 0914
+      06:56:07 INFO   2200428 GAP   Serial de votação da MV: 3D5139CD 16/09/2022 às 13:27:22 em ZPA043STD58512
+      06:56:22 INFO   2200428 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      06:56:45 INFO   2200428 VOTA  Iniciando aplicação - Oficial - 2º turno
+      07:50:03 ERRO   2200428 VOTA  Digitado título inválido para o registro de mesário
+      07:50:13 ERRO   2200428 VOTA  Digitado título inválido para o registro de mesário
+      08:00:03 INFO   2200428 VOTA  Urna pronta para receber votos
+      08:49:29 INFO   2200428 INITJE Urna desligada pela chave
+      08:50:26 INFO   2200428 LOGD  Urna ligada em 30/10/2022 às 08:50:05
+      08:50:44 INFO   2200428 GAP   Iniciando aplicação - Oficial - 2º turno
+      08:50:44 INFO   2200428 GAP   Identificação do Modelo de Urna: UE2020
+      08:50:53 INFO   2200428 GAP   Identificação do Modelo de Urna: UE2020
+      08:50:57 INFO   2200428 GAP   Modo de carga da UE - Votação
+      08:50:57 INFO   2200428 GAP   Município: 04154
+      08:50:57 INFO   2200428 GAP   Zona Eleitoral: 0043
+      08:50:57 INFO   2200428 GAP   Seção Eleitoral: 0914
+      08:51:01 INFO   2200428 GAP   Serial de votação da MV: 3D5139CD 16/09/2022 às 13:27:22 em ZPA043STD58512
+      08:51:16 INFO   2200428 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      08:51:34 INFO   2200428 VOTA  Iniciando aplicação - Oficial - 2º turno
+      08:53:24 INFO   2200428 INITJE Urna desligada pela chave
+      08:53:24 INFO   2200428 VOTA  Votação suspensa
+      08:55:20 INFO   2200428 LOGD  Urna ligada em 30/10/2022 às 08:54:59
+      08:55:39 INFO   2200428 GAP   Iniciando aplicação - Oficial - 2º turno
+      08:55:39 INFO   2200428 GAP   Identificação do Modelo de Urna: UE2020
+      08:55:48 INFO   2200428 GAP   Identificação do Modelo de Urna: UE2020
+      08:55:52 INFO   2200428 GAP   Modo de carga da UE - Votação
+      08:55:52 INFO   2200428 GAP   Município: 04154
+      08:55:52 INFO   2200428 GAP   Zona Eleitoral: 0043
+      08:55:52 INFO   2200428 GAP   Seção Eleitoral: 0914
+      08:55:57 INFO   2200428 GAP   Serial de votação da MV: 3D5139CD 16/09/2022 às 13:27:22 em ZPA043STD58512
+      08:56:12 INFO   2200428 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      08:56:29 INFO   2200428 VOTA  Iniciando aplicação - Oficial - 2º turno
+      08:56:50 INFO   2200428 VOTA  Urna pronta para receber votos
+      17:03:25 ERRO   2200428 VOTA  Digitado título inválido para o registro de mesário
+      17:06:21 ERRO   2200428 VOTA  Digitado título inválido para o registro de mesário
+      17:06:26 ERRO   2200428 VOTA  Digitado título inválido para o registro de mesário
+      17:06:33 ERRO   2200428 VOTA  Digitado título inválido para o registro de mesário
+      17:06:57 ERRO   2200428 VOTA  Digitado título inválido para o registro de mesário
+      17:07:08 INFO   2200428 VOTA  Inicio do Encerramento
+      17:07:09 INFO   2200428 VOTA  Gerando relatório [BU] [INÍCIO]
