@@ -32,7 +32,7 @@ const files = {
   audits2022:'./dados/reconciliacao_2022.csv',
   audits2026:'./dados/reconciliacao_2026.csv'
 };
-const state = {year:'2022',round:'2',uf:'BR',mapCandidate:'lider',trendMetric:'pct_abstencao',rankingMetric:'pct_abstencao'};
+const state = {year:'2022',round:'2',uf:'BR',mapCandidate:'lider',trendMetric:'pct_abstencao',rankingMetric:'pct_abstencao',triagemTeste:'qualquer'};
 let data = null;
 const nf = new Intl.NumberFormat('pt-BR',{maximumFractionDigits:0});
 const df = new Intl.NumberFormat('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
@@ -107,6 +107,7 @@ function syncControls() {
   });
   const current=state.year+' · '+state.round+'º turno · '+(state.uf==='BR'?'Brasil + exterior':state.uf==='ZZ'?'Exterior':ufNames[state.uf]);
   setText('dockCurrent',current);
+  document.getElementById('triagemTeste').value=state.triagemTeste;
 }
 function selectScope(uf) {
   state.uf=uf;
@@ -129,8 +130,12 @@ function setUpFilters() {
       if(event.target.checked){state.mapCandidate=event.target.value;render();}
     });
   });
+  document.getElementById('triagemTeste').addEventListener('change',e=>{
+    state.triagemTeste=e.target.value;
+    renderTriagem();
+  });
   document.getElementById('resetButton').addEventListener('click',()=>{
-    Object.assign(state,{year:'2022',round:'2',uf:'BR',mapCandidate:'lider',trendMetric:'pct_abstencao',rankingMetric:'pct_abstencao'});
+    Object.assign(state,{year:'2022',round:'2',uf:'BR',mapCandidate:'lider',trendMetric:'pct_abstencao',rankingMetric:'pct_abstencao',triagemTeste:'qualquer'});
     render();
   });
   const dock=document.getElementById('filterDock');
@@ -766,6 +771,56 @@ function renderAuditFocus(rows) {
   }
   if(!selected.length)breakdown.append(node('p',null,'Nenhum apontamento pendente registrado nos testes resumidos desta base.'));
 }
+
+function renderTriagem() {
+  const cards=document.getElementById('triagemCards'),history=document.getElementById('triagemHistory');
+  const body=document.getElementById('triagemRows');
+  cards.replaceChildren();history.replaceChildren();body.replaceChildren();
+  const all=data.triagemResumos?.[state.year]||[];
+  const row=all.find(x=>x.uf===state.uf&&x.turno===state.round&&x.teste===state.triagemTeste);
+  const status=document.getElementById('triagemStatus');
+  const note=document.getElementById('triagemExplanation');
+  const examplesNote=document.getElementById('triagemExamplesNote');
+  const card=(label,value)=>{const el=node('div','triagem-stat');
+    el.append(node('small',null,label),node('strong',null,value));cards.append(el);};
+  if(!row){
+    status.textContent='Ainda não há triagem validada publicada para '+state.year+', '+state.round+'º turno, '+ufNames[state.uf]+'.';
+    note.textContent='O processamento dos resultados por seção é independente dos logs. Enquanto a base de triagem não for gerada e conferida, nenhum número é estimado.';
+    card('Seções sinalizadas','—');card('Votos nas seções','—');card('Seções elegíveis','—');
+  }else{
+    status.textContent=row.descricao+' · '+state.year+' · '+state.round+'º turno · '+ufNames[state.uf]+' · Fonte: '+row.fonte;
+    card('Seções sinalizadas',number(row.secoes_sinalizadas));
+    card('Percentual das elegíveis',percent(row.pct_secoes_sinalizadas));
+    card('Votos válidos nessas seções',number(row.votos_validos_em_secoes_sinalizadas));
+    card('Percentual dos válidos no recorte',percent(row.pct_validos_em_secoes_sinalizadas));
+    note.textContent='Base: '+number(row.secoes_elegiveis)+' seções elegíveis de '+number(row.secoes_com_dados)+' com dados; '+number(row.votos_validos_no_recorte)+' votos válidos no recorte. '+row.criterio+'. Os votos indicados são todos os votos dessas seções, NÃO votos irregulares.';
+  }
+  for(const year of ['2022','2026']) for(const round of ['1','2']) {
+    const sample=(data.triagemResumos?.[year]||[]).find(x=>x.uf===state.uf&&x.turno===round&&x.teste===state.triagemTeste);
+    const el=node('div','triagem-history-item');
+    el.append(node('small',null,year+' · '+round+'º turno'),
+      node('strong',null,sample?number(sample.secoes_sinalizadas)+' seções':'—'),
+      node('span',null,sample?percent(sample.pct_secoes_sinalizadas)+' das elegíveis':'Aguardando dados'));
+    history.append(el);
+  }
+  const examples=(data.triagemExemplos?.[state.year]||[])
+    .filter(x=>x.abrangencia===state.uf&&x.turno===state.round&&x.teste===state.triagemTeste)
+    .slice(0,15);
+  examplesNote.textContent=examples.length
+    ? 'Exibindo até '+examples.length+' exemplos por intensidade do teste. Eles não representam todos os casos. Clique nos arquivos originais do GitHub para reproduzir os cálculos.'
+    : 'Sem exemplos publicados neste recorte. Isso pode refletir dados pendentes ou nenhum caso elegível; verifique o resumo acima.';
+  for(const r of examples){
+    const tr=node('tr');
+    const place=node('td',null,r.uf+' · '+r.nome_municipio+' · Z'+r.zona+' · S'+r.secao);
+    place.append(node('small','triagem-place-detail','Local '+r.local));
+    tr.append(place,node('td',null,number(r.validos)),
+      node('td',null,percent(r.pct_13)+' / '+percent(r.pct_22)),
+      node('td',null,state.triagemTeste==='combinados'?number(r.intensidade)+' grupos':percent(r.intensidade)),
+      node('td',null,r.referencia_pares==='indisponivel'?'Sem referência por pares':r.referencia_pares==='mesmo_local'?'Mesmo local':'Mesma zona'));
+    body.append(tr);
+  }
+  if(!examples.length){const tr=node('tr'),td=node('td',null,'Nenhum exemplo disponível neste recorte.');td.colSpan=5;tr.append(td);body.append(tr);}
+}
 function renderAudit() {
   const cards=document.getElementById('auditStatusCards');
   cards.replaceChildren();
@@ -797,7 +852,7 @@ function renderAudit() {
 }
 function render() {
   if(!data)return;
-  syncControls();renderAudit();renderCoverage();renderKpis();renderScopeInfo();renderMap();renderPresidentialVotes();renderTrend();renderTimeline();renderRanking();renderComparison();renderDelta();renderAbsoluteDeltas();
+  syncControls();renderTriagem();renderAudit();renderCoverage();renderKpis();renderScopeInfo();renderMap();renderPresidentialVotes();renderTrend();renderTimeline();renderRanking();renderComparison();renderDelta();renderAbsoluteDeltas();
 }
 async function init() {
   setUpFilters();
@@ -811,11 +866,22 @@ async function init() {
     const mapResponse=await fetch('./dados/brasil-ufs.geojson',{cache:'no-cache'});
     if(!mapResponse.ok)throw new Error('Malha territorial: '+mapResponse.status);
     const geometry=await mapResponse.json();
+    // Estes artefatos são opcionais até a execução da triagem em dados oficiais.
+    const triagemResumos={},triagemExemplos={};
+    await Promise.all(['2022','2026'].map(async year=>{
+      const load=async type=>{
+        try{
+          const r=await fetch('./dados/triagem_'+type+'_'+year+'.csv',{cache:'no-cache'});
+          return r.ok?parseCSV(await r.text()):[];
+        }catch(e){return [];}
+      };
+      [triagemResumos[year],triagemExemplos[year]]=await Promise.all([load('resumo'),load('exemplos')]);
+    }));
     data={indicators:new Map(loaded.indicators.map(r=>[key(r.ano,r.turno,r.abrangencia),r])),timeline2022:loaded.timeline2022,timeline2026:loaded.timeline2026,
       votesByYear:{'2022':new Map(loaded.votes2022.map(r=>[r.uf,r])),'2026':new Map(loaded.votes2026.map(r=>[r.uf,r]))},
       biometryByYear:{'2022':new Map(loaded.bio2022.map(r=>[r.turno+'-'+r.uf,r])),'2026':new Map(loaded.bio2026.map(r=>[r.turno+'-'+r.uf,r]))},
       temporalUFByYear:{'2022':new Map(loaded.temporalUF2022.map(r=>[r.turno+'-'+r.uf,r])),'2026':new Map(loaded.temporalUF2026.map(r=>[r.turno+'-'+r.uf,r]))},
-      auditsByYear:{'2022':loaded.audits2022,'2026':loaded.audits2026},geometry};
+      auditsByYear:{'2022':loaded.audits2022,'2026':loaded.audits2026},triagemResumos,triagemExemplos,geometry};
     if(!geometry.features||geometry.features.length!==27)throw new Error('Malha territorial incompleta');
     if(!data.indicators.size)throw new Error('Indicadores vazios');
     render();
