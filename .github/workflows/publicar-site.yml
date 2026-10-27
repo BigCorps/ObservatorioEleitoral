@@ -14,6 +14,8 @@ on:
       - 'resultados/2022/votos_por_15min.csv'
       - 'resultados/2026/resultados_uf.csv'
       - 'resultados/2026/votos_por_15min.csv'
+      - 'resultados/2022/reconciliacao_resumo.csv'
+      - 'resultados/2026/reconciliacao_resumo.csv'
       - '.github/workflows/publicar-site.yml'
   workflow_dispatch:
 
@@ -55,6 +57,8 @@ jobs:
           cp resultados/comparativo/indicadores_2022_2026.csv _site/dados/indicadores.csv
           cp resultados/2022/votos_por_15min.csv _site/dados/votos_por_15min_2022.csv
           cp resultados/2026/votos_por_15min.csv _site/dados/votos_por_15min_2026.csv
+          cp resultados/2022/reconciliacao_resumo.csv _site/dados/reconciliacao_2022.csv
+          cp resultados/2026/reconciliacao_resumo.csv _site/dados/reconciliacao_2026.csv
           touch _site/.nojekyll
           test -s _site/index.html
           test -s _site/dados/brasil-ufs.geojson
@@ -67,6 +71,8 @@ jobs:
           test -s _site/dados/indicadores.csv
           test -s _site/dados/votos_por_15min_2022.csv
           test -s _site/dados/votos_por_15min_2026.csv
+          test -s _site/dados/reconciliacao_2022.csv
+          test -s _site/dados/reconciliacao_2026.csv
           python -c 'import csv; r=list(csv.DictReader(open("_site/dados/indicadores.csv", encoding="utf-8"))); assert len(r)>=100 and all(x in r[0] for x in ("ano", "turno", "abrangencia", "pct_abstencao")); print("Dados disponíveis:", len(r), "recortes")'
 
       - name: Configurar GitHub Pages

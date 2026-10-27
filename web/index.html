@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=mapa-bicolor-uf-20261027">
-  <script src="./app.js?v=mapa-bicolor-uf-20261027" defer></script>
+  <link rel="stylesheet" href="./styles.css?v=dock-audit-20261027">
+  <script src="./app.js?v=dock-audit-20261027" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#conteudo">Pular para os dados</a>
@@ -18,7 +18,7 @@
   <header class="site-header">
     <div class="wrap nav">
       <a class="brand" href="./" aria-label="Observatório Eleitoral, início"><span class="brand-symbol" aria-hidden="true"><i></i><i></i><i></i></span><span>OBSERVATÓRIO <small>ELEITORAL</small></span></a>
-      <nav aria-label="Principal"><a href="#painel">Painel</a><a href="#mapa">Mapa</a><a href="#estados">Estados</a><a href="#comparacao">Comparativo</a><a href="#metodologia">Metodologia</a></nav>
+      <nav aria-label="Principal"><a href="#painel">Painel</a><a href="#mapa">Mapa</a><a href="#estados">Estados</a><a href="#comparacao">Comparativo</a><a href="#metodologia">Metodologia</a><a href="#verificacoes">Verificações</a></nav>
       <a class="nav-github" href="https://github.com/BigCorps/ObservatorioEleitoral" target="_blank" rel="noopener noreferrer">Ver código <span aria-hidden="true">↗</span></a>
     </div>
   </header>
@@ -46,13 +46,7 @@
 
     <section class="dashboard-section" id="painel">
       <div class="wrap">
-        <div class="section-intro"><div><span class="section-kicker">01 / EXPLORE OS DADOS</span><h2>Panorama eleitoral</h2><p>O recorte Brasil já inclui os votos do exterior (ZZ). Selecione uma UF ou o exterior para detalhar.</p></div><span id="coverageBadge" class="coverage-badge">Carregando dados…</span></div>
-        <div class="filter-card">
-          <div class="filter-group"><label for="yearFilter">ELEIÇÃO</label><select id="yearFilter"><option value="2022">2022</option><option value="2026">2026</option></select></div>
-          <div class="filter-group"><label for="roundFilter">TURNO</label><select id="roundFilter"><option value="1">1º turno</option><option value="2" selected>2º turno</option></select></div>
-          <div class="filter-group filter-uf"><label for="ufFilter">ABRANGÊNCIA</label><select id="ufFilter"><option value="BR">Brasil (27 UFs + exterior)</option></select></div>
-          <button id="resetButton" class="reset-button" type="button">↺ <span>Restaurar filtros</span></button>
-        </div>
+        <div class="section-intro"><div><span class="section-kicker">01 / EXPLORE OS DADOS</span><h2>Panorama eleitoral</h2><p>O recorte Brasil inclui o exterior (ZZ). Use os filtros fixos no rodapé para alterar os resultados de qualquer parte da página.</p></div><span id="coverageBadge" class="coverage-badge">Carregando dados…</span></div>
         <div id="loadError" class="error-state" role="alert" hidden>Não foi possível carregar os dados publicados. Atualize a página; se o problema continuar, confira a publicação do GitHub Pages.</div>
         <div id="kpiGrid" class="kpi-grid" aria-live="polite">
           <article class="kpi"><span class="kpi-label">Comparecimento</span><strong id="kpiAttendance">—</strong><span id="kpiAttendanceSub" class="kpi-sub">Eleitores que votaram</span></article>
@@ -68,17 +62,7 @@
         <p id="scopeDisclaimer" class="data-disclaimer">O recorte “Brasil” inclui as 27 UFs e o eleitorado do exterior (ZZ) nos totais eleitorais. Percentuais de biometria referem-se às habilitações registradas nos logs disponíveis e não permitem inferir como alguém votou.</p>
 
         <section class="map-section" id="mapa" aria-label="Mapa do Brasil e votos presidenciais">
-          <div class="section-intro map-section-heading"><div><span class="section-kicker">MAPA INTERATIVO</span><h2>Escolha um estado no mapa</h2><p>Clique em uma UF para atualizar os resultados do panorama e os votos para presidente.</p></div><span class="comparison-chip">Mapa: 27 UFs · exterior incluído nos totais do Brasil</span></div>
-          <div class="map-controls" aria-label="Filtros do mapa">
-            <div class="map-control"><label for="mapYearFilter">ELEIÇÃO</label><select id="mapYearFilter"><option value="2022">2022</option><option value="2026">2026</option></select></div>
-            <div class="map-control"><label for="mapRoundFilter">TURNO</label><select id="mapRoundFilter"><option value="1">1º turno</option><option value="2">2º turno</option></select></div>
-            <div class="map-control map-scope-control"><label for="mapUfFilter">ABRANGÊNCIA</label><select id="mapUfFilter"></select></div>
-            <fieldset class="map-candidate-toggle"><legend>COLORIR POR</legend>
-              <label><input type="radio" name="mapCandidate" value="lider" checked><span class="candidate-dot candidate-split"></span>Mais votado</label>
-              <label><input type="radio" name="mapCandidate" value="13"><span class="candidate-dot candidate-red"></span>Nº 13</label>
-              <label><input type="radio" name="mapCandidate" value="22"><span class="candidate-dot candidate-green"></span>Nº 22</label>
-            </fieldset>
-          </div>
+          <div class="section-intro map-section-heading"><div><span class="section-kicker">MAPA INTERATIVO</span><h2>Escolha um estado no mapa</h2><p>Clique em uma UF para atualizar os resultados. Para mudar eleição, turno, abrangência ou cores, use a barra fixa na parte inferior.</p></div><span class="comparison-chip">Brasil = 27 UFs + exterior</span></div>
           <div class="map-layout">
             <article class="map-card">
               <div class="card-heading"><div><span class="card-eyebrow">DISTRIBUIÇÃO DOS VOTOS VÁLIDOS</span><h3 id="mapColorTitle">Quem recebeu mais votos entre 13 e 22?</h3></div><span class="chart-tag">TURNO SELECIONADO</span></div>
@@ -150,7 +134,46 @@
       <div class="conclusion-box"><div><span class="eyebrow-small">A REGRA DO OBSERVATÓRIO</span><h3>Uma discrepância é uma pergunta.<br>Não uma sentença.</h3></div><p>Resultados fora do padrão podem justificar investigação documental adicional. Sozinhos, não demonstram irregularidade, causa ou intenção. Nosso compromisso é permitir que qualquer pessoa confira o caminho entre a fonte e a conclusão.</p></div>
       <div class="document-links"><a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/docs/auditoria-2022.md" target="_blank" rel="noopener noreferrer">Auditoria 2022 ↗</a><a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/docs/auditoria-2026.md" target="_blank" rel="noopener noreferrer">Auditoria 2026 ↗</a><a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/docs/comparativo-historico.md" target="_blank" rel="noopener noreferrer">Comparativo completo ↗</a><a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/docs/perguntas-frequentes.md" target="_blank" rel="noopener noreferrer">Perguntas frequentes ↗</a></div>
     </div></section>
-  </main>
+  
+    <section class="audit-section" id="verificacoes" aria-label="Quadro de verificações eleitorais">
+      <div class="wrap">
+        <div class="section-intro"><div><span class="section-kicker">05 / VERIFICAÇÕES DOCUMENTAIS</span><h2>Quais diferenças ainda precisam de explicação?</h2>
+        <p>Confira o que as reconciliações entre fontes encontraram. Uma diferença em registros não equivale automaticamente a voto irregular.</p></div>
+        <a class="audit-method-link" href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/docs/metodologia.md" target="_blank" rel="noopener noreferrer">Como os testes funcionam ↗</a></div>
+        <div class="audit-status" id="auditStatusCards" aria-live="polite"></div>
+        <div class="audit-report">
+          <div class="audit-report-heading"><div><span class="card-eyebrow">RESUMO DAS RECONCILIAÇÕES PUBLICADAS</span><h3 id="auditTableTitle">Verificações documentais</h3></div><span class="comparison-chip" id="auditCoverageChip">Cobertura em conferência</span></div>
+          <p id="auditTableNote" class="audit-note">As ocorrências abaixo são contagens de comparações, não contagens de votos, seções exclusivas ou prova de fraude. Um mesmo registro pode aparecer em mais de um teste.</p>
+          <div class="comparison-scroll"><table class="comparison-table audit-table">
+            <thead><tr><th scope="col">Verificação</th><th scope="col">Registros comparados</th><th scope="col">Diferenças encontradas</th><th scope="col">Com explicação</th><th scope="col">Ainda sem explicação</th></tr></thead>
+            <tbody id="auditTableBody"></tbody>
+          </table></div>
+          <p class="audit-source">Fontes: <a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/resultados/2022/reconciliacao_resumo.csv" target="_blank" rel="noopener noreferrer">2022 ↗</a> e <a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/resultados/2026/reconciliacao_resumo.csv" target="_blank" rel="noopener noreferrer">2026 ↗</a>. Até que existam registros individualizados completos e conferidos, o quadro é um resumo por tipo de teste, não uma relação exaustiva de seções.</p>
+        </div>
+        <div class="audit-future"><strong>Quando os arquivos do 2º turno de 2026 forem processados</strong><p>Este quadro poderá apresentar as verificações daquele turno, compará-las com 2022 e permitir abrir evidências por UF, município, zona e seção. Cada caso deverá informar o resultado do teste, a explicação conhecida, a fonte e a situação da conferência. Casos estatísticos serão separados das incompatibilidades documentais.</p></div>
+      </div>
+    </section>
+</main>
+
+  <aside class="filter-dock" id="filterDock" role="region" aria-label="Filtros gerais do Observatório">
+    <div class="dock-shell">
+      <div class="dock-heading">
+        <span class="dock-label">FILTROS GERAIS <small id="dockCurrent">2022 · 2º turno · Brasil</small></span>
+        <button class="dock-toggle" id="dockToggle" type="button" aria-controls="dockFields" aria-expanded="true">Ocultar filtros <span aria-hidden="true">⌄</span></button>
+      </div>
+      <div class="dock-body" id="dockFields">
+        <div class="dock-field"><label for="yearFilter">ELEIÇÃO</label><select id="yearFilter"><option value="2022">2022</option><option value="2026">2026</option></select></div>
+        <div class="dock-field"><label for="roundFilter">TURNO</label><select id="roundFilter"><option value="1">1º turno</option><option value="2">2º turno</option></select></div>
+        <div class="dock-field dock-scope"><label for="ufFilter">ABRANGÊNCIA</label><select id="ufFilter"><option value="BR">Brasil (27 UFs + exterior)</option></select></div>
+        <fieldset class="dock-candidates"><legend>COLORIR MAPA POR</legend>
+          <label><input type="radio" name="mapCandidate" value="lider" checked> <span class="candidate-dot candidate-split"></span> Mais votado</label>
+          <label><input type="radio" name="mapCandidate" value="13"> <span class="candidate-dot candidate-red"></span> Nº 13</label>
+          <label><input type="radio" name="mapCandidate" value="22"> <span class="candidate-dot candidate-green"></span> Nº 22</label>
+        </fieldset>
+        <button id="resetButton" class="dock-reset" type="button" title="Restaurar recorte inicial">↺ <span>Restaurar</span></button>
+      </div>
+    </div>
+  </aside>
   <footer><div class="wrap footer-inner"><div><span class="footer-brand">OBSERVATÓRIO ELEITORAL</span><p>Pesquisa independente de interesse público. Não é uma publicação oficial do TSE.</p></div><div><p>BigCorps Tecnologia · Dados e metodologia abertos</p><a href="https://github.com/BigCorps/ObservatorioEleitoral" target="_blank" rel="noopener noreferrer">Repositório no GitHub ↗</a></div></div></footer>
 </body>
 </html>

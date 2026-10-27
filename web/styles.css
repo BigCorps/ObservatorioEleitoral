@@ -169,3 +169,50 @@ footer{background:#eef5f0;color:#617979;border-top:1px solid #d7e8dd}
 .regional-percent{color:#8b9da1;font-size:10px}
 @media(max-width:1100px){.map-controls{grid-template-columns:1fr 1fr}.map-candidate-toggle{grid-column:1/-1;max-width:450px}}
 @media(max-width:640px){.map-controls{grid-template-columns:1fr 1fr}.map-candidate-toggle{max-width:none}.regional-count{font-size:10px}.regional-bar-track{width:70%}.regional-period{font-size:10px}.timeline-chart.regional-timeline{gap:4px}}
+
+/* Barra global fixa: fonte única dos filtros de eleição, turno, abrangência e cor do mapa. */
+:root{--dock-current-height:125px}
+body{padding-bottom:calc(var(--dock-current-height) + 18px)}
+.filter-dock{position:fixed;bottom:0;left:0;right:0;z-index:60;background:rgba(249,253,250,.96);backdrop-filter:blur(14px);border-top:1px solid #c9dfd5;box-shadow:0 -8px 28px #12342b1a;padding:11px 16px calc(10px + env(safe-area-inset-bottom))}
+.dock-shell{max-width:1320px;margin:0 auto}
+.dock-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:9px}
+.dock-label{font-size:10px;font-weight:900;letter-spacing:.12em;color:#2e6a61}
+.dock-label small{margin-left:10px;color:#677e7b;font-size:11px;font-weight:600;letter-spacing:0}
+.dock-toggle{background:transparent;border:0;color:#136d63;font-size:12px;font-weight:800;padding:3px 5px}
+.dock-toggle span{font-size:14px;margin-left:5px}
+.dock-body{display:grid;grid-template-columns:minmax(85px,.55fr) minmax(105px,.7fr) minmax(175px,1.65fr) minmax(300px,1.9fr) auto;gap:11px;align-items:end}
+.dock-field label,.dock-candidates legend{display:block;color:#5c7775;font-size:10px;font-weight:800;letter-spacing:.09em;margin-bottom:5px}
+.dock-field select{width:100%;height:40px;border:1px solid #cbded5;border-radius:8px;padding:0 10px;background:#fff;color:#173d45;font-size:12px;font-weight:700}
+.dock-candidates{display:flex;align-items:center;gap:5px;min-width:0;border:0;padding:0;margin:0}
+.dock-candidates legend{float:none;width:100%}
+.dock-candidates label{min-height:40px;cursor:pointer;border:1px solid #cbded5;border-radius:7px;padding:8px 6px;display:flex;gap:4px;align-items:center;justify-content:center;flex:1;white-space:nowrap;background:#fff;font-size:11px;font-weight:800;color:#234d4e}
+.dock-candidates label:has(input:checked){background:#e7f6ec;border-color:#188d80;box-shadow:inset 0 0 0 1px #188d80}
+.dock-candidates input{accent-color:#148678;width:13px;height:13px;margin:0}
+.dock-reset{border:1px solid #cbded5;border-radius:8px;min-height:40px;padding:0 13px;background:#fff;color:#126e62;font-size:12px;font-weight:800}
+.filter-dock.is-collapsed .dock-body{display:none}
+.filter-dock.is-collapsed .dock-heading{margin-bottom:0}
+html{scroll-padding-bottom:calc(var(--dock-current-height) + 20px)}
+/* Painel de reconciliações, exibindo apenas o que as fontes efetivamente cobrem. */
+.audit-section{padding:80px 0;background:#f5f9f6}
+.audit-method-link{font-size:12px;font-weight:800;color:#0a7c6e;white-space:nowrap}
+.audit-status{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px}
+.audit-status-card{border:1px solid #dbe8df;border-radius:13px;padding:20px;background:white}
+.audit-status-card.audit-pending{border-color:#e9d7b5;background:#fffaf0}
+.audit-card-heading{font-size:10px;font-weight:900;letter-spacing:.08em;color:#718789;display:block;margin-bottom:10px}
+.audit-status-card strong{font-size:17px;color:#22484b}
+.audit-status-card p{font-size:12px;color:#6c7c82;line-height:1.7;margin:10px 0 0}
+.audit-report{background:#fff;border:1px solid #dce8e1;border-radius:14px;padding:23px}
+.audit-report-heading{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.audit-report-heading h3{margin:0;font-size:20px}
+.audit-note,.audit-source{font-size:12px;line-height:1.75;color:#6b7f83}
+.audit-note{margin:13px 0 20px}
+.audit-source{margin:14px 0 0}
+.audit-source a{color:#0a8074;text-decoration:underline}
+.audit-table{min-width:790px}
+.audit-table th:first-child,.audit-table td:first-child{min-width:240px;width:40%;line-height:1.5}
+.audit-table .audit-not-explained{color:#a33d3d;font-weight:900}
+.audit-future{margin-top:17px;padding:20px 24px;background:#e9f4ee;border-left:3px solid #16897c;border-radius:5px}
+.audit-future strong{color:#22584e}
+.audit-future p{font-size:13px;color:#577571;line-height:1.75;margin:8px 0 0}
+@media(max-width:1000px){.dock-body{grid-template-columns:1fr 1fr 1.5fr}.dock-candidates{grid-column:1/3}.dock-reset{grid-column:3}.dock-heading{margin-bottom:7px}.audit-status{grid-template-columns:1fr 1fr 1fr}}
+@media(max-width:720px){.filter-dock{padding:9px 12px calc(9px + env(safe-area-inset-bottom));max-height:70vh;overflow-y:auto}.dock-label small{display:block;margin:3px 0 0;font-size:11px}.dock-body{grid-template-columns:1fr 1fr;gap:9px}.dock-scope{grid-column:1/-1}.dock-candidates{grid-column:1/-1}.dock-reset{grid-column:1/-1}.dock-field select{height:43px}.dock-heading{margin-bottom:8px}.dock-toggle{font-size:12px}.audit-status{grid-template-columns:1fr}.audit-report{padding:15px}.audit-report-heading{flex-wrap:wrap;gap:10px}.audit-section{padding:55px 0}.audit-method-link{display:inline-block;margin-top:10px}}

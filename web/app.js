@@ -28,7 +28,9 @@ const files = {
   bio2022:'./dados/biometria_2022.csv',
   bio2026:'./dados/biometria_2026.csv',
   temporalUF2022:'./dados/temporal_uf_2022.csv',
-  temporalUF2026:'./dados/temporal_uf_2026.csv'
+  temporalUF2026:'./dados/temporal_uf_2026.csv',
+  audits2022:'./dados/reconciliacao_2022.csv',
+  audits2026:'./dados/reconciliacao_2026.csv'
 };
 const state = {year:'2022',round:'2',uf:'BR',mapCandidate:'lider',trendMetric:'pct_abstencao',rankingMetric:'pct_abstencao'};
 let data = null;
@@ -91,38 +93,32 @@ function node(tag,className,text) {
   return el;
 }
 function setText(id,value) {document.getElementById(id).textContent=value;}
+function syncDockSize() {
+  const dock=document.getElementById('filterDock');
+  document.documentElement.style.setProperty('--dock-current-height',dock.offsetHeight+'px');
+}
 function syncControls() {
-  for(const [id,field] of [
-    ['yearFilter','year'],['roundFilter','round'],['ufFilter','uf'],
-    ['mapYearFilter','year'],['mapRoundFilter','round'],['mapUfFilter','uf'],
-    ['trendMetric','trendMetric'],['rankingMetric','rankingMetric']
-  ]) {
+  for(const [id,field] of [['yearFilter','year'],['roundFilter','round'],['ufFilter','uf'],['trendMetric','trendMetric'],['rankingMetric','rankingMetric']]) {
     const element=document.getElementById(id);
     if(element)element.value=state[field];
   }
   document.querySelectorAll('input[name="mapCandidate"]').forEach(input=>{
     input.checked=input.value===state.mapCandidate;
   });
+  const current=state.year+' · '+state.round+'º turno · '+(state.uf==='BR'?'Brasil + exterior':state.uf==='ZZ'?'Exterior':ufNames[state.uf]);
+  setText('dockCurrent',current);
 }
 function selectScope(uf) {
   state.uf=uf;
   render();
 }
 function setUpFilters() {
-  const select=document.getElementById('ufFilter');
-  const exterior=node('option',null,'Exterior (ZZ) · votação fora do país');
-  exterior.value='ZZ';select.append(exterior);
+  const scope=document.getElementById('ufFilter');
+  const exterior=node('option',null,'Exterior (ZZ) · votação fora do país');exterior.value='ZZ';scope.append(exterior);
   Object.keys(ufNames).filter(uf=>uf!=='BR'&&uf!=='ZZ').sort((a,b)=>ufNames[a].localeCompare(ufNames[b],'pt-BR')).forEach(uf=>{
-    const opt=node('option',null,uf+' · '+ufNames[uf]);opt.value=uf;select.append(opt);
+    const opt=node('option',null,uf+' · '+ufNames[uf]);opt.value=uf;scope.append(opt);
   });
-  // Os dois grupos de filtros controlam o MESMO estado, evitando divergência entre mapa e panorama.
-  const mapScope=document.getElementById('mapUfFilter');
-  [...select.options].forEach(option=>mapScope.add(option.cloneNode(true)));
-  for(const [id,field] of [
-    ['yearFilter','year'],['roundFilter','round'],['ufFilter','uf'],
-    ['mapYearFilter','year'],['mapRoundFilter','round'],['mapUfFilter','uf'],
-    ['trendMetric','trendMetric'],['rankingMetric','rankingMetric']
-  ]) {
+  for(const [id,field] of [['yearFilter','year'],['roundFilter','round'],['ufFilter','uf'],['trendMetric','trendMetric'],['rankingMetric','rankingMetric']]) {
     document.getElementById(id).addEventListener('change',event=>{
       state[field]=event.target.value;
       render();
@@ -137,6 +133,20 @@ function setUpFilters() {
     Object.assign(state,{year:'2022',round:'2',uf:'BR',mapCandidate:'lider',trendMetric:'pct_abstencao',rankingMetric:'pct_abstencao'});
     render();
   });
+  const dock=document.getElementById('filterDock');
+  const toggle=document.getElementById('dockToggle');
+  function setCollapsed(collapsed){
+    dock.classList.toggle('is-collapsed',collapsed);
+    toggle.setAttribute('aria-expanded',String(!collapsed));
+    toggle.firstChild.textContent=collapsed?'Abrir filtros ':'Ocultar filtros ';
+    syncDockSize();
+  }
+  toggle.addEventListener('click',()=>setCollapsed(!dock.classList.contains('is-collapsed')));
+  const compact=window.matchMedia('(max-width:720px)');
+  setCollapsed(compact.matches);
+  compact.addEventListener?.('change',event=>setCollapsed(event.matches));
+  if(typeof ResizeObserver!=='undefined')new ResizeObserver(syncDockSize).observe(dock);
+  window.addEventListener('resize',syncDockSize);
   syncControls();
 }
 function renderCoverage() {
@@ -616,9 +626,41 @@ function renderPresidentialVotes() {
     table.append(tr);
   }
 }
+function renderAudit() {
+  const cards=document.getElementById('auditStatusCards');
+  cards.replaceChildren();
+  const record=(heading,status,details,className)=>{
+    const card=node('article','audit-status-card '+className);
+    card.append(node('span','audit-card-heading',heading),node('strong',null,status),node('p',null,details));
+    cards.append(card);
+  };
+  record('ELEIÇÕES DE 2022','2 turnos processados','BUs, resultados e logs reconciliados; ainda existem observações sem explicação documental completa.','');
+  record('ELEIÇÕES DE 2026 · 1º TURNO','Processado','As verificações técnicas publicadas correspondem ao primeiro turno.','');
+  record('ELEIÇÕES DE 2026 · 2º TURNO','Dados técnicos pendentes','Resultados por seção disponíveis; BU e logs ainda não integram as verificações técnicas desta base.','audit-pending');
+  const rows=data.auditsByYear[state.year]||[];
+  setText('auditTableTitle','Testes documentais de '+state.year+(state.year==='2022'?' · dois turnos':' · primeiro turno'));
+  setText('auditCoverageChip',state.year==='2022'?'2022: ambos os turnos':'2026: apenas primeiro turno');
+  setText('auditTableNote','Quadro nacional histórico de '+state.year+(state.year==='2022'?' (dados dos dois turnos).':' (somente o 1º turno).')+' Não é filtrado por UF, pois o resumo oficializado no repositório está agregado por ano. Cada linha conta comparações, não seções únicas nem votos irregulares.');
+  const body=document.getElementById('auditTableBody');
+  body.replaceChildren();
+  const pending=rows.filter(r=>{
+    const d=numeric(r.divergencias),e=numeric(r.explicadas);
+    return d!==null&&e!==null&&d>e;
+  });
+  const relevant=pending.length?pending:rows;
+  relevant.forEach(r=>{
+    const tr=node('tr'),delta=numeric(r.divergencias),explained=numeric(r.explicadas);
+    const left=(delta!==null&&explained!==null)?Math.max(0,delta-explained):null;
+    const name=node('td',null,(r.teste||'')+' · '+(r.descricao||r.campo||''));
+    name.title=(r.fonte_a||'')+' × '+(r.fonte_b||'')+' / '+(r.campo||'');
+    tr.append(name,node('td',null,number(r.registros_comparados)),node('td',null,number(delta)),node('td',null,number(explained)),node('td',left>0?'audit-not-explained':'',number(left)));
+    body.append(tr);
+  });
+  if(!rows.length){const row=node('tr'),cell=node('td',null,'Resumo de reconciliação indisponível.');cell.colSpan=5;row.append(cell);body.append(row);}
+}
 function render() {
   if(!data)return;
-  syncControls();renderCoverage();renderKpis();renderScopeInfo();renderMap();renderPresidentialVotes();renderTrend();renderTimeline();renderRanking();renderComparison();renderDelta();renderAbsoluteDeltas();
+  syncControls();renderAudit();renderCoverage();renderKpis();renderScopeInfo();renderMap();renderPresidentialVotes();renderTrend();renderTimeline();renderRanking();renderComparison();renderDelta();renderAbsoluteDeltas();
 }
 async function init() {
   setUpFilters();
@@ -635,7 +677,8 @@ async function init() {
     data={indicators:new Map(loaded.indicators.map(r=>[key(r.ano,r.turno,r.abrangencia),r])),timeline2022:loaded.timeline2022,timeline2026:loaded.timeline2026,
       votesByYear:{'2022':new Map(loaded.votes2022.map(r=>[r.uf,r])),'2026':new Map(loaded.votes2026.map(r=>[r.uf,r]))},
       biometryByYear:{'2022':new Map(loaded.bio2022.map(r=>[r.turno+'-'+r.uf,r])),'2026':new Map(loaded.bio2026.map(r=>[r.turno+'-'+r.uf,r]))},
-      temporalUFByYear:{'2022':new Map(loaded.temporalUF2022.map(r=>[r.turno+'-'+r.uf,r])),'2026':new Map(loaded.temporalUF2026.map(r=>[r.turno+'-'+r.uf,r]))},geometry};
+      temporalUFByYear:{'2022':new Map(loaded.temporalUF2022.map(r=>[r.turno+'-'+r.uf,r])),'2026':new Map(loaded.temporalUF2026.map(r=>[r.turno+'-'+r.uf,r]))},
+      auditsByYear:{'2022':loaded.audits2022,'2026':loaded.audits2026},geometry};
     if(!geometry.features||geometry.features.length!==27)throw new Error('Malha territorial incompleta');
     if(!data.indicators.size)throw new Error('Indicadores vazios');
     render();
