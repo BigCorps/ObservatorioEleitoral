@@ -21,7 +21,9 @@ const metricNames = {
 const files = {
   indicators:'./dados/indicadores.csv',
   timeline2022:'./dados/votos_por_15min_2022.csv',
-  timeline2026:'./dados/votos_por_15min_2026.csv'
+  timeline2026:'./dados/votos_por_15min_2026.csv',
+  votes2022:'./dados/presidente_2022.csv',
+  votes2026:'./dados/presidente_2026.csv'
 };
 const state = {year:'2022',round:'2',uf:'BR',trendMetric:'pct_abstencao',rankingMetric:'pct_abstencao'};
 let data = null;
@@ -278,9 +280,139 @@ function renderDelta(){
     tbody.append(tr);
   }
 }
+
+/* Geometria derivada das Malhas Territoriais do IBGE, distribuída como CC0.
+   Mapa desenhado no navegador a partir de GeoJSON estático do repositório. */
+function voteData(year,round,uf) {
+  if(!data)return null;
+  const rows=data.votesByYear[year];
+  const regionRows=uf==='BR'?[...rows.values()].filter(r=>r.uf!=='ZZ'):[rows.get(uf)].filter(Boolean);
+  if(!regionRows.length)return null;
+  const suffix=round==='1'?'1t':'2t';
+  const sum=key=>regionRows.reduce((t,r)=>t+(numeric(r[key+'_'+suffix])||0),0);
+  const valid=sum('validos'),v13=sum('votos_13'),v22=sum('votos_22');
+  return {valid,v13,v22,other:Math.max(0,valid-v13-v22),turnout:sum('comparecimento')};
+}
+function candidateShare(votes,valid) {return valid>0?votes/valid*100:null;}
+function pctOfValid(n,v) {return v>0?percent(n/v*100):'—';}
+function mapColor(share) {
+  if(share===null)return '#e2eae6';
+  const v=Math.max(0,Math.min(100,share));
+  return 'hsl(173 '+Math.round(28+v*.20)+'% '+Math.round(94-v*.57)+'%)';
+}
+function geoPolygons(geometry) {
+  return geometry.type==='Polygon'?[geometry.coordinates]:geometry.type==='MultiPolygon'?geometry.coordinates:[];
+}
+function renderMap() {
+  const svg=document.getElementById('brMap');svg.replaceChildren();
+  const features=data.geometry.features;
+  const points=features.flatMap(f=>geoPolygons(f.geometry).flat(2));
+  const xs=points.map(p=>p[0]),ys=points.map(p=>p[1]);
+  const minX=Math.min(...xs),maxX=Math.max(...xs),minY=Math.min(...ys),maxY=Math.max(...ys);
+  const scale=Math.min(512/(maxX-minX),474/(maxY-minY));
+  const offsetX=(560-(maxX-minX)*scale)/2,offsetY=(520-(maxY-minY)*scale)/2;
+  const project=([lon,lat])=>[(offsetX+(lon-minX)*scale).toFixed(1),(offsetY+(maxY-lat)*scale).toFixed(1)];
+  const ns='http://www.w3.org/2000/svg';
+  for(const feature of features) {
+    const uf=feature.properties.sigla;
+    const geos=geoPolygons(feature.geometry);
+    const pathData=geos.map(polygon=>polygon.map(ring=>ring.map((coord,i)=>{
+      const [x,y]=project(coord);
+      return (i===0?'M':'L')+x+','+y;
+    }).join(' ')+' Z').join(' ')).join(' ');
+    const path=document.createElementNS(ns,'path');
+    const result=voteData(state.year,state.round,uf);
+    const share=result?candidateShare(result.v13,result.valid):null;
+    path.setAttribute('d',pathData);
+    path.setAttribute('fill-rule','evenodd');
+    path.setAttribute('class','map-state'+(state.uf===uf?' selected':''));
+    path.setAttribute('fill',mapColor(share));
+    path.setAttribute('tabindex','0');
+    path.setAttribute('role','button');
+    path.setAttribute('aria-label',ufNames[uf]+': candidato nº 13, '+percent(share)+'. Selecionar estado');
+    const title=document.createElementNS(ns,'title');
+    title.textContent=ufNames[uf]+' · candidato 13: '+percent(share);
+    path.append(title);
+    const tooltip=()=>setText('mapHover',ufNames[uf]+' · Lula (13): '+percent(share)+' dos votos válidos');
+    path.addEventListener('mouseenter',tooltip);
+    path.addEventListener('focus',tooltip);
+    path.addEventListener('mouseleave',()=>setMapHint());
+    path.addEventListener('blur',()=>setMapHint());
+    const select=()=>{
+      state.uf=uf;
+      document.getElementById('ufFilter').value=uf;
+      render();
+    };
+    path.addEventListener('click',select);
+    path.addEventListener('keydown',event=>{
+      if(event.key==='Enter'||event.key===' '){event.preventDefault();select();}
+    });
+    svg.append(path);
+  }
+  setMapHint();
+}
+function setMapHint(){
+  if(state.uf==='ZZ')setText('mapHover','Exterior (ZZ) não é desenhado no mapa do território brasileiro. Seus votos estão detalhados ao lado.');
+  else if(state.uf==='BR')setText('mapHover','Clique em uma das 27 UFs para ver seus resultados presidenciais.');
+  else {
+    const v=voteData(state.year,state.round,state.uf);
+    setText('mapHover',ufNames[state.uf]+' selecionado · Lula (13): '+(v?pctOfValid(v.v13,v.valid):'—'));
+  }
+}
+function appendCandidateRow(target,name,numberId,votes,valid,className) {
+  const row=node('div','candidate-row');
+  const top=node('div','candidate-top');
+  const label=node('div','candidate-name',name);
+  label.append(node('span','candidate-number',numberId));
+  const stats=node('div','candidate-value',pctOfValid(votes,valid));
+  stats.append(node('span','candidate-count',number(votes)+' votos'));
+  top.append(label,stats);
+  const track=node('div','candidate-track');
+  const fill=node('span','candidate-fill '+className);
+  fill.style.width=(valid>0?Math.max(0,Math.min(100,votes/valid*100)):0)+'%';
+  track.append(fill);row.append(top,track);target.append(row);
+}
+function renderPresidentialVotes() {
+  const result=voteData(state.year,state.round,state.uf);
+  const region=ufNames[state.uf];
+  setText('voteScope',region);
+  const candidate22=state.year==='2022'?'Jair Bolsonaro':'Flávio Bolsonaro';
+  setText('voteContext',state.year+' · '+state.round+'º turno · '+(state.uf==='BR'?'27 UFs, sem exterior':state.uf==='ZZ'?'eleitorado no exterior':'UF selecionada'));
+  const bars=document.getElementById('voteBars');bars.replaceChildren();
+  const summary=document.getElementById('voteSummary');summary.replaceChildren();
+  if(!result||!result.valid) {
+    bars.append(node('p','empty-chart','Ainda não há dados presidenciais completos para este recorte.'));
+  }else{
+    appendCandidateRow(bars,'Lula','Nº 13',result.v13,result.valid,'n13');
+    appendCandidateRow(bars,candidate22,'Nº 22',result.v22,result.valid,'n22');
+    if(state.round==='1')appendCandidateRow(bars,'Demais candidatos','1º turno',result.other,result.valid,'other');
+    for(const [label,value] of [['Votos válidos',result.valid],['Comparecimento',result.turnout]]){
+      const item=node('div');item.append(node('span',null,label),node('strong',null,number(value)));summary.append(item);
+    }
+  }
+  const table=document.getElementById('voteTableBody');table.replaceChildren();
+  for(const [year,round] of [['2022','1'],['2022','2'],['2026','1'],['2026','2']]){
+    const r=voteData(year,round,state.uf),tr=node('tr',year===state.year&&round===state.round?'active-turn':null);
+    tr.append(node('td',null,year+' · '+round+'º turno'));
+    if(!r||!r.valid){
+      for(let i=0;i<4;i++)tr.append(node('td','na','—'));
+    }else{
+      const addCandidate=(votes,label)=>{
+        const td=node('td',null,number(votes)+' ('+pctOfValid(votes,r.valid)+')');
+        if(label)td.append(node('small',null,label));
+        tr.append(td);
+      };
+      addCandidate(r.v13,null);
+      addCandidate(r.v22,year==='2022'?'Jair Bolsonaro':'Flávio Bolsonaro');
+      tr.append(node('td',null,round==='1'?number(r.other)+' ('+pctOfValid(r.other,r.valid)+')':'—'));
+      tr.append(node('td',null,number(r.valid)));
+    }
+    table.append(tr);
+  }
+}
 function render() {
   if(!data)return;
-  renderCoverage();renderKpis();renderScopeInfo();renderTrend();renderTimeline();renderRanking();renderComparison();renderDelta();
+  renderCoverage();renderKpis();renderScopeInfo();renderMap();renderPresidentialVotes();renderTrend();renderTimeline();renderRanking();renderComparison();renderDelta();
 }
 async function init() {
   setUpFilters();
@@ -291,7 +423,12 @@ async function init() {
       return [name,parseCSV(await response.text())];
     }));
     const loaded=Object.fromEntries(entries);
-    data={indicators:new Map(loaded.indicators.map(r=>[key(r.ano,r.turno,r.abrangencia),r])),timeline2022:loaded.timeline2022,timeline2026:loaded.timeline2026};
+    const mapResponse=await fetch('./dados/brasil-ufs.geojson',{cache:'no-cache'});
+    if(!mapResponse.ok)throw new Error('Malha territorial: '+mapResponse.status);
+    const geometry=await mapResponse.json();
+    data={indicators:new Map(loaded.indicators.map(r=>[key(r.ano,r.turno,r.abrangencia),r])),timeline2022:loaded.timeline2022,timeline2026:loaded.timeline2026,
+      votesByYear:{'2022':new Map(loaded.votes2022.map(r=>[r.uf,r])),'2026':new Map(loaded.votes2026.map(r=>[r.uf,r]))},geometry};
+    if(!geometry.features||geometry.features.length!==27)throw new Error('Malha territorial incompleta');
     if(!data.indicators.size)throw new Error('Indicadores vazios');
     render();
   }catch(err){

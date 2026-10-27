@@ -50,3 +50,46 @@ footer{background:#eef5f0;color:#617979;border-top:1px solid #d7e8dd}
 .footer-inner a{color:#117e70}
 @media(max-width:1100px){.kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:640px){.kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.bio-explainer{grid-template-columns:1fr;padding:12px 16px}.bio-explainer>div{border-right:0;border-bottom:1px solid #c6ddd4;padding:6px 0 12px}.bio-explainer>div:last-child{border-bottom:0}.delta-header h3{font-size:21px}}
+
+
+/* Mapa interativo e votação presidencial */
+.map-section{margin:22px 0 40px}
+.map-section-heading{margin-bottom:18px}
+.map-layout{display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,.94fr);gap:17px}
+.map-card,.vote-card,.vote-history{background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px;min-width:0}
+.map-card{display:flex;flex-direction:column}
+.brazil-map{width:100%;height:auto;max-height:480px;margin:18px auto 2px;display:block;overflow:visible}
+.map-state{cursor:pointer;stroke:#fff;stroke-width:1.6;stroke-linejoin:round;transition:fill .16s,stroke .16s;outline:none;vector-effect:non-scaling-stroke}
+.map-state:hover,.map-state:focus-visible{stroke:#234c51;stroke-width:2.7;filter:drop-shadow(0 2px 2px #24453c26)}
+.map-state.selected{stroke:#102f3b;stroke-width:3.3;filter:drop-shadow(0 1px 2px #1a363444)}
+.map-status{background:#f0f7f4;border-radius:8px;text-align:center;color:#275d56;min-height:36px;padding:10px 12px;font-size:12px;font-weight:800}
+.map-legend{display:flex;align-items:center;gap:12px;color:#799092;font-size:10px;margin-top:16px}
+.map-gradient{display:block;height:9px;flex:1;border-radius:10px;background:linear-gradient(90deg,hsl(173 28% 94%),hsl(173 48% 37%))}
+.map-caption{color:#87999c;font-size:11px;line-height:1.7;margin:17px 0 0}
+.map-caption a,.vote-footnote a{color:#087d77;text-decoration:underline}
+.vote-card h3{font:800 clamp(22px,2.5vw,30px)/1.25 Manrope,sans-serif;margin:12px 0 6px}
+.vote-context{color:#74878e;font-size:12px;line-height:1.65}
+.candidate-bars{display:grid;gap:22px;margin:26px 0 25px}
+.candidate-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-end;margin-bottom:9px}
+.candidate-name{font-size:13px;font-weight:800;color:#23414b}
+.candidate-number{color:#75898e;font-size:11px;display:block;margin-top:4px;font-weight:500}
+.candidate-value{font:800 15px Manrope,sans-serif;color:#163a43;white-space:nowrap}
+.candidate-count{display:block;text-align:right;font-size:10px;color:#80949b;font-weight:500;margin-top:4px}
+.candidate-track{width:100%;height:13px;overflow:hidden;border-radius:99px;background:#e8f0ed}
+.candidate-fill{height:100%;display:block;border-radius:99px}
+.candidate-fill.n13{background:linear-gradient(90deg,#76cbbc,#0e8f83)}
+.candidate-fill.n22{background:linear-gradient(90deg,#87a1b0,#335767)}
+.candidate-fill.other{background:linear-gradient(90deg,#c3ccc9,#95a8a5)}
+.vote-summary{display:grid;grid-template-columns:1fr 1fr;gap:10px;border-top:1px solid #e1ebe8;padding-top:20px}
+.vote-summary div{background:#f5f9f7;padding:16px;border-radius:8px}
+.vote-summary span{font-size:10px;color:#81969a;display:block}
+.vote-summary strong{font:800 20px Manrope,sans-serif;color:#1b3e47;display:block;margin-top:6px}
+.vote-history{margin-top:17px}
+.vote-history>.card-heading{margin-bottom:18px}
+.vote-table{min-width:820px}
+.vote-table tbody td{line-height:1.65}
+.vote-table tbody td small{display:block;color:#8b9b9e;font-size:10px;font-weight:500;margin-top:2px}
+.vote-table tr.active-turn td{background:#edf8f2}
+.vote-footnote{font-size:11px;line-height:1.8;color:#74898e;margin:17px 0 0}
+@media(max-width:920px){.map-layout{grid-template-columns:1fr}.brazil-map{max-width:620px}.vote-card{min-height:0}}
+@media(max-width:640px){.map-section{margin:10px 0 31px}.map-card,.vote-card,.vote-history{padding:18px 14px}.map-section-heading .comparison-chip{margin-top:8px}.brazil-map{max-height:360px;margin-top:12px}.map-status{font-size:11px}.candidate-bars{gap:20px}.vote-summary strong{font-size:18px}.vote-history .card-heading{gap:12px}.vote-history .chart-tag{align-self:flex-start}}

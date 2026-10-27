@@ -18,7 +18,7 @@
   <header class="site-header">
     <div class="wrap nav">
       <a class="brand" href="./" aria-label="Observatório Eleitoral, início"><span class="brand-symbol" aria-hidden="true"><i></i><i></i><i></i></span><span>OBSERVATÓRIO <small>ELEITORAL</small></span></a>
-      <nav aria-label="Principal"><a href="#painel">Painel</a><a href="#estados">Estados</a><a href="#comparacao">Comparativo</a><a href="#metodologia">Metodologia</a></nav>
+      <nav aria-label="Principal"><a href="#painel">Painel</a><a href="#mapa">Mapa</a><a href="#estados">Estados</a><a href="#comparacao">Comparativo</a><a href="#metodologia">Metodologia</a></nav>
       <a class="nav-github" href="https://github.com/BigCorps/ObservatorioEleitoral" target="_blank" rel="noopener noreferrer">Ver código <span aria-hidden="true">↗</span></a>
     </div>
   </header>
@@ -66,6 +66,33 @@
         </div>
         <div class="bio-explainer"><div><strong>Sem biometria cadastrada</strong><p>Eleitor sem registro biométrico no cadastro.</p></div><div><strong>Biometria não reconhecida</strong><p>Eleitor com cadastro, mas liberado pelo mesário após falha na leitura.</p></div><div><strong>Biometria confirmada</strong><p>Habilitação realizada com reconhecimento biométrico.</p></div></div>
         <p id="scopeDisclaimer" class="data-disclaimer">O recorte “Brasil” soma as 27 UFs, sem o eleitorado no exterior. Percentuais de biometria referem-se às habilitações registradas nos logs disponíveis e não permitem inferir como alguém votou.</p>
+
+        <section class="map-section" id="mapa" aria-label="Mapa do Brasil e votos presidenciais">
+          <div class="section-intro map-section-heading"><div><span class="section-kicker">MAPA INTERATIVO</span><h2>Escolha um estado no mapa</h2><p>Clique em uma UF para atualizar os resultados do panorama e os votos para presidente.</p></div><span class="comparison-chip">27 UFs · mesmo recorte dos filtros</span></div>
+          <div class="map-layout">
+            <article class="map-card">
+              <div class="card-heading"><div><span class="card-eyebrow">DISTRIBUIÇÃO DOS VOTOS VÁLIDOS</span><h3>Participação do candidato nº 13</h3></div><span class="chart-tag">TURNO SELECIONADO</span></div>
+              <svg id="brMap" class="brazil-map" role="group" viewBox="0 0 560 520" aria-label="Mapa do Brasil dividido por unidades da Federação"></svg>
+              <div class="map-status" id="mapHover" aria-live="polite">Passe o cursor sobre uma UF ou selecione um estado.</div>
+              <div class="map-legend"><span>Menor percentual</span><span class="map-gradient" aria-hidden="true"></span><span>Maior percentual</span></div>
+              <p class="map-caption">A tonalidade indica apenas a participação do número 13 entre os votos válidos do turno escolhido. Não representa probabilidade, desempenho relativo ao histórico nem suspeita. <a href="https://github.com/henriquemalvar/br-geojson" target="_blank" rel="noopener noreferrer">Malha IBGE (CC0) ↗</a></p>
+            </article>
+            <article class="vote-card">
+              <span class="card-eyebrow">VOTAÇÃO PRESIDENCIAL NO RECORTE</span>
+              <h3 id="voteScope">Brasil (27 UFs)</h3>
+              <p id="voteContext" class="vote-context">Selecione um estado para detalhar.</p>
+              <div id="voteBars" class="candidate-bars" aria-live="polite"></div>
+              <div id="voteSummary" class="vote-summary"></div>
+              <p class="chart-note">No 1º turno, “Demais candidatos” reúne os votos válidos de outros concorrentes. Os percentuais usam votos válidos como denominador.</p>
+            </article>
+          </div>
+          <article class="vote-history">
+            <div class="card-heading"><div><span class="card-eyebrow">QUATRO TURNOS, MESMO RECORTE</span><h3>Votos por candidato em 2022 e 2026</h3></div><span class="chart-tag">VOTOS E PARTICIPAÇÃO</span></div>
+            <div class="comparison-scroll"><table class="comparison-table vote-table"><thead><tr><th scope="col">Eleição</th><th scope="col">Lula (13)</th><th scope="col">Nº 22*</th><th scope="col">Demais candidatos</th><th scope="col">Votos válidos</th></tr></thead><tbody id="voteTableBody"></tbody></table></div>
+            <p class="vote-footnote">* O candidato nº 22 foi <strong>Jair Bolsonaro em 2022</strong> e <strong>Flávio Bolsonaro em 2026</strong>. Os nomes mudaram, portanto a comparação histórica do número não representa votos da mesma pessoa. Fonte dos totais: arquivos oficiais processados pelo Observatório, <a href="https://github.com/BigCorps/ObservatorioEleitoral/tree/main/resultados" target="_blank" rel="noopener noreferrer">consultar CSVs ↗</a>.</p>
+          </article>
+        </section>
+
         <div class="two-columns overview-charts">
           <article class="chart-card">
             <div class="card-heading"><div><span class="card-eyebrow">COMPARAÇÃO DOS TURNOS</span><h3>Como o indicador mudou?</h3></div><div class="mini-filter"><label for="trendMetric">Indicador</label><select id="trendMetric"><option value="pct_abstencao">Abstenção</option><option value="pct_brancos">Votos brancos</option><option value="pct_nulos">Votos nulos</option><option value="pct_hab_sem_biometria_log">Sem biometria cadastrada (log)</option><option value="pct_hab_manual_apos_falha_log">Biometria não reconhecida (log)</option><option value="pct_votos_apos_17h">Após 17h (log)</option><option value="comparecimento">Comparecimento</option></select></div></div>
