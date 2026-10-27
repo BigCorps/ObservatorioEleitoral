@@ -1,0 +1,44 @@
+=== logd.dat: 4986 linhas do dia; ids={'67305985': 4986}
+    {'Urna pronta para receber votos': 3, 'Eleitor foi habilitado': 253, 'Voto confirmado para [Presidente]': 253, 'O voto do eleitor foi computado': 252, 'Inicio do Encerramento': 1}
+      07:58:33 INFO   67305985 LOGD  Urna ligada em 02/10/2022 às 07:57:47
+      07:59:15 INFO   67305985 GAP   Iniciando aplicação - Oficial - 1º turno
+      07:59:15 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2013
+      07:59:24 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2013
+      07:59:28 INFO   67305985 GAP   Modo de carga da UE - Votação
+      07:59:28 INFO   67305985 GAP   Município: 15377
+      07:59:28 INFO   67305985 GAP   Zona Eleitoral: 0009
+      07:59:28 INFO   67305985 GAP   Seção Eleitoral: 0301
+      07:59:32 INFO   67305985 GAP   Serial de votação da MV: 9189B842 14/09/2022 às 11:33:33 em RCEWGEDAI20
+      08:00:12 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      08:00:40 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 1º turno
+      08:08:13 INFO   67305985 VOTA  Urna pronta para receber votos
+      08:14:23 INFO   67305985 LOGD  Urna ligada em 02/10/2022 às 08:13:38
+      08:15:05 INFO   67305985 GAP   Iniciando aplicação - Oficial - 1º turno
+      08:15:05 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2013
+      08:15:14 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2013
+      08:15:18 INFO   67305985 GAP   Modo de carga da UE - Votação
+      08:15:18 INFO   67305985 GAP   Município: 15377
+      08:15:18 INFO   67305985 GAP   Zona Eleitoral: 0009
+      08:15:18 INFO   67305985 GAP   Seção Eleitoral: 0301
+      08:15:23 INFO   67305985 GAP   Serial de votação da MV: 9189B842 14/09/2022 às 11:33:33 em RCEWGEDAI20
+      08:16:03 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      08:16:32 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 1º turno
+      08:17:56 INFO   67305985 VOTA  Urna pronta para receber votos
+      11:35:30 ERRO   67305985 VOTA  N3api17CMessageExceptionE - (Código (12)) CMessageException - CScreenMT::Write - erro na escrita de texto 12: 
+      11:39:47 INFO   67305985 INITJE Urna desligada pela chave
+      11:41:41 INFO   67305985 LOGD  Urna ligada em 02/10/2022 às 11:40:56
+      11:42:23 INFO   67305985 GAP   Iniciando aplicação - Oficial - 1º turno
+      11:42:23 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2013
+      11:42:35 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2013
+      11:42:39 INFO   67305985 GAP   Modo de carga da UE - Votação
+      11:42:39 INFO   67305985 GAP   Município: 15377
+      11:42:39 INFO   67305985 GAP   Zona Eleitoral: 0009
+      11:42:39 INFO   67305985 GAP   Seção Eleitoral: 0301
+      11:42:44 INFO   67305985 GAP   Serial de votação da MV: 9189B842 14/09/2022 às 11:33:33 em RCEWGEDAI20
+      11:43:24 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      11:43:52 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 1º turno
+      11:44:31 INFO   67305985 VOTA  Urna pronta para receber votos
+      17:22:10 ERRO   67305985 VOTA  Digitado título inválido para o registro de mesário
+      17:22:42 ERRO   67305985 VOTA  Digitado título inválido para o registro de mesário
+      17:22:58 INFO   67305985 VOTA  Inicio do Encerramento
+      17:22:59 INFO   67305985 VOTA  Gerando relatório [BU] [INÍCIO]
