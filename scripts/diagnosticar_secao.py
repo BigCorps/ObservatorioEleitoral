@@ -15,7 +15,7 @@ from observatorio.remotezip import ArquivoHTTP, extrair_de_bloco, fim_membro, li
 ano, turno, uf, stem = int(sys.argv[1]), int(sys.argv[2]), sys.argv[3], sys.argv[4]
 d = DATAS_ELEICAO[(ano, turno)].strftime("%d/%m/%Y")
 a = ArquivoHTTP(url_pacote(ano, turno, uf))
-m = [x for x in listar_membros(a) if x.nome == stem + ".logjez"][0]
+m = [x for x in listar_membros(a) if x.nome in (stem + ".logjez", stem + "-log.jez")][0]
 dados = extrair_de_bloco(a.faixa(m.offset_cabecalho, fim_membro(m)), m.offset_cabecalho, m)
 for nome, cont in L.extrair_7z(dados):
     linhas = [l.split("\t") for l in cont.decode("latin-1").splitlines() if l[:10] == d]

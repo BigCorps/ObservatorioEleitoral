@@ -1,0 +1,26 @@
+=== logd.dat: 6307 linhas do dia; ids={'01839536': 6307}
+    {'Urna pronta para receber votos': 2, 'Eleitor foi habilitado': 278, 'Voto confirmado para [Presidente]': 278, 'O voto do eleitor foi computado': 277, 'Inicio do Encerramento': 1}
+      06:56:20 INFO   01839536 LOGD  Urna ligada em 04/10/2026 às 06:55:07
+      06:57:29 INFO   01839536 GAP   Iniciando aplicação - 1º turno
+      06:57:29 INFO   01839536 GAP   Identificação do Modelo de Urna: UE2015
+      06:57:39 INFO   01839536 GAP   Identificação do Modelo de Urna: UE2015
+      06:57:43 INFO   01839536 GAP   Modo de carga da UE - Votação
+      06:57:43 INFO   01839536 GAP   Município: 64254
+      06:57:43 INFO   01839536 GAP   Zona Eleitoral: 0291
+      06:57:43 INFO   01839536 GAP   Seção Eleitoral: 0346
+      06:58:47 INFO   01839536 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - 1º turno
+      06:59:32 INFO   01839536 VOTA  Iniciando aplicação - 1º turno
+      08:00:01 INFO   01839536 VOTA  Urna pronta para receber votos
+      10:36:48 INFO   01839536 LOGD  Urna ligada em 04/10/2026 às 10:35:37
+      10:37:57 INFO   01839536 GAP   Iniciando aplicação - 1º turno
+      10:37:58 INFO   01839536 GAP   Identificação do Modelo de Urna: UE2015
+      10:38:08 INFO   01839536 GAP   Identificação do Modelo de Urna: UE2015
+      10:38:12 INFO   01839536 GAP   Modo de carga da UE - Votação
+      10:38:12 INFO   01839536 GAP   Município: 64254
+      10:38:13 INFO   01839536 GAP   Zona Eleitoral: 0291
+      10:38:13 INFO   01839536 GAP   Seção Eleitoral: 0346
+      10:39:17 INFO   01839536 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - 1º turno
+      10:40:04 INFO   01839536 VOTA  Iniciando aplicação - 1º turno
+      10:41:36 INFO   01839536 VOTA  Urna pronta para receber votos
+      17:06:12 INFO   01839536 VOTA  Inicio do Encerramento
+      17:06:13 INFO   01839536 VOTA  Gerando relatório [BU] [INÍCIO]

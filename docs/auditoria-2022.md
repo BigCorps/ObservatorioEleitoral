@@ -1,6 +1,6 @@
 # Auditoria 2022 — Presidente
 
-_Gerado automaticamente por `scripts/gerar_relatorios.py` em 27/10/2026 04:28 UTC. Todos os números vêm de `resultados/2022/`. Ver método em `docs/metodologia.md`._
+_Gerado automaticamente por `scripts/gerar_relatorios.py` em 27/10/2026 05:02 UTC. Todos os números vêm de `resultados/2022/`. Ver método em `docs/metodologia.md`._
 
 ## Cobertura dos arquivos de urna (logs e BU binário)
 

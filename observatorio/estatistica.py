@@ -70,7 +70,7 @@ def executar(ano: int) -> pd.DataFrame:
     con.execute("SET enable_progress_bar=false")
     con.execute(f"CREATE VIEW b AS SELECT * FROM '{PROCESSADOS}/secoes_bu_{ano}.parquet'")
     cands = [r[0] for r in con.execute("""SELECT k FROM (SELECT unnest(map_keys(votos_candidato)) k,
-        unnest(map_values(votos_candidato)) v FROM b WHERE turno=2) GROUP BY k ORDER BY sum(v) DESC LIMIT 2""").fetchall()]
+        unnest(map_values(votos_candidato)) v FROM b WHERE turno=(SELECT max(turno) FROM b)) GROUP BY k ORDER BY sum(v) DESC LIMIT 2""").fetchall()]
     linhas = []
     for turno in (1, 2):
         dados = con.execute(f"""SELECT uf, votos_nominais n,

@@ -1,0 +1,99 @@
+=== 020523520410202613583101ME.jez/logd.dat: 3150 linhas do dia; ids={'02383716': 3150}
+    {'Urna pronta para receber votos': 8, 'Eleitor foi habilitado': 108, 'Voto confirmado para [Presidente]': 105, 'O voto do eleitor foi computado': 105}
+      07:21:43 INFO   02383716 LOGD  Urna ligada em 04/10/2026 às 07:21:06
+      07:22:08 INFO   02383716 GAP   Iniciando aplicação - 1º turno
+      07:22:08 INFO   02383716 GAP   Identificação do Modelo de Urna: UE2022
+      07:22:16 INFO   02383716 GAP   Identificação do Modelo de Urna: UE2022
+      07:22:20 INFO   02383716 GAP   Modo de carga da UE - Votação
+      07:22:20 INFO   02383716 GAP   Município: 16039
+      07:22:20 INFO   02383716 GAP   Zona Eleitoral: 0029
+      07:22:20 INFO   02383716 GAP   Seção Eleitoral: 0028
+      07:22:54 INFO   02383716 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - 1º turno
+      07:23:16 INFO   02383716 VOTA  Iniciando aplicação - 1º turno
+      07:23:56 INFO   02383716 VOTA  Urna ligada conectada na rede CA em [222.07V] e na Bateria Interna com [13.72V/0A]
+      07:53:55 INFO   02383716 VOTA  Urna ligada conectada na rede CA em [222.44V] e na Bateria Interna com [13.56V/0A]
+      08:00:01 INFO   02383716 VOTA  Urna pronta para receber votos
+      08:23:55 INFO   02383716 VOTA  Urna ligada conectada na rede CA em [223.26V] e na Bateria Interna com [13.51V/0A]
+      08:53:55 INFO   02383716 VOTA  Urna ligada conectada na rede CA em [223.80V] e na Bateria Interna com [13.46V/0A]
+      09:23:55 INFO   02383716 VOTA  Urna ligada conectada na rede CA em [223.20V] e na Bateria Interna com [13.43V/0A]
+      09:59:20 INFO   02383716 LOGD  Urna ligada em 04/10/2026 às 09:58:43
+      09:59:45 INFO   02383716 GAP   Iniciando aplicação - 1º turno
+      09:59:45 INFO   02383716 GAP   Identificação do Modelo de Urna: UE2022
+      09:59:54 INFO   02383716 GAP   Identificação do Modelo de Urna: UE2022
+      09:59:58 INFO   02383716 GAP   Modo de carga da UE - Votação
+      09:59:58 INFO   02383716 GAP   Município: 16039
+      09:59:58 INFO   02383716 GAP   Zona Eleitoral: 0029
+      09:59:58 INFO   02383716 GAP   Seção Eleitoral: 0028
+      10:00:32 INFO   02383716 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - 1º turno
+      10:00:55 INFO   02383716 VOTA  Iniciando aplicação - 1º turno
+      10:01:35 INFO   02383716 VOTA  Urna ligada conectada na rede CA em [222.80V] e na Bateria Interna com [13.82V/0A]
+      10:02:17 INFO   02383716 VOTA  Urna pronta para receber votos
+      10:18:15 INFO   02383716 LOGD  Urna ligada em 04/10/2026 às 10:17:38
+      10:18:40 INFO   02383716 GAP   Iniciando aplicação - 1º turno
+      10:18:40 INFO   02383716 GAP   Identificação do Modelo de Urna: UE2022
+      10:18:49 INFO   02383716 GAP   Identificação do Modelo de Urna: UE2022
+      10:18:53 INFO   02383716 GAP   Modo de carga da UE - Votação
+      10:18:53 INFO   02383716 GAP   Município: 16039
+      10:18:53 INFO   02383716 GAP   Zona Eleitoral: 0029
+      10:18:53 INFO   02383716 GAP   Seção Eleitoral: 0028
+      10:19:27 INFO   02383716 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - 1º turno
+      10:19:51 INFO   02383716 VOTA  Iniciando aplicação - 1º turno
+      10:20:30 INFO   02383716 VOTA  Urna ligada conectada na rede CA em [222.82V] e na Bateria Interna com [13.66V/0A]
+      10:20:35 INFO   02383716 VOTA  Urna pronta para receber votos
+      10:49:09 INFO   02383716 LOGD  Urna ligada em 04/10/2026 às 10:48:32
+      10:49:34 INFO   02383716 GAP   Iniciando aplicação - 1º turno
+      10:49:34 INFO   02383716 GAP   Identificação do Modelo de Urna: UE2022
+      10:49:43 INFO   02383716 GAP   Identificação do Modelo de Urna: UE2022
+      10:49:47 INFO   02383716 GAP   Modo de carga da UE - Votação
+      10:49:47 INFO   02383716 GAP   Município: 16039
+      10:49:47 INFO   02383716 GAP   Zona Eleitoral: 0029
+      10:49:47 INFO   02383716 GAP   Seção Eleitoral: 0028
+      10:50:21 INFO   02383716 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - 1º turno
+      10:50:44 INFO   02383716 VOTA  Iniciando aplicação - 1º turno
+      10:51:24 INFO   02383716 VOTA  Urna ligada conectada na rede CA em [222.66V] e na Bateria Interna com [13.58V/0A]
+      10:51:29 INFO   02383716 VOTA  Urna pronta para receber votos
+      11:21:24 INFO   02383716 VOTA  Urna ligada conectada na rede CA em [223.08V] e na Bateria Interna com [13.51V/0A]
+      11:46:57 INFO   02383716 INITJE Urna desligada pela chave
+      11:48:07 INFO   02383716 LOGD  Urna ligada em 04/10/2026 às 11:47:30
+      11:48:32 INFO   02383716 GAP   Iniciando aplicação - 1º turno
+      11:48:32 INFO   02383716 GAP   Identificação do Modelo de Urna: UE2022
+      11:48:40 INFO   02383716 GAP   Identificação do Modelo de Urna: UE2022
+      11:48:45 INFO   02383716 GAP   Modo de carga da UE - Votação
+      11:48:45 INFO   02383716 GAP   Município: 16039
+=== logd.dat: 3089 linhas do dia; ids={'02052352': 3089}
+    {'Urna pronta para receber votos': 1, 'Eleitor foi habilitado': 136, 'Voto confirmado para [Presidente]': 136, 'O voto do eleitor foi computado': 136, 'Inicio do Encerramento': 1}
+      13:56:37 INFO   02052352 LOGD  Urna ligada em 04/10/2026 às 13:56:00
+      13:57:02 INFO   02052352 GAP   Iniciando aplicação - 1º turno
+      13:57:02 INFO   02052352 GAP   Identificação do Modelo de Urna: UE2020
+      13:57:02 INFO   02052352 LOGD  Log interno da urna de contingência validado com sucesso
+      13:57:10 INFO   02052352 GAP   Identificação do Modelo de Urna: UE2020
+      13:57:14 INFO   02052352 GAP   Modo de carga da UE - Urna de contingência
+      13:57:14 INFO   02052352 GAP   Município: 16039
+      13:57:14 INFO   02052352 GAP   Zona Eleitoral: 0029
+      13:57:14 INFO   02052352 GAP   Seção Eleitoral: 0000
+      13:57:23 INFO   02052352 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - 1º turno
+      13:58:24 INFO   02052352 GAP   Início do procedimento de contingência
+      13:58:31 INFO   02052352 GAP   Modo de carga da UE - Votação
+      13:58:34 INFO   02052352 GAP   Contingência executada com sucesso
+      13:59:41 INFO   02052352 LOGD  Urna ligada em 04/10/2026 às 13:59:04
+      14:00:06 INFO   02052352 GAP   Iniciando aplicação - 1º turno
+      14:00:06 INFO   02052352 GAP   Identificação do Modelo de Urna: UE2020
+      14:00:15 INFO   02052352 GAP   Identificação do Modelo de Urna: UE2020
+      14:00:19 INFO   02052352 GAP   Modo de carga da UE - Votação
+      14:00:19 INFO   02052352 GAP   Município: 16039
+      14:00:19 INFO   02052352 GAP   Zona Eleitoral: 0029
+      14:00:19 INFO   02052352 GAP   Seção Eleitoral: 0028
+      14:00:53 INFO   02052352 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - 1º turno
+      14:01:15 INFO   02052352 VOTA  Iniciando aplicação - 1º turno
+      14:01:55 INFO   02052352 VOTA  Urna ligada conectada na rede CA em [223.23V] e na Bateria Interna com [14.12V/0A]
+      14:02:12 INFO   02052352 VOTA  Urna pronta para receber votos
+      14:31:54 INFO   02052352 VOTA  Urna ligada conectada na rede CA em [223.88V] e na Bateria Interna com [13.96V/0A]
+      15:01:54 INFO   02052352 VOTA  Urna ligada conectada na rede CA em [223.17V] e na Bateria Interna com [13.92V/0A]
+      15:31:54 INFO   02052352 VOTA  Urna ligada conectada na rede CA em [223.16V] e na Bateria Interna com [13.88V/0A]
+      16:01:54 INFO   02052352 VOTA  Urna ligada conectada na rede CA em [222.62V] e na Bateria Interna com [13.84V/0A]
+      16:31:54 INFO   02052352 VOTA  Urna ligada conectada na rede CA em [222.06V] e na Bateria Interna com [13.81V/0A]
+      17:01:54 INFO   02052352 VOTA  Urna ligada conectada na rede CA em [221.27V] e na Bateria Interna com [13.78V/0A]
+      17:31:54 INFO   02052352 VOTA  Urna ligada conectada na rede CA em [224.11V] e na Bateria Interna com [13.75V/0A]
+      18:01:54 INFO   02052352 VOTA  Urna ligada conectada na rede CA em [223.25V] e na Bateria Interna com [13.72V/0A]
+      18:28:24 INFO   02052352 VOTA  Inicio do Encerramento
+      18:28:25 INFO   02052352 VOTA  Gerando relatório [BU] [INÍCIO]

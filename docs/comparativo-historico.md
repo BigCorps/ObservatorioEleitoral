@@ -1,6 +1,6 @@
 # Comparação histórica 2022 × 2026 — Presidente
 
-_Gerado em 27/10/2026 04:28 UTC a partir de `resultados/comparativo/`._
+_Gerado em 27/10/2026 05:02 UTC a partir de `resultados/comparativo/`._
 
 **Pergunta central:** quais diferenças observadas em 2026 também ocorreram em 2022, quais podem ser explicadas pelas condições eleitorais e quais exigem verificação documental adicional?
 
@@ -12,25 +12,25 @@ _Gerado em 27/10/2026 04:28 UTC a partir de `resultados/comparativo/`._
 |---|---|---|---|---|---|---|
 | Eleitores aptos | 155.758.572 | 155.758.349 | 157.828.968 | 157.828.819 | -223 | 2.070.396 |
 | Comparecimento | 123.378.340 | 123.942.648 | 124.934.069 | 127.854.631 | 564.308 | 1.555.729 |
-| Duração média 1º→último voto (h) | 8,961 | 8,770 | — | — | -0,191 | — |
-| Mediana habilitação→voto (s) | 55 | 12,500 | — | — | -42,500 | — |
-| Mediana do 1º voto (h, Brasília) | 8,074 | 8,040 | — | — | -0,034 | — |
-| Mediana do último voto (h, Brasília) | 16,942 | 16,861 | — | — | -0,081 | — |
+| Duração média 1º→último voto (h) | 9,068 | 8,775 | 9,054 | — | -0,293 | -0,014 |
+| Mediana habilitação→voto (s) | 51 | 15 | 55 | — | -36 | 4 |
+| Mediana do 1º voto (h, Brasília) | 8,078 | 8,036 | 8,066 | — | -0,042 | -0,012 |
+| Mediana do último voto (h, Brasília) | 16,981 | 16,852 | 16,978 | — | -0,129 | -0,003 |
 | Abstenção (% aptos) | 20,789 | 20,426 | 20,842 | 18,992 | -0,363 | 0,053 |
 | Com biometria, não habilitados por ela (% comparec., BU) | 8,738 | 8,077 | 6,677 | — | -0,661 | -2,061 |
 | Brancos (% comparec.) | 1,589 | 1,423 | 1,837 | 1,115 | -0,166 | 0,248 |
-| Habilitação biométrica (% habilitações, log) | 83,730 | 84,475 | — | — | 0,745 | — |
-| Liberação manual após falha (% habilitações, log) | 9,092 | 8,008 | — | — | -1,084 | — |
-| Sem biometria cadastrada (% habilitações, log) | 7,178 | 7,517 | — | — | 0,339 | — |
+| Habilitação biométrica (% habilitações, log) | 75,269 | 75,866 | 87,762 | — | 0,597 | 12,493 |
+| Liberação manual após falha (% habilitações, log) | 8,742 | 8,078 | 6,680 | — | -0,664 | -2,062 |
+| Sem biometria cadastrada (% habilitações, log) | 15,123 | 15,193 | 5,555 | — | 0,070 | -9,568 |
 | Nulos (% comparec.) | 2,823 | 3,167 | 2,933 | 2,126 | 0,344 | 0,110 |
-| Seções com contingência (%) | 1,884 | 1,024 | — | — | -0,860 | — |
-| Seções com reabertura (%) | 16,348 | 14,081 | — | — | -2,267 | — |
+| Seções com contingência (%) | 1,966 | 1,175 | 0,566 | — | -0,791 | -1,400 |
+| Seções com reabertura (%) | 16,932 | 14,491 | 5,664 | — | -2,441 | -11,268 |
 | Válidos (% comparec.) | 95,588 | 95,410 | 95,230 | 96,759 | -0,178 | -0,358 |
-| Votos antes das 8h (% votos do log) | 0 | 0 | — | — | 0 | — |
-| Votos após 17h (%) | 2,548 | 0,047 | — | — | -2,502 | — |
-| Votos após 19h (%) | 0,088 | 0 | — | — | -0,088 | — |
+| Votos antes das 8h (% votos do log) | 0 | 0 | 0 | — | 0 | 0 |
+| Votos após 17h (%) | 3,506 | 0,033 | 2,981 | — | -3,473 | -0,525 |
+| Votos após 19h (%) | 0,196 | 0 | 0,105 | — | -0,196 | -0,091 |
 | Seções com BU | 471.010 | 471.010 | 497.897 | 497.897 | 0 | 26.887 |
-| Seções com log | 18.785 | 13.287 | — | — | -5.498 | — |
+| Seções com log | 470.998 | 470.999 | 497.895 | — | 1 | 26.897 |
 
 
 ## Limitações de comparabilidade
@@ -163,12 +163,33 @@ Tabela completa (Brasil e 27 UFs, todos os indicadores): `resultados/comparativo
 
 | abrangencia | 2022_1t | 2022_2t | 2026_1t | dif_turnos_2022 | dif_1t_2026_menos_2022 |
 |---|---|---|---|---|---|
-| AC | 1,333 | 0,050 | — | -1,284 | — |
-| AP | 4,636 | 0,023 | — | -4,613 | — |
-| RO | 1,760 | 0,066 | — | -1,694 | — |
-| RR | 1,908 | 0,059 | — | -1,849 | — |
-| SE | 2,758 | — | — | — | — |
-| TO | 2,850 | 0,031 | — | -2,819 | — |
+| AC | 1,333 | 0,050 | 1,727 | -1,284 | 0,394 |
+| AL | 9,135 | 0,028 | 9,236 | -9,107 | 0,101 |
+| AM | 6,718 | 0,084 | 7,126 | -6,634 | 0,408 |
+| AP | 4,636 | 0,023 | 5,521 | -4,613 | 0,886 |
+| BA | 7,346 | 0,041 | 7,434 | -7,306 | 0,088 |
+| CE | 4,854 | 0,025 | 6,144 | -4,830 | 1,289 |
+| DF | 1,005 | 0,074 | 1,135 | -0,931 | 0,130 |
+| ES | 0,414 | 0,018 | 1,368 | -0,397 | 0,953 |
+| GO | 2,552 | 0,022 | 1,867 | -2,530 | -0,685 |
+| MA | 7,689 | 0,032 | 5,925 | -7,657 | -1,764 |
+| MG | 2,270 | 0,020 | 2,056 | -2,250 | -0,214 |
+| MS | 0,854 | 0,048 | 1,197 | -0,807 | 0,343 |
+| MT | 2,746 | 0,064 | 2,921 | -2,682 | 0,174 |
+| PA | 7,948 | 0,031 | 5,758 | -7,917 | -2,190 |
+| PB | 5,268 | 0,017 | 4,078 | -5,251 | -1,191 |
+| PE | 6,490 | 0,037 | 7,487 | -6,454 | 0,997 |
+| PI | 6,457 | 0,025 | 3,481 | -6,431 | -2,975 |
+| PR | 1,446 | 0,016 | 0,671 | -1,430 | -0,775 |
+| RJ | 4,737 | 0,055 | 2,404 | -4,682 | -2,333 |
+| RN | 7,073 | 0,018 | 6,678 | -7,056 | -0,395 |
+| RO | 1,760 | 0,066 | 0,459 | -1,694 | -1,301 |
+| RR | 1,908 | 0,059 | 1,048 | -1,849 | -0,860 |
+| RS | 1,004 | 0,021 | 0,505 | -0,983 | -0,499 |
+| SC | 1,798 | 0,018 | 0,877 | -1,780 | -0,921 |
+| SE | 2,758 | 0,012 | 3,029 | -2,746 | 0,271 |
+| SP | 1,148 | 0,035 | 0,419 | -1,112 | -0,729 |
+| TO | 2,850 | 0,031 | 1,661 | -2,819 | -1,189 |
 
 ### Com biometria, não habilitados por ela (% comparec., BU)
 

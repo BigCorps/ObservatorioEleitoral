@@ -1,12 +1,12 @@
 # Limitações e pendências
 
-_Atualizado em 27/10/2026 04:28 UTC._
+_Atualizado em 27/10/2026 05:02 UTC._
 
 ## Cobertura do processamento dos arquivos de urna (logs + BU binário)
 
 - 2022, 1º turno: 28/28 pacotes processados (completo).
 - 2022, 2º turno: 28/28 pacotes processados (completo).
-- 2026, 1º turno: 24/28 pacotes processados; faltam: BA, MG, RJ, SP.
+- 2026, 1º turno: 28/28 pacotes processados (completo).
 
 Enquanto houver pacotes faltando, os indicadores baseados em log (horários, intervalos,
 modalidade de habilitação, B6) **não são nacionais**: valem para as UFs processadas. Os

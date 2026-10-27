@@ -1,0 +1,6 @@
+
+ERRO: Traceback (most recent call last):
+  File "/home/user/ObservatorioEleitoral/scripts/diagnosticar_secao.py", line 18, in <module>
+    m = [x for x in listar_membros(a) if x.nome in (stem + ".logjez", stem + "-log.jez")][0]
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: list index out of range

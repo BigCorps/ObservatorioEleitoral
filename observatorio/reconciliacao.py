@@ -243,12 +243,16 @@ def executar(ano: int) -> dict:
 
     if "bubin" in disp:
         # B2 — BU publicado (CSV) x BU binário transmitido pela urna
+        # 2022 (spec v1): qtdEleitoresLibCodigo; 2026 (spec v2): qtdEleitoresHabilitadosPorBiografia
+        cols_bu = {r[0] for r in con.execute("DESCRIBE bubin").fetchall()}
+        lib_expr = ("coalesce(u.bu_qtd_lib_codigo, u.bu_qtd_hab_biografia)" if "bu_qtd_hab_biografia" in cols_bu
+                    else "u.bu_qtd_lib_codigo")
         _diff(con, "B2", "BU-CSV x BU binário (.bu)", "BWEB", "BUBIN",
               f"""SELECT b.turno, b.uf, b.cd_municipio, b.nr_zona, b.nr_secao,
                     b.qt_aptos a1, u.bu_qtd_aptos a2, b.qt_comparecimento c1, u.bu_qtd_comparecimento c2,
                     b.votos_nominais n1, u.bu_votos_nominais n2, b.votos_brancos br1, u.bu_votos_brancos br2,
                     b.votos_nulos nu1, u.bu_votos_nulos nu2,
-                    b.qt_eleitores_biometria_nh nh, u.bu_qtd_lib_codigo lib,
+                    b.qt_eleitores_biometria_nh nh, {lib_expr} lib,
                     list_sum(list_transform(map_keys(b.votos_candidato), lambda k: abs(b.votos_candidato[k]
                       - coalesce(list_sum(list_transform(list_filter(u.bu_votos_candidato, lambda e: e.k = k),
                                                         lambda e: e.v)), 0)))) dif_cand
