@@ -1,0 +1,92 @@
+=== 0218351202102022164201ME.jez/logd.dat: 4913 linhas do dia; ids={'2188816': 4913}
+    {'Urna pronta para receber votos': 3, 'Eleitor foi habilitado': 265, 'Voto confirmado para [Presidente]': 265, 'O voto do eleitor foi computado': 264}
+      07:18:31 INFO   2188816 LOGD  Urna ligada em 02/10/2022 às 07:18:10
+      07:18:50 INFO   2188816 GAP   Iniciando aplicação - Oficial - 1º turno
+      07:18:50 INFO   2188816 GAP   Identificação do Modelo de Urna: UE2020
+      07:18:58 INFO   2188816 GAP   Identificação do Modelo de Urna: UE2020
+      07:19:02 INFO   2188816 GAP   Modo de carga da UE - Votação
+      07:19:02 INFO   2188816 GAP   Município: 04154
+      07:19:02 INFO   2188816 GAP   Zona Eleitoral: 0072
+      07:19:02 INFO   2188816 GAP   Seção Eleitoral: 0012
+      07:19:07 INFO   2188816 GAP   Serial de votação da MV: 01FD7AB3 16/09/2022 às 10:47:45 em ZPA072STD69625
+      07:19:21 INFO   2188816 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      07:19:38 INFO   2188816 VOTA  Iniciando aplicação - Oficial - 1º turno
+      07:19:40 ERRO   2188816 VOTA  N3api10CExceptionE - (Código (-2)) ERROR opening the biometric reader
+      07:21:58 INFO   2188816 INITJE Urna desligada pela chave
+      07:24:28 INFO   2188816 LOGD  Urna ligada em 02/10/2022 às 07:24:07
+      07:24:47 INFO   2188816 GAP   Iniciando aplicação - Oficial - 1º turno
+      07:24:47 INFO   2188816 GAP   Identificação do Modelo de Urna: UE2020
+      07:24:55 INFO   2188816 GAP   Identificação do Modelo de Urna: UE2020
+      07:24:59 INFO   2188816 GAP   Modo de carga da UE - Votação
+      07:24:59 INFO   2188816 GAP   Município: 04154
+      07:24:59 INFO   2188816 GAP   Zona Eleitoral: 0072
+      07:24:59 INFO   2188816 GAP   Seção Eleitoral: 0012
+      07:25:04 INFO   2188816 GAP   Serial de votação da MV: 01FD7AB3 16/09/2022 às 10:47:45 em ZPA072STD69625
+      07:25:18 INFO   2188816 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      07:25:34 INFO   2188816 VOTA  Iniciando aplicação - Oficial - 1º turno
+      07:32:58 ERRO   2188816 VOTA  Digitado título inválido para o registro de mesário
+      08:00:01 INFO   2188816 VOTA  Urna pronta para receber votos
+      08:54:25 ERRO   2188816 VOTA  N3api10CExceptionE - (Código (0)) ERROR establishing a secure session
+      09:03:26 INFO   2188816 INITJE Urna desligada pela chave
+      09:05:14 INFO   2188816 LOGD  Urna ligada em 02/10/2022 às 09:04:53
+      09:05:33 INFO   2188816 GAP   Iniciando aplicação - Oficial - 1º turno
+      09:05:33 INFO   2188816 GAP   Identificação do Modelo de Urna: UE2020
+      09:05:42 INFO   2188816 GAP   Identificação do Modelo de Urna: UE2020
+      09:05:46 INFO   2188816 GAP   Modo de carga da UE - Votação
+      09:05:46 INFO   2188816 GAP   Município: 04154
+      09:05:46 INFO   2188816 GAP   Zona Eleitoral: 0072
+      09:05:46 INFO   2188816 GAP   Seção Eleitoral: 0012
+      09:05:50 INFO   2188816 GAP   Serial de votação da MV: 01FD7AB3 16/09/2022 às 10:47:45 em ZPA072STD69625
+      09:06:05 INFO   2188816 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      09:06:21 INFO   2188816 VOTA  Iniciando aplicação - Oficial - 1º turno
+      09:06:32 ERRO   2188816 VOTA  N3api10CExceptionE - (Código (-2)) ERROR opening the biometric reader
+      09:12:38 INFO   2188816 INITJE Urna desligada pela chave
+      09:13:51 INFO   2188816 LOGD  Urna ligada em 02/10/2022 às 09:13:30
+      09:14:10 INFO   2188816 GAP   Iniciando aplicação - Oficial - 1º turno
+      09:14:10 INFO   2188816 GAP   Identificação do Modelo de Urna: UE2020
+      09:14:18 INFO   2188816 GAP   Identificação do Modelo de Urna: UE2020
+      09:14:23 INFO   2188816 GAP   Modo de carga da UE - Votação
+      09:14:23 INFO   2188816 GAP   Município: 04154
+      09:14:23 INFO   2188816 GAP   Zona Eleitoral: 0072
+      09:14:23 INFO   2188816 GAP   Seção Eleitoral: 0012
+      09:14:27 INFO   2188816 GAP   Serial de votação da MV: 01FD7AB3 16/09/2022 às 10:47:45 em ZPA072STD69625
+      09:14:42 INFO   2188816 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      09:14:59 INFO   2188816 VOTA  Iniciando aplicação - Oficial - 1º turno
+      09:15:10 INFO   2188816 VOTA  Urna pronta para receber votos
+      16:26:50 ERRO   2188816 VOTA  N3api10CExceptionE - (Código (0)) ERROR establishing a secure session
+      16:27:46 INFO   2188816 INITJE Urna desligada pela chave
+      16:29:39 INFO   2188816 LOGD  Urna ligada em 02/10/2022 às 16:29:15
+      16:29:58 INFO   2188816 GAP   Iniciando aplicação - Oficial - 1º turno
+      16:29:58 INFO   2188816 GAP   Identificação do Modelo de Urna: UE2020
+      16:30:07 INFO   2188816 GAP   Identificação do Modelo de Urna: UE2020
+      16:30:11 INFO   2188816 GAP   Modo de carga da UE - Votação
+=== logd.dat: 1110 linhas do dia; ids={'2183512': 1110}
+    {'Urna pronta para receber votos': 1, 'Eleitor foi habilitado': 53, 'Voto confirmado para [Presidente]': 53, 'O voto do eleitor foi computado': 53, 'Inicio do Encerramento': 1}
+      16:42:02 INFO   2183512 LOGD  Urna ligada em 02/10/2022 às 16:41:41
+      16:42:21 INFO   2183512 GAP   Iniciando aplicação - Oficial - 1º turno
+      16:42:21 INFO   2183512 GAP   Identificação do Modelo de Urna: UE2020
+      16:42:21 INFO   2183512 LOGD  Log interno da urna reserva válido com sucesso
+      16:42:29 INFO   2183512 GAP   Identificação do Modelo de Urna: UE2020
+      16:42:33 INFO   2183512 GAP   Modo de carga da UE - Urna de contingência
+      16:42:33 INFO   2183512 GAP   Município: 04154
+      16:42:33 INFO   2183512 GAP   Zona Eleitoral: 0072
+      16:42:33 INFO   2183512 GAP   Seção Eleitoral: 0000
+      16:42:35 INFO   2183512 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      16:42:38 INFO   2183512 GAP   Início do procedimento de contingência
+      16:42:46 INFO   2183512 GAP   Serial de votação da MV: 01FD7AB3 16/09/2022 às 10:47:45 em ZPA072STD69625
+      16:42:46 INFO   2183512 GAP   Modo de carga da UE - Votação
+      16:42:49 INFO   2183512 GAP   Contingência executada com sucesso
+      16:43:33 INFO   2183512 LOGD  Urna ligada em 02/10/2022 às 16:43:12
+      16:43:52 INFO   2183512 GAP   Iniciando aplicação - Oficial - 1º turno
+      16:43:52 INFO   2183512 GAP   Identificação do Modelo de Urna: UE2020
+      16:44:00 INFO   2183512 GAP   Identificação do Modelo de Urna: UE2020
+      16:44:04 INFO   2183512 GAP   Modo de carga da UE - Votação
+      16:44:04 INFO   2183512 GAP   Município: 04154
+      16:44:04 INFO   2183512 GAP   Zona Eleitoral: 0072
+      16:44:04 INFO   2183512 GAP   Seção Eleitoral: 0012
+      16:44:08 INFO   2183512 GAP   Serial de votação da MV: 01FD7AB3 16/09/2022 às 10:47:45 em ZPA072STD69625
+      16:44:23 INFO   2183512 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      16:44:39 INFO   2183512 VOTA  Iniciando aplicação - Oficial - 1º turno
+      16:45:14 INFO   2183512 VOTA  Urna pronta para receber votos
+      18:05:22 INFO   2183512 VOTA  Inicio do Encerramento
+      18:05:23 INFO   2183512 VOTA  Gerando relatório [BU] [INÍCIO]

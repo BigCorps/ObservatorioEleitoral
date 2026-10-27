@@ -1,0 +1,7 @@
+=== logd.dat: 0 linhas do dia; ids={}
+    {}
+=== 6730598502102022075401MI.jez/logd.dat: 6 linhas do dia; ids={'67305985': 6}
+    {}
+      07:54:09 INFO   67305985 LOGD  Urna ligada em 02/10/2022 às 07:53:21
+      07:54:57 INFO   67305985 GAP   Iniciando aplicação - Oficial - 1º turno
+      07:54:57 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2015
