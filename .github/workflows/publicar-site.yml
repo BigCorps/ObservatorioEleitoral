@@ -17,6 +17,8 @@ on:
       - 'resultados/2022/reconciliacao_resumo.csv'
       - 'resultados/2026/reconciliacao_resumo.csv'
       - 'resultados/quadro_discrepancias.csv'
+      - 'resultados/2022/triagem_secoes_*.csv'
+      - 'resultados/2026/triagem_secoes_*.csv'
       - '.github/workflows/publicar-site.yml'
   workflow_dispatch:
 
@@ -61,6 +63,13 @@ jobs:
           cp resultados/2022/reconciliacao_resumo.csv _site/dados/reconciliacao_2022.csv
           cp resultados/2026/reconciliacao_resumo.csv _site/dados/reconciliacao_2026.csv
           cp resultados/quadro_discrepancias.csv _site/dados/quadro_discrepancias.csv
+          # A triagem é opcional até estar validada; a página deve funcionar sem esses CSVs.
+          for ano in 2022 2026; do
+            if test -s "resultados/$ano/triagem_secoes_resumo.csv" && test -s "resultados/$ano/triagem_secoes_exemplos.csv"; then
+              cp "resultados/$ano/triagem_secoes_resumo.csv" "_site/dados/triagem_resumo_$ano.csv"
+              cp "resultados/$ano/triagem_secoes_exemplos.csv" "_site/dados/triagem_exemplos_$ano.csv"
+            fi
+          done
           touch _site/.nojekyll
           test -s _site/index.html
           test -s _site/dados/brasil-ufs.geojson

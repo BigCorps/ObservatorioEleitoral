@@ -255,3 +255,30 @@ html{scroll-padding-bottom:calc(var(--dock-current-height) + 20px)}
 .audit-focus-source a{color:#087e71;text-decoration:underline}
 @media(max-width:780px){.audit-focus-grid{grid-template-columns:1fr 1fr}.audit-focus-main{grid-column:1/-1}.audit-focus-breakdown{grid-template-columns:1fr}}
 @media(max-width:520px){.ranking-total-values{grid-template-columns:1fr 1fr;gap:9px}.ranking-national{flex-direction:column;gap:5px}.ranking-national strong{text-align:left}.audit-focus-grid{grid-template-columns:1fr}.audit-focus-main{grid-column:auto}.audit-focus{padding:16px}.audit-breakdown-row{grid-template-columns:1fr}.audit-breakdown-row strong{white-space:normal}}
+/* Triagem exploratória por seção: resultado histórico, exemplos e fonte auditável */
+.triagem-section{padding:80px 0;background:#fff}
+.triagem-panel{border:1px solid #dce8e4;background:#fff;border-radius:16px;padding:26px}
+.triagem-controls{display:flex;gap:25px;align-items:end;justify-content:space-between}
+.triagem-controls h3{margin:8px 0;font-size:clamp(18px,2vw,25px);color:#24525a}
+.triagem-controls label{display:block;color:#6d8386;font-size:10px;letter-spacing:.05em;font-weight:800;max-width:370px;width:100%}
+.triagem-controls select{display:block;width:100%;min-height:45px;padding:9px;border-radius:8px;border:1px solid #cadecf;background:#fff;color:#24525a;font-size:13px;margin-top:7px}
+.triagem-status{padding:14px 17px;background:#f2f8f5;border-radius:9px;color:#47766d;font-size:13px;line-height:1.7;margin:22px 0 15px}
+.triagem-cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.triagem-stat{padding:17px;background:#f7faf8;border:1px solid #e3eee6;border-radius:10px}
+.triagem-stat small{display:block;color:#758c8e;font-size:11px;line-height:1.5}
+.triagem-stat strong{display:block;color:#1a5553;font:800 clamp(17px,2vw,24px) Manrope,sans-serif;overflow-wrap:anywhere;margin-top:7px}
+.triagem-explanation{color:#708389;font-size:12px;line-height:1.8;margin:17px 0 22px}
+.triagem-history{margin:22px 0;padding:20px;background:#f6faf7;border-radius:12px}
+.triagem-history h3,.triagem-examples h3{font-size:17px;margin:0 0 14px;color:#264b53}
+.triagem-history-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px}
+.triagem-history-item{background:#fff;padding:15px;border:1px solid #e0eae4;border-radius:9px}
+.triagem-history-item small,.triagem-history-item span{display:block;color:#829396;font-size:11px}
+.triagem-history-item strong{display:block;color:#234f54;font-size:18px;margin:6px 0}
+.triagem-examples{margin-top:22px}
+.triagem-examples>p{color:#657e83;font-size:12px;line-height:1.8}
+.triagem-table{min-width:790px}
+.triagem-table th:first-child,.triagem-table td:first-child{min-width:225px;text-align:left}
+.triagem-place-detail{display:block;font-size:11px;color:#91a1a2;margin-top:4px}
+.triagem-legal{background:#f4f9f6;border-left:3px solid #199080;padding:16px 20px;margin-top:22px;border-radius:0 8px 8px 0;color:#607b7d;line-height:1.8;font-size:12px}
+@media(max-width:900px){.triagem-cards{grid-template-columns:repeat(2,minmax(0,1fr))}.triagem-history-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.triagem-section{padding:50px 0}.triagem-panel{padding:16px}.triagem-controls{display:block}.triagem-controls label{margin-top:14px}.triagem-cards{grid-template-columns:repeat(2,minmax(0,1fr))}.triagem-stat{padding:12px}.triagem-history{padding:13px}}

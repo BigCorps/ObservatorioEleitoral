@@ -1,0 +1,127 @@
+{
+  "ano": 2026,
+  "gerado_utc": "2026-10-27T20:16:26.625880+00:00",
+  "fontes_por_turno": {
+    "1": "BU-CSV",
+    "2": "DSEC+VSEC"
+  },
+  "cobertura_por_uf": {
+    "AC": {
+      "secoes_processadas": 4540,
+      "secoes_quarentena": 0
+    },
+    "AL": {
+      "secoes_processadas": 14202,
+      "secoes_quarentena": 0
+    },
+    "AM": {
+      "secoes_processadas": 16314,
+      "secoes_quarentena": 0
+    },
+    "AP": {
+      "secoes_processadas": 3828,
+      "secoes_quarentena": 0
+    },
+    "BA": {
+      "secoes_processadas": 70952,
+      "secoes_quarentena": 0
+    },
+    "CE": {
+      "secoes_processadas": 47530,
+      "secoes_quarentena": 0
+    },
+    "DF": {
+      "secoes_processadas": 13938,
+      "secoes_quarentena": 0
+    },
+    "ES": {
+      "secoes_processadas": 19688,
+      "secoes_quarentena": 0
+    },
+    "GO": {
+      "secoes_processadas": 31372,
+      "secoes_quarentena": 0
+    },
+    "MA": {
+      "secoes_processadas": 36186,
+      "secoes_quarentena": 0
+    },
+    "MG": {
+      "secoes_processadas": 104124,
+      "secoes_quarentena": 0
+    },
+    "MS": {
+      "secoes_processadas": 14212,
+      "secoes_quarentena": 0
+    },
+    "MT": {
+      "secoes_processadas": 16574,
+      "secoes_quarentena": 0
+    },
+    "PA": {
+      "secoes_processadas": 41654,
+      "secoes_quarentena": 0
+    },
+    "PB": {
+      "secoes_processadas": 21424,
+      "secoes_quarentena": 0
+    },
+    "PE": {
+      "secoes_processadas": 42836,
+      "secoes_quarentena": 0
+    },
+    "PI": {
+      "secoes_processadas": 20450,
+      "secoes_quarentena": 0
+    },
+    "PR": {
+      "secoes_processadas": 54284,
+      "secoes_quarentena": 0
+    },
+    "RJ": {
+      "secoes_processadas": 75350,
+      "secoes_quarentena": 0
+    },
+    "RN": {
+      "secoes_processadas": 16230,
+      "secoes_quarentena": 0
+    },
+    "RO": {
+      "secoes_processadas": 9396,
+      "secoes_quarentena": 0
+    },
+    "RR": {
+      "secoes_processadas": 3038,
+      "secoes_quarentena": 0
+    },
+    "RS": {
+      "secoes_processadas": 55094,
+      "secoes_quarentena": 0
+    },
+    "SC": {
+      "secoes_processadas": 34652,
+      "secoes_quarentena": 0
+    },
+    "SE": {
+      "secoes_processadas": 11846,
+      "secoes_quarentena": 0
+    },
+    "SP": {
+      "secoes_processadas": 207312,
+      "secoes_quarentena": 0
+    },
+    "TO": {
+      "secoes_processadas": 8768,
+      "secoes_quarentena": 0
+    },
+    "ZZ": {
+      "secoes_processadas": 2619,
+      "secoes_quarentena": 0
+    }
+  },
+  "ufs_ausentes": [],
+  "secoes_incluidas": 998413,
+  "secoes_excluidas_por_inconsistencia": 0,
+  "criterios": "docs/triagem-secoes.md",
+  "aviso": "Seção destacada NÃO significa voto irregular; votos nos recortes NÃO são votos afetados."
+}
