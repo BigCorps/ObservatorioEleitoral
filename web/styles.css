@@ -61,7 +61,8 @@ footer{background:#eef5f0;color:#617979;border-top:1px solid #d7e8dd}
 .brazil-map{width:100%;height:auto;max-height:480px;margin:18px auto 2px;display:block;overflow:visible}
 .map-state{cursor:pointer;stroke:#fff;stroke-width:1.6;stroke-linejoin:round;transition:fill .16s,stroke .16s;outline:none;vector-effect:non-scaling-stroke}
 .map-state:hover,.map-state:focus-visible{stroke:#234c51;stroke-width:2.7;filter:drop-shadow(0 2px 2px #24453c26)}
-.map-state.selected{stroke:#102f3b;stroke-width:3.3;filter:drop-shadow(0 1px 2px #1a363444)}
+.map-state.selected{stroke:#fff;stroke-width:1.6;filter:none}
+.map-outline{stroke:#123c43;stroke-width:3.1;stroke-linejoin:round;stroke-linecap:round;fill:none;pointer-events:none;vector-effect:non-scaling-stroke;filter:drop-shadow(0 1px 1px #24453c22)}
 .map-status{background:#f0f7f4;border-radius:8px;text-align:center;color:#275d56;min-height:36px;padding:10px 12px;font-size:12px;font-weight:800}
 .map-legend{display:flex;align-items:center;gap:12px;color:#799092;font-size:10px;margin-top:16px}
 .map-gradient{display:block;height:9px;flex:1;border-radius:10px;background:linear-gradient(90deg,hsl(173 28% 94%),hsl(173 48% 37%))}

@@ -314,9 +314,16 @@ function renderMap() {
   const project=([lon,lat])=>[(offsetX+(lon-minX)*scale).toFixed(1),(offsetY+(maxY-lat)*scale).toFixed(1)];
   const ns='http://www.w3.org/2000/svg';
   let selectedPath=null;
-  // Em SVG, os últimos elementos são pintados por cima dos anteriores.
-  // Reposicionar o selecionado e o estado sob foco mantém a borda completa.
-  const bringToFront=path=>svg.append(path);
+  // Um contorno acima dos estados evita bordas encobertas sem mover os alvos clicáveis.
+  const outline=document.createElementNS(ns,'path');
+  outline.setAttribute('class','map-outline');
+  outline.setAttribute('aria-hidden','true');
+  outline.setAttribute('pointer-events','none');
+  outline.setAttribute('fill','none');
+  const showOutline=path=>{
+    if(path){outline.setAttribute('d',path.getAttribute('d'));outline.removeAttribute('display');}
+    else outline.setAttribute('display','none');
+  };
   for(const feature of features) {
     const uf=feature.properties.sigla;
     const geos=geoPolygons(feature.geometry);
@@ -338,8 +345,8 @@ function renderMap() {
     title.textContent=ufNames[uf]+' · candidato 13: '+percent(share);
     path.append(title);
     const tooltip=()=>setText('mapHover',ufNames[uf]+' · Lula (13): '+percent(share)+' dos votos válidos');
-    const highlight=()=>{bringToFront(path);tooltip();};
-    const restore=()=>{if(selectedPath)bringToFront(selectedPath);setMapHint();};
+    const highlight=()=>{showOutline(path);tooltip();};
+    const restore=()=>{showOutline(selectedPath);setMapHint();};
     path.addEventListener('mouseenter',highlight);
     path.addEventListener('focus',highlight);
     path.addEventListener('mouseleave',restore);
@@ -356,7 +363,8 @@ function renderMap() {
     svg.append(path);
     if(state.uf===uf)selectedPath=path;
   }
-  if(selectedPath)bringToFront(selectedPath);
+  svg.append(outline);
+  showOutline(selectedPath);
   setMapHint();
 }
 function setMapHint(){
