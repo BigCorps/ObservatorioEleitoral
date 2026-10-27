@@ -774,13 +774,16 @@ def quadro_discrepancias() -> pd.DataFrame:
                              ("Incompatibilidade documental pendente", g[g.classificacao != "Diferença explicada"])):
                 if sub.empty:
                     continue
+                por_secao = sub.nr_secao.notna().any()
                 secoes = sub.dropna(subset=["nr_secao"]).drop_duplicates(["uf", "cd_municipio", "nr_zona", "nr_secao"])
                 votos = int(sub.diferenca.abs().sum()) if (teste, campo) in TESTES_VOTOS else None
+                obs = ("diferença em número de votos registrados entre as fontes (não é voto irregular)"
+                       if votos is not None else "não é contagem de votos")
+                if not por_secao:
+                    obs += "; comparação por município/zona, sem contagem de seções"
                 linhas.append({"ano": ano, "turno": int(turno), "categoria": cat, "teste": teste, "campo": campo,
-                               "apontamentos": len(sub), "secoes_distintas": len(secoes),
-                               "votos_com_registro_divergente": votos,
-                               "observacao": ("diferença em número de votos registrados entre as fontes (não é voto irregular)"
-                                              if votos is not None else "não é contagem de votos")})
+                               "apontamentos": len(sub), "secoes_distintas": len(secoes) if por_secao else None,
+                               "votos_com_registro_divergente": votos, "observacao": obs})
         if rt.exists():
             r = pd.read_csv(rt)
             for (turno, teste, campo), g in r.groupby(["turno", "teste", "campo"]):
@@ -819,5 +822,8 @@ def quadro_discrepancias() -> pd.DataFrame:
                                "votos_com_registro_divergente": None,
                                "observacao": f"{len(g)} recortes UF/candidato com p_holm<0,01; efeito mediano {g.maior_desvio_pp.median():.2f} p.p."})
     q = pd.DataFrame(linhas)
+    ordem = {c: i for i, c in enumerate(["Incompatibilidade documental pendente", "Diferença explicada",
+                                         "Diferença estatística", "Não verificado", "Conferido sem diferença"])}
+    q = q.sort_values(["ano", "categoria", "turno", "teste", "campo"], key=lambda c: c.map(ordem) if c.name == "categoria" else c)
     q.to_csv(RESULTADOS / "quadro_discrepancias.csv", index=False)
     return q

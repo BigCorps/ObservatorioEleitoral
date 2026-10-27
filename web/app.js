@@ -811,8 +811,8 @@ function renderDiscrepancies() {
     const sum=f=>sub.reduce((t,r)=>t+(numeric(r[f])||0),0);
     const votes=sub.filter(r=>numeric(r.votos_com_registro_divergente)!==null);
     const card=node('article','audit-status-card'+(cat==='Não verificado'?' audit-pending':''));
-    const status=cat==='Não verificado'?number(sub.length)+' verificações':number(sum('apontamentos'))+' apontamentos';
-    const detail=cat==='Diferença estatística'?number(sub.length)+' recortes com efeito estatístico; não são apontamentos documentais.'
+    const status=cat==='Não verificado'?number(sub.length)+' verificações':cat==='Diferença estatística'?number(sub.length)+' resultados':number(sum('apontamentos'))+' apontamentos';
+    const detail=cat==='Diferença estatística'?'Testes com efeito estatisticamente significativo após correção para múltiplas comparações; não são apontamentos documentais nem votos.'
       :cat==='Não verificado'?'Dependem de arquivos oficiais ainda não publicados.'
       :number(sum('secoes_distintas'))+' seções por teste'+(votes.length?' · '+number(votes.reduce((t,r)=>t+numeric(r.votos_com_registro_divergente),0))+' votos com registro divergente entre fontes':'');
     card.append(node('span','audit-card-heading',cat.toUpperCase()),node('strong',null,status),node('p',null,detail));
