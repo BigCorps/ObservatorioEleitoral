@@ -1,0 +1,71 @@
+=== 0205886102102022155701ME.jez/logd.dat: 3763 linhas do dia; ids={'2059004': 3763}
+    {'Urna pronta para receber votos': 3, 'Eleitor foi habilitado': 212, 'Voto confirmado para [Presidente]': 210, 'O voto do eleitor foi computado': 211}
+      07:22:48 INFO   2059004 LOGD  Urna ligada em 02/10/2022 às 07:22:27
+      07:23:07 INFO   2059004 GAP   Iniciando aplicação - Oficial - 1º turno
+      07:23:07 INFO   2059004 GAP   Identificação do Modelo de Urna: UE2020
+      07:23:15 INFO   2059004 GAP   Identificação do Modelo de Urna: UE2020
+      07:23:19 INFO   2059004 GAP   Modo de carga da UE - Votação
+      07:23:19 INFO   2059004 GAP   Município: 16977
+      07:23:19 INFO   2059004 GAP   Zona Eleitoral: 0068
+      07:23:19 INFO   2059004 GAP   Seção Eleitoral: 0066
+      07:23:25 INFO   2059004 GAP   Serial de votação da MV: 5BCCAB24 21/09/2022 às 11:42:15 em ZRN068WKS20
+      07:23:40 INFO   2059004 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      07:23:56 INFO   2059004 VOTA  Iniciando aplicação - Oficial - 1º turno
+      08:00:01 INFO   2059004 VOTA  Urna pronta para receber votos
+      14:54:25 ERRO   2059004 VOTA  Erro gravando RDV na Mídia Externa
+      14:54:26 ERRO   2059004 VOTA  N3api17CMessageExceptionE - (Código (0)) CMessageException - Erro na Mídia Externa - Mídia não está presente
+      14:58:27 INFO   2059004 INITJE Urna desligada pela chave
+      14:59:54 INFO   2059004 LOGD  Urna ligada em 02/10/2022 às 14:59:33
+      15:00:12 INFO   2059004 GAP   Iniciando aplicação - Oficial - 1º turno
+      15:00:12 INFO   2059004 GAP   Identificação do Modelo de Urna: UE2020
+      15:00:21 INFO   2059004 GAP   Identificação do Modelo de Urna: UE2020
+      15:00:26 INFO   2059004 GAP   Modo de carga da UE - Votação
+      15:00:26 INFO   2059004 GAP   Município: 16977
+      15:00:26 INFO   2059004 GAP   Zona Eleitoral: 0068
+      15:00:26 INFO   2059004 GAP   Seção Eleitoral: 0066
+      15:00:30 INFO   2059004 GAP   Serial de votação da MV: 5BCCAB24 21/09/2022 às 11:42:15 em ZRN068WKS20
+      15:00:45 INFO   2059004 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      15:01:01 INFO   2059004 VOTA  Iniciando aplicação - Oficial - 1º turno
+      15:01:33 INFO   2059004 VOTA  Urna pronta para receber votos
+      15:20:21 INFO   2059004 GAP   Identificação do Modelo de Urna: UE2020
+      15:20:25 INFO   2059004 GAP   Modo de carga da UE - Votação
+      15:20:26 INFO   2059004 GAP   Município: 16977
+      15:20:26 INFO   2059004 GAP   Zona Eleitoral: 0068
+      15:20:26 INFO   2059004 GAP   Seção Eleitoral: 0066
+      15:20:30 INFO   2059004 GAP   Serial de votação da MV: 5BCCAB24 21/09/2022 às 11:42:15 em ZRN068WKS20
+      15:20:45 INFO   2059004 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      15:20:51 ERRO   2059004 GAP   Erro na verificação de assinatura do arquivo - eg.vsu
+      15:21:01 INFO   2059004 VOTA  Iniciando aplicação - Oficial - 1º turno
+      15:21:27 INFO   2059004 VOTA  Urna pronta para receber votos
+      15:34:47 ERRO   2059004 VOTA  N3api10CExceptionE - (Código (5)) static std::string api::CSystem::TemporaryPath(const string&) - Falha ao cri
+      15:37:33 INFO   2059004 INITJE Urna desligada pela chave
+=== logd.dat: 1149 linhas do dia; ids={'2058861': 1149}
+    {'Urna pronta para receber votos': 1, 'Eleitor foi habilitado': 60, 'Voto confirmado para [Presidente]': 60, 'O voto do eleitor foi computado': 60, 'Inicio do Encerramento': 1}
+      15:56:38 INFO   2058861 LOGD  Urna ligada em 02/10/2022 às 15:56:17
+      15:56:57 INFO   2058861 GAP   Iniciando aplicação - Oficial - 1º turno
+      15:56:57 INFO   2058861 GAP   Identificação do Modelo de Urna: UE2020
+      15:56:57 INFO   2058861 LOGD  Log interno da urna reserva válido com sucesso
+      15:57:05 INFO   2058861 GAP   Identificação do Modelo de Urna: UE2020
+      15:57:09 INFO   2058861 GAP   Modo de carga da UE - Urna de contingência
+      15:57:09 INFO   2058861 GAP   Município: 16411
+      15:57:09 INFO   2058861 GAP   Zona Eleitoral: 0068
+      15:57:09 INFO   2058861 GAP   Seção Eleitoral: 0000
+      15:57:11 INFO   2058861 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      15:57:14 INFO   2058861 GAP   Início do procedimento de contingência
+      15:57:20 INFO   2058861 GAP   Serial de votação da MV: 5BCCAB24 21/09/2022 às 11:42:15 em ZRN068WKS20
+      15:57:20 INFO   2058861 GAP   Modo de carga da UE - Votação
+      15:57:23 INFO   2058861 GAP   Contingência executada com sucesso
+      15:58:07 INFO   2058861 LOGD  Urna ligada em 02/10/2022 às 15:57:46
+      15:58:26 INFO   2058861 GAP   Iniciando aplicação - Oficial - 1º turno
+      15:58:26 INFO   2058861 GAP   Identificação do Modelo de Urna: UE2020
+      15:58:34 INFO   2058861 GAP   Identificação do Modelo de Urna: UE2020
+      15:58:38 INFO   2058861 GAP   Modo de carga da UE - Votação
+      15:58:38 INFO   2058861 GAP   Município: 16977
+      15:58:38 INFO   2058861 GAP   Zona Eleitoral: 0068
+      15:58:38 INFO   2058861 GAP   Seção Eleitoral: 0066
+      15:58:43 INFO   2058861 GAP   Serial de votação da MV: 5BCCAB24 21/09/2022 às 11:42:15 em ZRN068WKS20
+      15:58:57 INFO   2058861 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      15:59:13 INFO   2058861 VOTA  Iniciando aplicação - Oficial - 1º turno
+      15:59:39 INFO   2058861 VOTA  Urna pronta para receber votos
+      17:34:39 INFO   2058861 VOTA  Inicio do Encerramento
+      17:34:40 INFO   2058861 VOTA  Gerando relatório [BU] [INÍCIO]
