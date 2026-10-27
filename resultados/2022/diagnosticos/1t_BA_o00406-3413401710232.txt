@@ -1,0 +1,8 @@
+=== logd.dat: 12 linhas do dia; ids={'2213308': 12}
+    {}
+      07:42:39 INFO   2213308 LOGD  Urna ligada em 02/10/2022 às 07:42:18
+      07:42:58 INFO   2213308 GAP   Iniciando aplicação - Oficial - 1º turno
+      07:42:58 INFO   2213308 GAP   Identificação do Modelo de Urna: UE2020
+      07:43:51 INFO   2213308 LOGD  Urna ligada em 02/10/2022 às 07:43:30
+      07:44:10 INFO   2213308 GAP   Iniciando aplicação - Oficial - 1º turno
+      07:44:10 INFO   2213308 GAP   Identificação do Modelo de Urna: UE2020
