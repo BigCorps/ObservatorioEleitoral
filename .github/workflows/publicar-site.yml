@@ -6,6 +6,10 @@ on:
     paths:
       - 'web/**'
       - 'resultados/comparativo/indicadores_2022_2026.csv'
+      - 'resultados/2022/biometria_por_uf.csv'
+      - 'resultados/2022/temporal_por_uf.csv'
+      - 'resultados/2026/biometria_por_uf.csv'
+      - 'resultados/2026/temporal_por_uf.csv'
       - 'resultados/2022/resultados_uf.csv'
       - 'resultados/2022/votos_por_15min.csv'
       - 'resultados/2026/resultados_uf.csv'
@@ -44,6 +48,10 @@ jobs:
           cp web/brasil-ufs.geojson _site/dados/brasil-ufs.geojson
           cp resultados/2022/resultados_uf.csv _site/dados/presidente_2022.csv
           cp resultados/2026/resultados_uf.csv _site/dados/presidente_2026.csv
+          cp resultados/2022/biometria_por_uf.csv _site/dados/biometria_2022.csv
+          cp resultados/2026/biometria_por_uf.csv _site/dados/biometria_2026.csv
+          cp resultados/2022/temporal_por_uf.csv _site/dados/temporal_uf_2022.csv
+          cp resultados/2026/temporal_por_uf.csv _site/dados/temporal_uf_2026.csv
           cp resultados/comparativo/indicadores_2022_2026.csv _site/dados/indicadores.csv
           cp resultados/2022/votos_por_15min.csv _site/dados/votos_por_15min_2022.csv
           cp resultados/2026/votos_por_15min.csv _site/dados/votos_por_15min_2026.csv
@@ -52,6 +60,10 @@ jobs:
           test -s _site/dados/brasil-ufs.geojson
           test -s _site/dados/presidente_2022.csv
           test -s _site/dados/presidente_2026.csv
+          test -s _site/dados/biometria_2022.csv
+          test -s _site/dados/biometria_2026.csv
+          test -s _site/dados/temporal_uf_2022.csv
+          test -s _site/dados/temporal_uf_2026.csv
           test -s _site/dados/indicadores.csv
           test -s _site/dados/votos_por_15min_2022.csv
           test -s _site/dados/votos_por_15min_2026.csv

@@ -16,14 +16,19 @@ const metricNames = {
   pct_abstencao:'Abstenção',pct_brancos:'Votos brancos',pct_nulos:'Votos nulos',
   pct_hab_sem_biometria_log:'Sem biometria cadastrada',
   pct_hab_manual_apos_falha_log:'Biometria não reconhecida (liberação manual)',
-  pct_votos_apos_17h:'Votos após 17h',comparecimento:'Comparecimento'
+  pct_votos_apos_17h:'Votos após 17h',pct_brancos_nulos:'Brancos + nulos',
+  pct_validos:'Votos válidos',comparecimento:'Comparecimento'
 };
 const files = {
   indicators:'./dados/indicadores.csv',
   timeline2022:'./dados/votos_por_15min_2022.csv',
   timeline2026:'./dados/votos_por_15min_2026.csv',
   votes2022:'./dados/presidente_2022.csv',
-  votes2026:'./dados/presidente_2026.csv'
+  votes2026:'./dados/presidente_2026.csv',
+  bio2022:'./dados/biometria_2022.csv',
+  bio2026:'./dados/biometria_2026.csv',
+  temporalUF2022:'./dados/temporal_uf_2022.csv',
+  temporalUF2026:'./dados/temporal_uf_2026.csv'
 };
 const state = {year:'2022',round:'2',uf:'BR',trendMetric:'pct_abstencao',rankingMetric:'pct_abstencao'};
 let data = null;
@@ -117,6 +122,8 @@ function renderKpis() {
   setText('kpiAbstention',percent(d.pct_abstencao));
   const blank=numeric(d.pct_brancos),nullVotes=numeric(d.pct_nulos);
   setText('kpiBlankNull',blank===null||nullVotes===null?'—':percent(blank+nullVotes));
+  for(const [id,field] of [['kpiAbstentionCount','pct_abstencao'],['kpiBlankNullCount','pct_brancos_nulos'],['kpiBioNoRegCount','pct_hab_sem_biometria_log'],['kpiBiometryCount','pct_hab_manual_apos_falha_log'],['kpiBioConfirmedCount','pct_hab_biometrica_log'],['kpiLateCount','pct_votos_apos_17h']])
+    setText(id,countLabel(state.year,state.round,state.uf,field));
   setText('kpiBioNoReg',percent(effectiveMetric(state.year,state.round,state.uf,'pct_hab_sem_biometria_log')));
   setText('kpiBiometry',percent(effectiveMetric(state.year,state.round,state.uf,'pct_hab_manual_apos_falha_log')));
   setText('kpiBioConfirmed',percent(effectiveMetric(state.year,state.round,state.uf,'pct_hab_biometrica_log')));
@@ -132,7 +139,7 @@ function renderTrend() {
   const available=values.filter(v=>v!==null);
   const max=Math.max(1,...available);
   const absolute=state.trendMetric==='comparecimento';
-  chart.setAttribute('aria-label',metricNames[state.trendMetric]+' por turno no recorte '+ufNames[state.uf]+'. '+combinations.map(([y,t],i)=>y+' '+t+'º turno: '+(values[i]===null?'não disponível':absolute?number(values[i]):percent(values[i]))).join('; '));
+  chart.setAttribute('aria-label',metricNames[state.trendMetric]+' por turno no recorte '+ufNames[state.uf]+'. '+combinations.map(([y,t],i)=>y+' '+t+'º turno: '+(values[i]===null?'não disponível':(absolute?number(values[i]):percent(values[i]))+'; '+countLabel(y,t,state.uf,state.trendMetric))).join('; '));
   combinations.forEach(([year,round],i)=>{
     const col=node('div','trend-col'+(values[i]===null?' empty':''));
     const val=node('div','trend-value',values[i]===null?'Pendente':absolute?number(values[i]):percent(values[i]));
@@ -140,10 +147,13 @@ function renderTrend() {
     const bar=node('div','trend-bar'+(year===state.year&&round===state.round?' selected':''));
     bar.style.height=(values[i]===null?0:Math.max(1,values[i]/max*100))+'%';
     holder.append(bar);
-    col.append(val,holder,node('div','trend-label',year+' · '+round+'º'));
+    const count=metricCount(year,round,state.uf,state.trendMetric);
+    const meta=node('div','trend-count');
+    meta.append(node('strong',null,count===null?'—':absolute?'Eleitores':number(count)),node('span',null,absolute?'que votaram':countUnit(state.trendMetric)));
+    col.append(val,meta,holder,node('div','trend-label',year+' · '+round+'º'));
     chart.append(col);
   });
-  setText('trendNote','Escala com base zero, proporcional ao maior valor exibido. '+(available.length<4?'Alguns turnos não possuem este dado publicado.':'Valores do recorte selecionado.')+' Comparações de biometria e horário exigem considerar regras e cobertura de logs.');
+  setText('trendNote','Escala com base zero, proporcional ao maior valor exibido. '+(available.length<4?'Alguns turnos não possuem este dado publicado.':'Valores do recorte selecionado.')+' Os números absolutos vêm dos totais eleitorais por UF ou dos registros de logs. Para Brasil, biometria e horários continuam limitados às 27 UFs; a zona ZZ só entra nos totais eleitorais.');
 }
 function renderTimeline() {
   const chart=document.getElementById('timelineChart');
@@ -194,6 +204,8 @@ function renderRanking() {
     const track=node('span','rank-track');
     const fill=node('span','rank-fill');fill.style.width=Math.max(1,value/max*100)+'%';track.append(fill);
     const val=node('span','rank-value',percent(value));
+    const count=metricCount(state.year,state.round,uf,metric);
+    if(count!==null){const small=node('small','rank-absolute',number(count));small.title=countLabel(state.year,state.round,uf,metric);val.append(small);}
     row.append(name,track,val);
     row.addEventListener('click',()=>{
       state.uf=uf;document.getElementById('ufFilter').value=uf;render();
@@ -281,6 +293,40 @@ function renderDelta(){
   }
 }
 
+function renderAbsoluteDeltas() {
+  const groups=[
+    ['RESULTADOS DA VOTAÇÃO · ABRANGÊNCIA SELECIONADA',[
+      ['Eleitores aptos','aptos'],['Comparecimento','comparecimento'],
+      ['Abstenções','pct_abstencao'],['Votos válidos','pct_validos'],
+      ['Votos brancos','pct_brancos'],['Votos nulos','pct_nulos'],
+      ['Brancos + nulos','pct_brancos_nulos'],
+      ['Lula (13)','votos_13'],['Número 22*','votos_22']]],
+    ['REGISTROS TÉCNICOS · COBERTURA DOS LOGS',[
+      ['Sem biometria cadastrada (log)','pct_hab_sem_biometria_log'],
+      ['Biometria não reconhecida (log)','pct_hab_manual_apos_falha_log'],
+      ['Biometria confirmada (log)','pct_hab_biometrica_log'],
+      ['Votos após 17h (log)','pct_votos_apos_17h']]]
+  ];
+  const body=document.getElementById('absoluteDeltaBody');body.replaceChildren();
+  for(const [group,fields] of groups) {
+    const header=node('tr','absolute-group'),title=node('th',null,group);
+    title.scope='rowgroup';title.colSpan=6;header.append(title);body.append(header);
+    for(const [label,field] of fields) {
+      const [a,b,c,d]=[['2022','1'],['2022','2'],['2026','1'],['2026','2']]
+        .map(([year,round])=>metricCount(year,round,state.uf,field));
+      const delta22=signedDifference(a,b),delta26=signedDifference(c,d);
+      const values=[delta22,delta26,signedDifference(delta22,delta26),signedDifference(a,c),signedDifference(b,d)];
+      const row=node('tr');row.append(node('td',null,label));
+      values.forEach((value)=>{
+        const td=node('td',value===null?'na':null,formatDifference(value,'count'));
+        if(value===null)td.title='Comparação pendente: contagem indisponível para este par';
+        row.append(td);
+      });
+      body.append(row);
+    }
+  }
+}
+
 /* Geometria derivada das Malhas Territoriais do IBGE, distribuída como CC0.
    Mapa desenhado no navegador a partir de GeoJSON estático do repositório. */
 function voteData(year,round,uf) {
@@ -291,7 +337,47 @@ function voteData(year,round,uf) {
   const suffix=round==='1'?'1t':'2t';
   const sum=key=>regionRows.reduce((t,r)=>t+(numeric(r[key+'_'+suffix])||0),0);
   const valid=sum('validos'),v13=sum('votos_13'),v22=sum('votos_22');
-  return {valid,v13,v22,other:Math.max(0,valid-v13-v22),turnout:sum('comparecimento')};
+  return {valid,v13,v22,other:Math.max(0,valid-v13-v22),turnout:sum('comparecimento'),electorate:sum('aptos'),absent:sum('abstencoes'),blanks:sum('brancos'),nulls:sum('nulos')};
+}
+function technicalCount(year,round,uf,kind,field) {
+  if(kind==='biometry' && uf==='ZZ')return null;
+  const source=(kind==='biometry'?data?.biometryByYear:data?.temporalUFByYear)?.[year];
+  if(!source)return null;
+  const scopes=uf==='BR'?Object.keys(ufNames).filter(x=>x!=='BR'&&x!=='ZZ'):[uf];
+  const rows=scopes.map(x=>source.get(round+'-'+x));
+  if(rows.some(r=>!r||numeric(r[field])===null))return null;
+  return rows.reduce((total,r)=>total+Number(r[field]),0);
+}
+function metricCount(year,round,uf,field) {
+  const votes=voteData(year,round,uf);
+  if(!votes)return null;
+  const ballotCounts={
+    comparecimento:votes.turnout,pct_abstencao:votes.absent,
+    pct_brancos:votes.blanks,pct_nulos:votes.nulls,
+    pct_brancos_nulos:votes.blanks+votes.nulls,
+    pct_validos:votes.valid,votos_13:votes.v13,votos_22:votes.v22,
+    aptos:votes.electorate
+  };
+  if(Object.hasOwn(ballotCounts,field))return ballotCounts[field];
+  const bioFields={
+    pct_hab_biometrica_log:'log_votantes_biometria',
+    pct_hab_manual_apos_falha_log:'log_votantes_manual_apos_falha',
+    pct_hab_sem_biometria_log:'log_votantes_sem_biometria_cadastrada'
+  };
+  if(Object.hasOwn(bioFields,field))return technicalCount(year,round,uf,'biometry',bioFields[field]);
+  if(field==='pct_votos_apos_17h')return technicalCount(year,round,uf,'temporal','votos_apos_17h');
+  return null;
+}
+function countUnit(field) {
+  if(field==='comparecimento')return 'pessoas';
+  if(field==='pct_abstencao')return 'abstenções';
+  if(field.startsWith('pct_hab_'))return 'habilitações (logs)';
+  if(field==='pct_votos_apos_17h')return 'votos (logs)';
+  return 'votos';
+}
+function countLabel(year,round,uf,field) {
+  const n=metricCount(year,round,uf,field);
+  return n===null?'Quantidade não disponível':number(n)+' '+countUnit(field);
 }
 function candidateShare(votes,valid) {return valid>0?votes/valid*100:null;}
 function pctOfValid(n,v) {return v>0?percent(n/v*100):'—';}
@@ -428,7 +514,7 @@ function renderPresidentialVotes() {
 }
 function render() {
   if(!data)return;
-  renderCoverage();renderKpis();renderScopeInfo();renderMap();renderPresidentialVotes();renderTrend();renderTimeline();renderRanking();renderComparison();renderDelta();
+  renderCoverage();renderKpis();renderScopeInfo();renderMap();renderPresidentialVotes();renderTrend();renderTimeline();renderRanking();renderComparison();renderDelta();renderAbsoluteDeltas();
 }
 async function init() {
   setUpFilters();
@@ -443,7 +529,9 @@ async function init() {
     if(!mapResponse.ok)throw new Error('Malha territorial: '+mapResponse.status);
     const geometry=await mapResponse.json();
     data={indicators:new Map(loaded.indicators.map(r=>[key(r.ano,r.turno,r.abrangencia),r])),timeline2022:loaded.timeline2022,timeline2026:loaded.timeline2026,
-      votesByYear:{'2022':new Map(loaded.votes2022.map(r=>[r.uf,r])),'2026':new Map(loaded.votes2026.map(r=>[r.uf,r]))},geometry};
+      votesByYear:{'2022':new Map(loaded.votes2022.map(r=>[r.uf,r])),'2026':new Map(loaded.votes2026.map(r=>[r.uf,r]))},
+      biometryByYear:{'2022':new Map(loaded.bio2022.map(r=>[r.turno+'-'+r.uf,r])),'2026':new Map(loaded.bio2026.map(r=>[r.turno+'-'+r.uf,r]))},
+      temporalUFByYear:{'2022':new Map(loaded.temporalUF2022.map(r=>[r.turno+'-'+r.uf,r])),'2026':new Map(loaded.temporalUF2026.map(r=>[r.turno+'-'+r.uf,r]))},geometry};
     if(!geometry.features||geometry.features.length!==27)throw new Error('Malha territorial incompleta');
     if(!data.indicators.size)throw new Error('Indicadores vazios');
     render();

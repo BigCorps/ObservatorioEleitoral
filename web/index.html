@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=exterior-20261027">
-  <script src="./app.js?v=exterior-20261027" defer></script>
+  <link rel="stylesheet" href="./styles.css?v=contagens-20261027">
+  <script src="./app.js?v=contagens-20261027" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#conteudo">Pular para os dados</a>
@@ -56,12 +56,12 @@
         <div id="loadError" class="error-state" role="alert" hidden>Não foi possível carregar os dados publicados. Atualize a página; se o problema continuar, confira a publicação do GitHub Pages.</div>
         <div id="kpiGrid" class="kpi-grid" aria-live="polite">
           <article class="kpi"><span class="kpi-label">Comparecimento</span><strong id="kpiAttendance">—</strong><span id="kpiAttendanceSub" class="kpi-sub">Eleitores que votaram</span></article>
-          <article class="kpi"><span class="kpi-label">Abstenção</span><strong id="kpiAbstention">—</strong><span class="kpi-sub">Dos eleitores aptos</span></article>
-          <article class="kpi"><span class="kpi-label">Brancos + nulos</span><strong id="kpiBlankNull">—</strong><span class="kpi-sub">Dos que compareceram</span></article>
-          <article class="kpi"><span class="kpi-label">Sem biometria cadastrada</span><strong id="kpiBioNoReg">—</strong><span class="kpi-sub">Habilitações sem cadastro biométrico (log)</span></article>
-          <article class="kpi"><span class="kpi-label">Biometria não reconhecida</span><strong id="kpiBiometry">—</strong><span class="kpi-sub">Liberação manual após falha (log)</span></article>
-          <article class="kpi"><span class="kpi-label">Biometria confirmada</span><strong id="kpiBioConfirmed">—</strong><span class="kpi-sub">Habilitações biométricas (log)</span></article>
-          <article class="kpi"><span class="kpi-label">Votos após 17h</span><strong id="kpiLate">—</strong><span class="kpi-sub">Percentual dos votos nos logs</span></article>
+          <article class="kpi"><span class="kpi-label">Abstenção</span><strong id="kpiAbstention">—</strong><span id="kpiAbstentionCount" class="kpi-count">—</span><span class="kpi-sub">Dos eleitores aptos</span></article>
+          <article class="kpi"><span class="kpi-label">Brancos + nulos</span><strong id="kpiBlankNull">—</strong><span id="kpiBlankNullCount" class="kpi-count">—</span><span class="kpi-sub">Dos que compareceram</span></article>
+          <article class="kpi"><span class="kpi-label">Sem biometria cadastrada</span><strong id="kpiBioNoReg">—</strong><span id="kpiBioNoRegCount" class="kpi-count">—</span><span class="kpi-sub">Habilitações sem cadastro biométrico (log)</span></article>
+          <article class="kpi"><span class="kpi-label">Biometria não reconhecida</span><strong id="kpiBiometry">—</strong><span id="kpiBiometryCount" class="kpi-count">—</span><span class="kpi-sub">Liberação manual após falha (log)</span></article>
+          <article class="kpi"><span class="kpi-label">Biometria confirmada</span><strong id="kpiBioConfirmed">—</strong><span id="kpiBioConfirmedCount" class="kpi-count">—</span><span class="kpi-sub">Habilitações biométricas (log)</span></article>
+          <article class="kpi"><span class="kpi-label">Votos após 17h</span><strong id="kpiLate">—</strong><span id="kpiLateCount" class="kpi-count">—</span><span class="kpi-sub">Percentual dos votos nos logs</span></article>
           <article class="kpi"><span class="kpi-label">Primeiro → último voto</span><strong id="kpiClock">—</strong><span class="kpi-sub">Medianas das seções, hora de Brasília</span></article>
         </div>
         <div class="bio-explainer"><div><strong>Sem biometria cadastrada</strong><p>Eleitor sem registro biométrico no cadastro.</p></div><div><strong>Biometria não reconhecida</strong><p>Eleitor com cadastro, mas liberado pelo mesário após falha na leitura.</p></div><div><strong>Biometria confirmada</strong><p>Habilitação realizada com reconhecimento biométrico.</p></div></div>
@@ -95,7 +95,7 @@
 
         <div class="two-columns overview-charts">
           <article class="chart-card">
-            <div class="card-heading"><div><span class="card-eyebrow">COMPARAÇÃO DOS TURNOS</span><h3>Como o indicador mudou?</h3></div><div class="mini-filter"><label for="trendMetric">Indicador</label><select id="trendMetric"><option value="pct_abstencao">Abstenção</option><option value="pct_brancos">Votos brancos</option><option value="pct_nulos">Votos nulos</option><option value="pct_hab_sem_biometria_log">Sem biometria cadastrada (log)</option><option value="pct_hab_manual_apos_falha_log">Biometria não reconhecida (log)</option><option value="pct_votos_apos_17h">Após 17h (log)</option><option value="comparecimento">Comparecimento</option></select></div></div>
+            <div class="card-heading"><div><span class="card-eyebrow">COMPARAÇÃO DOS TURNOS</span><h3>Como o indicador mudou?</h3></div><div class="mini-filter"><label for="trendMetric">Indicador</label><select id="trendMetric"><option value="pct_abstencao">Abstenção</option><option value="pct_brancos">Votos brancos</option><option value="pct_nulos">Votos nulos</option><option value="pct_brancos_nulos">Brancos + nulos</option><option value="pct_validos">Votos válidos</option><option value="pct_hab_sem_biometria_log">Sem biometria cadastrada (log)</option><option value="pct_hab_manual_apos_falha_log">Biometria não reconhecida (log)</option><option value="pct_votos_apos_17h">Após 17h (log)</option><option value="comparecimento">Comparecimento</option></select></div></div>
             <div id="trendChart" class="trend-chart" role="img" aria-label="Comparação dos quatro turnos"></div>
             <p class="chart-note" id="trendNote">Valores calculados a partir das tabelas e logs oficiais publicados.</p>
           </article>
@@ -123,6 +123,9 @@
     <div class="delta-header"><div><span class="card-eyebrow">MUDANÇAS ARITMÉTICAS</span><h3>O que mudou de um turno para outro?</h3><p>Além dos quatro resultados lado a lado, veja quanto cada indicador variou em cada eleição e como essas variações diferem entre 2022 e 2026.</p></div></div>
       <div class="comparison-scroll"><table class="comparison-table delta-table"><thead><tr><th scope="col">Indicador</th><th scope="col">Entre turnos · 2022<small>2º menos 1º turno</small></th><th scope="col">Entre turnos · 2026<small>2º menos 1º turno</small></th><th scope="col">Diferença entre as variações<small>2026 menos 2022</small></th><th scope="col">Entre anos · 1º turno<small>2026 menos 2022</small></th><th scope="col">Entre anos · 2º turno<small>2026 menos 2022</small></th></tr></thead><tbody id="deltaBody"></tbody></table></div>
       <div class="comparison-explainer"><span class="explainer-symbol">i</span><p>As colunas “Entre turnos” mostram quanto o resultado aumentou ou diminuiu do 1º para o 2º turno de cada ano. “Diferença entre as variações” compara essas mudanças de 2022 e 2026. “Entre anos” compara o mesmo turno nas duas eleições. Para percentuais, mostramos <strong>pontos percentuais (p.p.)</strong>; para comparecimento, pessoas. Sinal positivo significa aumento, não avaliação favorável. <strong>Essas diferenças não são testes de significância estatística</strong> nem evidência isolada de irregularidade.</p></div>
+      <div class="absolute-header"><span class="card-eyebrow">QUANTIDADES ABSOLUTAS</span><h3>Como mudaram os números de votos?</h3><p>As mesmas comparações, agora em votos e eleitores, sem arredondar percentuais para estimar quantidades.</p></div>
+      <div class="comparison-scroll"><table class="comparison-table absolute-table"><thead><tr><th scope="col">Contagem</th><th scope="col">Entre turnos · 2022<small>2º menos 1º turno</small></th><th scope="col">Entre turnos · 2026<small>2º menos 1º turno</small></th><th scope="col">Diferença entre as variações<small>2026 menos 2022</small></th><th scope="col">Entre anos · 1º turno<small>2026 menos 2022</small></th><th scope="col">Entre anos · 2º turno<small>2026 menos 2022</small></th></tr></thead><tbody id="absoluteDeltaBody"></tbody></table></div>
+      <div class="comparison-explainer"><span class="explainer-symbol">i</span><p>Abstenções representam <strong>eleitores que não compareceram</strong>, não votos. As contagens de brancos, nulos e candidatos vêm dos resultados oficiais por UF, incluindo o exterior no recorte Brasil. As contagens de biometria e votos após 17h vêm dos logs disponíveis: no recorte Brasil, consideram somente as 27 UFs; no exterior, horários seguem a hora local. Um traço (—) indica dado ausente. * O nº 22 corresponde a Jair Bolsonaro em 2022 e Flávio Bolsonaro em 2026. Mudanças entre turnos ou anos não identificam a escolha individual dos eleitores.</p></div>
       </div></section>
 
     <section class="method-section" id="metodologia"><div class="wrap">

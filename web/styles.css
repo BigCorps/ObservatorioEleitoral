@@ -96,3 +96,23 @@ footer{background:#eef5f0;color:#617979;border-top:1px solid #d7e8dd}
 @media(max-width:640px){.map-section{margin:10px 0 31px}.map-card,.vote-card,.vote-history{padding:18px 14px}.map-section-heading .comparison-chip{margin-top:8px}.brazil-map{max-height:360px;margin-top:12px}.map-status{font-size:11px}.candidate-bars{gap:20px}.vote-summary strong{font-size:18px}.vote-history .card-heading{gap:12px}.vote-history .chart-tag{align-self:flex-start}}
 
 .delta-table th small{display:block;margin-top:5px;color:#658580;font-size:10px;font-weight:600;line-height:1.35;text-transform:none;letter-spacing:0}
+
+/* Contagens absolutas junto aos percentuais, mantendo bases eleitorais e de logs distintas. */
+.kpi-count{display:block;margin-top:8px;color:#156f6a;font-size:11px;font-weight:800;line-height:1.5}
+.kpi-count+.kpi-sub{margin-top:4px}
+.trend-chart{min-height:326px}
+.trend-col{height:266px}
+.trend-count{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:30px;max-width:100%;text-align:center;color:#587279;line-height:1.25}
+.trend-count strong{font:800 11px Manrope,sans-serif;white-space:nowrap}
+.trend-count span{font-size:9px;max-width:100%;white-space:normal}
+.rank-row{grid-template-columns:36px minmax(0,1fr) 113px}
+.rank-value{display:block}
+.rank-absolute{display:block;font:600 10px DM Sans,sans-serif;color:#68848a;margin-top:3px}
+.absolute-header{margin:36px 0 18px}
+.absolute-header h3{font-size:23px;margin:9px 0 8px}
+.absolute-header p{font-size:13px;color:#677b7f;line-height:1.7;margin:0}
+.absolute-table{min-width:1090px}
+.absolute-table th{white-space:normal!important}
+.absolute-table th small{display:block;margin-top:5px;color:#658580;font-size:10px;font-weight:600;line-height:1.35;text-transform:none;letter-spacing:0}
+.absolute-table .absolute-group th{background:#eaf5f1;color:#245e5d;text-align:left;font-size:10px;font-weight:900;letter-spacing:.07em;padding:13px 20px}
+@media(max-width:720px){.trend-chart{min-height:316px}.trend-col{height:255px}.trend-count strong{font-size:10px}.trend-count span{font-size:8px}.rank-row{grid-template-columns:30px minmax(0,1fr) 100px;gap:8px}.absolute-header h3{font-size:20px}}
