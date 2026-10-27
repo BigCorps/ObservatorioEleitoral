@@ -1,0 +1,85 @@
+=== 6730598530102022091201ME.jez/logd.dat: 734 linhas do dia; ids={'67305985': 734}
+    {'Urna pronta para receber votos': 2, 'Eleitor foi habilitado': 39, 'Voto confirmado para [Presidente]': 39, 'O voto do eleitor foi computado': 39}
+      06:59:00 INFO   67305985 LOGD  Urna ligada em 30/10/2022 às 06:58:14
+      06:59:43 INFO   67305985 GAP   Iniciando aplicação - Oficial - 2º turno
+      06:59:43 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2013
+      06:59:56 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2013
+      07:00:00 INFO   67305985 GAP   Modo de carga da UE - Votação
+      07:00:00 INFO   67305985 GAP   Município: 84670
+      07:00:00 INFO   67305985 GAP   Zona Eleitoral: 0147
+      07:00:00 INFO   67305985 GAP   Seção Eleitoral: 0417
+      07:00:04 INFO   67305985 GAP   Serial de votação da MV: ABAAB814 22/09/2022 às 09:22:42 em ZPR147WKS51
+      07:00:44 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      07:01:21 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 2º turno
+      08:00:02 INFO   67305985 VOTA  Urna pronta para receber votos
+      08:50:58 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2013
+      08:51:02 INFO   67305985 GAP   Modo de carga da UE - Votação
+      08:51:02 INFO   67305985 GAP   Município: 84670
+      08:51:02 INFO   67305985 GAP   Zona Eleitoral: 0147
+      08:51:02 INFO   67305985 GAP   Seção Eleitoral: 0417
+      08:51:07 INFO   67305985 GAP   Serial de votação da MV: ABAAB814 22/09/2022 às 09:22:42 em ZPR147WKS51
+      08:51:47 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      08:52:00 ERRO   67305985 GAP   Erro na verificação de assinatura do arquivo - eg.vsu
+      08:52:13 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 2º turno
+      08:52:47 INFO   67305985 VOTA  Urna pronta para receber votos
+      08:56:31 ERRO   67305985 VOTA  Erro gravando RDV na Mídia Externa
+      09:02:14 INFO   67305985 INITJE Urna desligada pela chave
+      09:02:16 INFO   67305985 VOTA  Votação suspensa
+=== logd.dat: 3315 linhas do dia; ids={'67305985': 3315}
+    {'Urna pronta para receber votos': 3, 'Eleitor foi habilitado': 220, 'Voto confirmado para [Presidente]': 220, 'O voto do eleitor foi computado': 220, 'Inicio do Encerramento': 1}
+      09:09:27 INFO   67305985 LOGD  Urna ligada em 30/10/2022 às 09:08:40
+      09:10:08 INFO   67305985 GAP   Iniciando aplicação - Oficial - 1º turno
+      09:10:08 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2013
+      09:10:08 INFO   67305985 LOGD  Log interno da urna reserva válido com sucesso
+      09:10:16 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2013
+      09:10:20 INFO   67305985 GAP   Modo de carga da UE - Urna de contingência
+      09:10:20 INFO   67305985 GAP   Município: 75639
+      09:10:20 INFO   67305985 GAP   Zona Eleitoral: 0147
+      09:10:20 INFO   67305985 GAP   Seção Eleitoral: 0000
+      09:10:27 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      09:10:31 INFO   67305985 GAP   Início do procedimento de contingência
+      09:12:11 INFO   67305985 GAP   Serial de votação da MV: ABAAB814 22/09/2022 às 09:22:42 em ZPR147WKS51
+      09:12:11 INFO   67305985 GAP   Modo de carga da UE - Votação
+      09:12:19 INFO   67305985 GAP   Contingência executada com sucesso
+      09:13:39 INFO   67305985 LOGD  Urna ligada em 30/10/2022 às 09:12:53
+      09:14:22 INFO   67305985 GAP   Iniciando aplicação - Oficial - 2º turno
+      09:14:22 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2013
+      09:14:30 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2013
+      09:14:34 INFO   67305985 GAP   Modo de carga da UE - Votação
+      09:14:34 INFO   67305985 GAP   Município: 84670
+      09:14:34 INFO   67305985 GAP   Zona Eleitoral: 0147
+      09:14:34 INFO   67305985 GAP   Seção Eleitoral: 0417
+      09:14:39 INFO   67305985 GAP   Serial de votação da MV: ABAAB814 22/09/2022 às 09:22:42 em ZPR147WKS51
+      09:15:19 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      09:15:45 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 2º turno
+      09:16:21 INFO   67305985 VOTA  Urna pronta para receber votos
+      09:22:42 ERRO   67305985 VOTA  N3api17CMessageExceptionE - (Código (12)) CMessageException - CScreenMT::Clear - limpando a tela do microtermi
+      09:23:10 INFO   67305985 INITJE Urna desligada pela chave
+      09:24:48 INFO   67305985 LOGD  Urna ligada em 30/10/2022 às 09:24:01
+      09:25:31 INFO   67305985 GAP   Iniciando aplicação - Oficial - 2º turno
+      09:25:31 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2013
+      09:25:40 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2013
+      09:25:44 INFO   67305985 GAP   Modo de carga da UE - Votação
+      09:25:44 INFO   67305985 GAP   Município: 84670
+      09:25:44 INFO   67305985 GAP   Zona Eleitoral: 0147
+      09:25:44 INFO   67305985 GAP   Seção Eleitoral: 0417
+      09:25:48 INFO   67305985 GAP   Serial de votação da MV: ABAAB814 22/09/2022 às 09:22:42 em ZPR147WKS51
+      09:26:28 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      09:26:54 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 2º turno
+      09:27:27 INFO   67305985 VOTA  Urna pronta para receber votos
+      09:53:03 ERRO   67305985 VOTA  N3api17CMessageExceptionE - (Código (12)) CMessageException - CScreenMT::Clear - limpando a tela do microtermi
+      09:55:50 INFO   67305985 INITJE Urna desligada pela chave
+      09:57:29 INFO   67305985 LOGD  Urna ligada em 30/10/2022 às 09:56:44
+      09:58:12 INFO   67305985 GAP   Iniciando aplicação - Oficial - 2º turno
+      09:58:12 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2013
+      09:58:21 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2013
+      09:58:25 INFO   67305985 GAP   Modo de carga da UE - Votação
+      09:58:25 INFO   67305985 GAP   Município: 84670
+      09:58:25 INFO   67305985 GAP   Zona Eleitoral: 0147
+      09:58:25 INFO   67305985 GAP   Seção Eleitoral: 0417
+      09:58:30 INFO   67305985 GAP   Serial de votação da MV: ABAAB814 22/09/2022 às 09:22:42 em ZPR147WKS51
+      09:59:09 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      09:59:35 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 2º turno
+      10:00:21 INFO   67305985 VOTA  Urna pronta para receber votos
+      17:01:50 INFO   67305985 VOTA  Inicio do Encerramento
+      17:01:51 INFO   67305985 VOTA  Gerando relatório [BU] [INÍCIO]

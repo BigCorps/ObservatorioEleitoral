@@ -1,0 +1,62 @@
+=== logd.dat: 3666 linhas do dia; ids={'2164194': 3666}
+    {'Urna pronta para receber votos': 5, 'Eleitor foi habilitado': 277, 'Voto confirmado para [Presidente]': 275, 'O voto do eleitor foi computado': 274, 'Inicio do Encerramento': 1}
+      07:23:32 INFO   2164194 LOGD  Urna ligada em 30/10/2022 às 07:23:11
+      07:23:51 INFO   2164194 GAP   Iniciando aplicação - Oficial - 2º turno
+      07:23:51 INFO   2164194 GAP   Identificação do Modelo de Urna: UE2020
+      07:24:00 INFO   2164194 GAP   Identificação do Modelo de Urna: UE2020
+      07:24:04 INFO   2164194 GAP   Modo de carga da UE - Votação
+      07:24:04 INFO   2164194 GAP   Município: 70998
+      07:24:04 INFO   2164194 GAP   Zona Eleitoral: 0282
+      07:24:04 INFO   2164194 GAP   Seção Eleitoral: 0126
+      07:24:08 INFO   2164194 GAP   Serial de votação da MV: B98BAFF1 22/09/2022 às 13:12:01 em ZSP282STD11
+      07:24:23 INFO   2164194 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      07:24:48 INFO   2164194 VOTA  Iniciando aplicação - Oficial - 2º turno
+      08:00:01 INFO   2164194 VOTA  Urna pronta para receber votos
+      08:31:31 INFO   2164194 INITJE Urna desligada pela chave
+      08:32:30 INFO   2164194 LOGD  Urna ligada em 30/10/2022 às 08:32:08
+      08:32:49 INFO   2164194 GAP   Iniciando aplicação - Oficial - 2º turno
+      08:32:49 INFO   2164194 GAP   Identificação do Modelo de Urna: UE2020
+      08:32:57 INFO   2164194 GAP   Identificação do Modelo de Urna: UE2020
+      08:33:01 INFO   2164194 GAP   Modo de carga da UE - Votação
+      08:33:01 INFO   2164194 GAP   Município: 70998
+      08:33:01 INFO   2164194 GAP   Zona Eleitoral: 0282
+      08:33:01 INFO   2164194 GAP   Seção Eleitoral: 0126
+      08:33:06 INFO   2164194 GAP   Serial de votação da MV: B98BAFF1 22/09/2022 às 13:12:01 em ZSP282STD11
+      08:33:21 INFO   2164194 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      08:33:38 INFO   2164194 VOTA  Iniciando aplicação - Oficial - 2º turno
+      08:34:06 INFO   2164194 VOTA  Urna pronta para receber votos
+      08:49:21 INFO   2164194 INITJE Urna desligada pela chave
+      08:50:27 INFO   2164194 LOGD  Urna ligada em 30/10/2022 às 08:50:06
+      08:50:46 INFO   2164194 GAP   Iniciando aplicação - Oficial - 2º turno
+      08:50:46 INFO   2164194 GAP   Identificação do Modelo de Urna: UE2020
+      08:50:56 INFO   2164194 GAP   Identificação do Modelo de Urna: UE2020
+      08:51:00 INFO   2164194 GAP   Modo de carga da UE - Votação
+      08:51:00 INFO   2164194 GAP   Município: 70998
+      08:51:00 INFO   2164194 GAP   Zona Eleitoral: 0282
+      08:51:00 INFO   2164194 GAP   Seção Eleitoral: 0126
+      08:51:04 INFO   2164194 GAP   Serial de votação da MV: B98BAFF1 22/09/2022 às 13:12:01 em ZSP282STD11
+      08:51:19 INFO   2164194 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      08:51:38 INFO   2164194 VOTA  Iniciando aplicação - Oficial - 2º turno
+      08:52:02 INFO   2164194 VOTA  Urna pronta para receber votos
+      12:08:33 INFO   2164194 INITJE Urna desligada pela chave
+      12:10:30 INFO   2164194 LOGD  Urna ligada em 30/10/2022 às 12:10:06
+      12:10:50 INFO   2164194 GAP   Iniciando aplicação - Oficial - 2º turno
+      12:10:50 INFO   2164194 GAP   Identificação do Modelo de Urna: UE2020
+      12:10:59 INFO   2164194 GAP   Identificação do Modelo de Urna: UE2020
+      12:11:03 INFO   2164194 GAP   Modo de carga da UE - Votação
+      12:11:03 INFO   2164194 GAP   Município: 70998
+      12:11:03 INFO   2164194 GAP   Zona Eleitoral: 0282
+      12:11:03 INFO   2164194 GAP   Seção Eleitoral: 0126
+      12:11:07 INFO   2164194 GAP   Serial de votação da MV: B98BAFF1 22/09/2022 às 13:12:01 em ZSP282STD11
+      12:11:22 INFO   2164194 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      12:11:40 INFO   2164194 VOTA  Iniciando aplicação - Oficial - 2º turno
+      12:13:13 INFO   2164194 VOTA  Urna pronta para receber votos
+      12:17:30 INFO   2164194 INITJE Urna desligada pela chave
+      12:18:25 INFO   2164194 LOGD  Urna ligada em 30/10/2022 às 12:18:04
+      12:18:45 INFO   2164194 GAP   Iniciando aplicação - Oficial - 2º turno
+      12:18:45 INFO   2164194 GAP   Identificação do Modelo de Urna: UE2020
+      12:18:54 INFO   2164194 GAP   Identificação do Modelo de Urna: UE2020
+      12:18:59 INFO   2164194 GAP   Modo de carga da UE - Votação
+      12:18:59 INFO   2164194 GAP   Município: 70998
+      12:18:59 INFO   2164194 GAP   Zona Eleitoral: 0282
+      12:18:59 INFO   2164194 GAP   Seção Eleitoral: 0126

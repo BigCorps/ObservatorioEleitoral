@@ -1,0 +1,29 @@
+=== logd.dat: 3722 linhas do dia; ids={'2178234': 3722}
+    {'Urna pronta para receber votos': 2, 'Eleitor foi habilitado': 290, 'Voto confirmado para [Presidente]': 290, 'O voto do eleitor foi computado': 289, 'Inicio do Encerramento': 1}
+      07:23:11 INFO   2178234 LOGD  Urna ligada em 30/10/2022 às 07:22:50
+      07:23:30 INFO   2178234 GAP   Iniciando aplicação - Oficial - 2º turno
+      07:23:30 INFO   2178234 GAP   Identificação do Modelo de Urna: UE2020
+      07:23:39 INFO   2178234 GAP   Identificação do Modelo de Urna: UE2020
+      07:23:43 INFO   2178234 GAP   Modo de carga da UE - Votação
+      07:23:44 INFO   2178234 GAP   Município: 80470
+      07:23:44 INFO   2178234 GAP   Zona Eleitoral: 0003
+      07:23:44 INFO   2178234 GAP   Seção Eleitoral: 0463
+      07:23:48 INFO   2178234 GAP   Serial de votação da MV: 40258173 16/09/2022 às 13:40:31 em CSC003WKS26
+      07:24:03 INFO   2178234 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      07:24:26 INFO   2178234 VOTA  Iniciando aplicação - Oficial - 2º turno
+      08:00:01 INFO   2178234 VOTA  Urna pronta para receber votos
+      08:30:50 INFO   2178234 INITJE Urna desligada pela chave
+      08:31:47 INFO   2178234 LOGD  Urna ligada em 30/10/2022 às 08:31:26
+      08:32:06 INFO   2178234 GAP   Iniciando aplicação - Oficial - 2º turno
+      08:32:06 INFO   2178234 GAP   Identificação do Modelo de Urna: UE2020
+      08:32:15 INFO   2178234 GAP   Identificação do Modelo de Urna: UE2020
+      08:32:19 INFO   2178234 GAP   Modo de carga da UE - Votação
+      08:32:19 INFO   2178234 GAP   Município: 80470
+      08:32:19 INFO   2178234 GAP   Zona Eleitoral: 0003
+      08:32:19 INFO   2178234 GAP   Seção Eleitoral: 0463
+      08:32:23 INFO   2178234 GAP   Serial de votação da MV: 40258173 16/09/2022 às 13:40:31 em CSC003WKS26
+      08:32:38 INFO   2178234 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      08:32:57 INFO   2178234 VOTA  Iniciando aplicação - Oficial - 2º turno
+      08:33:38 INFO   2178234 VOTA  Urna pronta para receber votos
+      17:02:43 INFO   2178234 VOTA  Inicio do Encerramento
+      17:02:44 INFO   2178234 VOTA  Gerando relatório [BU] [INÍCIO]

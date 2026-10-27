@@ -1,0 +1,64 @@
+=== 6730598530102022095901ME.jez/logd.dat: 1469 linhas do dia; ids={'67305985': 1469}
+    {'Urna pronta para receber votos': 2, 'Eleitor foi habilitado': 72, 'Voto confirmado para [Presidente]': 71, 'O voto do eleitor foi computado': 70}
+      07:23:39 INFO   67305985 LOGD  Urna ligada em 30/10/2022 às 07:22:52
+      07:24:21 INFO   67305985 GAP   Iniciando aplicação - Oficial - 2º turno
+      07:24:21 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2010
+      07:24:33 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2010
+      07:24:37 INFO   67305985 GAP   Modo de carga da UE - Votação
+      07:24:37 INFO   67305985 GAP   Município: 13404
+      07:24:37 INFO   67305985 GAP   Zona Eleitoral: 0108
+      07:24:37 INFO   67305985 GAP   Seção Eleitoral: 0042
+      07:24:42 INFO   67305985 GAP   Serial de votação da MV: 8987AEE1 14/09/2022 às 09:06:44 em RCEWGEDAI13
+      07:25:23 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      07:26:00 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 2º turno
+      08:00:02 INFO   67305985 VOTA  Urna pronta para receber votos
+      08:48:16 INFO   67305985 LOGD  Urna ligada em 30/10/2022 às 08:47:31
+      08:48:58 INFO   67305985 GAP   Iniciando aplicação - Oficial - 2º turno
+      08:48:58 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2010
+      08:49:13 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2010
+      08:49:17 INFO   67305985 GAP   Modo de carga da UE - Votação
+      08:49:17 INFO   67305985 GAP   Município: 13404
+      08:49:17 INFO   67305985 GAP   Zona Eleitoral: 0108
+      08:49:17 INFO   67305985 GAP   Seção Eleitoral: 0042
+      08:49:22 INFO   67305985 GAP   Serial de votação da MV: 8987AEE1 14/09/2022 às 09:06:44 em RCEWGEDAI13
+      08:50:02 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      08:50:29 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 2º turno
+      08:51:05 INFO   67305985 VOTA  Urna pronta para receber votos
+      09:34:15 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2010
+      09:34:20 INFO   67305985 GAP   Modo de carga da UE - Votação
+      09:34:20 INFO   67305985 GAP   Município: 13404
+      09:34:20 INFO   67305985 GAP   Zona Eleitoral: 0108
+      09:34:20 INFO   67305985 GAP   Seção Eleitoral: 0042
+      09:34:24 INFO   67305985 GAP   Serial de votação da MV: 8987AEE1 14/09/2022 às 09:06:44 em RCEWGEDAI13
+      09:35:04 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      09:35:30 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 2º turno
+=== logd.dat: 2882 linhas do dia; ids={'67305985': 2882}
+    {'Urna pronta para receber votos': 1, 'Eleitor foi habilitado': 173, 'Voto confirmado para [Presidente]': 173, 'O voto do eleitor foi computado': 173, 'Inicio do Encerramento': 1}
+      09:57:06 INFO   67305985 LOGD  Urna ligada em 30/10/2022 às 09:56:20
+      09:57:46 INFO   67305985 GAP   Iniciando aplicação - Oficial - 1º turno
+      09:57:47 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2010
+      09:57:47 INFO   67305985 LOGD  Log interno da urna reserva válido com sucesso
+      09:57:55 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2010
+      09:57:59 INFO   67305985 GAP   Modo de carga da UE - Urna de contingência
+      09:57:59 INFO   67305985 GAP   Município: 13404
+      09:57:59 INFO   67305985 GAP   Zona Eleitoral: 0108
+      09:57:59 INFO   67305985 GAP   Seção Eleitoral: 0000
+      09:58:05 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      09:58:09 INFO   67305985 GAP   Início do procedimento de contingência
+      09:59:22 INFO   67305985 GAP   Serial de votação da MV: 8987AEE1 14/09/2022 às 09:06:44 em RCEWGEDAI13
+      09:59:23 INFO   67305985 GAP   Modo de carga da UE - Votação
+      09:59:32 INFO   67305985 GAP   Contingência executada com sucesso
+      10:00:54 INFO   67305985 LOGD  Urna ligada em 30/10/2022 às 10:00:07
+      10:01:37 INFO   67305985 GAP   Iniciando aplicação - Oficial - 2º turno
+      10:01:37 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2010
+      10:01:46 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2010
+      10:01:50 INFO   67305985 GAP   Modo de carga da UE - Votação
+      10:01:50 INFO   67305985 GAP   Município: 13404
+      10:01:50 INFO   67305985 GAP   Zona Eleitoral: 0108
+      10:01:50 INFO   67305985 GAP   Seção Eleitoral: 0042
+      10:01:55 INFO   67305985 GAP   Serial de votação da MV: 8987AEE1 14/09/2022 às 09:06:44 em RCEWGEDAI13
+      10:02:35 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      10:03:01 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 2º turno
+      10:03:33 INFO   67305985 VOTA  Urna pronta para receber votos
+      17:03:09 INFO   67305985 VOTA  Inicio do Encerramento
+      17:03:10 INFO   67305985 VOTA  Gerando relatório [BU] [INÍCIO]
