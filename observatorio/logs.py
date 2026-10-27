@@ -71,6 +71,7 @@ M_CONTINGENCIA_OK = "Contingência executada com sucesso"
 M_VOTACAO_SUSPENSA = "Votação suspensa"
 M_DESLIGADA = "Urna desligada pela chave"
 M_VERSAO = "Versão da aplicação: "
+M_AJUSTE_HORA = "Iniciando aplicação AJUSTE DE DATA E HORA"
 
 
 def _membros(dados: bytes) -> list[tuple[str, bytes]]:
@@ -291,6 +292,9 @@ def interpretar(arquivos: list[tuple[str, bytes]], data_eleicao: str, data_segui
                 if ch == "suspenso_sem_voto":
                     # eleitor suspenso sem nenhum voto não compõe o comparecimento
                     ultimo_hab = None
+                continue
+            if msg.startswith(M_AJUSTE_HORA):
+                r.ev("ajuste_hora", t)
                 continue
             if app == "LOGD" and msg.startswith(M_LIGADA):
                 r.ev("ligada", t)

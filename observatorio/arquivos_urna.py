@@ -116,7 +116,7 @@ def resumir(r: L.ResumoLog) -> dict:
                "gera_bu", "arquivo_bu", "imprime_bu", "desligada", "votacao_suspensa",
                "tentativa_encerramento_antecipado", "modo_contingencia", "contingencia_ok",
                "suspenso", "parcial_suspenso", "suspenso_sem_voto", "ja_votou",
-               "habilitacao_cancelada", "voto_presidente", "nulo_suspensao_presidente", "titulo"):
+               "habilitacao_cancelada", "voto_presidente", "nulo_suspensao_presidente", "titulo", "ajuste_hora"):
         v = ev.get(ch, [])
         d[f"n_{ch}"] = len(v)
         if ch in ("pronta", "ligada", "zeresima", "inicio_encerramento", "encerramento_confirmado",

@@ -88,3 +88,9 @@ def test_extrair_7z_aninhado():
         z.writestr(b"x", "logd.dat")
     nomes = [n for n, _ in L.extrair_7z(externo.getvalue())]
     assert "antigo-01.jez/logd.dat" in nomes and "logd.dat" in nomes
+
+
+def test_ajuste_de_hora_registrado():
+    t = linha("08:55:15", "Iniciando aplicação AJUSTE DE DATA E HORA - Sem fase", app="GAP")
+    r = L.interpretar(_arqs(t), D, "03/10/2022")
+    assert r.eventos["ajuste_hora"] == [8 * 3600 + 55 * 60 + 15]

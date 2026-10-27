@@ -688,8 +688,9 @@ identificada pelo SHA-256.
 ## Questões metodológicas em aberto
 
 - **Assinaturas digitais** (`.vscmr`/`-vota.vsc`) não foram verificadas criptograficamente nesta etapa.
-- **Ajustes de relógio**: o log registra a aplicação "AJUSTE DE DATA E HORA"; a contagem sistemática
-  ainda não foi incorporada ao leitor (identificado em diagnóstico de caso, RN 18139/65/32).
+- **Ajustes de relógio**: o log registra a aplicação "AJUSTE DE DATA E HORA". A contagem foi
+  incorporada ao leitor depois do processamento de 2022 (identificada no caso RN 18139/65/32), e por
+  isso só existe para 2026 (`secoes_com_ajuste_de_hora`); para 2022 exige reprocessar os logs.
 - **Transferências temporárias**: ~3% das seções com variação de aptos entre turnos não são
   explicadas pelo arquivo de TTE (gerado em 2024); verificação documental pendente.
 - **Modelos de urna**: sem covariáveis anteriores por seção, efeito de modelo e de localização não se

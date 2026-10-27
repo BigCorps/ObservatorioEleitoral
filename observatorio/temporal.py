@@ -18,17 +18,22 @@ H8, H17, H18, H19 = 8 * 3600, 17 * 3600, 18 * 3600, 19 * 3600
 def view_secoes(con: duckdb.DuckDBPyConnection, ano: int) -> None:
     """Cria a view `sec` com indicadores temporais por seção (em segundos, hora de Brasília)."""
     d = sql_desloc_brt()
+    lista = logs_concluidos(ano)
+    cols = {r[0] for r in con.execute(f"DESCRIBE SELECT * FROM read_parquet({lista}, union_by_name=true)").fetchall()}
+    # ajuste de relógio só é extraído a partir de 2026 (ver docs/limitacoes.md): NULL quando ausente
+    aj = "n_ajuste_hora" if "n_ajuste_hora" in cols else "NULL::BIGINT AS n_ajuste_hora"
     con.execute(f"""
     CREATE OR REPLACE VIEW sec_base AS
-      SELECT *, {d} AS desloc, {sql_fuso()} AS fuso_legal
-      FROM read_parquet({logs_concluidos(ano)}, union_by_name=true)
+      SELECT * EXCLUDE ({'n_ajuste_hora' if 'n_ajuste_hora' in cols else 'tem_log'}), {aj},
+        {'' if 'n_ajuste_hora' in cols else 'tem_log,'} {d} AS desloc, {sql_fuso()} AS fuso_legal
+      FROM read_parquet({lista}, union_by_name=true)
       WHERE tem_log;
     CREATE OR REPLACE VIEW sec AS
       SELECT ano, turno, uf, cd_municipio, nr_zona, nr_secao, arquivo, fuso_legal, desloc,
         log_modelos, log_n_ids_urna, log_retrocessos_relogio, log_maior_retrocesso_s, n_ligada, n_pronta,
         n_modo_contingencia, n_votacao_suspensa, n_desligada, n_tentativa_encerramento_antecipado,
         n_votos_computados, n_habilitados, hab_biometrica, hab_manual_apos_falha, hab_sem_biometria,
-        hab_indeterminada, n_ja_votou, n_suspenso, log_linhas_dia_seguinte,
+        hab_indeterminada, n_ja_votou, n_suspenso, log_linhas_dia_seguinte, n_ajuste_hora,
         t_ligada_primeiro + desloc AS ligada_brt,
         t_zeresima_primeiro + desloc AS zeresima_brt,
         t_pronta_primeiro + desloc AS abertura_brt,
@@ -92,6 +97,7 @@ def tabelas(ano: int) -> dict:
         sum((n_pronta > 1)::INT) secoes_com_reabertura, sum((n_ligada > 1)::INT) secoes_urna_religada,
         sum((n_modo_contingencia > 0)::INT) secoes_com_contingencia, sum((log_n_ids_urna > 1)::INT) secoes_mais_de_um_id_urna,
         sum((log_retrocessos_relogio > 0)::INT) secoes_relogio_retrocede,
+        sum((n_ajuste_hora > 0)::INT) secoes_com_ajuste_de_hora,
         sum(intervalos_ate_5s) intervalos_ate_5s, sum(pausas_60min) pausas_60min,
         median(duracao_voto_mediana_s) mediana_das_medianas_duracao_voto_s,
         sum(votos_duracao_menor_10s) votos_duracao_menor_10s
