@@ -282,3 +282,34 @@ html{scroll-padding-bottom:calc(var(--dock-current-height) + 20px)}
 .triagem-legal{background:#f4f9f6;border-left:3px solid #199080;padding:16px 20px;margin-top:22px;border-radius:0 8px 8px 0;color:#607b7d;line-height:1.8;font-size:12px}
 @media(max-width:900px){.triagem-cards{grid-template-columns:repeat(2,minmax(0,1fr))}.triagem-history-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.triagem-section{padding:50px 0}.triagem-panel{padding:16px}.triagem-controls{display:block}.triagem-controls label{margin-top:14px}.triagem-cards{grid-template-columns:repeat(2,minmax(0,1fr))}.triagem-stat{padding:12px}.triagem-history{padding:13px}}
+
+/* Eleitores cadastrados x moradores: fontes, ressalvas e simulador nacional */
+.municipal-section,.sim-section{padding:72px 0;background:#f7f9f5;border-top:1px solid #e0eae4}
+.municipal-cards,.sim-layout{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:21px}
+.municipal-cards{margin:25px 0}.municipal-cards article,.municipal-box,.sim-panel,.sim-result{min-width:0;background:#fff;border:1px solid #dce9e3;border-radius:17px;padding:28px;box-shadow:0 8px 26px rgba(18,51,55,.035)}
+.municipal-cards small{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#6c888b;font-weight:700}
+.municipal-cards strong{display:block;font:800 25px Manrope,sans-serif;color:#0e655a;margin:14px 0}
+.municipal-cards p,.municipal-box p{font-size:13px;line-height:1.8;color:#556e75;margin:14px 0}
+.municipal-box h3{font-size:21px;margin:0}
+.municipal-cards a,.municipal-links a{font-size:12px;color:#117870;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.municipal-table{min-width:560px}.municipal-table th:first-child,.municipal-table td:first-child{text-align:left}
+.municipal-note{padding:16px;border-left:4px solid #138e7f;background:#eff8f4;border-radius:7px}
+.municipal-links{display:flex;flex-wrap:wrap;gap:11px 22px;margin-top:16px}
+.sim-section{background:#ecf3ee}.sim-top,.sim-head,.sim-foot,.sim-detail{display:flex;align-items:center;justify-content:space-between;gap:15px}
+.sim-top{margin-bottom:16px}.sim-top strong{color:#254c50;font-size:14px}
+.sim-top button{padding:9px 12px;background:#edf7f2;border:1px solid #cbded6;border-radius:8px;color:#146f65;font-weight:700;font-size:12px}
+.sim-control{padding:20px 0;border-top:1px solid #e4ede8}
+.sim-head label{font-weight:700;color:#244a50;font-size:14px;line-height:1.4}.sim-head output{font:800 18px Manrope,sans-serif;color:#087a6d;font-variant-numeric:tabular-nums;flex-shrink:0}
+.sim-control input[type=range]{width:100%;height:30px;accent-color:#0b8e82;cursor:pointer;display:block;margin:11px 0 5px;touch-action:pan-y}
+.sim-foot{font-size:12px;color:#6b8186;flex-wrap:wrap}.sim-foot strong{color:#31575c;font-variant-numeric:tabular-nums}
+.sim-disclaimer,.sim-warning{font-size:12px;line-height:1.85;color:#658087;margin-bottom:0}
+.sim-result{background:#16333b;border-color:#16333b;color:#e1eee9}.sim-result .card-eyebrow{color:#afdcd0}
+.sim-total{display:block;color:#fff;font:800 clamp(30px,4vw,48px) Manrope,sans-serif;margin:17px 0 27px;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+.sim-detail{padding:12px 0;border-top:1px solid #34535a;font-size:13px;color:#d1e2dd}.sim-detail strong{color:#fff;white-space:nowrap}
+.sim-bar{display:flex;width:100%;height:18px;border-radius:18px;overflow:hidden;background:#456066;margin:26px 0 15px}
+#simBarReducao{background:#2db29f}#simBarTerceira{background:#7eabe2}#simBarFlavio{background:#deac60}
+.sim-legend{display:flex;flex-wrap:wrap;gap:13px;font-size:11px;color:#cde0da}.sim-legend span{display:flex;align-items:center;gap:6px}.sim-legend i{display:inline-block;width:10px;height:10px;border-radius:3px}.sim-a{background:#2db29f}.sim-b{background:#7eabe2}.sim-c{background:#deac60}
+#simAssumptions{font-size:12px;line-height:1.8;color:#ccdfda;margin:27px 0 12px}.sim-warning{color:#c1d5d1;border-top:1px solid #34535a;padding-top:17px}
+.sim-section .audit-source{margin-top:19px}
+@media(max-width:850px){.sim-layout{grid-template-columns:1fr}}
+@media(max-width:650px){.municipal-section,.sim-section{padding:45px 0}.municipal-cards{grid-template-columns:1fr}.municipal-cards article,.municipal-box,.sim-panel,.sim-result{padding:18px}.sim-head output{font-size:16px}.sim-total{font-size:33px}}
