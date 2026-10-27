@@ -54,3 +54,11 @@ Intermediários Parquet ficam fora do Git. Não publicar nomes de eleitores, CPF
 ## Antes de publicar
 
 Conferir cobertura real, seção única por turno, reconciliação com dados oficiais, denominadores, tamanho mínimo, mudança de local e aptos. Validar amostras dos extremos contra os arquivos originais. Se o 2º turno de 2026 vier de DSEC+VSEC, declarar isso até chegar o BU consolidado. Fazer integração apenas após concluir o processamento concorrente do Codex.
+
+## Leitura do painel após integração do segundo turno de 2026
+
+A seleção inicial é **concentração de 90% ou mais**, pois o teste `qualquer` é dominado em alguns segundos turnos por inversões de liderança relativa entre 13 e 22. A inversão entre esses dois números pode decorrer da redistribuição dos votos destinados a outros candidatos no primeiro turno; por isso é um teste **descritivo separado**, não uma irregularidade.
+
+Os números oficiais consolidados do recorte Brasil para o segundo turno são: 2022 — 8.800 seções com concentração ≥90% e 2.079 ≥95%; 2026 — 6.615 ≥90% e 1.539 ≥95%. A união de indicadores contém inversões e sobreposições: 30.819 de 472.027 seções elegíveis (6,53%) em 2022 e 39.178 de 499.205 (7,85%) em 2026, e **não representa 6,53% ou 7,85% de votos irregulares**. A lista de exemplos apresenta "marcações" quando uma seção atende vários limiares sobrepostos, não o número de causas independentes.
+
+Para os testes que dependem da comparação entre turnos, o 1º turno mostra **não aplicável**; bases com zero seções elegíveis mostram **sem base elegível**, não porcentagem zero.
