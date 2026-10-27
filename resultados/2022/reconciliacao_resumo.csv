@@ -23,8 +23,8 @@ B5,Soma das seções (BU-CSV) x Detalhe por município e zona,brancos,BWEB,DMZ,1
 B5,Soma das seções (BU-CSV) x Detalhe por município e zona,comparecimento,BWEB,DMZ,12566,82,82,0,82
 B5,Soma das seções (BU-CSV) x Detalhe por município e zona,nulos,BWEB,DMZ,12566,82,82,0,82
 B5,Soma das seções (BU-CSV) x Detalhe por município e zona,validos,BWEB,DMZ,12566,82,82,0,82
-B6,BU-CSV x log da urna (contagens),biometria_nh_vs_liberacao_manual_no_log,BWEB,LOG,82475,6,0,55,3
-B6,BU-CSV x log da urna (contagens),comparecimento_vs_votos_computados,BWEB,LOG,82475,10,0,282,2
-B6,BU-CSV x log da urna (contagens),comparecimento_vs_votos_presidente_mais_nulos_suspensao,BWEB,LOG,82475,56,0,329,49
+B6,BU-CSV x log da urna (contagens),biometria_nh_vs_liberacao_manual_no_log,BWEB,LOG,114337,7,0,86,4
+B6,BU-CSV x log da urna (contagens),comparecimento_vs_votos_computados,BWEB,LOG,114337,15,0,287,3
+B6,BU-CSV x log da urna (contagens),comparecimento_vs_votos_presidente_mais_nulos_suspensao,BWEB,LOG,114337,72,0,345,67
 C1,Aptos = comparecimento + abstenções (BU-CSV),aptos_vs_comp_mais_abst,BWEB,BWEB,944056,0,0,0,0
 K1,"BU-CSV x Votação por seção (caminho independente), por candidato",votos_votavel,BWEB,VSEC,5380733,0,0,0,0

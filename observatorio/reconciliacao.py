@@ -159,6 +159,31 @@ def explicar(con, disp) -> None:
                    AND i.campo=resumo.campo AND i.classificacao='Diferença explicada')""")
 
 
+def referencias(con, ano: int, disp) -> None:
+    """Teste L: referências documentais de cada divergência (pacote, versão, membro, hash)."""
+    from .config import MANIFESTOS
+    con.execute("ALTER TABLE incompat ADD COLUMN ref_pacote_urna VARCHAR")
+    con.execute("ALTER TABLE incompat ADD COLUMN ref_membro VARCHAR")
+    con.execute("ALTER TABLE incompat ADD COLUMN ref_bu_csv VARCHAR")
+    cob = MANIFESTOS / "cobertura_arquivos_urna.csv"
+    if cob.exists():
+        con.execute(f"""CREATE OR REPLACE TEMP VIEW cobv AS SELECT CAST(ano AS INT) ano, CAST(turno AS INT) turno, uf,
+            url || ' (ETag ' || etag || ', ' || last_modified || ')' ref FROM read_csv('{cob}', all_varchar=true)""")
+        con.execute(f"UPDATE incompat SET ref_pacote_urna = c.ref FROM cobv c WHERE c.ano = {ano} "
+                    "AND c.turno = incompat.turno AND c.uf = incompat.uf")
+    if "logs" in disp:
+        con.execute("""UPDATE incompat SET ref_membro = l.arquivo || ' (.bu/.logjez)' FROM logs l
+            WHERE l.turno = incompat.turno AND l.uf = incompat.uf AND l.cd_municipio = incompat.cd_municipio
+              AND l.nr_zona = incompat.nr_zona AND l.nr_secao = incompat.nr_secao""")
+    dl = MANIFESTOS / "downloads.csv"
+    if dl.exists():
+        con.execute(f"""CREATE OR REPLACE TEMP VIEW bwv AS SELECT
+            CAST(regexp_extract(url, 'bweb_(\\d)t_', 1) AS INT) turno, regexp_extract(url, 'bweb_\\dt_([A-Z]{{2}})_', 1) uf,
+            regexp_extract(url, '[^/]+$') || ' (SHA-512 oficial confere: ' || coalesce(hash_oficial_confere, '?') || ')' ref
+            FROM read_csv('{dl}', all_varchar=true) WHERE url LIKE '%eleicoes{ano}/buweb/bweb_%'""")
+        con.execute("UPDATE incompat SET ref_bu_csv = b.ref FROM bwv b WHERE b.turno = incompat.turno AND b.uf = incompat.uf")
+
+
 def executar(ano: int) -> dict:
     con = duckdb.connect()
     con.execute("SET enable_progress_bar=false")
@@ -280,6 +305,7 @@ def executar(ano: int) -> dict:
                ("brancos", "br1", "br2"), ("nulos", "n1", "n2"), ("validos", "v1", "v2")])
 
     explicar(con, disp)
+    referencias(con, ano, disp)
     out = RESULTADOS / str(ano)
     out.mkdir(parents=True, exist_ok=True)
     con.execute(f"COPY (SELECT * FROM resumo ORDER BY teste, campo) TO '{out}/reconciliacao_resumo.csv' (HEADER)")
