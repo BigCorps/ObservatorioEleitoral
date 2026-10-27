@@ -30,7 +30,7 @@ const files = {
   temporalUF2022:'./dados/temporal_uf_2022.csv',
   temporalUF2026:'./dados/temporal_uf_2026.csv'
 };
-const state = {year:'2022',round:'2',uf:'BR',mapCandidate:'13',trendMetric:'pct_abstencao',rankingMetric:'pct_abstencao'};
+const state = {year:'2022',round:'2',uf:'BR',mapCandidate:'lider',trendMetric:'pct_abstencao',rankingMetric:'pct_abstencao'};
 let data = null;
 const nf = new Intl.NumberFormat('pt-BR',{maximumFractionDigits:0});
 const df = new Intl.NumberFormat('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
@@ -134,7 +134,7 @@ function setUpFilters() {
     });
   });
   document.getElementById('resetButton').addEventListener('click',()=>{
-    Object.assign(state,{year:'2022',round:'2',uf:'BR',mapCandidate:'13',trendMetric:'pct_abstencao',rankingMetric:'pct_abstencao'});
+    Object.assign(state,{year:'2022',round:'2',uf:'BR',mapCandidate:'lider',trendMetric:'pct_abstencao',rankingMetric:'pct_abstencao'});
     render();
   });
   syncControls();
@@ -187,33 +187,70 @@ function renderTrend() {
 }
 function renderTimeline() {
   const chart=document.getElementById('timelineChart');
+  const tag=document.getElementById('timelineTag');
   chart.replaceChildren();
-  if(state.uf==='ZZ'){
-    chart.append(node('p','empty-chart','Curva de 15 minutos do exterior ainda não publicada neste conjunto consolidado.'));
-    chart.setAttribute('aria-label','Distribuição de votos por horário do exterior não disponível');
-    setText('timelineNote','Para o exterior, o painel oferece comparecimento e indicadores por turno, mas não uma curva de votação por 15 minutos.');
+  chart.classList.remove('regional-timeline');
+  if(state.uf!=='BR'){
+    const row=data.temporalUFByYear[state.year]?.get(state.round+'-'+state.uf);
+    const total=numeric(row?.votos),a17=numeric(row?.votos_apos_17h);
+    const a18=numeric(row?.votos_apos_18h),a19=numeric(row?.votos_apos_19h);
+    tag.textContent=state.uf==='ZZ'?'EXTERIOR • HORÁRIO LOCAL':'LOGS DE '+state.uf+' • HORÁRIO DE BRASÍLIA';
+    if([total,a17,a18,a19].some(v=>v===null)||total<=0){
+      chart.append(node('p','empty-chart','Dados de horário de '+ufNames[state.uf]+' ainda não disponíveis para esse turno.'));
+      chart.setAttribute('aria-label','Sem dados temporais para '+ufNames[state.uf]);
+      setText('timelineNote','Não há logs disponíveis para '+ufNames[state.uf]+' nesse turno. O gráfico do Brasil não é mostrado como se fosse do estado.');
+      return;
+    }
+    const bins=[
+      ['Até 17h',total-a17,false],
+      ['17h–18h',a17-a18,true],
+      ['18h–19h',a18-a19,true],
+      ['Após 19h',a19,true]
+    ];
+    if(bins.some(b=>b[1]<0)||bins.reduce((sum,b)=>sum+b[1],0)!==total){
+      chart.append(node('p','empty-chart','Os totais de horário não estão reconciliados neste recorte.'));
+      setText('timelineNote','Dados inconsistentes: não exibimos contagens calculadas sem reconciliação.');
+      return;
+    }
+    chart.classList.add('regional-timeline');
+    const max=Math.max(1,...bins.map(b=>b[1]));
+    bins.forEach(([label,votes,late])=>{
+      const col=node('div','regional-bin');
+      const count=node('strong','regional-count',number(votes));
+      const track=node('div','regional-bar-track');
+      const bar=node('div','regional-bar'+(late?' is-late':''));
+      bar.style.height=(votes===0?0:Math.max(2,votes/max*100))+'%';
+      const period=node('span','regional-period',label);
+      const pct=node('small','regional-percent',percent(votes/total*100));
+      track.append(bar);col.append(count,track,period,pct);
+      col.title=label+': '+number(votes)+' votos ('+percent(votes/total*100)+')';
+      chart.append(col);
+    });
+    chart.setAttribute('aria-label',ufNames[state.uf]+': '+bins.map(b=>b[0]+': '+number(b[1])+' votos').join('; '));
+    setText('timelineNote',ufNames[state.uf]+' · '+number(total)+' votações em '+number(row.secoes_com_log)+' seções com logs. As quatro faixas são contagens reais, não estimativas de 15 minutos. '+(state.uf==='ZZ'?'Horários locais do exterior, não convertidos para Brasília.':'Horário de Brasília.')+' Votações após 17h podem ser regulares.');
     return;
   }
-  const all=(state.year==='2022'?data.timeline2022:data.timeline2026);
-  const rows=all.filter(r=>r.turno===state.round && r.abrangencia.startsWith('BR')).sort((a,b)=>Number(a.minuto_do_dia)-Number(b.minuto_do_dia));
+  tag.textContent='LOGS DAS 27 UFs • HORÁRIO DE BRASÍLIA';
+  const rows=(state.year==='2022'?data.timeline2022:data.timeline2026)
+    .filter(r=>r.turno===state.round&&r.abrangencia.startsWith('BR'))
+    .sort((a,b)=>Number(a.minuto_do_dia)-Number(b.minuto_do_dia));
   if(!rows.length){
     chart.append(node('p','empty-chart','Ainda não há logs publicados para exibir esta distribuição.'));
-    chart.setAttribute('aria-label','Dados de horário não disponíveis para o turno selecionado');
-    setText('timelineNote','2026, 2º turno: distribuição por horário pendente dos arquivos de log do TSE.');
+    chart.setAttribute('aria-label','Sem dados temporais para Brasil nesse turno');
+    setText('timelineNote','A distribuição nacional desse turno ainda depende de logs. Não mostramos dados estimados.');
     return;
   }
   const max=Math.max(1,...rows.map(r=>Number(r.votos)||0));
   rows.forEach(r=>{
-    const votes=Number(r.votos)||0;
-    const late=Number(r.minuto_do_dia)>=1020;
+    const votes=Number(r.votos)||0,late=Number(r.minuto_do_dia)>=1020;
     const bar=node('div','time-bar'+(late?' late':''));
     bar.style.height=Math.max(1,votes/max*100)+'%';
     bar.title=r.faixa+' — '+number(votes)+' votos';
     bar.setAttribute('aria-label',bar.title);
     chart.append(bar);
   });
-  chart.setAttribute('aria-label','Volume das 27 UFs com logs a cada 15 minutos, eleição '+state.year+', '+state.round+'º turno. Passe sobre as barras para os valores.');
-  setText('timelineNote','Curva de logs das 27 UFs, sem os votos do exterior (ZZ), em horário de Brasília. Este gráfico não muda com o filtro de estado e não representa a distribuição de todos os votos nacionais. Votos depois das 17h podem ser regulares quando havia eleitores na fila.');
+  chart.setAttribute('aria-label','Distribuição dos logs das 27 UFs a cada 15 minutos em '+state.year+', '+state.round+'º turno');
+  setText('timelineNote','Curva de 15 minutos apenas das 27 UFs, em horário de Brasília. Os votos do exterior são excluídos deste gráfico de horários. Votações após 17h podem ser regulares.');
 }
 function renderRanking() {
   const metric=state.rankingMetric;
@@ -414,13 +451,20 @@ function countLabel(year,round,uf,field) {
 }
 function candidateShare(votes,valid) {return valid>0?votes/valid*100:null;}
 function pctOfValid(n,v) {return v>0?percent(n/v*100):'—';}
-function mapColor(share) {
+function mapColor(share,candidate) {
   if(share===null)return '#e2eae6';
   const v=Math.max(0,Math.min(100,share));
-  // Vermelho para o número 13, verde para o número 22; a intensidade é a participação percentual.
-  return state.mapCandidate==='13'
+  return candidate==='13'
     ? 'hsl(4 '+Math.round(42+v*.22)+'% '+Math.round(97-v*.43)+'%)'
     : 'hsl(147 '+Math.round(32+v*.19)+'% '+Math.round(96-v*.39)+'%)';
+}
+function mapLeaderColor(v) {
+  if(!v||v.valid<=0)return '#e2eae6';
+  if(v.v13===v.v22)return '#c4cecc';
+  const margin=Math.min(100,Math.abs(v.v13-v.v22)/v.valid*100);
+  return v.v13>v.v22
+    ? 'hsl(4 51% '+Math.round(89-margin*.55)+'%)'
+    : 'hsl(147 40% '+Math.round(89-margin*.5)+'%)';
 }
 function geoPolygons(geometry) {
   return geometry.type==='Polygon'?[geometry.coordinates]:geometry.type==='MultiPolygon'?geometry.coordinates:[];
@@ -443,10 +487,15 @@ function setMapStatus(uf) {
   target.append(node('span',null,candidate22Name(state.year)+' (22): '+(votes?pctOfValid(votes.v22,votes.valid):'—')));
 }
 function renderMap() {
-  const is13=state.mapCandidate==='13';
-  setText('mapColorTitle','Participação de '+(is13?'Lula (13)':candidate22Name(state.year)+' (22)'));
-  document.getElementById('mapGradient').className='map-gradient '+(is13?'candidate-13':'candidate-22');
-  setText('mapColorExplanation','Vermelho indica participação do nº 13; verde indica participação do nº 22. A intensidade mostra o percentual do candidato escolhido entre os votos válidos, não a preferência individual dos eleitores, nem suspeita. No Brasil, os totais incluem ZZ, que não aparece na malha.');
+  const mode=state.mapCandidate;
+  const leader=mode==='lider';
+  setText('mapColorTitle',leader?'Quem recebeu mais votos entre 13 e 22?':'Participação de '+(mode==='13'?'Lula (13)':candidate22Name(state.year)+' (22)'));
+  document.getElementById('mapGradient').className='map-gradient '+(leader?'map-bicolor':mode==='13'?'candidate-13':'candidate-22');
+  setText('mapLegendStart',leader?'Lula (13)':'Menor percentual');
+  setText('mapLegendEnd',leader?candidate22Name(state.year)+' (22)':'Maior percentual');
+  setText('mapColorExplanation',leader
+    ? 'Cada UF aparece em vermelho quando Lula (13) teve mais votos e em verde quando o nº 22 teve mais votos. A intensidade representa a diferença entre eles. No 1º turno, veja também os demais candidatos à direita. O exterior entra nos totais nacionais, mas não aparece na malha.'
+    : 'A tonalidade indica o percentual do nº '+mode+' entre os votos válidos: vermelho para 13 e verde para 22. Isso não significa irregularidade. O exterior está incluído nos totais nacionais, mas não aparece na malha.');
   const exteriorInfo=document.getElementById('mapExteriorInfo');
   exteriorInfo.hidden=state.uf!=='ZZ';
   if(state.uf==='ZZ'){
@@ -485,13 +534,13 @@ function renderMap() {
     }).join(' ')+' Z').join(' ')).join(' ');
     const path=document.createElementNS(ns,'path');
     const result=voteData(state.year,state.round,uf);
-    const share=result?candidateShare(is13?result.v13:result.v22,result.valid):null;
+    const share=result?candidateShare(mode==='22'?result.v22:result.v13,result.valid):null;
     const pairText=ufNames[uf]+' · Lula (13): '+(result?pctOfValid(result.v13,result.valid):'—')+
       ' · '+candidate22Name(state.year)+' (22): '+(result?pctOfValid(result.v22,result.valid):'—');
     path.setAttribute('d',pathData);
     path.setAttribute('fill-rule','evenodd');
     path.setAttribute('class','map-state'+(state.uf===uf?' selected':''));
-    path.setAttribute('fill',mapColor(share));
+    path.setAttribute('fill',leader?mapLeaderColor(result):mapColor(share,mode));
     path.setAttribute('tabindex','0');
     path.setAttribute('role','button');
     path.setAttribute('aria-label',pairText+'. Selecionar estado');

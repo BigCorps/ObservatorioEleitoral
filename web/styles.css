@@ -144,3 +144,28 @@ footer{background:#eef5f0;color:#617979;border-top:1px solid #d7e8dd}
 .change-plus{background:#1265af}.change-minus{background:#bb3346}.change-zero{background:#99aaad}
 @media(max-width:1000px){.map-controls{grid-template-columns:1fr 1fr}.map-scope-control{grid-column:1/2}}
 @media(max-width:640px){.map-controls{grid-template-columns:1fr 1fr;padding:12px;gap:11px}.map-scope-control{grid-column:1/-1}.map-candidate-toggle{grid-column:1/-1}.map-status{flex-direction:column;gap:4px}.map-status strong{margin-bottom:2px}.change-legend{gap:9px 16px}}
+
+/* Mapa bicolor: início mostra qual dos dois candidatos teve mais votos em cada UF */
+.candidate-split{background:linear-gradient(90deg,#dc7774 0 49%,#71b892 50% 100%)}
+.map-candidate-toggle label:first-of-type{flex:1.4}
+.map-candidate-toggle label{font-size:11px;gap:4px;padding:9px 4px}
+.map-gradient.map-bicolor{background:linear-gradient(90deg,#d67a77 0%,#f2d9d7 46%,#f4f7f5 50%,#dcefe3 54%,#73b893 100%)}
+.map-card .map-caption{margin-top:auto;background:#f1f8f3;border:1px solid #dcece2;border-radius:10px;padding:15px;color:#52757a;font-size:12px;line-height:1.7}
+.map-card .map-caption strong{display:block;color:#2a575b;margin-bottom:6px}
+.map-card .map-caption a{display:inline-block;margin-top:9px}
+.candidate-fill.n13{background:linear-gradient(90deg,#e8b2ae,#d96f6c)}
+.candidate-fill.n22{background:linear-gradient(90deg,#acdbbe,#56ab81)}
+.candidate-row:has(.candidate-fill.n13) .candidate-value{color:#b04545}
+.candidate-row:has(.candidate-fill.n22) .candidate-value{color:#277a58}
+/* Estados e exterior: intervalos disponíveis nos logs (não falsos dados de 15 minutos) */
+.timeline-chart.regional-timeline{display:flex;align-items:stretch;justify-content:space-around;gap:14px;overflow:visible;padding:20px 4px 15px}
+.timeline-chart.regional-timeline::before,.timeline-chart.regional-timeline::after{content:none}
+.regional-bin{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;flex:1;gap:6px;height:232px;min-width:0}
+.regional-count{font:800 clamp(10px,1.1vw,13px) Manrope,sans-serif;color:#34545d;white-space:nowrap}
+.regional-bar-track{display:flex;align-items:flex-end;width:min(65px,72%);height:150px}
+.regional-bar{width:100%;border-radius:6px 6px 0 0;background:linear-gradient(180deg,#75c8bc,#219485)}
+.regional-bar.is-late{background:linear-gradient(180deg,#f0ca96,#e6a44f)}
+.regional-period{color:#45626c;font-weight:800;font-size:11px;text-align:center}
+.regional-percent{color:#8b9da1;font-size:10px}
+@media(max-width:1100px){.map-controls{grid-template-columns:1fr 1fr}.map-candidate-toggle{grid-column:1/-1;max-width:450px}}
+@media(max-width:640px){.map-controls{grid-template-columns:1fr 1fr}.map-candidate-toggle{max-width:none}.regional-count{font-size:10px}.regional-bar-track{width:70%}.regional-period{font-size:10px}.timeline-chart.regional-timeline{gap:4px}}

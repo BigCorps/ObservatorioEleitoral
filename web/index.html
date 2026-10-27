@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=mapa-comparativos-20261027">
-  <script src="./app.js?v=mapa-comparativos-20261027" defer></script>
+  <link rel="stylesheet" href="./styles.css?v=mapa-bicolor-uf-20261027">
+  <script src="./app.js?v=mapa-bicolor-uf-20261027" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#conteudo">Pular para os dados</a>
@@ -74,18 +74,19 @@
             <div class="map-control"><label for="mapRoundFilter">TURNO</label><select id="mapRoundFilter"><option value="1">1º turno</option><option value="2">2º turno</option></select></div>
             <div class="map-control map-scope-control"><label for="mapUfFilter">ABRANGÊNCIA</label><select id="mapUfFilter"></select></div>
             <fieldset class="map-candidate-toggle"><legend>COLORIR POR</legend>
-              <label><input type="radio" name="mapCandidate" value="13" checked><span class="candidate-dot candidate-red"></span>Nº 13</label>
+              <label><input type="radio" name="mapCandidate" value="lider" checked><span class="candidate-dot candidate-split"></span>Mais votado</label>
+              <label><input type="radio" name="mapCandidate" value="13"><span class="candidate-dot candidate-red"></span>Nº 13</label>
               <label><input type="radio" name="mapCandidate" value="22"><span class="candidate-dot candidate-green"></span>Nº 22</label>
             </fieldset>
           </div>
           <div class="map-layout">
             <article class="map-card">
-              <div class="card-heading"><div><span class="card-eyebrow">DISTRIBUIÇÃO DOS VOTOS VÁLIDOS</span><h3 id="mapColorTitle">Participação de Lula (13)</h3></div><span class="chart-tag">TURNO SELECIONADO</span></div>
+              <div class="card-heading"><div><span class="card-eyebrow">DISTRIBUIÇÃO DOS VOTOS VÁLIDOS</span><h3 id="mapColorTitle">Quem recebeu mais votos entre 13 e 22?</h3></div><span class="chart-tag">TURNO SELECIONADO</span></div>
               <div id="mapExteriorInfo" class="map-exterior-info" hidden></div>
               <svg id="brMap" class="brazil-map" role="group" viewBox="0 0 560 520" aria-label="Mapa do Brasil dividido por unidades da Federação"></svg>
               <div class="map-status" id="mapHover" aria-live="polite">Passe o cursor sobre uma UF ou selecione um estado.</div>
-              <div class="map-legend"><span>Menor percentual</span><span class="map-gradient candidate-13" id="mapGradient" aria-hidden="true"></span><span>Maior percentual</span></div>
-              <p class="map-caption"><span id="mapColorExplanation">Vermelho indica participação do nº 13 e verde do nº 22, conforme a escolha acima.</span> <a href="https://github.com/henriquemalvar/br-geojson" target="_blank" rel="noopener noreferrer">Malha IBGE (CC0) ↗</a></p>
+              <div class="map-legend"><span id="mapLegendStart">Lula (13)</span><span class="map-gradient map-bicolor" id="mapGradient" aria-hidden="true"></span><span id="mapLegendEnd">Número 22</span></div>
+              <p class="map-caption"><strong>Como interpretar as cores?</strong><span id="mapColorExplanation">Vermelho indica maior votação de Lula (13) e verde indica maior votação do nº 22, entre os dois candidatos.</span> <a href="https://github.com/henriquemalvar/br-geojson" target="_blank" rel="noopener noreferrer">Malha IBGE (CC0) ↗</a></p>
             </article>
             <article class="vote-card">
               <span class="card-eyebrow">VOTAÇÃO PRESIDENCIAL NO RECORTE</span>
@@ -110,7 +111,7 @@
             <p class="chart-note" id="trendNote">Valores calculados a partir das tabelas e logs oficiais publicados.</p>
           </article>
           <article class="chart-card">
-            <div class="card-heading"><div><span class="card-eyebrow">FLUXO DE VOTAÇÃO</span><h3>Votos ao longo do dia</h3></div><span class="chart-tag">LOGS DAS 27 UFs • HORÁRIO DE BRASÍLIA</span></div>
+            <div class="card-heading"><div><span class="card-eyebrow">FLUXO DE VOTAÇÃO</span><h3>Votos ao longo do dia</h3></div><span class="chart-tag" id="timelineTag">LOGS DAS 27 UFs • HORÁRIO DE BRASÍLIA</span></div>
             <div id="timelineChart" class="timeline-chart" role="img" aria-label="Votos por intervalos de 15 minutos"></div>
             <div class="time-legend"><span><i class="legend-block teal"></i> Até 17h</span><span><i class="legend-block amber"></i> Depois das 17h</span></div>
             <p id="timelineNote" class="chart-note">Distribuição nacional em intervalos de 15 minutos, somente nas seções com log.</p>
