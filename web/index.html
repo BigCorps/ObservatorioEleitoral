@@ -171,7 +171,16 @@
           </table></div>
           <p class="audit-source">Fontes: <a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/resultados/2022/reconciliacao_resumo.csv" target="_blank" rel="noopener noreferrer">2022 ↗</a> e <a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/resultados/2026/reconciliacao_resumo.csv" target="_blank" rel="noopener noreferrer">2026 ↗</a>. Até que existam registros individualizados completos e conferidos, o quadro é um resumo por tipo de teste, não uma relação exaustiva de seções.</p>
         </div>
-        <div class="audit-future"><strong>Quando os arquivos do 2º turno de 2026 forem processados</strong><p>Este quadro poderá apresentar as verificações daquele turno, compará-las com 2022 e permitir abrir evidências por UF, município, zona e seção. Cada caso deverá informar o resultado do teste, a explicação conhecida, a fonte e a situação da conferência. Casos estatísticos serão separados das incompatibilidades documentais.</p></div>
+        <div class="audit-report" id="discrepancias">
+          <div class="audit-report-heading"><div><span class="card-eyebrow">QUADRO DE DISCREPÂNCIAS POR CATEGORIA</span><h3 id="discTitle">Discrepâncias classificadas</h3></div><span class="comparison-chip" id="discChip">—</span></div>
+          <p class="audit-note">Quatro categorias: <strong>Diferença estatística</strong> (padrão numérico fora do esperado, não é erro documental), <strong>Diferença explicada</strong> (regra oficial documentada explica o caso), <strong>Incompatibilidade documental pendente</strong> (fontes oficiais divergem e não há explicação documentada) e <strong>Não verificado</strong> (dado oficial necessário ainda não publicado). Nenhuma categoria é prova de fraude. Votos só aparecem quando a diferença é uma contagem de votos demonstrável entre duas fontes.</p>
+          <div class="audit-status" id="discCards" aria-live="polite"></div>
+          <div class="comparison-scroll"><table class="comparison-table audit-table">
+            <thead><tr><th scope="col">Categoria · verificação</th><th scope="col">Turno</th><th scope="col">Apontamentos</th><th scope="col">Seções</th><th scope="col">Votos (se demonstrável)</th></tr></thead>
+            <tbody id="discTableBody"></tbody>
+          </table></div>
+          <p class="audit-source">Fonte: <a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/resultados/quadro_discrepancias.csv" target="_blank" rel="noopener noreferrer">quadro_discrepancias.csv ↗</a> · detalhes por seção em <code>resultados/ANO/incompatibilidades.csv</code>.</p>
+        </div>
       </div>
     </section>
 </main>

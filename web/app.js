@@ -30,7 +30,8 @@ const files = {
   temporalUF2022:'./dados/temporal_uf_2022.csv',
   temporalUF2026:'./dados/temporal_uf_2026.csv',
   audits2022:'./dados/reconciliacao_2022.csv',
-  audits2026:'./dados/reconciliacao_2026.csv'
+  audits2026:'./dados/reconciliacao_2026.csv',
+  discrepancies:'./dados/quadro_discrepancias.csv'
 };
 const state = {year:'2022',round:'2',uf:'BR',mapCandidate:'lider',trendMetric:'pct_abstencao',rankingMetric:'pct_abstencao'};
 let data = null;
@@ -149,8 +150,9 @@ function setUpFilters() {
   window.addEventListener('resize',syncDockSize);
   syncControls();
 }
+function has2026Round2Logs(){return !!data&&[...data.temporalUFByYear['2026'].keys()].some(k=>k.startsWith('2-'));}
 function renderCoverage() {
-  const partial=state.year==='2026'&&state.round==='2';
+  const partial=state.year==='2026'&&state.round==='2'&&!has2026Round2Logs();
   const badge=document.getElementById('coverageBadge');
   badge.textContent=partial?'2026 · 2º turno: BU e logs pendentes':state.uf==='ZZ'?'Exterior · cobertura de logs específica':'BU e logs processados · confira cobertura';
   badge.classList.toggle('partial',partial||state.uf==='ZZ');
@@ -735,7 +737,7 @@ function renderAuditFocus(rows) {
     return found!==null&&explained!==null&&found>explained;
   });
   const remaining=selected.reduce((total,r)=>total+Number(r.divergencias)-Number(r.explicadas),0);
-  setText('auditFocusYear',state.year==='2022'?'2022 · dois turnos':'2026 · apenas 1º turno');
+  setText('auditFocusYear',state.year==='2022'?'2022 · dois turnos':(has2026Round2Logs()?'2026 · dois turnos':'2026 · apenas 1º turno'));
   setText('auditUnexplained',number(remaining));
   setText('auditTestsCount',number(selected.length)+' verificações com apontamentos pendentes');
   setText('auditVotesAffected','Não determinado');
@@ -776,12 +778,14 @@ function renderAudit() {
   };
   record('ELEIÇÕES DE 2022','2 turnos processados','BUs, resultados e logs reconciliados; ainda existem observações sem explicação documental completa.','');
   record('ELEIÇÕES DE 2026 · 1º TURNO','Processado','As verificações técnicas publicadas correspondem ao primeiro turno.','');
-  record('ELEIÇÕES DE 2026 · 2º TURNO','Dados técnicos pendentes','Resultados por seção disponíveis; BU e logs ainda não integram as verificações técnicas desta base.','audit-pending');
+  if(has2026Round2Logs())record('ELEIÇÕES DE 2026 · 2º TURNO','Logs e BUs processados','Arquivos de urna coletados seção a seção no Portal de Resultados do TSE, com hashes conferidos. O BU em CSV do turno ainda não foi publicado: as verificações que dependem dele aparecem como não verificadas.','');
+  else record('ELEIÇÕES DE 2026 · 2º TURNO','Dados técnicos pendentes','Resultados por seção disponíveis; BU e logs ainda não integram as verificações técnicas desta base.','audit-pending');
   const rows=data.auditsByYear[state.year]||[];
   renderAuditFocus(rows);
-  setText('auditTableTitle','Testes documentais de '+state.year+(state.year==='2022'?' · dois turnos':' · primeiro turno'));
-  setText('auditCoverageChip',state.year==='2022'?'2022: ambos os turnos':'2026: apenas primeiro turno');
-  setText('auditTableNote','Quadro nacional histórico de '+state.year+(state.year==='2022'?' (dados dos dois turnos).':' (somente o 1º turno).')+' Não é filtrado por UF, pois o resumo oficializado no repositório está agregado por ano. A tabela apresenta testes com diferenças, explicadas ou pendentes; cada linha conta comparações, não seções únicas nem votos irregulares.');
+  const both=state.year==='2022'||has2026Round2Logs();
+  setText('auditTableTitle','Testes documentais de '+state.year+(both?' · dois turnos':' · primeiro turno'));
+  setText('auditCoverageChip',state.year+(both?': ambos os turnos':': apenas primeiro turno'));
+  setText('auditTableNote','Quadro nacional histórico de '+state.year+(both?' (dados dos dois turnos).':' (somente o 1º turno).')+' Não é filtrado por UF, pois o resumo oficializado no repositório está agregado por ano. A tabela apresenta testes com diferenças, explicadas ou pendentes; cada linha conta comparações, não seções únicas nem votos irregulares.');
   const body=document.getElementById('auditTableBody');
   body.replaceChildren();
   const relevant=rows.filter(r=>(numeric(r.divergencias)||0)>0);
@@ -795,9 +799,40 @@ function renderAudit() {
   });
   if(!relevant.length){const row=node('tr'),cell=node('td',null,rows.length?'Nenhuma diferença registrada nos testes desta base.':'Resumo de reconciliação indisponível.');cell.colSpan=5;row.append(cell);body.append(row);}
 }
+const discCategories=['Diferença estatística','Diferença explicada','Incompatibilidade documental pendente','Não verificado'];
+function renderDiscrepancies() {
+  const rows=(data.discrepancies||[]).filter(r=>r.ano===state.year&&discCategories.includes(r.categoria));
+  setText('discTitle','Discrepâncias de '+state.year+' por categoria');
+  setText('discChip',state.year==='2022'?'2022: dois turnos':'2026: 1º e 2º turnos');
+  const cards=document.getElementById('discCards');
+  cards.replaceChildren();
+  for(const cat of discCategories){
+    const sub=rows.filter(r=>r.categoria===cat);
+    const sum=f=>sub.reduce((t,r)=>t+(numeric(r[f])||0),0);
+    const votes=sub.filter(r=>numeric(r.votos_com_registro_divergente)!==null);
+    const card=node('article','audit-status-card'+(cat==='Não verificado'?' audit-pending':''));
+    const status=cat==='Não verificado'?number(sub.length)+' verificações':number(sum('apontamentos'))+' apontamentos';
+    const detail=cat==='Diferença estatística'?number(sub.length)+' recortes com efeito estatístico; não são apontamentos documentais.'
+      :cat==='Não verificado'?'Dependem de arquivos oficiais ainda não publicados.'
+      :number(sum('secoes_distintas'))+' seções por teste'+(votes.length?' · '+number(votes.reduce((t,r)=>t+numeric(r.votos_com_registro_divergente),0))+' votos com registro divergente entre fontes':'');
+    card.append(node('span','audit-card-heading',cat.toUpperCase()),node('strong',null,status),node('p',null,detail));
+    cards.append(card);
+  }
+  const body=document.getElementById('discTableBody');
+  body.replaceChildren();
+  for(const r of rows){
+    const tr=node('tr'),first=node('td');
+    first.append(node('span',null,r.categoria+' · '+r.teste+' · '+r.campo));
+    if(r.observacao)first.append(node('small',null,' — '+r.observacao));
+    const cell=v=>{const n=numeric(v);const td=node('td',n===null?'na':null,n===null?'—':number(n));return td;};
+    tr.append(first,node('td',null,r.turno+'º'),cell(r.apontamentos),cell(r.secoes_distintas),cell(r.votos_com_registro_divergente));
+    body.append(tr);
+  }
+  if(!rows.length){const row=node('tr'),c=node('td',null,'Quadro indisponível.');c.colSpan=5;row.append(c);body.append(row);}
+}
 function render() {
   if(!data)return;
-  syncControls();renderAudit();renderCoverage();renderKpis();renderScopeInfo();renderMap();renderPresidentialVotes();renderTrend();renderTimeline();renderRanking();renderComparison();renderDelta();renderAbsoluteDeltas();
+  syncControls();renderAudit();renderDiscrepancies();renderCoverage();renderKpis();renderScopeInfo();renderMap();renderPresidentialVotes();renderTrend();renderTimeline();renderRanking();renderComparison();renderDelta();renderAbsoluteDeltas();
 }
 async function init() {
   setUpFilters();
@@ -815,7 +850,7 @@ async function init() {
       votesByYear:{'2022':new Map(loaded.votes2022.map(r=>[r.uf,r])),'2026':new Map(loaded.votes2026.map(r=>[r.uf,r]))},
       biometryByYear:{'2022':new Map(loaded.bio2022.map(r=>[r.turno+'-'+r.uf,r])),'2026':new Map(loaded.bio2026.map(r=>[r.turno+'-'+r.uf,r]))},
       temporalUFByYear:{'2022':new Map(loaded.temporalUF2022.map(r=>[r.turno+'-'+r.uf,r])),'2026':new Map(loaded.temporalUF2026.map(r=>[r.turno+'-'+r.uf,r]))},
-      auditsByYear:{'2022':loaded.audits2022,'2026':loaded.audits2026},geometry};
+      auditsByYear:{'2022':loaded.audits2022,'2026':loaded.audits2026},discrepancies:loaded.discrepancies,geometry};
     if(!geometry.features||geometry.features.length!==27)throw new Error('Malha territorial incompleta');
     if(!data.indicators.size)throw new Error('Indicadores vazios');
     render();

@@ -709,11 +709,38 @@ identificada pelo SHA-256.
     return txt
 
 
+def estudos_externos_2t2026() -> str:
+    t = _ler(2026, "estudos_externos_2t.csv")
+    if t.empty:
+        return ""
+    t = t.rename(columns={"verificacao": "Verificação", "fonte_externa": "Fonte", "nossa_extracao": "Nossa extração",
+                          "pesquisa_independente": "Pesquisa independente", "diferenca": "Diferença", "nota": "Nota"})
+    s = _ler(2026, "agnoletto_secao_a_secao.csv")
+    txt = ("\n## 2026 · 2º turno: extração própria × pesquisas independentes\n\n"
+           "_Gerado por `scripts/comparar_estudos_externos.py`. Os números dos terceiros foram copiados das publicações "
+           "e não adotados; \"Nossa extração\" vem dos arquivos de urna baixados seção a seção no Portal de Resultados "
+           "do TSE, com hash conferido. Diferenças de definição (fuso, inclusão do exterior, limite 17:00:00) estão nas notas._\n\n"
+           + tabela_md(t, max_linhas=100))
+    if not s.empty:
+        v = dict(zip(s.iloc[:, 0], s.iloc[:, 1]))
+        txt += ("\n**Seção a seção com a base pública de André Agnoletto** (`secoes_logs_brasil.parquet`): "
+                f"{n(v.get('secoes_em_ambos'))} seções em ambas; só na nossa base {n(v.get('so_nossa_sem_zz'))} no Brasil "
+                f"e {n(v.get('so_nossa_zz'))} no exterior (não incluído por ele); só na dele {n(v.get('so_agnoletto'))}. "
+                f"Votos iguais em {n(v.get('votos_iguais'))} seções (soma das diferenças: {n(v.get('votos_soma_abs_dif'))}); "
+                f"habilitados iguais em {n(v.get('habilitados_iguais'))}; primeiro e último voto iguais em "
+                f"{n(v.get('primeiro_voto_local_s_iguais'))} e {n(v.get('ultimo_voto_local_s_iguais'))}. "
+                f"Modalidade de habilitação: biometria igual em {n(v.get('biometria_iguais'))}, manual em "
+                f"{n(v.get('manual_iguais'))}, sem biometria em {n(v.get('sem_biometria_iguais'))} — as diferenças "
+                "restantes são de classificação da modalidade (votos e habilitados coincidem); ver "
+                "`resultados/2026/agnoletto_secao_a_secao.csv`.\n")
+    return txt
+
+
 def escrever_tudo() -> list[str]:
     feitos = escrever()
     p = DOCS / "auditoria-estudos-externos.md"
     base = p.read_text(encoding="utf-8").split("\n## Reprodução independente")[0]
-    p.write_text(base.rstrip() + "\n" + reproducao_externa(2022), encoding="utf-8")
+    p.write_text(base.rstrip() + "\n" + reproducao_externa(2022) + estudos_externos_2t2026(), encoding="utf-8")
     (DOCS / "comparativo-historico.md").write_text(comparativo_md(), encoding="utf-8")
     (DOCS / "relatorio-publico.md").write_text(publico_md(), encoding="utf-8")
     (DOCS / "limitacoes.md").write_text(limitacoes_md(), encoding="utf-8")
