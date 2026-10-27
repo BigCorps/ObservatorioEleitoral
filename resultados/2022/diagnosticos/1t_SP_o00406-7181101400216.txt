@@ -1,0 +1,38 @@
+=== logd.dat: 2233 linhas do dia; ids={'2154469': 2233}
+    {'Urna pronta para receber votos': 2, 'Eleitor foi habilitado': 120, 'Voto confirmado para [Presidente]': 120, 'O voto do eleitor foi computado': 120}
+      07:20:11 INFO   2154469 LOGD  Urna ligada em 02/10/2022 às 07:19:50
+      07:20:30 INFO   2154469 GAP   Iniciando aplicação - Oficial - 1º turno
+      07:20:30 INFO   2154469 GAP   Identificação do Modelo de Urna: UE2020
+      07:20:38 INFO   2154469 GAP   Identificação do Modelo de Urna: UE2020
+      07:20:42 INFO   2154469 GAP   Modo de carga da UE - Votação
+      07:20:42 INFO   2154469 GAP   Município: 71811
+      07:20:42 INFO   2154469 GAP   Zona Eleitoral: 0140
+      07:20:42 INFO   2154469 GAP   Seção Eleitoral: 0216
+      07:20:47 INFO   2154469 GAP   Serial de votação da MV: C4A0E20A 23/09/2022 às 09:34:05 em ZSP140STD01
+      07:21:01 INFO   2154469 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      07:21:18 INFO   2154469 VOTA  Iniciando aplicação - Oficial - 1º turno
+      07:27:23 ERRO   2154469 VOTA  Digitado título inválido para o registro de mesário
+      07:45:15 ERRO   2154469 VOTA  Digitado título inválido para o registro de mesário
+      08:00:01 INFO   2154469 VOTA  Urna pronta para receber votos
+      11:46:17 INFO   2154469 INITJE Urna desligada pela chave
+      11:46:18 INFO   2154469 VOTA  Votação suspensa
+      11:47:34 INFO   2154469 LOGD  Urna ligada em 02/10/2022 às 11:47:13
+      11:47:52 INFO   2154469 GAP   Iniciando aplicação - Oficial - 1º turno
+      11:47:52 INFO   2154469 GAP   Identificação do Modelo de Urna: UE2020
+      11:48:01 INFO   2154469 GAP   Identificação do Modelo de Urna: UE2020
+      11:48:05 INFO   2154469 GAP   Modo de carga da UE - Votação
+      11:48:05 INFO   2154469 GAP   Município: 71811
+      11:48:05 INFO   2154469 GAP   Zona Eleitoral: 0140
+      11:48:05 INFO   2154469 GAP   Seção Eleitoral: 0216
+      11:48:09 INFO   2154469 GAP   Serial de votação da MV: C4A0E20A 23/09/2022 às 09:34:05 em ZSP140STD01
+      11:48:24 INFO   2154469 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      11:48:40 INFO   2154469 VOTA  Iniciando aplicação - Oficial - 1º turno
+      11:49:25 INFO   2154469 VOTA  Urna pronta para receber votos
+      12:26:41 INFO   2154469 INITJE Urna desligada pela chave
+      12:26:42 INFO   2154469 VOTA  Votação suspensa
+      12:27:46 INFO   2154469 LOGD  Urna ligada em 02/10/2022 às 12:27:22
+      12:28:05 INFO   2154469 GAP   Iniciando aplicação - Oficial - 1º turno
+      12:28:05 INFO   2154469 GAP   Identificação do Modelo de Urna: UE2020
+      12:30:20 INFO   2154469 LOGD  Urna ligada em 02/10/2022 às 12:29:56
+      12:30:38 INFO   2154469 GAP   Iniciando aplicação - Oficial - 1º turno
+      12:30:38 INFO   2154469 GAP   Identificação do Modelo de Urna: UE2020
