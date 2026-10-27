@@ -208,7 +208,7 @@ def _resumir(ano: int, registros, ano_turnos: dict, max_exemplos: int):
             fonte = ano_turnos[turno]
             for teste, (titulo, regra) in TESTES.items():
                 elegiveis = [x for x in grupo if
-                             (x[0].validos > 0 if teste == "unanimidade" else
+                             (x[0].validos > 0 if teste in ("unanimidade", "qualquer") else
                               x[0].validos >= MIN_VALIDOS)
                              and (teste not in {"mudanca20", "mudanca30", "mudanca40", "virada13_22",
                                                "comparecimento20", "brancos_nulos15", "combinados"}
@@ -337,7 +337,8 @@ def executar(ano: int, max_exemplos: int = 15, processados: Path | None = None,
     gravar_csv('triagem_secoes_exemplos.csv',exemplos)
     meta = {"ano":ano,"gerado_utc":datetime.now(timezone.utc).isoformat(),
             "fontes_por_turno": {str(t):fonte for t,(p,fonte) in fontes.items()},
-            "cobertura_por_uf":info,"secoes_incluidas":incluidas,
+            "cobertura_por_uf":info,"ufs_ausentes":[uf for uf in UFS_COM_EXTERIOR if uf not in info],
+            "secoes_incluidas":incluidas,
             "secoes_excluidas_por_inconsistencia":invalidas,
             "criterios":"docs/triagem-secoes.md",
             "aviso":"Seção destacada NÃO significa voto irregular; votos nos recortes NÃO são votos afetados."}
