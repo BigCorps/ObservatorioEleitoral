@@ -30,7 +30,7 @@ const files = {
   temporalUF2022:'./dados/temporal_uf_2022.csv',
   temporalUF2026:'./dados/temporal_uf_2026.csv'
 };
-const state = {year:'2022',round:'2',uf:'BR',trendMetric:'pct_abstencao',rankingMetric:'pct_abstencao'};
+const state = {year:'2022',round:'2',uf:'BR',mapCandidate:'13',trendMetric:'pct_abstencao',rankingMetric:'pct_abstencao'};
 let data = null;
 const nf = new Intl.NumberFormat('pt-BR',{maximumFractionDigits:0});
 const df = new Intl.NumberFormat('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
@@ -91,23 +91,53 @@ function node(tag,className,text) {
   return el;
 }
 function setText(id,value) {document.getElementById(id).textContent=value;}
+function syncControls() {
+  for(const [id,field] of [
+    ['yearFilter','year'],['roundFilter','round'],['ufFilter','uf'],
+    ['mapYearFilter','year'],['mapRoundFilter','round'],['mapUfFilter','uf'],
+    ['trendMetric','trendMetric'],['rankingMetric','rankingMetric']
+  ]) {
+    const element=document.getElementById(id);
+    if(element)element.value=state[field];
+  }
+  document.querySelectorAll('input[name="mapCandidate"]').forEach(input=>{
+    input.checked=input.value===state.mapCandidate;
+  });
+}
+function selectScope(uf) {
+  state.uf=uf;
+  render();
+}
 function setUpFilters() {
   const select=document.getElementById('ufFilter');
-  const exterior=node('option',null,'Exterior (ZZ) · votação fora do país'); exterior.value='ZZ';select.append(exterior);
+  const exterior=node('option',null,'Exterior (ZZ) · votação fora do país');
+  exterior.value='ZZ';select.append(exterior);
   Object.keys(ufNames).filter(uf=>uf!=='BR'&&uf!=='ZZ').sort((a,b)=>ufNames[a].localeCompare(ufNames[b],'pt-BR')).forEach(uf=>{
     const opt=node('option',null,uf+' · '+ufNames[uf]);opt.value=uf;select.append(opt);
   });
-  for(const [id,field] of [['yearFilter','year'],['roundFilter','round'],['ufFilter','uf'],['trendMetric','trendMetric'],['rankingMetric','rankingMetric']]){
-    const el=document.getElementById(id);
-    el.value=state[field];
-    el.addEventListener('change',()=>{state[field]=el.value;render();});
+  // Os dois grupos de filtros controlam o MESMO estado, evitando divergência entre mapa e panorama.
+  const mapScope=document.getElementById('mapUfFilter');
+  [...select.options].forEach(option=>mapScope.add(option.cloneNode(true)));
+  for(const [id,field] of [
+    ['yearFilter','year'],['roundFilter','round'],['ufFilter','uf'],
+    ['mapYearFilter','year'],['mapRoundFilter','round'],['mapUfFilter','uf'],
+    ['trendMetric','trendMetric'],['rankingMetric','rankingMetric']
+  ]) {
+    document.getElementById(id).addEventListener('change',event=>{
+      state[field]=event.target.value;
+      render();
+    });
   }
+  document.querySelectorAll('input[name="mapCandidate"]').forEach(input=>{
+    input.addEventListener('change',event=>{
+      if(event.target.checked){state.mapCandidate=event.target.value;render();}
+    });
+  });
   document.getElementById('resetButton').addEventListener('click',()=>{
-    Object.assign(state,{year:'2022',round:'2',uf:'BR',trendMetric:'pct_abstencao',rankingMetric:'pct_abstencao'});
-    for(const [id,field] of [['yearFilter','year'],['roundFilter','round'],['ufFilter','uf'],['trendMetric','trendMetric'],['rankingMetric']])
-      document.getElementById(id).value=state[field];
+    Object.assign(state,{year:'2022',round:'2',uf:'BR',mapCandidate:'13',trendMetric:'pct_abstencao',rankingMetric:'pct_abstencao'});
     render();
   });
+  syncControls();
 }
 function renderCoverage() {
   const partial=state.year==='2026'&&state.round==='2';
@@ -208,7 +238,7 @@ function renderRanking() {
     if(count!==null){const small=node('small','rank-absolute',number(count));small.title=countLabel(state.year,state.round,uf,metric);val.append(small);}
     row.append(name,track,val);
     row.addEventListener('click',()=>{
-      state.uf=uf;document.getElementById('ufFilter').value=uf;render();
+      selectScope(uf);
       document.getElementById('painel').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});
     });
     list.append(row);
@@ -260,6 +290,9 @@ function renderScopeInfo() {
 function signedDifference(a,b){
   return a===null||b===null?null:b-a;
 }
+function differenceClass(value) {
+  return value===null?'na':value>0?'is-positive':value<0?'is-negative':'is-zero';
+}
 function formatDifference(value,type){
   if(value===null||!Number.isFinite(value))return '—';
   const prefix=value>0?'+':value<0?'−':'';
@@ -285,7 +318,7 @@ function renderDelta(){
     const values=[delta22,delta26,compareDeltas,signedDifference(a,c),signedDifference(b,d)];
     const tr=node('tr');tr.append(node('td',null,label));
     values.forEach(v=>{
-      const td=node('td',v===null?'na':null,formatDifference(v,type));
+      const td=node('td',differenceClass(v),formatDifference(v,type));
       if(v===null)td.title='Comparação pendente: faltam dados para este par';
       tr.append(td);
     });
@@ -318,7 +351,7 @@ function renderAbsoluteDeltas() {
       const values=[delta22,delta26,signedDifference(delta22,delta26),signedDifference(a,c),signedDifference(b,d)];
       const row=node('tr');row.append(node('td',null,label));
       values.forEach((value)=>{
-        const td=node('td',value===null?'na':null,formatDifference(value,'count'));
+        const td=node('td',differenceClass(value),formatDifference(value,'count'));
         if(value===null)td.title='Comparação pendente: contagem indisponível para este par';
         row.append(td);
       });
@@ -384,12 +417,46 @@ function pctOfValid(n,v) {return v>0?percent(n/v*100):'—';}
 function mapColor(share) {
   if(share===null)return '#e2eae6';
   const v=Math.max(0,Math.min(100,share));
-  return 'hsl(173 '+Math.round(28+v*.20)+'% '+Math.round(94-v*.57)+'%)';
+  // Vermelho para o número 13, verde para o número 22; a intensidade é a participação percentual.
+  return state.mapCandidate==='13'
+    ? 'hsl(4 '+Math.round(42+v*.22)+'% '+Math.round(97-v*.43)+'%)'
+    : 'hsl(147 '+Math.round(32+v*.19)+'% '+Math.round(96-v*.39)+'%)';
 }
 function geoPolygons(geometry) {
   return geometry.type==='Polygon'?[geometry.coordinates]:geometry.type==='MultiPolygon'?geometry.coordinates:[];
 }
+function candidate22Name(year) {return year==='2022'?'Jair Bolsonaro':'Flávio Bolsonaro';}
+function setMapStatus(uf) {
+  const target=document.getElementById('mapHover');
+  target.replaceChildren();
+  if(uf==='ZZ') {
+    target.append(node('strong',null,'Exterior (ZZ)'),node('span',null,'Não aparece na malha dos estados; resultados eleitorais ao lado.'));
+    return;
+  }
+  if(uf==='BR') {
+    target.append(node('strong',null,'Brasil: 27 UFs + exterior'),node('span',null,'Clique em um estado; selecione Exterior no filtro para ver ZZ.'));
+    return;
+  }
+  const votes=voteData(state.year,state.round,uf);
+  target.append(node('strong',null,ufNames[uf]));
+  target.append(node('span',null,'Lula (13): '+(votes?pctOfValid(votes.v13,votes.valid):'—')));
+  target.append(node('span',null,candidate22Name(state.year)+' (22): '+(votes?pctOfValid(votes.v22,votes.valid):'—')));
+}
 function renderMap() {
+  const is13=state.mapCandidate==='13';
+  setText('mapColorTitle','Participação de '+(is13?'Lula (13)':candidate22Name(state.year)+' (22)'));
+  document.getElementById('mapGradient').className='map-gradient '+(is13?'candidate-13':'candidate-22');
+  setText('mapColorExplanation','Vermelho indica participação do nº 13; verde indica participação do nº 22. A intensidade mostra o percentual do candidato escolhido entre os votos válidos, não a preferência individual dos eleitores, nem suspeita. No Brasil, os totais incluem ZZ, que não aparece na malha.');
+  const exteriorInfo=document.getElementById('mapExteriorInfo');
+  exteriorInfo.hidden=state.uf!=='ZZ';
+  if(state.uf==='ZZ'){
+    const votes=voteData(state.year,state.round,'ZZ');
+    exteriorInfo.replaceChildren(
+      node('strong',null,'Exterior (ZZ) · votação fora do país'),
+      node('span',null,votes?number(votes.valid)+' votos válidos no '+state.round+'º turno de '+state.year:'Dados ainda não disponíveis'),
+      node('small',null,'O exterior não corresponde a um estado no mapa. Consulte os votos dos candidatos no painel à direita.')
+    );
+  }
   const svg=document.getElementById('brMap');svg.replaceChildren();
   const features=data.geometry.features;
   const points=features.flatMap(f=>geoPolygons(f.geometry).flat(2));
@@ -400,7 +467,6 @@ function renderMap() {
   const project=([lon,lat])=>[(offsetX+(lon-minX)*scale).toFixed(1),(offsetY+(maxY-lat)*scale).toFixed(1)];
   const ns='http://www.w3.org/2000/svg';
   let selectedPath=null;
-  // Um contorno acima dos estados evita bordas encobertas sem mover os alvos clicáveis.
   const outline=document.createElementNS(ns,'path');
   outline.setAttribute('class','map-outline');
   outline.setAttribute('aria-hidden','true');
@@ -419,29 +485,26 @@ function renderMap() {
     }).join(' ')+' Z').join(' ')).join(' ');
     const path=document.createElementNS(ns,'path');
     const result=voteData(state.year,state.round,uf);
-    const share=result?candidateShare(result.v13,result.valid):null;
+    const share=result?candidateShare(is13?result.v13:result.v22,result.valid):null;
+    const pairText=ufNames[uf]+' · Lula (13): '+(result?pctOfValid(result.v13,result.valid):'—')+
+      ' · '+candidate22Name(state.year)+' (22): '+(result?pctOfValid(result.v22,result.valid):'—');
     path.setAttribute('d',pathData);
     path.setAttribute('fill-rule','evenodd');
     path.setAttribute('class','map-state'+(state.uf===uf?' selected':''));
     path.setAttribute('fill',mapColor(share));
     path.setAttribute('tabindex','0');
     path.setAttribute('role','button');
-    path.setAttribute('aria-label',ufNames[uf]+': candidato nº 13, '+percent(share)+'. Selecionar estado');
+    path.setAttribute('aria-label',pairText+'. Selecionar estado');
     const title=document.createElementNS(ns,'title');
-    title.textContent=ufNames[uf]+' · candidato 13: '+percent(share);
+    title.textContent=pairText;
     path.append(title);
-    const tooltip=()=>setText('mapHover',ufNames[uf]+' · Lula (13): '+percent(share)+' dos votos válidos');
-    const highlight=()=>{showOutline(path);tooltip();};
-    const restore=()=>{showOutline(selectedPath);setMapHint();};
+    const highlight=()=>{showOutline(path);setMapStatus(uf);};
+    const restore=()=>{showOutline(selectedPath);setMapStatus(state.uf);};
     path.addEventListener('mouseenter',highlight);
     path.addEventListener('focus',highlight);
     path.addEventListener('mouseleave',restore);
     path.addEventListener('blur',restore);
-    const select=()=>{
-      state.uf=uf;
-      document.getElementById('ufFilter').value=uf;
-      render();
-    };
+    const select=()=>selectScope(uf);
     path.addEventListener('click',select);
     path.addEventListener('keydown',event=>{
       if(event.key==='Enter'||event.key===' '){event.preventDefault();select();}
@@ -451,15 +514,7 @@ function renderMap() {
   }
   svg.append(outline);
   showOutline(selectedPath);
-  setMapHint();
-}
-function setMapHint(){
-  if(state.uf==='ZZ')setText('mapHover','Exterior (ZZ) não é desenhado no mapa do território brasileiro. Seus votos estão detalhados ao lado.');
-  else if(state.uf==='BR')setText('mapHover','Clique em uma das 27 UFs para ver seus resultados presidenciais.');
-  else {
-    const v=voteData(state.year,state.round,state.uf);
-    setText('mapHover',ufNames[state.uf]+' selecionado · Lula (13): '+(v?pctOfValid(v.v13,v.valid):'—'));
-  }
+  setMapStatus(state.uf);
 }
 function appendCandidateRow(target,name,numberId,votes,valid,className) {
   const row=node('div','candidate-row');
@@ -514,7 +569,7 @@ function renderPresidentialVotes() {
 }
 function render() {
   if(!data)return;
-  renderCoverage();renderKpis();renderScopeInfo();renderMap();renderPresidentialVotes();renderTrend();renderTimeline();renderRanking();renderComparison();renderDelta();renderAbsoluteDeltas();
+  syncControls();renderCoverage();renderKpis();renderScopeInfo();renderMap();renderPresidentialVotes();renderTrend();renderTimeline();renderRanking();renderComparison();renderDelta();renderAbsoluteDeltas();
 }
 async function init() {
   setUpFilters();

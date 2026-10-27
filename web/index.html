@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=contagens-20261027">
-  <script src="./app.js?v=contagens-20261027" defer></script>
+  <link rel="stylesheet" href="./styles.css?v=mapa-comparativos-20261027">
+  <script src="./app.js?v=mapa-comparativos-20261027" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#conteudo">Pular para os dados</a>
@@ -69,13 +69,23 @@
 
         <section class="map-section" id="mapa" aria-label="Mapa do Brasil e votos presidenciais">
           <div class="section-intro map-section-heading"><div><span class="section-kicker">MAPA INTERATIVO</span><h2>Escolha um estado no mapa</h2><p>Clique em uma UF para atualizar os resultados do panorama e os votos para presidente.</p></div><span class="comparison-chip">Mapa: 27 UFs · exterior incluído nos totais do Brasil</span></div>
+          <div class="map-controls" aria-label="Filtros do mapa">
+            <div class="map-control"><label for="mapYearFilter">ELEIÇÃO</label><select id="mapYearFilter"><option value="2022">2022</option><option value="2026">2026</option></select></div>
+            <div class="map-control"><label for="mapRoundFilter">TURNO</label><select id="mapRoundFilter"><option value="1">1º turno</option><option value="2">2º turno</option></select></div>
+            <div class="map-control map-scope-control"><label for="mapUfFilter">ABRANGÊNCIA</label><select id="mapUfFilter"></select></div>
+            <fieldset class="map-candidate-toggle"><legend>COLORIR POR</legend>
+              <label><input type="radio" name="mapCandidate" value="13" checked><span class="candidate-dot candidate-red"></span>Nº 13</label>
+              <label><input type="radio" name="mapCandidate" value="22"><span class="candidate-dot candidate-green"></span>Nº 22</label>
+            </fieldset>
+          </div>
           <div class="map-layout">
             <article class="map-card">
-              <div class="card-heading"><div><span class="card-eyebrow">DISTRIBUIÇÃO DOS VOTOS VÁLIDOS</span><h3>Participação do candidato nº 13</h3></div><span class="chart-tag">TURNO SELECIONADO</span></div>
+              <div class="card-heading"><div><span class="card-eyebrow">DISTRIBUIÇÃO DOS VOTOS VÁLIDOS</span><h3 id="mapColorTitle">Participação de Lula (13)</h3></div><span class="chart-tag">TURNO SELECIONADO</span></div>
+              <div id="mapExteriorInfo" class="map-exterior-info" hidden></div>
               <svg id="brMap" class="brazil-map" role="group" viewBox="0 0 560 520" aria-label="Mapa do Brasil dividido por unidades da Federação"></svg>
               <div class="map-status" id="mapHover" aria-live="polite">Passe o cursor sobre uma UF ou selecione um estado.</div>
-              <div class="map-legend"><span>Menor percentual</span><span class="map-gradient" aria-hidden="true"></span><span>Maior percentual</span></div>
-              <p class="map-caption">A tonalidade indica apenas a participação do número 13 entre os votos válidos do turno escolhido. Não representa probabilidade, desempenho relativo ao histórico nem suspeita. <a href="https://github.com/henriquemalvar/br-geojson" target="_blank" rel="noopener noreferrer">Malha IBGE (CC0) ↗</a></p>
+              <div class="map-legend"><span>Menor percentual</span><span class="map-gradient candidate-13" id="mapGradient" aria-hidden="true"></span><span>Maior percentual</span></div>
+              <p class="map-caption"><span id="mapColorExplanation">Vermelho indica participação do nº 13 e verde do nº 22, conforme a escolha acima.</span> <a href="https://github.com/henriquemalvar/br-geojson" target="_blank" rel="noopener noreferrer">Malha IBGE (CC0) ↗</a></p>
             </article>
             <article class="vote-card">
               <span class="card-eyebrow">VOTAÇÃO PRESIDENCIAL NO RECORTE</span>
@@ -121,6 +131,7 @@
       <div class="comparison-scroll"><table class="comparison-table"><thead><tr><th scope="col">Indicador</th><th scope="col">2022 · 1º</th><th scope="col">2022 · 2º</th><th scope="col">2026 · 1º</th><th scope="col">2026 · 2º</th></tr></thead><tbody id="comparisonBody"></tbody></table></div>
       <div class="comparison-explainer"><span class="explainer-symbol">i</span><p>As regras de identificação, modelos de urna, cargos em disputa e composição das seções mudaram entre os anos. Comparações diretas exigem esses controles. Um traço (—) significa <strong>dado ainda não disponível</strong>, não valor zero.</p></div>
     <div class="delta-header"><div><span class="card-eyebrow">MUDANÇAS ARITMÉTICAS</span><h3>O que mudou de um turno para outro?</h3><p>Além dos quatro resultados lado a lado, veja quanto cada indicador variou em cada eleição e como essas variações diferem entre 2022 e 2026.</p></div></div>
+      <div class="change-legend"><span><i class="change-swatch change-plus"></i> Azul = aumento</span><span><i class="change-swatch change-minus"></i> Vermelho = redução</span><span><i class="change-swatch change-zero"></i> Cinza = sem variação ou sem dados</span></div>
       <div class="comparison-scroll"><table class="comparison-table delta-table"><thead><tr><th scope="col">Indicador</th><th scope="col">Entre turnos · 2022<small>2º menos 1º turno</small></th><th scope="col">Entre turnos · 2026<small>2º menos 1º turno</small></th><th scope="col">Diferença entre as variações<small>2026 menos 2022</small></th><th scope="col">Entre anos · 1º turno<small>2026 menos 2022</small></th><th scope="col">Entre anos · 2º turno<small>2026 menos 2022</small></th></tr></thead><tbody id="deltaBody"></tbody></table></div>
       <div class="comparison-explainer"><span class="explainer-symbol">i</span><p>As colunas “Entre turnos” mostram quanto o resultado aumentou ou diminuiu do 1º para o 2º turno de cada ano. “Diferença entre as variações” compara essas mudanças de 2022 e 2026. “Entre anos” compara o mesmo turno nas duas eleições. Para percentuais, mostramos <strong>pontos percentuais (p.p.)</strong>; para comparecimento, pessoas. Sinal positivo significa aumento, não avaliação favorável. <strong>Essas diferenças não são testes de significância estatística</strong> nem evidência isolada de irregularidade.</p></div>
       <div class="absolute-header"><span class="card-eyebrow">QUANTIDADES ABSOLUTAS</span><h3>Como mudaram os números de votos?</h3><p>As mesmas comparações, agora em votos e eleitores, sem arredondar percentuais para estimar quantidades.</p></div>
