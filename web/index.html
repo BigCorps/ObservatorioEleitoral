@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=contorno-horarios-20261027">
-  <script src="./app.js?v=contorno-horarios-20261027" defer></script>
+  <link rel="stylesheet" href="./styles.css?v=ranking-discrepancias-20261027">
+  <script src="./app.js?v=ranking-discrepancias-20261027" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#conteudo">Pular para os dados</a>
@@ -106,7 +106,15 @@
     <section class="states-section" id="estados"><div class="wrap">
       <div class="section-intro"><div><span class="section-kicker">02 / BRASIL EM PERSPECTIVA</span><h2>Explore os 27 estados</h2><p>Compare as 27 UFs e selecione “Exterior (ZZ)” no filtro principal para analisar os votos fora do país.</p></div></div>
       <div class="states-layout"><div class="states-lead"><span class="eyebrow-small">O QUE OBSERVAR</span><h3>Uma diferença chama a atenção.<br><em>O contexto explica?</em></h3><p>Variações de comparecimento, votos brancos e nulos, biometria e horários têm explicações possíveis. O estudo mostra os números e documenta o que ainda precisa de conferência.</p><div class="attention-card"><strong>Importante</strong><p>Correlação não é prova de fraude, e diferenças estaduais não revelam como votou uma pessoa sem biometria.</p></div></div>
-      <article class="states-card"><div class="card-heading"><div><span class="card-eyebrow">CLASSIFICAÇÃO POR UF</span><h3 id="rankingTitle">Abstenção por estado</h3></div><div class="mini-filter"><label for="rankingMetric">Ordenar por</label><select id="rankingMetric"><option value="pct_abstencao">Abstenção</option><option value="pct_brancos">Brancos</option><option value="pct_nulos">Nulos</option><option value="pct_hab_sem_biometria_log">Sem biometria cadastrada</option><option value="pct_hab_manual_apos_falha_log">Biometria não reconhecida</option><option value="pct_votos_apos_17h">Após 17h</option></select></div></div><div class="ranking-head"><span>UF</span><span>PERCENTUAL</span></div><div id="stateRanking" class="ranking-list" aria-label="Estados ordenados por indicador"></div><div class="ranking-foot">Clique em um estado para atualizar o painel superior.</div></article>
+      <article class="states-card"><div class="card-heading"><div><span class="card-eyebrow">CLASSIFICAÇÃO POR UF</span><h3 id="rankingTitle">Abstenção por estado</h3></div><div class="mini-filter"><label for="rankingMetric">Ordenar por</label><select id="rankingMetric"><option value="pct_abstencao">Abstenção</option><option value="pct_brancos">Brancos</option><option value="pct_nulos">Nulos</option><option value="pct_hab_sem_biometria_log">Sem biometria cadastrada</option><option value="pct_hab_manual_apos_falha_log">Biometria não reconhecida</option><option value="pct_votos_apos_17h">Após 17h</option></select></div></div><div class="ranking-head"><span>UF</span><span>PERCENTUAL</span></div><div id="stateRanking" class="ranking-list" aria-label="Estados ordenados por indicador"></div>
+      <div id="rankingTotal" class="ranking-total" aria-live="polite" aria-label="Resumo geral das 27 UFs">
+        <div class="ranking-total-head">RESUMO DAS 27 UFs <span>Fora da rolagem</span></div>
+        <div class="ranking-total-values"><div><small>Quantidade total</small><strong id="rankingTotalCount">—</strong></div>
+        <div><small>Percentual geral ponderado</small><strong id="rankingTotalPercent">—</strong></div></div>
+        <p id="rankingTotalNote">Percentuais estaduais não são somados: recalculamos o indicador a partir dos registros totais.</p>
+        <div id="rankingNational" class="ranking-national" hidden></div>
+      </div>
+      <div class="ranking-foot">Clique em um estado para atualizar o painel superior. O exterior não aparece na classificação das 27 UFs.</div></article>
       </div>
     </div></section>
 
@@ -140,6 +148,20 @@
         <p>Confira o que as reconciliações entre fontes encontraram. Uma diferença em registros não equivale automaticamente a voto irregular.</p></div>
         <a class="audit-method-link" href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/docs/metodologia.md" target="_blank" rel="noopener noreferrer">Como os testes funcionam ↗</a></div>
         <div class="audit-status" id="auditStatusCards" aria-live="polite"></div>
+        <article class="audit-focus" aria-labelledby="auditFocusTitle">
+          <div class="audit-focus-top"><div><span class="card-eyebrow">DIFERENÇAS AINDA SEM EXPLICAÇÃO</span>
+            <h3 id="auditFocusTitle">O que falta esclarecer nas conferências?</h3></div>
+            <span id="auditFocusYear" class="comparison-chip">2022 · dois turnos</span></div>
+          <div class="audit-focus-grid">
+            <div class="audit-focus-main"><span class="audit-focus-label">Apontamentos nos testes</span>
+              <strong id="auditUnexplained">—</strong><small id="auditTestsCount">— verificações com pendências</small></div>
+            <div><span class="audit-focus-label">Votos comprovadamente afetados</span><strong id="auditVotesAffected">Não determinado</strong></div>
+            <div><span class="audit-focus-label">Percentual do total de votos</span><strong id="auditVotesPercent">Não calculável</strong></div>
+          </div>
+          <p class="audit-focus-explainer" id="auditFocusExplanation">As diferenças podem ser de contagem operacional ou de campos técnicos. Não se sabe quantos votos únicos seriam afetados.</p>
+          <div id="auditFocusBreakdown" class="audit-focus-breakdown"></div>
+          <p class="audit-focus-source">Abaixo, a tabela completa permite conferir os registros examinados e as diferenças por tipo de teste. <a id="auditFocusLink" href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/resultados/2022/reconciliacao_resumo.csv" target="_blank" rel="noopener noreferrer">Abrir os números originais ↗</a></p>
+        </article>
         <div class="audit-report">
           <div class="audit-report-heading"><div><span class="card-eyebrow">RESUMO DAS RECONCILIAÇÕES PUBLICADAS</span><h3 id="auditTableTitle">Verificações documentais</h3></div><span class="comparison-chip" id="auditCoverageChip">Cobertura em conferência</span></div>
           <p id="auditTableNote" class="audit-note">As ocorrências abaixo são contagens de comparações, não contagens de votos, seções exclusivas ou prova de fraude. Um mesmo registro pode aparecer em mais de um teste.</p>

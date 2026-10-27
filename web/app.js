@@ -262,6 +262,57 @@ function renderTimeline() {
   chart.setAttribute('aria-label','Distribuição dos logs das 27 UFs a cada 15 minutos em '+state.year+', '+state.round+'º turno');
   setText('timelineNote','Curva de 15 minutos apenas das 27 UFs, em horário de Brasília. Os votos do exterior são excluídos deste gráfico de horários. Votações após 17h podem ser regulares.');
 }
+function rankingDenominator(year,round,uf,field) {
+  const votes=voteData(year,round,uf);
+  if(['pct_abstencao','pct_brancos','pct_nulos'].includes(field)){
+    if(!votes)return null;
+    return field==='pct_abstencao'?votes.electorate:votes.turnout;
+  }
+  if(field==='pct_votos_apos_17h')return technicalCount(year,round,uf,'temporal','votos');
+  if(field==='pct_hab_sem_biometria_log'||field==='pct_hab_manual_apos_falha_log'){
+    const keys=['log_votantes_biometria','log_votantes_manual_apos_falha',
+      'log_votantes_sem_biometria_cadastrada','log_votantes_sem_etapa_biometrica'];
+    const values=keys.map(k=>technicalCount(year,round,uf,'biometry',k));
+    if(values.some(v=>v===null))return null;
+    return values.reduce((sum,v)=>sum+v,0);
+  }
+  return null;
+}
+function renderRankingTotal(metric,availableRows) {
+  const countEl=document.getElementById('rankingTotalCount');
+  const pctEl=document.getElementById('rankingTotalPercent');
+  const note=document.getElementById('rankingTotalNote');
+  const national=document.getElementById('rankingNational');
+  national.replaceChildren();
+  national.hidden=true;
+  const seen=[];
+  for(const {uf} of availableRows){
+    const n=metricCount(state.year,state.round,uf,metric);
+    const d=rankingDenominator(state.year,state.round,uf,metric);
+    if(n===null||d===null||d<=0||n<0||n>d)continue;
+    seen.push({uf,n,d});
+  }
+  if(!seen.length){
+    countEl.textContent='—';pctEl.textContent='—';
+    note.textContent='Sem registros suficientes para esse indicador e turno. Ausência de dados não significa zero.';
+    return;
+  }
+  const n=seen.reduce((sum,r)=>sum+r.n,0);
+  const d=seen.reduce((sum,r)=>sum+r.d,0);
+  countEl.textContent=number(n)+' '+countUnit(metric);
+  pctEl.textContent=percent(n/d*100);
+  const scope=seen.length===27?'27 UFs':'somente '+seen.length+' das 27 UFs com dados';
+  note.textContent='Total de '+scope+'. Percentual calculado por '+number(n)+' ÷ '+number(d)+', sem somar os percentuais individuais. '+(metric.startsWith('pct_hab_')?'Base: habilitações classificadas nos logs.':metric==='pct_votos_apos_17h'?'Base: votações registradas nos logs.':metric==='pct_abstencao'?'Base: eleitores aptos.':'Base: eleitores que compareceram.');
+  if(['pct_abstencao','pct_brancos','pct_nulos'].includes(metric)&&seen.length===27){
+    const br=metricCount(state.year,state.round,'BR',metric);
+    const denom=rankingDenominator(state.year,state.round,'BR',metric);
+    if(br!==null&&denom>0){
+      national.hidden=false;
+      national.append(node('span',null,'Brasil com exterior (ZZ):'),
+        node('strong',null,number(br)+' '+countUnit(metric)+' · '+percent(br/denom*100)));
+    }
+  }
+}
 function renderRanking() {
   const metric=state.rankingMetric;
   const list=document.getElementById('stateRanking');
@@ -270,8 +321,10 @@ function renderRanking() {
   const rows=Object.keys(ufNames).filter(uf=>uf!=='BR'&&uf!=='ZZ').map(uf=>({uf,value:metricValue(state.year,state.round,uf,metric)})).filter(x=>x.value!==null).sort((a,b)=>b.value-a.value);
   if(!rows.length){
     list.append(node('p','empty-chart','Esse indicador depende de logs ainda não disponíveis para o turno selecionado.'));
+    renderRankingTotal(metric,rows);
     return;
   }
+  renderRankingTotal(metric,rows);
   const max=Math.max(1,...rows.map(x=>x.value));
   rows.forEach(({uf,value})=>{
     const row=node('button','rank-row'+(uf===state.uf?' active':''));row.type='button';
@@ -676,6 +729,43 @@ function renderPresidentialVotes() {
     table.append(tr);
   }
 }
+function renderAuditFocus(rows) {
+  const selected=rows.filter(r=>{
+    const found=numeric(r.divergencias),explained=numeric(r.explicadas);
+    return found!==null&&explained!==null&&found>explained;
+  });
+  const remaining=selected.reduce((total,r)=>total+Number(r.divergencias)-Number(r.explicadas),0);
+  setText('auditFocusYear',state.year==='2022'?'2022 · dois turnos':'2026 · apenas 1º turno');
+  setText('auditUnexplained',number(remaining));
+  setText('auditTestsCount',number(selected.length)+' verificações com apontamentos pendentes');
+  setText('auditVotesAffected','Não determinado');
+  setText('auditVotesPercent','Não calculável');
+  setText('auditFocusExplanation','Esses '+number(remaining)+' apontamentos são diferenças não explicadas em testes de consistência de '+state.year+'. Podem envolver o mesmo registro em mais de uma comparação. Incluem campos biométricos e divergências de contadores dos logs: NÃO são '+number(remaining)+' votos identificados como irregulares. Sem detalhamento individual validado, não é possível estabelecer o número de votos únicos envolvidos nem sua porcentagem no resultado.');
+  const link=document.getElementById('auditFocusLink');
+  link.href='https://github.com/BigCorps/ObservatorioEleitoral/blob/main/resultados/'+state.year+'/reconciliacao_resumo.csv';
+  const breakdown=document.getElementById('auditFocusBreakdown');
+  breakdown.replaceChildren();
+  const titleFor=r=>{
+    if(r.teste==='B2')return 'Campos de biometria entre versões do BU';
+    if(r.campo==='biometria_nh_vs_liberacao_manual_no_log')return 'Biometria: boletim × registro da urna';
+    if(r.campo==='comparecimento_vs_votos_computados')return 'Comparecimento: boletim × registro da urna';
+    if(r.campo==='comparecimento_vs_votos_presidente_mais_nulos_suspensao')return 'Comparecimento: conferência alternativa dos registros';
+    return r.teste+' · '+r.campo;
+  };
+  for(const r of selected){
+    const residual=numeric(r.divergencias)-numeric(r.explicadas);
+    const checked=numeric(r.registros_comparados);
+    const item=node('div','audit-breakdown-row');
+    item.append(node('span','audit-breakdown-name',titleFor(r)),
+      node('strong',null,number(residual)+' apontamentos'));
+    const ratio=node('small',null,checked>0
+      ? percent(residual/checked*100)+' dos '+number(checked)+' registros comparados neste teste'
+      : 'Base não disponível');
+    item.append(ratio);
+    breakdown.append(item);
+  }
+  if(!selected.length)breakdown.append(node('p',null,'Nenhum apontamento pendente registrado nos testes resumidos desta base.'));
+}
 function renderAudit() {
   const cards=document.getElementById('auditStatusCards');
   cards.replaceChildren();
@@ -688,6 +778,7 @@ function renderAudit() {
   record('ELEIÇÕES DE 2026 · 1º TURNO','Processado','As verificações técnicas publicadas correspondem ao primeiro turno.','');
   record('ELEIÇÕES DE 2026 · 2º TURNO','Dados técnicos pendentes','Resultados por seção disponíveis; BU e logs ainda não integram as verificações técnicas desta base.','audit-pending');
   const rows=data.auditsByYear[state.year]||[];
+  renderAuditFocus(rows);
   setText('auditTableTitle','Testes documentais de '+state.year+(state.year==='2022'?' · dois turnos':' · primeiro turno'));
   setText('auditCoverageChip',state.year==='2022'?'2022: ambos os turnos':'2026: apenas primeiro turno');
   setText('auditTableNote','Quadro nacional histórico de '+state.year+(state.year==='2022'?' (dados dos dois turnos).':' (somente o 1º turno).')+' Não é filtrado por UF, pois o resumo oficializado no repositório está agregado por ano. A tabela apresenta testes com diferenças, explicadas ou pendentes; cada linha conta comparações, não seções únicas nem votos irregulares.');

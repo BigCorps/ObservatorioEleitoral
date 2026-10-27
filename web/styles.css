@@ -222,3 +222,36 @@ html{scroll-padding-bottom:calc(var(--dock-current-height) + 20px)}
 .vote-card>.map-caption{margin-top:auto;background:#f1f8f3;border:1px solid #dcece2;border-radius:10px;padding:15px;color:#52757a;font-size:12px;line-height:1.7}
 .vote-card>.map-caption strong{display:block;color:#2a575b;margin-bottom:6px}
 .vote-card>.map-caption a{display:inline-block;margin-top:9px}
+
+/* Totais de classificação permanecem visíveis fora do painel rolável por UF. */
+.ranking-total{margin-top:14px;padding:15px 15px 12px;border:1px solid #cce1d8;border-radius:9px;background:#f2f8f5}
+.ranking-total-head{font-size:10px;letter-spacing:.09em;font-weight:900;color:#3c7770;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.ranking-total-head span{color:#9badad;font-weight:600;letter-spacing:0;font-size:10px}
+.ranking-total-values{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.ranking-total-values small{display:block;font-size:10px;color:#6a8184;line-height:1.5}
+.ranking-total-values strong{display:block;margin-top:4px;color:#194d50;font:800 clamp(13px,1.35vw,18px)/1.35 Manrope,sans-serif;overflow-wrap:anywhere}
+.ranking-total>p{font-size:11px;line-height:1.65;color:#617b7d;margin:13px 0 0}
+.ranking-national{border-top:1px solid #d4e7df;padding-top:11px;margin-top:11px;display:flex;justify-content:space-between;gap:12px;font-size:11px;color:#597573}
+.ranking-national strong{font-size:12px;color:#24565b;text-align:right}
+.ranking-national[hidden]{display:none}
+/* Card de apontamentos sem confundir registros técnicos, votos e seções. */
+.audit-focus{margin-bottom:19px;background:#fff;border:1px solid #d9e6e1;padding:23px;border-radius:14px}
+.audit-focus-top{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}
+.audit-focus-top h3{margin:8px 0 0;font-size:clamp(18px,2.4vw,23px);color:#234851}
+.audit-focus-grid{display:grid;grid-template-columns:1.15fr 1fr 1fr;gap:12px;margin:19px 0}
+.audit-focus-grid>div{background:#f5f9f7;border-radius:9px;padding:16px;min-width:0}
+.audit-focus-grid .audit-focus-main{background:#edf4f1}
+.audit-focus-grid strong{font:800 clamp(16px,2.1vw,26px)/1.3 Manrope,sans-serif;color:#244c54;display:block;margin:7px 0;overflow-wrap:anywhere}
+.audit-focus-grid .audit-focus-main strong{font-size:clamp(30px,4vw,42px)}
+.audit-focus-label{font-size:11px;color:#688084;font-weight:700}
+.audit-focus-grid small{font-size:11px;color:#6c8585}
+.audit-focus-explainer{line-height:1.7;font-size:13px;color:#5c7379;margin:14px 0}
+.audit-focus-breakdown{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.audit-breakdown-row{border:1px solid #e0e9e5;border-radius:8px;padding:13px;display:grid;grid-template-columns:1fr auto;gap:5px 10px;align-items:center}
+.audit-breakdown-name{font-size:12px;color:#31545a;font-weight:700}
+.audit-breakdown-row strong{font-size:12px;color:#5b4040;white-space:nowrap}
+.audit-breakdown-row small{grid-column:1/-1;color:#778b8c;font-size:11px}
+.audit-focus-source{font-size:11px;line-height:1.6;color:#697e81;margin:14px 0 0}
+.audit-focus-source a{color:#087e71;text-decoration:underline}
+@media(max-width:780px){.audit-focus-grid{grid-template-columns:1fr 1fr}.audit-focus-main{grid-column:1/-1}.audit-focus-breakdown{grid-template-columns:1fr}}
+@media(max-width:520px){.ranking-total-values{grid-template-columns:1fr 1fr;gap:9px}.ranking-national{flex-direction:column;gap:5px}.ranking-national strong{text-align:left}.audit-focus-grid{grid-template-columns:1fr}.audit-focus-main{grid-column:auto}.audit-focus{padding:16px}.audit-breakdown-row{grid-template-columns:1fr}.audit-breakdown-row strong{white-space:normal}}
