@@ -1,0 +1,30 @@
+=== logd.dat: 3705 linhas do dia; ids={'67305985': 3705}
+    {'Urna pronta para receber votos': 2, 'Eleitor foi habilitado': 190, 'Voto confirmado para [Presidente]': 190, 'O voto do eleitor foi computado': 189, 'Inicio do Encerramento': 1}
+      07:10:43 INFO   67305985 LOGD  Urna ligada em 02/10/2022 às 07:09:56
+      07:11:25 INFO   67305985 GAP   Iniciando aplicação - Oficial - 1º turno
+      07:11:25 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2011
+      07:11:34 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2011
+      07:11:38 INFO   67305985 GAP   Modo de carga da UE - Votação
+      07:11:38 INFO   67305985 GAP   Município: 92916
+      07:11:38 INFO   67305985 GAP   Zona Eleitoral: 0020
+      07:11:38 INFO   67305985 GAP   Seção Eleitoral: 0107
+      07:11:45 INFO   67305985 GAP   Serial de votação da MV: F11A08E1 17/09/2022 às 13:38:03 em RGOWGED08
+      07:12:25 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      07:12:53 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 1º turno
+      08:00:01 INFO   67305985 VOTA  Urna pronta para receber votos
+      14:55:56 INFO   67305985 LOGD  Urna ligada em 02/10/2022 às 14:55:10
+      14:56:38 INFO   67305985 GAP   Iniciando aplicação - Oficial - 1º turno
+      14:56:38 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2011
+      14:56:49 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2011
+      14:56:53 INFO   67305985 GAP   Modo de carga da UE - Votação
+      14:56:53 INFO   67305985 GAP   Município: 92916
+      14:56:53 INFO   67305985 GAP   Zona Eleitoral: 0020
+      14:56:53 INFO   67305985 GAP   Seção Eleitoral: 0107
+      14:56:58 INFO   67305985 GAP   Serial de votação da MV: F11A08E1 17/09/2022 às 13:38:03 em RGOWGED08
+      14:57:38 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      14:58:08 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 1º turno
+      15:00:04 INFO   67305985 VOTA  Urna pronta para receber votos
+      17:03:14 ERRO   67305985 VOTA  Digitado título inválido para o registro de mesário
+      17:04:34 ERRO   67305985 VOTA  Digitado título inválido para o registro de mesário
+      17:04:42 INFO   67305985 VOTA  Inicio do Encerramento
+      17:04:43 INFO   67305985 VOTA  Gerando relatório [BU] [INÍCIO]

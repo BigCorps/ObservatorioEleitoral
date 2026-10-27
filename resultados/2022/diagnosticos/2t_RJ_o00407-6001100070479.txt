@@ -1,0 +1,31 @@
+=== logd.dat: 4238 linhas do dia; ids={'2177183': 4238}
+    {'Urna pronta para receber votos': 2, 'Eleitor foi habilitado': 348, 'Voto confirmado para [Presidente]': 348, 'O voto do eleitor foi computado': 347, 'Inicio do Encerramento': 1}
+      07:20:37 INFO   2177183 LOGD  Urna ligada em 30/10/2022 às 07:20:16
+      07:20:56 INFO   2177183 GAP   Iniciando aplicação - Oficial - 2º turno
+      07:20:56 INFO   2177183 GAP   Identificação do Modelo de Urna: UE2020
+      07:21:05 INFO   2177183 GAP   Identificação do Modelo de Urna: UE2020
+      07:21:09 INFO   2177183 GAP   Modo de carga da UE - Votação
+      07:21:09 INFO   2177183 GAP   Município: 60011
+      07:21:09 INFO   2177183 GAP   Zona Eleitoral: 0007
+      07:21:09 INFO   2177183 GAP   Seção Eleitoral: 0479
+      07:21:13 INFO   2177183 GAP   Serial de votação da MV: AD39109A 16/09/2022 às 16:32:52 em ZRJ007WKS01
+      07:21:28 INFO   2177183 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      07:21:52 INFO   2177183 VOTA  Iniciando aplicação - Oficial - 2º turno
+      07:50:42 ERRO   2177183 VOTA  Digitado título inválido para o registro de mesário
+      08:00:01 INFO   2177183 VOTA  Urna pronta para receber votos
+      12:18:25 INFO   2177183 INITJE Urna desligada pela chave
+      12:19:56 INFO   2177183 LOGD  Urna ligada em 30/10/2022 às 12:19:35
+      12:20:14 INFO   2177183 GAP   Iniciando aplicação - Oficial - 2º turno
+      12:20:15 INFO   2177183 GAP   Identificação do Modelo de Urna: UE2020
+      12:20:24 INFO   2177183 GAP   Identificação do Modelo de Urna: UE2020
+      12:20:28 INFO   2177183 GAP   Modo de carga da UE - Votação
+      12:20:28 INFO   2177183 GAP   Município: 60011
+      12:20:28 INFO   2177183 GAP   Zona Eleitoral: 0007
+      12:20:28 INFO   2177183 GAP   Seção Eleitoral: 0479
+      12:20:33 INFO   2177183 GAP   Serial de votação da MV: AD39109A 16/09/2022 às 16:32:52 em ZRJ007WKS01
+      12:20:47 INFO   2177183 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      12:21:05 INFO   2177183 VOTA  Iniciando aplicação - Oficial - 2º turno
+      12:22:31 INFO   2177183 VOTA  Urna pronta para receber votos
+      17:06:33 ERRO   2177183 VOTA  Digitado título inválido para o registro de mesário
+      17:06:45 INFO   2177183 VOTA  Inicio do Encerramento
+      17:06:46 INFO   2177183 VOTA  Gerando relatório [BU] [INÍCIO]
