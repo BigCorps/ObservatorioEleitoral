@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=dock-audit-20261027">
-  <script src="./app.js?v=dock-audit-20261027" defer></script>
+  <link rel="stylesheet" href="./styles.css?v=contorno-horarios-20261027">
+  <script src="./app.js?v=contorno-horarios-20261027" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#conteudo">Pular para os dados</a>
@@ -56,7 +56,7 @@
           <article class="kpi"><span class="kpi-label">Biometria não reconhecida</span><strong id="kpiBiometry">—</strong><span id="kpiBiometryCount" class="kpi-count">—</span><span class="kpi-sub">Liberação manual após falha (log)</span></article>
           <article class="kpi"><span class="kpi-label">Biometria confirmada</span><strong id="kpiBioConfirmed">—</strong><span id="kpiBioConfirmedCount" class="kpi-count">—</span><span class="kpi-sub">Habilitações biométricas (log)</span></article>
           <article class="kpi"><span class="kpi-label">Votos após 17h</span><strong id="kpiLate">—</strong><span id="kpiLateCount" class="kpi-count">—</span><span class="kpi-sub">Percentual dos votos nos logs</span></article>
-          <article class="kpi"><span class="kpi-label">Primeiro → último voto</span><strong id="kpiClock">—</strong><span class="kpi-sub">Medianas das seções, hora de Brasília</span></article>
+          <article class="kpi"><span class="kpi-label">Primeiro → último voto</span><strong id="kpiClock">—</strong><span class="kpi-sub">Horários típicos das seções, hora de Brasília</span></article>
         </div>
         <div class="bio-explainer"><div><strong>Sem biometria cadastrada</strong><p>Eleitor sem registro biométrico no cadastro.</p></div><div><strong>Biometria não reconhecida</strong><p>Eleitor com cadastro, mas liberado pelo mesário após falha na leitura.</p></div><div><strong>Biometria confirmada</strong><p>Habilitação realizada com reconhecimento biométrico.</p></div></div>
         <p id="scopeDisclaimer" class="data-disclaimer">O recorte “Brasil” inclui as 27 UFs e o eleitorado do exterior (ZZ) nos totais eleitorais. Percentuais de biometria referem-se às habilitações registradas nos logs disponíveis e não permitem inferir como alguém votou.</p>
@@ -66,11 +66,9 @@
           <div class="map-layout">
             <article class="map-card">
               <div class="card-heading"><div><span class="card-eyebrow">DISTRIBUIÇÃO DOS VOTOS VÁLIDOS</span><h3 id="mapColorTitle">Quem recebeu mais votos entre 13 e 22?</h3></div><span class="chart-tag">TURNO SELECIONADO</span></div>
-              <div id="mapExteriorInfo" class="map-exterior-info" hidden></div>
               <svg id="brMap" class="brazil-map" role="group" viewBox="0 0 560 520" aria-label="Mapa do Brasil dividido por unidades da Federação"></svg>
               <div class="map-status" id="mapHover" aria-live="polite">Passe o cursor sobre uma UF ou selecione um estado.</div>
               <div class="map-legend"><span id="mapLegendStart">Lula (13)</span><span class="map-gradient map-bicolor" id="mapGradient" aria-hidden="true"></span><span id="mapLegendEnd">Número 22</span></div>
-              <p class="map-caption"><strong>Como interpretar as cores?</strong><span id="mapColorExplanation">Vermelho indica maior votação de Lula (13) e verde indica maior votação do nº 22, entre os dois candidatos.</span> <a href="https://github.com/henriquemalvar/br-geojson" target="_blank" rel="noopener noreferrer">Malha IBGE (CC0) ↗</a></p>
             </article>
             <article class="vote-card">
               <span class="card-eyebrow">VOTAÇÃO PRESIDENCIAL NO RECORTE</span>
@@ -79,6 +77,7 @@
               <div id="voteBars" class="candidate-bars" aria-live="polite"></div>
               <div id="voteSummary" class="vote-summary"></div>
               <p class="chart-note">No 1º turno, “Demais candidatos” reúne os votos válidos de outros concorrentes. Os percentuais usam votos válidos como denominador.</p>
+              <p class="map-caption"><strong>Como interpretar as cores?</strong><span id="mapColorExplanation">Vermelho indica maior votação de Lula (13) e verde indica maior votação do nº 22, entre os dois candidatos.</span> <a href="https://github.com/henriquemalvar/br-geojson" target="_blank" rel="noopener noreferrer">Malha IBGE (CC0) ↗</a></p>
             </article>
           </div>
           <article class="vote-history">

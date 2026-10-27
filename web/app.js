@@ -303,8 +303,8 @@ function renderComparison() {
     ['Biometria não reconhecida (log)','pct_hab_manual_apos_falha_log','percent'],
     ['Biometria confirmada (log)','pct_hab_biometrica_log','percent'],
     ['Votos após 17h (log)','pct_votos_apos_17h','percent'],
-    ['Primeiro voto (mediana)','mediana_primeiro_voto_h','time'],
-    ['Último voto (mediana)','mediana_ultimo_voto_h','time']
+    ['Primeiro voto (horário típico)','mediana_primeiro_voto_h','time'],
+    ['Último voto (horário típico)','mediana_ultimo_voto_h','time']
   ];
   const target=document.getElementById('comparisonBody');target.replaceChildren();
   for(const [label,field,type] of rows){
@@ -496,6 +496,65 @@ function setMapStatus(uf) {
   target.append(node('span',null,'Lula (13): '+(votes?pctOfValid(votes.v13,votes.valid):'—')));
   target.append(node('span',null,candidate22Name(state.year)+' (22): '+(votes?pctOfValid(votes.v22,votes.valid):'—')));
 }
+// Une as bordas externas da malha das 27 UFs, sem contornar fronteiras internas.
+// A malha publicada compartilha as mesmas coordenadas nas arestas entre estados.
+function nationalBorderPath(features,project) {
+  const edges=new Map();
+  const edgeId=(a,b)=>a<b?a+'|'+b:b+'|'+a;
+  for(const feature of features) {
+    for(const polygon of geoPolygons(feature.geometry)) {
+      for(const ring of polygon) {
+        for(let i=0;i<ring.length-1;i++) {
+          const a=ring[i].join(','),b=ring[i+1].join(',');
+          if(a===b)continue;
+          const key=edgeId(a,b);
+          const prev=edges.get(key);
+          if(prev)prev.count++;
+          else edges.set(key,{a,b,count:1});
+        }
+      }
+    }
+  }
+  const adjacency=new Map();
+  const link=(from,to)=>{
+    if(!adjacency.has(from))adjacency.set(from,[]);
+    adjacency.get(from).push(to);
+  };
+  const border=[];
+  for(const edge of edges.values()) {
+    if(edge.count!==1)continue;
+    border.push(edge);
+    link(edge.a,edge.b);link(edge.b,edge.a);
+  }
+  // Se a malha tiver vértices incompatíveis, não desenhar contorno falso.
+  if(!border.length||[...adjacency.values()].some(neighbors=>neighbors.length!==2))return '';
+  const visited=new Set();
+  const rings=[];
+  for(const edge of border){
+    const initial=edgeId(edge.a,edge.b);
+    if(visited.has(initial))continue;
+    const start=edge.a;
+    let current=start,previous=null;
+    const coords=[start];
+    for(let guard=0;guard<=border.length;guard++){
+      const neighbors=adjacency.get(current);
+      const next=neighbors[0]===previous?neighbors[1]:neighbors[0];
+      const k=edgeId(current,next);
+      if(visited.has(k))break;
+      visited.add(k);
+      coords.push(next);
+      previous=current;current=next;
+      if(current===start)break;
+    }
+    if(coords[coords.length-1]!==start)return '';
+    rings.push(coords);
+  }
+  if(visited.size!==border.length)return '';
+  return rings.map(ring=>ring.map((p,i)=>{
+    const [x,y]=project(p.split(',').map(Number));
+    return (i===0?'M':'L')+x+','+y;
+  }).join(' ')+' Z').join(' ');
+}
 function renderMap() {
   const mode=state.mapCandidate;
   const leader=mode==='lider';
@@ -506,16 +565,6 @@ function renderMap() {
   setText('mapColorExplanation',leader
     ? 'Cada UF aparece em vermelho quando Lula (13) teve mais votos e em verde quando o nº 22 teve mais votos. A intensidade representa a diferença entre eles. No 1º turno, veja também os demais candidatos à direita. O exterior entra nos totais nacionais, mas não aparece na malha.'
     : 'A tonalidade indica o percentual do nº '+mode+' entre os votos válidos: vermelho para 13 e verde para 22. Isso não significa irregularidade. O exterior está incluído nos totais nacionais, mas não aparece na malha.');
-  const exteriorInfo=document.getElementById('mapExteriorInfo');
-  exteriorInfo.hidden=state.uf!=='ZZ';
-  if(state.uf==='ZZ'){
-    const votes=voteData(state.year,state.round,'ZZ');
-    exteriorInfo.replaceChildren(
-      node('strong',null,'Exterior (ZZ) · votação fora do país'),
-      node('span',null,votes?number(votes.valid)+' votos válidos no '+state.round+'º turno de '+state.year:'Dados ainda não disponíveis'),
-      node('small',null,'O exterior não corresponde a um estado no mapa. Consulte os votos dos candidatos no painel à direita.')
-    );
-  }
   const svg=document.getElementById('brMap');svg.replaceChildren();
   const features=data.geometry.features;
   const points=features.flatMap(f=>geoPolygons(f.geometry).flat(2));
@@ -525,14 +574,15 @@ function renderMap() {
   const offsetX=(560-(maxX-minX)*scale)/2,offsetY=(520-(maxY-minY)*scale)/2;
   const project=([lon,lat])=>[(offsetX+(lon-minX)*scale).toFixed(1),(offsetY+(maxY-lat)*scale).toFixed(1)];
   const ns='http://www.w3.org/2000/svg';
-  let selectedPath=null;
+  const nationalOutline=nationalBorderPath(features,project);
+  let selectedPath=state.uf==='BR'?nationalOutline:null;
   const outline=document.createElementNS(ns,'path');
   outline.setAttribute('class','map-outline');
   outline.setAttribute('aria-hidden','true');
   outline.setAttribute('pointer-events','none');
   outline.setAttribute('fill','none');
   const showOutline=path=>{
-    if(path){outline.setAttribute('d',path.getAttribute('d'));outline.removeAttribute('display');}
+    if(path){outline.setAttribute('d',typeof path==='string'?path:path.getAttribute('d'));outline.removeAttribute('display');}
     else outline.setAttribute('display','none');
   };
   for(const feature of features) {
