@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=triagem-secoes-20261027">
-  <script src="./app.js?v=triagem-secoes-20261027" defer></script>
+  <link rel="stylesheet" href="./styles.css?v=triagem-integrada-20261027">
+  <script src="./app.js?v=triagem-integrada-20261027" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#conteudo">Pular para os dados</a>
@@ -37,7 +37,7 @@
           <div class="panel-line"></div>
           <div class="progress-item"><div><strong>2022 • 1º e 2º turnos</strong><span class="status-done">BU + logs</span></div><p>Resultados e análises técnicas processados; incompatibilidades documentadas.</p></div>
           <div class="progress-item"><div><strong>2026 • 1º turno</strong><span class="status-done">BU + logs</span></div><p>Processamento nacional concluído conforme a cobertura do repositório.</p></div>
-          <div class="progress-item"><div><strong>2026 • 2º turno</strong><span class="status-pending">Em atualização</span></div><p>Resultados oficiais por seção disponíveis; BU e logs ainda pendentes na referência publicada.</p></div>
+          <div class="progress-item"><div><strong>2026 • 2º turno</strong><span class="status-done">BU + logs</span></div><p>499.207 seções coletadas no Portal de Resultados com hash conferido; BU em CSV ainda não publicado pelo TSE.</p></div>
           <p class="panel-footnote">Situação declarada pelo projeto em 27/10/2026. O painel exibe “não disponível” quando falta evidência.</p>
         </aside>
       </div>
@@ -139,10 +139,9 @@
         <article class="method-card"><span class="method-num">03</span><h3>Resultados com limites</h3><p>Casos explicados, incompatibilidades restantes e dados pendentes são separados de achados meramente estatísticos.</p><a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/docs/limitacoes.md" target="_blank" rel="noopener noreferrer">Ler limitações ↗</a></article>
       </div>
       <div class="conclusion-box"><div><span class="eyebrow-small">A REGRA DO OBSERVATÓRIO</span><h3>Uma discrepância é uma pergunta.<br>Não uma sentença.</h3></div><p>Resultados fora do padrão podem justificar investigação documental adicional. Sozinhos, não demonstram irregularidade, causa ou intenção. Nosso compromisso é permitir que qualquer pessoa confira o caminho entre a fonte e a conclusão.</p></div>
-      <div class="document-links"><a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/docs/auditoria-2022.md" target="_blank" rel="noopener noreferrer">Auditoria 2022 ↗</a><a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/docs/auditoria-2026.md" target="_blank" rel="noopener noreferrer">Auditoria 2026 ↗</a><a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/docs/comparativo-historico.md" target="_blank" rel="noopener noreferrer">Comparativo completo ↗</a><a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/docs/perguntas-frequentes.md" target="_blank" rel="noopener noreferrer">Perguntas frequentes ↗</a></div>
+      <div class="document-links"><a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/docs/auditoria-2022.md" target="_blank" rel="noopener noreferrer">Auditoria 2022 ↗</a><a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/docs/auditoria-2026.md" target="_blank" rel="noopener noreferrer">Auditoria 2026 ↗</a><a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/docs/auditoria-2026-2turno.md" target="_blank" rel="noopener noreferrer">2º turno de 2026 ↗</a><a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/docs/comparativo-historico.md" target="_blank" rel="noopener noreferrer">Comparativo completo ↗</a><a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/docs/perguntas-frequentes.md" target="_blank" rel="noopener noreferrer">Perguntas frequentes ↗</a></div>
     </div></section>
   
-
     <section class="triagem-section" id="triagem" aria-label="Triagem exploratória por seção">
       <div class="wrap">
         <div class="section-intro"><div><span class="section-kicker">VERIFICAÇÃO POR SEÇÃO</span>
@@ -210,7 +209,16 @@
           </table></div>
           <p class="audit-source">Fontes: <a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/resultados/2022/reconciliacao_resumo.csv" target="_blank" rel="noopener noreferrer">2022 ↗</a> e <a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/resultados/2026/reconciliacao_resumo.csv" target="_blank" rel="noopener noreferrer">2026 ↗</a>. Até que existam registros individualizados completos e conferidos, o quadro é um resumo por tipo de teste, não uma relação exaustiva de seções.</p>
         </div>
-        <div class="audit-future"><strong>Quando os arquivos do 2º turno de 2026 forem processados</strong><p>Este quadro poderá apresentar as verificações daquele turno, compará-las com 2022 e permitir abrir evidências por UF, município, zona e seção. Cada caso deverá informar o resultado do teste, a explicação conhecida, a fonte e a situação da conferência. Casos estatísticos serão separados das incompatibilidades documentais.</p></div>
+        <div class="audit-report" id="discrepancias">
+          <div class="audit-report-heading"><div><span class="card-eyebrow">QUADRO DE DISCREPÂNCIAS POR CATEGORIA</span><h3 id="discTitle">Discrepâncias classificadas</h3></div><span class="comparison-chip" id="discChip">—</span></div>
+          <p class="audit-note">Quatro categorias: <strong>Diferença estatística</strong> (padrão numérico fora do esperado, não é erro documental), <strong>Diferença explicada</strong> (regra oficial documentada explica o caso), <strong>Incompatibilidade documental pendente</strong> (fontes oficiais divergem e não há explicação documentada) e <strong>Não verificado</strong> (dado oficial necessário ainda não publicado). Nenhuma categoria é prova de fraude. Votos só aparecem quando a diferença é uma contagem de votos demonstrável entre duas fontes.</p>
+          <div class="audit-status" id="discCards" aria-live="polite"></div>
+          <div class="comparison-scroll"><table class="comparison-table audit-table">
+            <thead><tr><th scope="col">Categoria · verificação</th><th scope="col">Turno</th><th scope="col">Apontamentos</th><th scope="col">Seções</th><th scope="col">Votos (se demonstrável)</th></tr></thead>
+            <tbody id="discTableBody"></tbody>
+          </table></div>
+          <p class="audit-source">Fonte: <a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/resultados/quadro_discrepancias.csv" target="_blank" rel="noopener noreferrer">quadro_discrepancias.csv ↗</a> · detalhes por seção em <code>resultados/ANO/incompatibilidades.csv</code>.</p>
+        </div>
       </div>
     </section>
 </main>

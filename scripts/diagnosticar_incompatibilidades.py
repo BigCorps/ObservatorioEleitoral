@@ -18,7 +18,7 @@ casos = duckdb.sql(f"""
   SELECT DISTINCT i.turno, i.uf, l.arquivo FROM read_csv('{RESULTADOS}/{ano}/incompatibilidades.csv') i
   JOIN read_parquet('{PROCESSADOS}/logs/{ano}_*.parquet', union_by_name=true) l
     ON l.turno=i.turno AND l.uf=i.uf AND l.cd_municipio=i.cd_municipio AND l.nr_zona=i.nr_zona AND l.nr_secao=i.nr_secao
-  WHERE i.teste='B6' AND i.classificacao <> 'Diferença explicada'
+  WHERE i.teste IN ('B6','B6o') AND i.classificacao <> 'Diferença explicada'
     AND i.campo IN ('comparecimento_vs_votos_computados', 'biometria_nh_vs_liberacao_manual_no_log')""").fetchall()
 for turno, uf, arq in casos:
     saida = pasta / f"{turno}t_{uf}_{arq}.txt"

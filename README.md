@@ -15,6 +15,7 @@ técnicos das urnas —, não demonstrar uma hipótese escolhida antes.
 | [docs/relatorio-publico.md](docs/relatorio-publico.md) | linguagem simples, com gráficos |
 | [docs/auditoria-2022.md](docs/auditoria-2022.md) | resultados reproduzidos dos dois turnos de 2022 |
 | [docs/auditoria-2026.md](docs/auditoria-2026.md) | resultados disponíveis de 2026 |
+| [docs/auditoria-2026-2turno.md](docs/auditoria-2026-2turno.md) | auditoria final do 2º turno de 2026 (cobertura, hashes, horários, biometria, discrepâncias, estudos externos) |
 | [docs/comparativo-historico.md](docs/comparativo-historico.md) | 2022 × 2026 |
 | [docs/metodologia.md](docs/metodologia.md) | fórmulas, regras de leitura, critérios |
 | [docs/fontes.md](docs/fontes.md) | URLs, versões (ETag), hashes, cobertura |
@@ -33,9 +34,10 @@ e `manifestos/cobertura_arquivos_urna.csv`. Em 26–27/10/2026:
   concluídas; processamento dos logs e BUs binários por UF em andamento/concluído conforme
   a cobertura registrada.
 - 2026, 1º turno: BU em CSV e tabelas oficiais processados; logs conforme cobertura.
-- 2026, 2º turno (25/10/2026): em 27/10/2026 só as tabelas oficiais **por seção** (Detalhe e
-  Votação por seção) estavam publicadas e foram processadas; BU em CSV, logs e arquivos das
-  urnas ainda não. O procedimento está pronto para ser reexecutado quando forem publicados.
+- 2026, 2º turno (25/10/2026): arquivos de urna (BU binário, log, `vsc`) coletados **seção a seção** no Portal de
+  Resultados do TSE — 499.207 de 499.207 seções, hash publicado conferido com o `vsc` e o `vsc` com BU e log;
+  reconciliação com o resultado oficial por seção. O BU em CSV do 2º turno ainda não está nos Dados Abertos: os
+  testes que dependem dele aparecem como "Não verificado" (`resultados/quadro_discrepancias.csv`).
 
 ## Como reproduzir
 
@@ -49,9 +51,12 @@ python scripts/baixar_tabelas.py 2022 2026                                  # 2.
 python -c "from observatorio import bweb; [bweb.converter(2022,t,uf) for t in (1,2) for uf in __import__('observatorio.config',fromlist=['x']).UFS_COM_EXTERIOR]"
 python scripts/processar_arquivos_urna.py 2022 1,2                          # 3. logs + BU binário (retomável)
 python scripts/processar_arquivos_urna.py 2026 1
+python scripts/processar_portal.py 2026 2                                   # 2º turno 2026: seção a seção no Portal de Resultados
 python scripts/executar_analises.py 2022                                    # 4. todos os testes
 python scripts/executar_analises.py 2026
 python -c "from observatorio import historico; historico.executar()"        # 5. comparação histórica
+python -c "from observatorio import testes_historicos as T; T.executar()"   # testes 2026 x 2022 (Holm)
+python scripts/comparar_estudos_externos.py [secoes_logs_brasil.parquet]   # confronto com pesquisas independentes
 python scripts/gerar_relatorios.py                                          # 6. documentos
 python -m pytest -q                                                         # testes automatizados
 ```

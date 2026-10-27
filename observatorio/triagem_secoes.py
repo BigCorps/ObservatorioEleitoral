@@ -210,6 +210,7 @@ def _resumir(ano: int, registros, ano_turnos: dict, max_exemplos: int):
                 elegiveis = [x for x in grupo if
                              (x[0].validos > 0 if teste in ("unanimidade", "qualquer") else
                               x[0].validos >= MIN_VALIDOS)
+                             and (teste != "pares25" or x[2]["referencia_pares"] != "indisponivel")
                              and (teste not in {"mudanca20", "mudanca30", "mudanca40", "virada13_22",
                                                "comparecimento20", "brancos_nulos15", "combinados"}
                                   or x[2]["comparacao_entre_turnos_aplicavel"])]

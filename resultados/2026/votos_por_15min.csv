@@ -106,3 +106,88 @@ turno,abrangencia,minuto_do_dia,faixa,votos
 1,ZZ (hora local),1080,18:00,68
 1,ZZ (hora local),1095,18:15,24
 1,ZZ (hora local),1110,18:30,7
+2,BR (Brasília),480,08:00,5583139
+2,BR (Brasília),495,08:15,5633259
+2,BR (Brasília),510,08:30,5193022
+2,BR (Brasília),525,08:45,5009019
+2,BR (Brasília),540,09:00,4943004
+2,BR (Brasília),555,09:15,5009848
+2,BR (Brasília),570,09:30,5036667
+2,BR (Brasília),585,09:45,4976331
+2,BR (Brasília),600,10:00,4929811
+2,BR (Brasília),615,10:15,4896580
+2,BR (Brasília),630,10:30,4782221
+2,BR (Brasília),645,10:45,4619421
+2,BR (Brasília),660,11:00,4426075
+2,BR (Brasília),675,11:15,4236831
+2,BR (Brasília),690,11:30,3980551
+2,BR (Brasília),705,11:45,3715914
+2,BR (Brasília),720,12:00,3498017
+2,BR (Brasília),735,12:15,3298761
+2,BR (Brasília),750,12:30,3101570
+2,BR (Brasília),765,12:45,2938206
+2,BR (Brasília),780,13:00,2852258
+2,BR (Brasília),795,13:15,2802167
+2,BR (Brasília),810,13:30,2739309
+2,BR (Brasília),825,13:45,2686639
+2,BR (Brasília),840,14:00,2682671
+2,BR (Brasília),855,14:15,2676071
+2,BR (Brasília),870,14:30,2634762
+2,BR (Brasília),885,14:45,2575031
+2,BR (Brasília),900,15:00,2537226
+2,BR (Brasília),915,15:15,2490764
+2,BR (Brasília),930,15:30,2409831
+2,BR (Brasília),945,15:45,2302775
+2,BR (Brasília),960,16:00,2195615
+2,BR (Brasília),975,16:15,2080110
+2,BR (Brasília),990,16:30,1629712
+2,BR (Brasília),1005,16:45,716791
+2,BR (Brasília),1020,17:00,30479
+2,BR (Brasília),1035,17:15,632
+2,BR (Brasília),1050,17:30,595
+2,BR (Brasília),1065,17:45,631
+2,BR (Brasília),1080,18:00,677
+2,BR (Brasília),1095,18:15,617
+2,BR (Brasília),1110,18:30,454
+2,BR (Brasília),1125,18:45,234
+2,BR (Brasília),1140,19:00,11
+2,ZZ (hora local),480,08:00,11489
+2,ZZ (hora local),495,08:15,13406
+2,ZZ (hora local),510,08:30,12495
+2,ZZ (hora local),525,08:45,11816
+2,ZZ (hora local),540,09:00,11454
+2,ZZ (hora local),555,09:15,11343
+2,ZZ (hora local),570,09:30,11742
+2,ZZ (hora local),585,09:45,12246
+2,ZZ (hora local),600,10:00,12344
+2,ZZ (hora local),615,10:15,12815
+2,ZZ (hora local),630,10:30,13000
+2,ZZ (hora local),645,10:45,13210
+2,ZZ (hora local),660,11:00,13125
+2,ZZ (hora local),675,11:15,13382
+2,ZZ (hora local),690,11:30,13249
+2,ZZ (hora local),705,11:45,12919
+2,ZZ (hora local),720,12:00,12671
+2,ZZ (hora local),735,12:15,12236
+2,ZZ (hora local),750,12:30,11870
+2,ZZ (hora local),765,12:45,11498
+2,ZZ (hora local),780,13:00,11074
+2,ZZ (hora local),795,13:15,10783
+2,ZZ (hora local),810,13:30,10372
+2,ZZ (hora local),825,13:45,9843
+2,ZZ (hora local),840,14:00,9680
+2,ZZ (hora local),855,14:15,9510
+2,ZZ (hora local),870,14:30,9215
+2,ZZ (hora local),885,14:45,8963
+2,ZZ (hora local),900,15:00,8461
+2,ZZ (hora local),915,15:15,8184
+2,ZZ (hora local),930,15:30,7623
+2,ZZ (hora local),945,15:45,7281
+2,ZZ (hora local),960,16:00,6618
+2,ZZ (hora local),975,16:15,6223
+2,ZZ (hora local),990,16:30,5124
+2,ZZ (hora local),1005,16:45,2931
+2,ZZ (hora local),1020,17:00,350
+2,ZZ (hora local),1035,17:15,29
+2,ZZ (hora local),1050,17:30,27
+2,ZZ (hora local),1065,17:45,11

@@ -1,10 +1,11 @@
 # Auditoria 2026 — Presidente
 
-_Gerado automaticamente por `scripts/gerar_relatorios.py` em 27/10/2026 05:05 UTC. Todos os números vêm de `resultados/2026/`. Ver método em `docs/metodologia.md`._
+_Gerado automaticamente por `scripts/gerar_relatorios.py` em 27/10/2026 19:23 UTC. Todos os números vêm de `resultados/2026/`. Ver método em `docs/metodologia.md`._
 
 ## Cobertura dos arquivos de urna (logs e BU binário)
 
 - 1º turno: 28 de 28 pacotes (27 UFs + exterior) processados; 499.207 seções lidas, 0 com falha de leitura, 31 sem log no pacote.
+- 2º turno: 28 de 28 pacotes (27 UFs + exterior) processados; 499.207 seções lidas, 0 com falha de leitura, 30 sem log no pacote.
 
 ## 1. Totais nacionais reproduzidos a partir das seções
 
@@ -32,6 +33,7 @@ Os totais nacionais publicados pelo TSE (histórico de totalização e detalhe p
 | teste | campo | fonte_a | fonte_b | registros_comparados | divergencias | explicadas | não_explicadas |
 |---|---|---|---|---|---|---|---|
 | A2 | presenca | BWEB | BUBIN | 499.207 | 1 | 0 | 1 |
+| A2o | presenca | DSEC+VSEC | BUBIN | 499.207 | 0 | 0 | 0 |
 | A3 | presenca | DSEC | BWEB | 499.248 | 42 | 42 | 0 |
 | B1 | comparecimento_vs_soma_votos | BWEB | BWEB | 499.206 | 0 | 0 | 0 |
 | B2 | aptos | BWEB | BUBIN | 499.206 | 0 | 0 | 0 |
@@ -58,6 +60,17 @@ Os totais nacionais publicados pelo TSE (histórico de totalização e detalhe p
 | B6 | biometria_nh_vs_liberacao_manual_no_log | BWEB | LOG | 499.176 | 3 | 0 | 3 |
 | B6 | comparecimento_vs_votos_computados | BWEB | LOG | 499.176 | 9 | 0 | 9 |
 | B6 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | BWEB | LOG | 499.176 | 154 | 148 | 6 |
+| B6o | comparecimento_vs_votos_computados | DSEC+VSEC | LOG | 499.177 | 6 | 0 | 6 |
+| B6o | comparecimento_vs_votos_presidente_mais_nulos_suspensao | DSEC+VSEC | LOG | 499.177 | 53 | 48 | 5 |
+| B7 | aptos | DSEC+VSEC | BUBIN | 499.207 | 0 | 0 | 0 |
+| B7 | brancos | DSEC+VSEC | BUBIN | 499.207 | 0 | 0 | 0 |
+| B7 | comparecimento | DSEC+VSEC | BUBIN | 499.207 | 0 | 0 | 0 |
+| B7 | nulos | DSEC+VSEC | BUBIN | 499.207 | 0 | 0 | 0 |
+| B7 | votos_nominais | DSEC+VSEC | BUBIN | 499.207 | 0 | 0 | 0 |
+| B7 | votos_por_candidato_soma_dif_abs | DSEC+VSEC | BUBIN | 499.207 | 0 | 0 | 0 |
+| B8 | habilitados_por_biografia_vs_manual_apos_falha | BUBIN | LOG | 995.791 | 6 | 0 | 6 |
+| B8 | habilitados_por_biometria | BUBIN | LOG | 995.791 | 8.346 | 8.330 | 16 |
+| B8 | sem_biometria_cadastrada | BUBIN | LOG | 995.791 | 3 | 0 | 3 |
 | C1 | aptos_vs_comp_mais_abst | BWEB | BWEB | 499.206 | 0 | 0 | 0 |
 | K1 | votos_votavel | BWEB | VSEC | 3.800.511 | 0 | 0 | 0 |
 | K2 | brancos | DSEC | VSEC | 998.414 | 0 | 0 | 0 |
@@ -72,7 +85,7 @@ Legenda: BWEB = BU publicado em CSV; BUBIN = arquivo .bu transmitido pela urna; 
 **Classificação:** Conferido (com diferenças explicadas e incompatibilidades listadas)
 
 - **O que verificamos?** Se o mesmo número aparece igual em todas as publicações oficiais que deveriam coincidir, seção a seção (BU em CSV, BU binário, detalhe por seção, votação por seção) e na soma por zona.
-- **O que os números mostram?** 19 de 32 comparações sem nenhuma divergência; 21 divergências ainda sem explicação documental (listadas abaixo).
+- **O que os números mostram?** 26 de 44 comparações sem nenhuma divergência; 57 divergências ainda sem explicação documental (listadas abaixo).
 - **O que significa?** Os votos publicados por seção são os mesmos do arquivo binário assinado gerado pela urna e das demais tabelas do TSE.
 - **Existe explicação conhecida?** As divergências explicadas decorrem de seções não instaladas, seções apuradas pelo Sistema de Apuração (cédulas), campos opcionais omitidos no exterior e eleitores de seções não instaladas incluídos nos aptos por zona.
 - **O que ainda não sabemos?** A verificação criptográfica das assinaturas dos arquivos (.vscmr) não foi feita nesta etapa.
@@ -103,6 +116,42 @@ Legenda: BWEB = BU publicado em CSV; BUBIN = arquivo .bu transmitido pela urna; 
 | B6 | 1 | RS | 89.036 | 83 | 44 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 279 | BWEB | 278 | LOG |
 | B6 | 1 | SP | 70.971 | 268 | 43 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 219 | BWEB | 220 | LOG |
 | B6 | 1 | SP | 71.072 | 2 | 35 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 247 | BWEB | 232 | LOG |
+| B6o | 2 | BA | 34.711 | 21 | 178 | comparecimento_vs_votos_computados | 234 | DSEC+VSEC | 233 | LOG |
+| B6o | 2 | BA | 35.653 | 173 | 235 | comparecimento_vs_votos_computados | 217 | DSEC+VSEC | 204 | LOG |
+| B6o | 2 | MA | 8.893 | 47 | 609 | comparecimento_vs_votos_computados | 224 | DSEC+VSEC | 188 | LOG |
+| B6o | 2 | PB | 21.750 | 2 | 254 | comparecimento_vs_votos_computados | 304 | DSEC+VSEC | 303 | LOG |
+| B6o | 2 | PI | 11.533 | 3 | 216 | comparecimento_vs_votos_computados | 259 | DSEC+VSEC | 258 | LOG |
+| B6o | 2 | RS | 89.060 | 17 | 191 | comparecimento_vs_votos_computados | 92 | DSEC+VSEC | 90 | LOG |
+| B6o | 2 | BA | 33.634 | 75 | 137 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 235 | DSEC+VSEC | 237 | LOG |
+| B6o | 2 | BA | 35.653 | 173 | 235 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 217 | DSEC+VSEC | 204 | LOG |
+| B6o | 2 | BA | 37.850 | 51 | 146 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 283 | DSEC+VSEC | 286 | LOG |
+| B6o | 2 | MA | 8.893 | 47 | 609 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 224 | DSEC+VSEC | 188 | LOG |
+| B6o | 2 | RS | 89.060 | 17 | 191 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 92 | DSEC+VSEC | 91 | LOG |
+| B8 | 1 | BA | 39.934 | 183 | 175 | habilitados_por_biografia_vs_manual_apos_falha | 17 | BUBIN | 16 | LOG |
+| B8 | 1 | RJ | 60.011 | 8 | 61 | habilitados_por_biografia_vs_manual_apos_falha | 38 | BUBIN | 37 | LOG |
+| B8 | 1 | SP | 71.072 | 2 | 35 | habilitados_por_biografia_vs_manual_apos_falha | 18 | BUBIN | 16 | LOG |
+| B8 | 2 | BA | 35.653 | 173 | 235 | habilitados_por_biografia_vs_manual_apos_falha | 33 | BUBIN | 21 | LOG |
+| B8 | 2 | MA | 8.893 | 47 | 609 | habilitados_por_biografia_vs_manual_apos_falha | 19 | BUBIN | 15 | LOG |
+| B8 | 2 | RS | 89.060 | 17 | 191 | habilitados_por_biografia_vs_manual_apos_falha | 12 | BUBIN | 11 | LOG |
+| B8 | 1 | BA | 39.934 | 183 | 175 | habilitados_por_biometria | 231 | BUBIN | 200 | LOG |
+| B8 | 1 | ES | 56.995 | 53 | 211 | habilitados_por_biometria | 98 | BUBIN | 97 | LOG |
+| B8 | 1 | MG | 44.458 | 103 | 221 | habilitados_por_biometria | 222 | BUBIN | 221 | LOG |
+| B8 | 1 | RJ | 58.971 | 87 | 184 | habilitados_por_biometria | 243 | BUBIN | 242 | LOG |
+| B8 | 1 | RJ | 60.011 | 8 | 61 | habilitados_por_biometria | 252 | BUBIN | 251 | LOG |
+| B8 | 1 | RN | 16.039 | 29 | 28 | habilitados_por_biometria | 205 | BUBIN | 204 | LOG |
+| B8 | 1 | RS | 89.036 | 83 | 44 | habilitados_por_biometria | 238 | BUBIN | 237 | LOG |
+| B8 | 1 | SP | 63.614 | 227 | 305 | habilitados_por_biometria | 262 | BUBIN | 261 | LOG |
+| B8 | 1 | SP | 64.254 | 291 | 346 | habilitados_por_biometria | 252 | BUBIN | 251 | LOG |
+| B8 | 1 | SP | 71.072 | 2 | 35 | habilitados_por_biometria | 219 | BUBIN | 206 | LOG |
+| B8 | 1 | SP | 71.072 | 260 | 37 | habilitados_por_biometria | 253 | BUBIN | 252 | LOG |
+| B8 | 2 | BA | 35.653 | 173 | 235 | habilitados_por_biometria | 159 | BUBIN | 158 | LOG |
+| B8 | 2 | MA | 8.893 | 47 | 609 | habilitados_por_biometria | 205 | BUBIN | 173 | LOG |
+| B8 | 2 | PB | 21.750 | 2 | 254 | habilitados_por_biometria | 263 | BUBIN | 262 | LOG |
+| B8 | 2 | PI | 11.533 | 3 | 216 | habilitados_por_biometria | 238 | BUBIN | 237 | LOG |
+| B8 | 2 | RS | 89.060 | 17 | 191 | habilitados_por_biometria | 78 | BUBIN | 77 | LOG |
+| B8 | 1 | BA | 39.934 | 183 | 175 | sem_biometria_cadastrada | 24 | BUBIN | 20 | LOG |
+| B8 | 1 | RJ | 58.971 | 87 | 184 | sem_biometria_cadastrada | 6 | BUBIN | 5 | LOG |
+| B8 | 2 | BA | 34.711 | 21 | 178 | sem_biometria_cadastrada | 78 | BUBIN | 77 | LOG |
 
 
 Diagnóstico individual de cada caso (estrutura do log: arquivos, urnas, eventos de contingência) em `resultados/2026/diagnosticos/`.
@@ -120,12 +169,23 @@ Diagnóstico individual de cada caso (estrutura do log: arquivos, urnas, eventos
 - **O que ainda não sabemos?** O log não registra a senha distribuída às 17h, portanto não é possível confirmar, eleitor a eleitor, que quem votou depois das 17h estava na fila.
 - **Como conferir?** `resultados/2026/temporal_por_uf.csv`, `secoes_horarios_atipicos.csv`, `votos_por_15min.csv`; gráfico `resultados/{ano}/graficos/votos_por_15min.png`.
 
+### 2º turno: votos antes das 8h e depois das 17h (horário de Brasília)
+
+**Classificação:** Conferido (distribuição descrita)
+
+- **O que verificamos?** Quantos votos concluídos o log registra fora do horário regular, após converter o relógio de cada urna para o horário de Brasília pelo fuso legal do município.
+- **O que os números mostram?** Em 497.896 seções com log (127.854.309 votos): 0 votos antes das 8h em 0 seções; 34.050 votos após as 17h (0,027%) em 29.609 seções; 1.993 após 18h; 11 após 19h.
+- **O que significa?** Votos depois das 17h são previstos em lei para quem estava na fila. Votos antes das 8h, se existirem, precisam ser examinados um a um (relógio, fuso, troca de urna).
+- **Existe explicação conhecida?** Fila às 17h (Res. 23.669/2021, art. 136, §§ 1º–2º). A distribuição por UF acompanha o tamanho das seções e o volume do 1º turno (5 cargos).
+- **O que ainda não sabemos?** O log não registra a senha distribuída às 17h, portanto não é possível confirmar, eleitor a eleitor, que quem votou depois das 17h estava na fila.
+- **Como conferir?** `resultados/2026/temporal_por_uf.csv`, `secoes_horarios_atipicos.csv`, `votos_por_15min.csv`; gráfico `resultados/{ano}/graficos/votos_por_15min.png`.
+
 ### Validação dos fusos horários
 
 **Classificação:** Pendente
 
 - **O que verificamos?** Se o fuso legal atribuído a cada município é coerente com o horário local do primeiro voto.
-- **O que os números mostram?** 5.571 combinações município×turno avaliadas; 3 divergentes.
+- **O que os números mostram?** 11.142 combinações município×turno avaliadas; 3 divergentes.
 - **O que significa?** Sem divergências, os horários convertidos são confiáveis; divergências indicariam erro de fuso ou relógio.
 - **Existe explicação conhecida?** Lista legal de municípios do oeste do AM em UTC-5 e Fernando de Noronha em UTC-2.
 - **O que ainda não sabemos?** Relógios individuais de urnas podem diferir do município; isso aparece como retrocesso de relógio ou horário atípico na seção.
@@ -141,6 +201,12 @@ Diagnóstico individual de cada caso (estrutura do log: arquivos, urnas, eventos
 | 1 | 20 | 5 | 0 | 0 | 0 |
 | 1 | 30 | 3 | 122 | 382 | 80 |
 | 1 | 30 | 5 | 3 | 15 | 3 |
+| 2 | 6 | 5 | 0 | 0 | 0 |
+| 2 | 10 | 5 | 0 | 0 | 0 |
+| 2 | 20 | 3 | 1 | 3 | 1 |
+| 2 | 20 | 5 | 0 | 0 | 0 |
+| 2 | 30 | 3 | 125601 | 402851 | 60275 |
+| 2 | 30 | 5 | 4378 | 23569 | 3689 |
 
 
 Intervalo = tempo entre dois registros consecutivos de voto concluído na mesma urna. Grade de sensibilidade com limiares de 6 a 30 s e mínimo de 3 ou 5 votos. Versão com intervalos entre habilitações em `resultados/2026/rajadas_sensibilidade_habilitacoes.csv`.
@@ -158,32 +224,43 @@ Intervalo = tempo entre dois registros consecutivos de voto concluído na mesma 
 - **O que ainda não sabemos?** O log de 2022 não identifica o motivo da falha (sujeira, desgaste, leitor); o modelo de urna influencia a taxa (ver Teste I).
 - **Como conferir?** `resultados/2026/biometria_por_uf.csv`, `biometria_modalidade_por_hora.csv`, `biometria_duracao_por_modalidade_modelo.csv`.
 
+### 2º turno: quem votou sem reconhecimento biométrico
+
+**Classificação:** Conferido
+
+- **O que verificamos?** Quantos eleitores com biometria cadastrada votaram após liberação manual (sem reconhecimento da digital) e se o log confirma o número do BU.
+- **O que os números mostram?** BU: 0 eleitores (0,00% do comparecimento) com biometria e não habilitados por ela. Nos logs processados: 111.965.700 votantes por biometria, 8.632.445 liberados manualmente após falha e 7.251.808 sem biometria cadastrada.
+- **O que significa?** A liberação manual é o procedimento previsto quando a digital não é reconhecida; o número no BU e no log coincide (Teste B6).
+- **Existe explicação conhecida?** Res.-TSE 23.669/2021, arts. 113–115 (até 4 leituras; depois ano de nascimento e digital do mesário).
+- **O que ainda não sabemos?** O log de 2022 não identifica o motivo da falha (sujeira, desgaste, leitor); o modelo de urna influencia a taxa (ver Teste I).
+- **Como conferir?** `resultados/2026/biometria_por_uf.csv`, `biometria_modalidade_por_hora.csv`, `biometria_duracao_por_modalidade_modelo.csv`.
+
 ## 5. Modelos de urna (Teste I)
 
 | turno | controle | indicador | diferenca_ingenua_pp | diferenca_controlada_pp | ic95_inf | ic95_sup | grupos_comparaveis | secoes_ref | secoes_outras |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | mesmo_local | pct_validos_22 | 0,489 | -0,016 | -0,114 | 0,088 | 5.243 | 22.416 | 21.726 |
-| 1 | mesmo_local | pct_validos_13 | -0,284 | 0,027 | -0,069 | 0,119 | 5.243 | 22.416 | 21.726 |
-| 1 | mesmo_local | pct_comparecimento | -0,172 | 0,120 | 0,019 | 0,214 | 5.243 | 22.416 | 21.726 |
-| 1 | mesmo_local | pct_brancos_nulos | 0,012 | 0,012 | -0,024 | 0,052 | 5.243 | 22.416 | 21.726 |
-| 1 | mesmo_local | pct_biometria_nh | -1,213 | -0,026 | -0,086 | 0,034 | 5.243 | 22.416 | 21.726 |
-| 1 | mesma_zona | pct_validos_22 | 0,489 | -0,055 | -0,386 | 0,284 | 1.048 | 63.329 | 84.411 |
-| 1 | mesma_zona | pct_validos_13 | -0,284 | -0,023 | -0,391 | 0,333 | 1.048 | 63.329 | 84.411 |
-| 1 | mesma_zona | pct_comparecimento | -0,172 | 0,080 | -0,071 | 0,217 | 1.048 | 63.329 | 84.411 |
-| 1 | mesma_zona | pct_brancos_nulos | 0,012 | 0,014 | -0,047 | 0,076 | 1.048 | 63.329 | 84.411 |
-| 1 | mesma_zona | pct_biometria_nh | -1,213 | -0,821 | -0,927 | -0,714 | 1.048 | 63.329 | 84.411 |
-| 1 | mesmo_municipio | pct_validos_22 | 0,489 | 0,266 | -0,346 | 0,969 | 879 | 76.226 | 110.528 |
-| 1 | mesmo_municipio | pct_validos_13 | -0,284 | -0,312 | -0,982 | 0,345 | 879 | 76.226 | 110.528 |
-| 1 | mesmo_municipio | pct_comparecimento | -0,172 | 0,146 | -0,057 | 0,306 | 879 | 76.226 | 110.528 |
-| 1 | mesmo_municipio | pct_brancos_nulos | 0,012 | -0,042 | -0,130 | 0,056 | 879 | 76.226 | 110.528 |
-| 1 | mesmo_municipio | pct_biometria_nh | -1,213 | -1,068 | -1,547 | -0,660 | 879 | 76.226 | 110.528 |
+| 1 | mesmo_local | pct_validos_22 | 0,489 | -0,016 | -0,113 | 0,084 | 5.243 | 22.416 | 21.726 |
+| 1 | mesmo_local | pct_validos_13 | -0,284 | 0,027 | -0,073 | 0,122 | 5.243 | 22.416 | 21.726 |
+| 1 | mesmo_local | pct_comparecimento | -0,172 | 0,120 | 0,025 | 0,216 | 5.243 | 22.416 | 21.726 |
+| 1 | mesmo_local | pct_brancos_nulos | 0,012 | 0,012 | -0,025 | 0,050 | 5.243 | 22.416 | 21.726 |
+| 1 | mesmo_local | pct_biometria_nh | -1,213 | -0,026 | -0,085 | 0,033 | 5.243 | 22.416 | 21.726 |
+| 1 | mesma_zona | pct_validos_22 | 0,489 | -0,055 | -0,380 | 0,288 | 1.048 | 63.329 | 84.411 |
+| 1 | mesma_zona | pct_validos_13 | -0,284 | -0,023 | -0,395 | 0,328 | 1.048 | 63.329 | 84.411 |
+| 1 | mesma_zona | pct_comparecimento | -0,172 | 0,080 | -0,061 | 0,221 | 1.048 | 63.329 | 84.411 |
+| 1 | mesma_zona | pct_brancos_nulos | 0,012 | 0,014 | -0,048 | 0,073 | 1.048 | 63.329 | 84.411 |
+| 1 | mesma_zona | pct_biometria_nh | -1,213 | -0,821 | -0,926 | -0,717 | 1.048 | 63.329 | 84.411 |
+| 1 | mesmo_municipio | pct_validos_22 | 0,489 | 0,266 | -0,386 | 0,989 | 879 | 76.226 | 110.528 |
+| 1 | mesmo_municipio | pct_validos_13 | -0,284 | -0,312 | -0,988 | 0,381 | 879 | 76.226 | 110.528 |
+| 1 | mesmo_municipio | pct_comparecimento | -0,172 | 0,146 | -0,070 | 0,308 | 879 | 76.226 | 110.528 |
+| 1 | mesmo_municipio | pct_brancos_nulos | 0,012 | -0,042 | -0,130 | 0,057 | 879 | 76.226 | 110.528 |
+| 1 | mesmo_municipio | pct_biometria_nh | -1,213 | -1,068 | -1,540 | -0,649 | 879 | 76.226 | 110.528 |
 
 ### UE2020 × demais modelos: proporção de votos do nº 22
 
 **Classificação:** Diferença estatística (controles fracos) / Conferido sem diferença (mesmo local)
 
 - **O que verificamos?** Se seções com urna modelo 2020 têm resultado diferente de seções com outros modelos, comparando seções próximas (mesmo local de votação, mesma zona, mesmo município).
-- **O que os números mostram?** Sem controle geográfico a diferença é grande (1º t.: 0,49 p.p.). No mesmo local: 1º t. -0,02 p.p. (IC95% -0,11 a 0,09). Na mesma zona: 1º t. -0,06 p.p. (IC95% -0,39 a 0,28).
+- **O que os números mostram?** Sem controle geográfico a diferença é grande (1º t.: 0,49 p.p.). No mesmo local: 1º t. -0,02 p.p. (IC95% -0,11 a 0,08). Na mesma zona: 1º t. -0,06 p.p. (IC95% -0,38 a 0,29).
 - **O que significa?** A maior parte da diferença bruta é geográfica. No controle mais forte (mesmo local) o intervalo inclui zero; com controles mais fracos (zona, município) resta diferença de cerca de 1 p.p., que pode refletir diferenças entre bairros/locais dentro da zona.
 - **Existe explicação conhecida?** A distribuição dos modelos não é aleatória (logística do TSE por zona/local). O modelo 2020 tem leitor biométrico mais novo: a taxa de liberação manual é ~5 p.p. menor nas mesmas localidades, diferença técnica esperada.
 - **O que ainda não sabemos?** Sem covariáveis anteriores à eleição por seção (ex.: resultado de 2018 na mesma seção), não é possível separar efeito do modelo de efeito de localização. Diferença estatística ≠ causalidade.
@@ -194,9 +271,9 @@ Intervalo = tempo entre dois registros consecutivos de voto concluído na mesma 
 | teste | testes | rejeitados_holm_1pct | cramer_v_mediano | maior_desvio_pp_mediano |
 |---|---|---|---|---|
 | segundo_digito_benford_descritivo | 58 | 54 | 0,066 | 3,594 |
-| segundo_digito_vs_simulacao_binomial_zona | 58 | 33 | 0,020 | 1,046 |
+| segundo_digito_vs_simulacao_binomial_zona | 58 | 33 | 0,020 | 1,048 |
 | ultimo_digito_uniforme | 58 | 9 | 0,012 | 0,721 |
-| ultimo_digito_vs_simulacao_binomial_zona | 58 | 0 | 0,010 | 0,605 |
+| ultimo_digito_vs_simulacao_binomial_zona | 58 | 0 | 0,010 | 0,555 |
 
 ### Dígitos das contagens por seção
 

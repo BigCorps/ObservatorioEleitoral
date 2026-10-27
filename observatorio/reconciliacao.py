@@ -134,6 +134,22 @@ def explicar(con, disp) -> None:
                        "AND d.nr_secao=incompat.nr_secao AND d.DS_ORIGEM_VOTO IN ('Sistema de apuração','Totalização'))",
                        "Resultado da seção não originado na urna eletrônica (DS_ORIGEM_VOTO = Sistema de apuração "
                        "ou Totalização, inclusive seções anuladas): não há arquivos de urna no pacote."))
+    if "logs" in disp and "bubin" in disp:
+        regras.append(("teste='B8' AND campo='habilitados_por_biometria' AND valor_a > valor_b AND valor_a - valor_b = "
+                       "(SELECT l.semetapa_votou FROM logs l WHERE l.turno=incompat.turno AND l.uf=incompat.uf AND "
+                       "l.cd_municipio=incompat.cd_municipio AND l.nr_zona=incompat.nr_zona AND l.nr_secao=incompat.nr_secao)",
+                       "O BU conta como biométricas habilitações em que o log registra 'Solicita digital' e 'Capturada a "
+                       "digital' seguidas de 'Eleitor foi habilitado', sem a mensagem 'Tipo de habilitação do eleitor "
+                       "[biométrica]'; a diferença é igual ao número dessas habilitações sem etapa classificada no log "
+                       "(padrão conferido nas seções AC 1007/9/475, 1040/4/160, 1058/6/56, 1074/4/42 e 1074/4/322 do 2º turno de 2026)."))
+    for t in (1, 2):
+        if con.execute(f"SELECT count(*) FROM duckdb_views() WHERE view_name='ofic{t}'").fetchone()[0]:
+            regras.append((f"teste='A2o' AND turno={t} AND valor_b IS NULL AND EXISTS (SELECT 1 FROM ofic{t} o WHERE "
+                           "o.uf=incompat.uf AND o.cd_municipio=incompat.cd_municipio AND o.nr_zona=incompat.nr_zona "
+                           "AND o.nr_secao=incompat.nr_secao AND (o.st_instalada IN ('Não','N') OR o.ds_origem_voto IN "
+                           "('Sistema de apuração','Totalização')))",
+                           "Seção não instalada ou com resultado não originado na urna eletrônica (Sistema de apuração/"
+                           "Totalização, inclusive seções anuladas): não há arquivos de urna."))
     if "dmz" in disp:
         regras.append(("teste='B5' AND campo='aptos' AND valor_b - coalesce(valor_a, 0) = (SELECT "
                        "sum(CAST(QT_ELEITORES_SECOES_NAO_INSTALADAS AS BIGINT)) FROM dmz_raw m WHERE "
@@ -170,7 +186,7 @@ def explicar(con, disp) -> None:
                        "opcional qtdEleitoresLibCodigo é omitido no .bu (Res.-TSE 23.669/2021, art. 178, parágrafo "
                        "único) e o CSV publica 0."))
     if "logs" in disp and "dsec" in disp:
-        regras.append(("teste='B6' AND campo IN ('comparecimento_vs_votos_computados','biometria_nh_vs_liberacao_manual_no_log','comparecimento_vs_votos_presidente_mais_nulos_suspensao') "
+        regras.append(("teste IN ('B6','B6o') AND campo IN ('comparecimento_vs_votos_computados','biometria_nh_vs_liberacao_manual_no_log','comparecimento_vs_votos_presidente_mais_nulos_suspensao') "
                        "AND EXISTS (SELECT 1 FROM dsec d WHERE d.turno=incompat.turno AND d.uf=incompat.uf "
                        "AND d.cd_municipio=incompat.cd_municipio AND d.nr_zona=incompat.nr_zona AND d.nr_secao=incompat.nr_secao "
                        "AND d.DS_ORIGEM_VOTO = 'Sistema de apuração') "
@@ -178,8 +194,8 @@ def explicar(con, disp) -> None:
                        "Apuração mista: o resultado da seção foi gerado pelo Sistema de Apuração (DS_ORIGEM_VOTO), com "
                        "votos em cédula após falha da urna; esses votos e liberações não constam do log eletrônico."))
     if "logs" in disp:
-        regras.append(("teste='B6' AND campo='comparecimento_vs_votos_presidente_mais_nulos_suspensao' "
-                       "AND valor_b = valor_a + 1 AND NOT EXISTS (SELECT 1 FROM incompat j WHERE j.teste='B6' "
+        regras.append(("teste IN ('B6','B6o') AND campo='comparecimento_vs_votos_presidente_mais_nulos_suspensao' "
+                       "AND valor_b = valor_a + 1 AND NOT EXISTS (SELECT 1 FROM incompat j WHERE j.teste=incompat.teste "
                        "AND j.campo='comparecimento_vs_votos_computados' AND j.turno=incompat.turno AND j.uf=incompat.uf "
                        "AND j.cd_municipio=incompat.cd_municipio AND j.nr_zona=incompat.nr_zona AND j.nr_secao=incompat.nr_secao) "
                        "AND EXISTS (SELECT 1 FROM logs l WHERE l.turno=incompat.turno AND l.uf=incompat.uf "
@@ -272,8 +288,58 @@ def executar(ano: int) -> dict:
                   coalesce(b.nr_zona,u.nr_zona) nr_zona, coalesce(b.nr_secao,u.nr_secao) nr_secao,
                   CASE WHEN b.nr_secao IS NULL THEN NULL ELSE 1 END pa, CASE WHEN u.nr_secao IS NULL THEN NULL ELSE 1 END pb
                   FROM bweb b FULL JOIN bubin u USING ({CHAVE})
-                  WHERE (coalesce(b.turno,u.turno), coalesce(b.uf,u.uf)) IN (SELECT DISTINCT (turno, uf) FROM bubin)""",
+                  WHERE (coalesce(b.turno,u.turno), coalesce(b.uf,u.uf)) IN (SELECT DISTINCT (turno, uf) FROM bubin)
+                    AND coalesce(b.turno,u.turno) IN (SELECT DISTINCT turno FROM bweb)""",
               [("presenca", "pa", "pb")])
+    tem_ofic = [t for t in (1, 2) if (PROCESSADOS / f"secoes_oficiais_{ano}_{t}t.parquet").exists()
+                and t not in {r[0] for r in con.execute("SELECT DISTINCT turno FROM bweb").fetchall()}]
+    for t in tem_ofic:
+        # Turno sem BU em CSV publicado: a referência é a tabela oficial por seção (DSEC+VSEC)
+        of = PROCESSADOS / f"secoes_oficiais_{ano}_{t}t.parquet"
+        con.execute(f"CREATE OR REPLACE VIEW ofic{t} AS SELECT * FROM '{of}'")
+        if "bubin" in disp:
+            _diff(con, "A2o", "Seção no resultado oficial por seção e ausente no pacote de arquivos de urna (e vice-versa), "
+                  "turno sem BU-CSV", "DSEC+VSEC", "BUBIN",
+                  f"""SELECT coalesce(o.turno,u.turno) turno, coalesce(o.uf,u.uf) uf, coalesce(o.cd_municipio,u.cd_municipio) cd_municipio,
+                      coalesce(o.nr_zona,u.nr_zona) nr_zona, coalesce(o.nr_secao,u.nr_secao) nr_secao,
+                      CASE WHEN o.nr_secao IS NULL THEN NULL ELSE 1 END pa, CASE WHEN u.nr_secao IS NULL THEN NULL ELSE 1 END pb
+                      FROM ofic{t} o FULL JOIN (SELECT * FROM bubin WHERE turno={t}) u USING ({CHAVE})
+                      WHERE coalesce(o.uf,u.uf) IN (SELECT DISTINCT uf FROM bubin WHERE turno={t})""",
+                  [("presenca", "pa", "pb")])
+            _diff(con, f"B7", "Resultado oficial por seção (DSEC+VSEC) x BU binário (.bu), turno sem BU-CSV",
+                  "DSEC+VSEC", "BUBIN",
+                  f"""SELECT o.turno, o.uf, o.cd_municipio, o.nr_zona, o.nr_secao,
+                        o.qt_aptos a1, u.bu_qtd_aptos a2, o.qt_comparecimento c1, u.bu_qtd_comparecimento c2,
+                        o.votos_nominais n1, u.bu_votos_nominais n2, o.votos_brancos br1, u.bu_votos_brancos br2,
+                        o.votos_nulos nu1, u.bu_votos_nulos nu2,
+                        CASE WHEN o.votos_candidato IS NULL AND o.qt_comparecimento = 0
+                               AND coalesce(len(u.bu_votos_candidato), 0) = 0 THEN 0  -- seção sem votantes nas duas fontes
+                        ELSE list_sum(list_transform(map_keys(o.votos_candidato), lambda k: abs(o.votos_candidato[k]
+                          - coalesce(list_sum(list_transform(list_filter(u.bu_votos_candidato, lambda e: e.k = k),
+                                                            lambda e: e.v)), 0)))) END dif_cand
+                      FROM ofic{t} o JOIN bubin u USING ({CHAVE})""",
+                  [("aptos", "a1", "a2"), ("comparecimento", "c1", "c2"), ("votos_nominais", "n1", "n2"),
+                   ("brancos", "br1", "br2"), ("nulos", "nu1", "nu2"),
+                   ("votos_por_candidato_soma_dif_abs", "dif_cand", "0")])
+        if "logs" in disp:
+            _diff(con, "B6o", "Resultado oficial por seção x log da urna (turno sem BU-CSV)", "DSEC+VSEC", "LOG",
+                  f"""SELECT o.turno, o.uf, o.cd_municipio, o.nr_zona, o.nr_secao, o.qt_comparecimento,
+                        l.n_votos_computados, l.n_voto_presidente, l.n_nulo_suspensao_presidente
+                      FROM ofic{t} o JOIN logs l USING ({CHAVE}) WHERE l.tem_log""",
+                  [("comparecimento_vs_votos_computados", "qt_comparecimento", "n_votos_computados"),
+                   ("comparecimento_vs_votos_presidente_mais_nulos_suspensao", "qt_comparecimento",
+                    "n_voto_presidente + n_nulo_suspensao_presidente")])
+    if "bubin" in disp and "logs" in disp:
+        cols_bu = {r[0] for r in con.execute("DESCRIBE bubin").fetchall()}
+        if "bu_qtd_hab_biometria" in cols_bu:
+            # B8 (2026, BU v2): detalhamento do comparecimento no BU binário x modalidade no log
+            _diff(con, "B8", "BU binário (detalhamento por forma de habilitação) x log da urna", "BUBIN", "LOG",
+                  f"""SELECT u.turno, u.uf, u.cd_municipio, u.nr_zona, u.nr_secao,
+                        u.bu_qtd_hab_biometria b1, l.bio_votou b2, u.bu_qtd_hab_biografia g1, l.man_votou g2,
+                        u.bu_qtd_sem_biometria s1, l.sembio_votou s2
+                      FROM bubin u JOIN logs l USING ({CHAVE}) WHERE l.tem_log AND u.bu_qtd_hab_biometria IS NOT NULL""",
+                  [("habilitados_por_biometria", "b1", "b2"), ("habilitados_por_biografia_vs_manual_apos_falha", "g1", "g2"),
+                   ("sem_biometria_cadastrada", "s1", "s2")])
     if "logs" in disp:
         _diff(con, "B6", "BU-CSV x log da urna (contagens)", "BWEB", "LOG",
               f"""SELECT b.turno, b.uf, b.cd_municipio, b.nr_zona, b.nr_secao, b.qt_comparecimento, b.qt_eleitores_biometria_nh,
@@ -366,6 +432,18 @@ def executar(ano: int) -> dict:
     con.execute(f"COPY (SELECT * FROM resumo ORDER BY teste, campo) TO '{out}/reconciliacao_resumo.csv' (HEADER)")
     con.execute(f"""COPY (SELECT * FROM incompat ORDER BY teste, campo, turno, uf, cd_municipio, nr_zona, nr_secao)
                     TO '{out}/incompatibilidades.csv' (HEADER)""")
+    # resumo por turno (as comparações por seção são contadas por turno; zonas idem)
+    con.execute(f"""COPY (
+      SELECT r.teste, r.descricao, r.campo, r.fonte_a, r.fonte_b, t.turno,
+        coalesce(i.divergencias, 0) divergencias, coalesce(i.explicadas, 0) explicadas,
+        coalesce(i.divergencias, 0) - coalesce(i.explicadas, 0) nao_explicadas,
+        i.soma_abs_diferencas_nao_explicadas
+      FROM resumo r CROSS JOIN (SELECT DISTINCT turno FROM incompat UNION SELECT DISTINCT turno FROM bweb) t
+      LEFT JOIN (SELECT teste, campo, turno, count(*) divergencias,
+                   count(*) FILTER (WHERE classificacao = 'Diferença explicada') explicadas,
+                   sum(abs(diferenca)) FILTER (WHERE classificacao <> 'Diferença explicada') soma_abs_diferencas_nao_explicadas
+                 FROM incompat GROUP BY ALL) i USING (teste, campo, turno)
+      ORDER BY r.teste, r.campo, t.turno) TO '{out}/reconciliacao_por_turno.csv' (HEADER)""")
     res = con.execute("SELECT * FROM resumo ORDER BY teste, campo").df()
     con.close()
     return {"disponiveis": disp, "resumo": res}

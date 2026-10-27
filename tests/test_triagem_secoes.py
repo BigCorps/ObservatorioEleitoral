@@ -125,3 +125,13 @@ def test_duplicidade_impede_publicacao():
     s=secao(1)
     with pytest.raises(ValueError,match="duplicada"):
         linhas_de_triagem([s,s])
+
+
+def test_sem_pares_nao_entra_denominador_de_comparacao_local():
+    registros, ignoradas=linhas_de_triagem([secao(1,local=1),secao(2,local=2)])
+    assert ignoradas == 0
+    resumo,_=_resumir(2026,registros,{2:"TESTE"},max_exemplos=5)
+    row=next(x for x in resumo if x["uf"]=="BR" and x["turno"]==2 and x["teste"]=="pares25")
+    assert row["secoes_elegiveis"]==0
+    assert row["secoes_sinalizadas"]==0
+    assert row["pct_secoes_sinalizadas"] is None
