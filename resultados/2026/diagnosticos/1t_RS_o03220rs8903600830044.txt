@@ -1,0 +1,118 @@
+=== 0165184204102026120351-01.jez/logd.dat: 2633 linhas do dia; ids={'01801772': 2633}
+    {'Urna pronta para receber votos': 3, 'Eleitor foi habilitado': 90, 'Voto confirmado para [Presidente]': 90, 'O voto do eleitor foi computado': 90}
+      07:35:10 INFO   01801772 LOGD  Urna ligada em 04/10/2026 às 07:34:00
+      07:36:18 INFO   01801772 GAP   Iniciando aplicação - 1º turno
+      07:36:18 INFO   01801772 GAP   Identificação do Modelo de Urna: UE2015
+      07:36:28 INFO   01801772 GAP   Identificação do Modelo de Urna: UE2015
+      07:36:32 INFO   01801772 GAP   Modo de carga da UE - Votação
+      07:36:32 INFO   01801772 GAP   Município: 89036
+      07:36:32 INFO   01801772 GAP   Zona Eleitoral: 0083
+      07:36:32 INFO   01801772 GAP   Seção Eleitoral: 0044
+      07:37:36 INFO   01801772 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - 1º turno
+      07:38:15 INFO   01801772 VOTA  Iniciando aplicação - 1º turno
+      08:00:02 INFO   01801772 VOTA  Urna pronta para receber votos
+      09:02:39 ERRO   01801772 VOTA  Não foi possível exibir imagem no LCD do terminal do mesário: Erro (12) exibindo imagem no microterminal.
+      09:05:38 INFO   01801772 INITJE Urna desligada pela chave
+      09:07:49 INFO   01801772 LOGD  Urna ligada em 04/10/2026 às 09:06:38
+      09:08:57 INFO   01801772 GAP   Iniciando aplicação - 1º turno
+      09:08:57 INFO   01801772 GAP   Identificação do Modelo de Urna: UE2015
+      09:09:08 INFO   01801772 GAP   Identificação do Modelo de Urna: UE2015
+      09:09:12 INFO   01801772 GAP   Modo de carga da UE - Votação
+      09:09:12 INFO   01801772 GAP   Município: 89036
+      09:09:12 INFO   01801772 GAP   Zona Eleitoral: 0083
+      09:09:12 INFO   01801772 GAP   Seção Eleitoral: 0044
+      09:10:16 INFO   01801772 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - 1º turno
+      09:10:55 INFO   01801772 VOTA  Iniciando aplicação - 1º turno
+      09:12:44 INFO   01801772 VOTA  Urna pronta para receber votos
+      10:03:17 ERRO   01801772 VOTA  Não foi possível exibir imagem no LCD do terminal do mesário: Erro (12) exibindo imagem no microterminal.
+      10:04:16 INFO   01801772 INITJE Urna desligada pela chave
+      10:06:34 INFO   01801772 LOGD  Urna ligada em 04/10/2026 às 10:05:24
+      10:07:42 INFO   01801772 GAP   Iniciando aplicação - 1º turno
+      10:07:42 INFO   01801772 GAP   Identificação do Modelo de Urna: UE2015
+      10:07:53 INFO   01801772 GAP   Identificação do Modelo de Urna: UE2015
+      10:07:57 INFO   01801772 GAP   Modo de carga da UE - Votação
+      10:07:57 INFO   01801772 GAP   Município: 89036
+      10:07:57 INFO   01801772 GAP   Zona Eleitoral: 0083
+      10:07:57 INFO   01801772 GAP   Seção Eleitoral: 0044
+      10:09:01 INFO   01801772 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - 1º turno
+      10:09:40 INFO   01801772 VOTA  Iniciando aplicação - 1º turno
+      10:10:55 INFO   01801772 VOTA  Urna pronta para receber votos
+      11:04:26 INFO   01801772 INITJE Urna desligada pela chave
+      11:04:28 INFO   01801772 VOTA  Votação suspensa
+      11:41:28 INFO   01801772 LOGD  Urna ligada em 04/10/2026 às 11:40:12
+      11:42:37 INFO   01801772 GAP   Iniciando aplicação - 1º turno
+      11:42:37 INFO   01801772 GAP   Identificação do Modelo de Urna: UE2015
+      11:42:48 INFO   01801772 GAP   Identificação do Modelo de Urna: UE2015
+      11:42:52 INFO   01801772 GAP   Modo de carga da UE - Votação
+      11:42:52 INFO   01801772 GAP   Município: 89036
+      11:42:52 INFO   01801772 GAP   Zona Eleitoral: 0083
+      11:42:52 INFO   01801772 GAP   Seção Eleitoral: 0044
+      11:43:57 INFO   01801772 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - 1º turno
+      11:44:13 ERRO   01801772 GAP   GAP erro 17 | Sincronização da MI para ME | Os dados contidos na mídia de votação não correspondem aos dados c
+      11:44:27 INFO   01801772 INITJE Urna desligada pela chave
+=== 016752570410202611115001ME.jez/logd.dat: 2557 linhas do dia; ids={'01801772': 2557}
+    {'Urna pronta para receber votos': 3, 'Eleitor foi habilitado': 90, 'Voto confirmado para [Presidente]': 90, 'O voto do eleitor foi computado': 90}
+      07:35:10 INFO   01801772 LOGD  Urna ligada em 04/10/2026 às 07:34:00
+      07:36:18 INFO   01801772 GAP   Iniciando aplicação - 1º turno
+      07:36:18 INFO   01801772 GAP   Identificação do Modelo de Urna: UE2015
+      07:36:28 INFO   01801772 GAP   Identificação do Modelo de Urna: UE2015
+      07:36:32 INFO   01801772 GAP   Modo de carga da UE - Votação
+      07:36:32 INFO   01801772 GAP   Município: 89036
+      07:36:32 INFO   01801772 GAP   Zona Eleitoral: 0083
+      07:36:32 INFO   01801772 GAP   Seção Eleitoral: 0044
+      07:37:36 INFO   01801772 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - 1º turno
+      07:38:15 INFO   01801772 VOTA  Iniciando aplicação - 1º turno
+      08:00:02 INFO   01801772 VOTA  Urna pronta para receber votos
+      09:02:39 ERRO   01801772 VOTA  Não foi possível exibir imagem no LCD do terminal do mesário: Erro (12) exibindo imagem no microterminal.
+      09:05:38 INFO   01801772 INITJE Urna desligada pela chave
+      09:07:49 INFO   01801772 LOGD  Urna ligada em 04/10/2026 às 09:06:38
+      09:08:57 INFO   01801772 GAP   Iniciando aplicação - 1º turno
+      09:08:57 INFO   01801772 GAP   Identificação do Modelo de Urna: UE2015
+      09:09:08 INFO   01801772 GAP   Identificação do Modelo de Urna: UE2015
+      09:09:12 INFO   01801772 GAP   Modo de carga da UE - Votação
+      09:09:12 INFO   01801772 GAP   Município: 89036
+      09:09:12 INFO   01801772 GAP   Zona Eleitoral: 0083
+      09:09:12 INFO   01801772 GAP   Seção Eleitoral: 0044
+      09:10:16 INFO   01801772 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - 1º turno
+      09:10:55 INFO   01801772 VOTA  Iniciando aplicação - 1º turno
+      09:12:44 INFO   01801772 VOTA  Urna pronta para receber votos
+      10:03:17 ERRO   01801772 VOTA  Não foi possível exibir imagem no LCD do terminal do mesário: Erro (12) exibindo imagem no microterminal.
+      10:04:16 INFO   01801772 INITJE Urna desligada pela chave
+      10:07:53 INFO   01801772 GAP   Identificação do Modelo de Urna: UE2015
+      10:07:57 INFO   01801772 GAP   Modo de carga da UE - Votação
+      10:07:57 INFO   01801772 GAP   Município: 89036
+      10:07:57 INFO   01801772 GAP   Zona Eleitoral: 0083
+      10:07:57 INFO   01801772 GAP   Seção Eleitoral: 0044
+      10:09:01 INFO   01801772 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - 1º turno
+      10:09:40 INFO   01801772 VOTA  Iniciando aplicação - 1º turno
+      10:10:55 INFO   01801772 VOTA  Urna pronta para receber votos
+      11:04:26 INFO   01801772 INITJE Urna desligada pela chave
+      11:04:28 INFO   01801772 VOTA  Votação suspensa
+=== logd.dat: 4544 linhas do dia; ids={'01651842': 4544}
+    {'Urna pronta para receber votos': 1, 'Eleitor foi habilitado': 188, 'Voto confirmado para [Presidente]': 188, 'O voto do eleitor foi computado': 188, 'Inicio do Encerramento': 1}
+      12:00:55 INFO   01651842 LOGD  Urna ligada em 04/10/2026 às 11:59:44
+      12:01:55 INFO   01651842 GAP   Iniciando aplicação - 1º turno
+      12:01:55 INFO   01651842 GAP   Identificação do Modelo de Urna: UE2013
+      12:01:55 INFO   01651842 LOGD  Log interno da urna de contingência validado com sucesso
+      12:02:04 INFO   01651842 GAP   Identificação do Modelo de Urna: UE2013
+      12:02:08 INFO   01651842 GAP   Modo de carga da UE - Urna de contingência
+      12:02:08 INFO   01651842 GAP   Município: 89036
+      12:02:08 INFO   01651842 GAP   Zona Eleitoral: 0083
+      12:02:08 INFO   01651842 GAP   Seção Eleitoral: 0000
+      12:02:17 INFO   01651842 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - 1º turno
+      12:03:04 INFO   01651842 GAP   Início do procedimento de contingência
+      12:03:50 INFO   01651842 GAP   Modo de carga da UE - Votação
+      12:03:56 INFO   01651842 GAP   Contingência executada com sucesso
+      12:05:49 INFO   01651842 LOGD  Urna ligada em 04/10/2026 às 12:04:41
+      12:06:52 INFO   01651842 GAP   Iniciando aplicação - 1º turno
+      12:06:52 INFO   01651842 GAP   Identificação do Modelo de Urna: UE2013
+      12:07:01 INFO   01651842 GAP   Identificação do Modelo de Urna: UE2013
+      12:07:05 INFO   01651842 GAP   Modo de carga da UE - Votação
+      12:07:05 INFO   01651842 GAP   Município: 89036
+      12:07:05 INFO   01651842 GAP   Zona Eleitoral: 0083
+      12:07:05 INFO   01651842 GAP   Seção Eleitoral: 0044
+      12:08:05 INFO   01651842 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - 1º turno
+      12:08:38 INFO   01651842 VOTA  Iniciando aplicação - 1º turno
+      12:09:47 INFO   01651842 VOTA  Urna pronta para receber votos
+      17:15:04 INFO   01651842 VOTA  Inicio do Encerramento
+      17:15:05 INFO   01651842 VOTA  Gerando relatório [BU] [INÍCIO]

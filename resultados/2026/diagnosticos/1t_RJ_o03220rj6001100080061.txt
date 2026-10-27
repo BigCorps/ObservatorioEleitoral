@@ -1,0 +1,15 @@
+=== logd.dat: 6947 linhas do dia; ids={'01760983': 6946, '01740981': 1}
+    {'Urna pronta para receber votos': 1, 'Eleitor foi habilitado': 309, 'Voto confirmado para [Presidente]': 309, 'O voto do eleitor foi computado': 311, 'Inicio do Encerramento': 1}
+      06:34:08 INFO   01760983 LOGD  Urna ligada em 04/10/2026 às 06:32:59
+      06:35:17 INFO   01760983 GAP   Iniciando aplicação - 1º turno
+      06:35:17 INFO   01760983 GAP   Identificação do Modelo de Urna: UE2015
+      06:35:27 INFO   01760983 GAP   Identificação do Modelo de Urna: UE2015
+      06:35:31 INFO   01760983 GAP   Modo de carga da UE - Votação
+      06:35:31 INFO   01760983 GAP   Município: 60011
+      06:35:31 INFO   01760983 GAP   Zona Eleitoral: 0008
+      06:35:31 INFO   01760983 GAP   Seção Eleitoral: 0061
+      06:36:37 INFO   01760983 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - 1º turno
+      06:37:21 INFO   01760983 VOTA  Iniciando aplicação - 1º turno
+      08:00:01 INFO   01760983 VOTA  Urna pronta para receber votos
+      18:00:28 INFO   01760983 VOTA  Inicio do Encerramento
+      18:00:29 INFO   01760983 VOTA  Gerando relatório [BU] [INÍCIO]

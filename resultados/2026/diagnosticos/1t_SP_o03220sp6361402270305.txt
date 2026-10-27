@@ -1,0 +1,47 @@
+=== logd.dat: 5996 linhas do dia; ids={'02142439': 5996}
+    {'Urna pronta para receber votos': 2, 'Eleitor foi habilitado': 290, 'Voto confirmado para [Presidente]': 290, 'O voto do eleitor foi computado': 289, 'Inicio do Encerramento': 1}
+      07:05:42 INFO   02142439 LOGD  Urna ligada em 04/10/2026 às 07:05:05
+      07:06:07 INFO   02142439 GAP   Iniciando aplicação - 1º turno
+      07:06:07 INFO   02142439 GAP   Identificação do Modelo de Urna: UE2020
+      07:06:15 INFO   02142439 GAP   Identificação do Modelo de Urna: UE2020
+      07:06:19 INFO   02142439 GAP   Modo de carga da UE - Votação
+      07:06:19 INFO   02142439 GAP   Município: 63614
+      07:06:19 INFO   02142439 GAP   Zona Eleitoral: 0227
+      07:06:19 INFO   02142439 GAP   Seção Eleitoral: 0305
+      07:06:55 INFO   02142439 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - 1º turno
+      07:07:19 INFO   02142439 VOTA  Iniciando aplicação - 1º turno
+      07:07:59 INFO   02142439 VOTA  Urna ligada desconectada da rede CA em [0.00V] e na Bateria Interna com [12.86V/-0.81A]
+      07:37:58 INFO   02142439 VOTA  Urna ligada desconectada da rede CA em [0.00V] e na Bateria Interna com [12.80V/-0.8A]
+      08:00:01 INFO   02142439 VOTA  Urna pronta para receber votos
+      08:07:58 INFO   02142439 VOTA  Urna ligada desconectada da rede CA em [0.00V] e na Bateria Interna com [12.34V/-0.83A]
+      08:14:25 INFO   02142439 LOGD  Urna ligada em 04/10/2026 às 08:13:48
+      08:14:50 INFO   02142439 GAP   Iniciando aplicação - 1º turno
+      08:14:50 INFO   02142439 GAP   Identificação do Modelo de Urna: UE2020
+      08:14:59 INFO   02142439 GAP   Identificação do Modelo de Urna: UE2020
+      08:15:03 INFO   02142439 GAP   Modo de carga da UE - Votação
+      08:15:03 INFO   02142439 GAP   Município: 63614
+      08:15:03 INFO   02142439 GAP   Zona Eleitoral: 0227
+      08:15:03 INFO   02142439 GAP   Seção Eleitoral: 0305
+      08:15:37 INFO   02142439 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - 1º turno
+      08:16:01 INFO   02142439 VOTA  Iniciando aplicação - 1º turno
+      08:16:41 INFO   02142439 VOTA  Urna ligada conectada na rede CA em [126.74V] e na Bateria Interna com [12.97V/1.24A]
+      08:17:19 INFO   02142439 VOTA  Urna pronta para receber votos
+      08:46:41 INFO   02142439 VOTA  Urna ligada conectada na rede CA em [128.21V] e na Bateria Interna com [13.40V/1.24A]
+      09:16:41 INFO   02142439 VOTA  Urna ligada conectada na rede CA em [129.49V] e na Bateria Interna com [13.47V/1.24A]
+      09:46:41 INFO   02142439 VOTA  Urna ligada conectada na rede CA em [130.89V] e na Bateria Interna com [13.55V/1.24A]
+      10:16:41 INFO   02142439 VOTA  Urna ligada conectada na rede CA em [132.53V] e na Bateria Interna com [13.58V/1.24A]
+      10:46:41 INFO   02142439 VOTA  Urna ligada conectada na rede CA em [131.61V] e na Bateria Interna com [13.59V/1.24A]
+      11:16:41 INFO   02142439 VOTA  Urna ligada conectada na rede CA em [133.17V] e na Bateria Interna com [13.60V/1.24A]
+      11:46:41 INFO   02142439 VOTA  Urna ligada conectada na rede CA em [133.11V] e na Bateria Interna com [13.63V/1.24A]
+      12:16:41 INFO   02142439 VOTA  Urna ligada conectada na rede CA em [132.49V] e na Bateria Interna com [13.91V/1.24A]
+      12:46:41 INFO   02142439 VOTA  Urna ligada conectada na rede CA em [133.47V] e na Bateria Interna com [13.44V/0A]
+      13:16:41 INFO   02142439 VOTA  Urna ligada conectada na rede CA em [132.18V] e na Bateria Interna com [13.40V/0A]
+      13:46:41 INFO   02142439 VOTA  Urna ligada conectada na rede CA em [132.85V] e na Bateria Interna com [13.38V/0A]
+      14:16:41 INFO   02142439 VOTA  Urna ligada conectada na rede CA em [132.79V] e na Bateria Interna com [13.36V/0A]
+      14:46:41 INFO   02142439 VOTA  Urna ligada conectada na rede CA em [130.32V] e na Bateria Interna com [13.58V/0A]
+      15:16:41 INFO   02142439 VOTA  Urna ligada conectada na rede CA em [130.54V] e na Bateria Interna com [13.48V/0A]
+      15:46:41 INFO   02142439 VOTA  Urna ligada conectada na rede CA em [130.49V] e na Bateria Interna com [13.44V/0A]
+      16:16:41 INFO   02142439 VOTA  Urna ligada conectada na rede CA em [130.50V] e na Bateria Interna com [13.40V/0A]
+      16:46:41 INFO   02142439 VOTA  Urna ligada conectada na rede CA em [130.50V] e na Bateria Interna com [13.38V/0A]
+      17:06:54 INFO   02142439 VOTA  Inicio do Encerramento
+      17:06:55 INFO   02142439 VOTA  Gerando relatório [BU] [INÍCIO]

@@ -3,7 +3,7 @@ A2,Seção presente no BU-CSV e ausente no pacote de arquivos de urna (e vice-ve
 A3,Seções no Detalhe por seção sem BU-CSV (e vice-versa),presenca,DSEC,BWEB,499248,42,42,0,42
 B1,"Comparecimento = nominais + brancos + nulos (BU-CSV, Presidente)",comparecimento_vs_soma_votos,BWEB,BWEB,499206,0,0,0,0
 B2,BU-CSV x BU binário (.bu),aptos,BWEB,BUBIN,499206,0,0,0,0
-B2,BU-CSV x BU binário (.bu),biometria_nh_vs_lib_codigo,BWEB,BUBIN,499206,499206,499206,0,1309
+B2,BU-CSV x BU binário (.bu),biometria_nh_vs_lib_codigo,BWEB,BUBIN,499206,1311,1311,0,1309
 B2,BU-CSV x BU binário (.bu),brancos,BWEB,BUBIN,499206,0,0,0,0
 B2,BU-CSV x BU binário (.bu),comparecimento,BWEB,BUBIN,499206,0,0,0,0
 B2,BU-CSV x BU binário (.bu),nulos,BWEB,BUBIN,499206,0,0,0,0

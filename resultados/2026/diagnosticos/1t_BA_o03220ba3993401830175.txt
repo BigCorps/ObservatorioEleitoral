@@ -1,6 +1,96 @@
-
-ERRO: Traceback (most recent call last):
-  File "/home/user/ObservatorioEleitoral/scripts/diagnosticar_secao.py", line 18, in <module>
-    m = [x for x in listar_membros(a) if x.nome in (stem + ".logjez", stem + "-log.jez")][0]
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-IndexError: list index out of range
+=== 024291180410202614245201ME.jez/logd.dat: 3165 linhas do dia; ids={'02423907': 2553, '02424441': 612}
+    {'Urna pronta para receber votos': 3, 'Eleitor foi habilitado': 124, 'Voto confirmado para [Presidente]': 124, 'O voto do eleitor foi computado': 124}
+      07:39:09 INFO   02423907 LOGD  Urna ligada em 04/10/2026 às 07:38:32
+      07:39:34 INFO   02423907 GAP   Iniciando aplicação - 1º turno
+      07:39:34 INFO   02423907 GAP   Identificação do Modelo de Urna: UE2022
+      07:39:42 INFO   02423907 GAP   Identificação do Modelo de Urna: UE2022
+      07:39:46 INFO   02423907 GAP   Modo de carga da UE - Votação
+      07:39:46 INFO   02423907 GAP   Município: 39934
+      07:39:46 INFO   02423907 GAP   Zona Eleitoral: 0183
+      07:39:46 INFO   02423907 GAP   Seção Eleitoral: 0181
+      07:40:20 INFO   02423907 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - 1º turno
+      07:40:44 INFO   02423907 VOTA  Iniciando aplicação - 1º turno
+      07:41:24 INFO   02423907 VOTA  Urna ligada conectada na rede CA em [243.69V] e na Bateria Interna com [14.06V/0A]
+      08:00:01 INFO   02423907 VOTA  Urna pronta para receber votos
+      08:11:23 INFO   02423907 VOTA  Urna ligada conectada na rede CA em [242.74V] e na Bateria Interna com [13.49V/1.24A]
+      08:41:23 INFO   02423907 VOTA  Urna ligada conectada na rede CA em [238.49V] e na Bateria Interna com [14.08V/0A]
+      09:11:23 INFO   02423907 VOTA  Urna ligada conectada na rede CA em [245.44V] e na Bateria Interna com [13.41V/1.24A]
+      09:41:23 INFO   02423907 VOTA  Urna ligada desconectada da rede CA em [254.54V] e na Bateria Interna com [13.35V/0.81A]
+      10:11:23 INFO   02423907 VOTA  Urna ligada desconectada da rede CA em [257.28V] e na Bateria Interna com [13.16V/0.83A]
+      10:41:23 INFO   02423907 VOTA  Urna ligada desconectada da rede CA em [255.82V] e na Bateria Interna com [13.16V/0.76A]
+      11:11:23 INFO   02423907 VOTA  Urna ligada desconectada da rede CA em [255.72V] e na Bateria Interna com [13.16V/0.75A]
+      11:20:44 INFO   02423907 INITJE Urna desligada pela chave
+      11:20:44 INFO   02423907 VOTA  Votação suspensa
+      11:21:52 INFO   02423907 LOGD  Urna ligada em 04/10/2026 às 11:21:15
+      11:22:17 INFO   02423907 GAP   Iniciando aplicação - 1º turno
+      11:22:17 INFO   02423907 GAP   Identificação do Modelo de Urna: UE2022
+      11:22:25 INFO   02423907 GAP   Identificação do Modelo de Urna: UE2022
+      11:22:30 INFO   02423907 GAP   Modo de carga da UE - Votação
+      11:22:30 INFO   02423907 GAP   Município: 39934
+      11:22:30 INFO   02423907 GAP   Zona Eleitoral: 0183
+      11:22:30 INFO   02423907 GAP   Seção Eleitoral: 0181
+      11:23:06 INFO   02423907 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - 1º turno
+      11:23:29 INFO   02423907 VOTA  Iniciando aplicação - 1º turno
+      11:24:10 INFO   02423907 VOTA  Urna ligada desconectada da rede CA em [254.13V] e na Bateria Interna com [13.16V/0.77A]
+      11:24:34 INFO   02423907 VOTA  Urna pronta para receber votos
+      11:54:09 INFO   02423907 VOTA  Urna ligada desconectada da rede CA em [257.41V] e na Bateria Interna com [13.17V/0.82A]
+      12:24:09 INFO   02423907 VOTA  Urna ligada desconectada da rede CA em [256.95V] e na Bateria Interna com [13.16V/0.75A]
+      12:25:08 INFO   02423907 INITJE Urna desligada pela chave
+      12:25:09 INFO   02423907 VOTA  Votação suspensa
+      13:19:40 INFO   02423907 LOGD  Urna ligada em 04/10/2026 às 13:19:03
+      13:20:05 INFO   02423907 GAP   Iniciando aplicação - 1º turno
+      13:20:05 INFO   02423907 GAP   Identificação do Modelo de Urna: UE2022
+      13:20:14 INFO   02423907 GAP   Identificação do Modelo de Urna: UE2022
+      13:20:18 INFO   02423907 GAP   Modo de carga da UE - Votação
+      13:20:18 INFO   02423907 GAP   Município: 39934
+      13:20:18 INFO   02423907 GAP   Zona Eleitoral: 0183
+      13:20:18 INFO   02423907 GAP   Seção Eleitoral: 0181
+      13:23:45 INFO   02424441 GAP   Identificação do Modelo de Urna: UE2022
+      13:23:49 INFO   02424441 GAP   Modo de carga da UE - Votação
+      13:23:49 INFO   02424441 GAP   Município: 39934
+      13:23:49 INFO   02424441 GAP   Zona Eleitoral: 0183
+      13:23:49 INFO   02424441 GAP   Seção Eleitoral: 0175
+      13:24:25 INFO   02424441 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - 1º turno
+      13:24:47 INFO   02424441 VOTA  Iniciando aplicação - 1º turno
+      13:25:27 INFO   02424441 VOTA  Urna ligada desconectada da rede CA em [0.00V] e na Bateria Interna com [13.19V/-0.76A]
+      13:26:04 INFO   02424441 VOTA  Urna pronta para receber votos
+      13:55:26 INFO   02424441 VOTA  Urna ligada conectada na rede CA em [237.21V] e na Bateria Interna com [13.57V/1.27A]
+      14:19:51 INFO   02424441 INITJE Urna desligada pela chave
+      14:19:52 INFO   02424441 VOTA  Votação suspensa
+=== logd.dat: 2784 linhas do dia; ids={'02429118': 2784}
+    {'Urna pronta para receber votos': 1, 'Eleitor foi habilitado': 112, 'Voto confirmado para [Presidente]': 112, 'O voto do eleitor foi computado': 112, 'Inicio do Encerramento': 1}
+      14:23:49 INFO   02429118 LOGD  Urna ligada em 04/10/2026 às 14:23:12
+      14:24:13 INFO   02429118 GAP   Iniciando aplicação - 1º turno
+      14:24:13 INFO   02429118 GAP   Identificação do Modelo de Urna: UE2022
+      14:24:13 INFO   02429118 LOGD  Log interno da urna de contingência validado com sucesso
+      14:24:22 INFO   02429118 GAP   Identificação do Modelo de Urna: UE2022
+      14:24:26 INFO   02429118 GAP   Modo de carga da UE - Urna de contingência
+      14:24:26 INFO   02429118 GAP   Município: 39934
+      14:24:26 INFO   02429118 GAP   Zona Eleitoral: 0183
+      14:24:26 INFO   02429118 GAP   Seção Eleitoral: 0000
+      14:24:34 INFO   02429118 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - 1º turno
+      14:24:42 INFO   02429118 GAP   Início do procedimento de contingência
+      14:24:51 INFO   02429118 GAP   Modo de carga da UE - Votação
+      14:24:54 INFO   02429118 GAP   Contingência executada com sucesso
+      14:26:05 INFO   02429118 LOGD  Urna ligada em 04/10/2026 às 14:25:28
+      14:26:30 INFO   02429118 GAP   Iniciando aplicação - 1º turno
+      14:26:30 INFO   02429118 GAP   Identificação do Modelo de Urna: UE2022
+      14:26:38 INFO   02429118 GAP   Identificação do Modelo de Urna: UE2022
+      14:26:42 INFO   02429118 GAP   Modo de carga da UE - Votação
+      14:26:42 INFO   02429118 GAP   Município: 39934
+      14:26:42 INFO   02429118 GAP   Zona Eleitoral: 0183
+      14:26:42 INFO   02429118 GAP   Seção Eleitoral: 0175
+      14:27:18 INFO   02429118 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - 1º turno
+      14:27:41 INFO   02429118 VOTA  Iniciando aplicação - 1º turno
+      14:28:21 INFO   02429118 VOTA  Urna ligada desconectada da rede CA em [248.35V] e na Bateria Interna com [13.16V/0.76A]
+      14:28:58 INFO   02429118 VOTA  Urna pronta para receber votos
+      14:58:20 INFO   02429118 VOTA  Urna ligada conectada na rede CA em [237.36V] e na Bateria Interna com [13.67V/0A]
+      15:28:20 INFO   02429118 VOTA  Urna ligada conectada na rede CA em [244.78V] e na Bateria Interna com [13.48V/1.1A]
+      15:58:20 INFO   02429118 VOTA  Urna ligada conectada na rede CA em [243.73V] e na Bateria Interna com [13.65V/0A]
+      16:28:20 INFO   02429118 VOTA  Urna ligada conectada na rede CA em [242.82V] e na Bateria Interna com [13.56V/0A]
+      16:58:20 INFO   02429118 VOTA  Urna ligada conectada na rede CA em [239.91V] e na Bateria Interna com [13.50V/0A]
+      17:28:20 INFO   02429118 VOTA  Urna ligada conectada na rede CA em [237.86V] e na Bateria Interna com [13.45V/0A]
+      17:58:20 INFO   02429118 VOTA  Urna ligada conectada na rede CA em [234.96V] e na Bateria Interna com [13.42V/0A]
+      18:28:20 INFO   02429118 VOTA  Urna ligada conectada na rede CA em [239.63V] e na Bateria Interna com [13.39V/0A]
+      18:34:39 INFO   02429118 VOTA  Inicio do Encerramento
+      18:34:40 INFO   02429118 VOTA  Gerando relatório [BU] [INÍCIO]

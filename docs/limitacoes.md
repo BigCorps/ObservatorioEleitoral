@@ -1,6 +1,6 @@
 # Limitações e pendências
 
-_Atualizado em 27/10/2026 05:02 UTC._
+_Atualizado em 27/10/2026 05:05 UTC._
 
 ## Cobertura do processamento dos arquivos de urna (logs + BU binário)
 

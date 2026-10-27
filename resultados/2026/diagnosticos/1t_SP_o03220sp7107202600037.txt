@@ -1,0 +1,49 @@
+=== logd.dat: 5953 linhas do dia; ids={'02264610': 5953}
+    {'Urna pronta para receber votos': 2, 'Eleitor foi habilitado': 285, 'Voto confirmado para [Presidente]': 285, 'O voto do eleitor foi computado': 284, 'Inicio do Encerramento': 1}
+      07:31:06 INFO   02264610 LOGD  Urna ligada em 04/10/2026 às 07:30:29
+      07:31:31 INFO   02264610 GAP   Iniciando aplicação - 1º turno
+      07:31:31 INFO   02264610 GAP   Identificação do Modelo de Urna: UE2022
+      07:31:39 INFO   02264610 GAP   Identificação do Modelo de Urna: UE2022
+      07:31:43 INFO   02264610 GAP   Modo de carga da UE - Votação
+      07:31:43 INFO   02264610 GAP   Município: 71072
+      07:31:43 INFO   02264610 GAP   Zona Eleitoral: 0260
+      07:31:44 INFO   02264610 GAP   Seção Eleitoral: 0037
+      07:32:18 INFO   02264610 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - 1º turno
+      07:32:41 INFO   02264610 VOTA  Iniciando aplicação - 1º turno
+      07:33:21 INFO   02264610 VOTA  Urna ligada conectada na rede CA em [115.74V] e na Bateria Interna com [13.73V/0A]
+      08:00:01 INFO   02264610 VOTA  Urna pronta para receber votos
+      08:03:20 INFO   02264610 VOTA  Urna ligada conectada na rede CA em [118.32V] e na Bateria Interna com [13.59V/0A]
+      08:33:20 INFO   02264610 VOTA  Urna ligada conectada na rede CA em [118.80V] e na Bateria Interna com [13.52V/0A]
+      09:03:20 INFO   02264610 VOTA  Urna ligada conectada na rede CA em [118.11V] e na Bateria Interna com [13.48V/0A]
+      09:33:20 INFO   02264610 VOTA  Urna ligada conectada na rede CA em [119.60V] e na Bateria Interna com [13.44V/0A]
+      10:03:20 INFO   02264610 VOTA  Urna ligada conectada na rede CA em [118.66V] e na Bateria Interna com [13.41V/0A]
+      10:33:20 INFO   02264610 VOTA  Urna ligada conectada na rede CA em [120.19V] e na Bateria Interna com [13.39V/0A]
+      11:03:20 INFO   02264610 VOTA  Urna ligada conectada na rede CA em [120.57V] e na Bateria Interna com [13.38V/0A]
+      11:33:20 INFO   02264610 VOTA  Urna ligada conectada na rede CA em [121.15V] e na Bateria Interna com [13.36V/0A]
+      12:03:20 INFO   02264610 VOTA  Urna ligada conectada na rede CA em [121.33V] e na Bateria Interna com [13.35V/0A]
+      12:33:20 INFO   02264610 VOTA  Urna ligada conectada na rede CA em [122.08V] e na Bateria Interna com [13.80V/0A]
+      13:03:20 INFO   02264610 VOTA  Urna ligada conectada na rede CA em [121.84V] e na Bateria Interna com [13.59V/0A]
+      13:25:02 ERRO   02264610 VOTA  Erro gravando EG/Eleitores na Mídia Interna
+      13:33:20 INFO   02264610 VOTA  Urna ligada conectada na rede CA em [121.71V] e na Bateria Interna com [13.53V/0A]
+      13:41:19 INFO   02264610 INITJE Urna desligada pela chave
+      13:41:20 INFO   02264610 VOTA  Votação suspensa
+      13:42:29 INFO   02264610 LOGD  Urna ligada em 04/10/2026 às 13:41:52
+      13:42:54 INFO   02264610 GAP   Iniciando aplicação - 1º turno
+      13:42:54 INFO   02264610 GAP   Identificação do Modelo de Urna: UE2022
+      13:43:03 INFO   02264610 GAP   Identificação do Modelo de Urna: UE2022
+      13:43:08 INFO   02264610 GAP   Modo de carga da UE - Votação
+      13:43:08 INFO   02264610 GAP   Município: 71072
+      13:43:08 INFO   02264610 GAP   Zona Eleitoral: 0260
+      13:43:08 INFO   02264610 GAP   Seção Eleitoral: 0037
+      13:43:42 INFO   02264610 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - 1º turno
+      13:44:05 INFO   02264610 VOTA  Iniciando aplicação - 1º turno
+      13:44:46 INFO   02264610 VOTA  Urna ligada conectada na rede CA em [122.70V] e na Bateria Interna com [13.51V/0A]
+      13:45:15 INFO   02264610 VOTA  Urna pronta para receber votos
+      14:14:45 INFO   02264610 VOTA  Urna ligada conectada na rede CA em [121.97V] e na Bateria Interna com [13.64V/0A]
+      14:44:45 INFO   02264610 VOTA  Urna ligada conectada na rede CA em [121.65V] e na Bateria Interna com [13.56V/0A]
+      15:14:46 INFO   02264610 VOTA  Urna ligada conectada na rede CA em [119.70V] e na Bateria Interna com [13.51V/0A]
+      15:44:45 INFO   02264610 VOTA  Urna ligada conectada na rede CA em [119.09V] e na Bateria Interna com [13.47V/0A]
+      16:14:45 INFO   02264610 VOTA  Urna ligada conectada na rede CA em [118.77V] e na Bateria Interna com [13.43V/0A]
+      16:44:45 INFO   02264610 VOTA  Urna ligada conectada na rede CA em [118.56V] e na Bateria Interna com [13.40V/0A]
+      17:05:42 INFO   02264610 VOTA  Inicio do Encerramento
+      17:05:43 INFO   02264610 VOTA  Gerando relatório [BU] [INÍCIO]

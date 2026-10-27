@@ -1,6 +1,6 @@
 # Auditoria 2026 — Presidente
 
-_Gerado automaticamente por `scripts/gerar_relatorios.py` em 27/10/2026 05:02 UTC. Todos os números vêm de `resultados/2026/`. Ver método em `docs/metodologia.md`._
+_Gerado automaticamente por `scripts/gerar_relatorios.py` em 27/10/2026 05:05 UTC. Todos os números vêm de `resultados/2026/`. Ver método em `docs/metodologia.md`._
 
 ## Cobertura dos arquivos de urna (logs e BU binário)
 
@@ -35,7 +35,7 @@ Os totais nacionais publicados pelo TSE (histórico de totalização e detalhe p
 | A3 | presenca | DSEC | BWEB | 499.248 | 42 | 42 | 0 |
 | B1 | comparecimento_vs_soma_votos | BWEB | BWEB | 499.206 | 0 | 0 | 0 |
 | B2 | aptos | BWEB | BUBIN | 499.206 | 0 | 0 | 0 |
-| B2 | biometria_nh_vs_lib_codigo | BWEB | BUBIN | 499.206 | 499.206 | 1.309 | 497.897 |
+| B2 | biometria_nh_vs_lib_codigo | BWEB | BUBIN | 499.206 | 1.311 | 1.309 | 2 |
 | B2 | brancos | BWEB | BUBIN | 499.206 | 0 | 0 | 0 |
 | B2 | comparecimento | BWEB | BUBIN | 499.206 | 0 | 0 | 0 |
 | B2 | nulos | BWEB | BUBIN | 499.206 | 0 | 0 | 0 |
@@ -72,7 +72,7 @@ Legenda: BWEB = BU publicado em CSV; BUBIN = arquivo .bu transmitido pela urna; 
 **Classificação:** Conferido (com diferenças explicadas e incompatibilidades listadas)
 
 - **O que verificamos?** Se o mesmo número aparece igual em todas as publicações oficiais que deveriam coincidir, seção a seção (BU em CSV, BU binário, detalhe por seção, votação por seção) e na soma por zona.
-- **O que os números mostram?** 19 de 32 comparações sem nenhuma divergência; 497.916 divergências ainda sem explicação documental (listadas abaixo).
+- **O que os números mostram?** 19 de 32 comparações sem nenhuma divergência; 21 divergências ainda sem explicação documental (listadas abaixo).
 - **O que significa?** Os votos publicados por seção são os mesmos do arquivo binário assinado gerado pela urna e das demais tabelas do TSE.
 - **Existe explicação conhecida?** As divergências explicadas decorrem de seções não instaladas, seções apuradas pelo Sistema de Apuração (cédulas), campos opcionais omitidos no exterior e eleitores de seções não instaladas incluídos nos aptos por zona.
 - **O que ainda não sabemos?** A verificação criptográfica das assinaturas dos arquivos (.vscmr) não foi feita nesta etapa.
@@ -83,205 +83,26 @@ Legenda: BWEB = BU publicado em CSV; BUBIN = arquivo .bu transmitido pela urna; 
 | teste | turno | uf | cd_municipio | nr_zona | nr_secao | campo | valor_a | fonte_a | valor_b | fonte_b |
 |---|---|---|---|---|---|---|---|---|---|---|
 | A2 | 1 | ZZ | 29.564 | 1 | 91 | presenca | — | BWEB | 1 | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 1 | biometria_nh_vs_lib_codigo | 8 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 2 | biometria_nh_vs_lib_codigo | 9 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 3 | biometria_nh_vs_lib_codigo | 13 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 4 | biometria_nh_vs_lib_codigo | 13 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 5 | biometria_nh_vs_lib_codigo | 10 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 6 | biometria_nh_vs_lib_codigo | 3 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 7 | biometria_nh_vs_lib_codigo | 16 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 8 | biometria_nh_vs_lib_codigo | 15 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 9 | biometria_nh_vs_lib_codigo | 8 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 10 | biometria_nh_vs_lib_codigo | 8 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 120 | biometria_nh_vs_lib_codigo | 21 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 136 | biometria_nh_vs_lib_codigo | 11 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 137 | biometria_nh_vs_lib_codigo | 28 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 163 | biometria_nh_vs_lib_codigo | 4 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 186 | biometria_nh_vs_lib_codigo | 12 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 192 | biometria_nh_vs_lib_codigo | 23 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 200 | biometria_nh_vs_lib_codigo | 3 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 201 | biometria_nh_vs_lib_codigo | 7 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 202 | biometria_nh_vs_lib_codigo | 11 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 208 | biometria_nh_vs_lib_codigo | 8 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 212 | biometria_nh_vs_lib_codigo | 11 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 237 | biometria_nh_vs_lib_codigo | 8 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 242 | biometria_nh_vs_lib_codigo | 9 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 252 | biometria_nh_vs_lib_codigo | 9 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 304 | biometria_nh_vs_lib_codigo | 13 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 305 | biometria_nh_vs_lib_codigo | 4 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 310 | biometria_nh_vs_lib_codigo | 14 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 411 | biometria_nh_vs_lib_codigo | 5 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 412 | biometria_nh_vs_lib_codigo | 9 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 413 | biometria_nh_vs_lib_codigo | 7 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 419 | biometria_nh_vs_lib_codigo | 4 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 436 | biometria_nh_vs_lib_codigo | 12 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 437 | biometria_nh_vs_lib_codigo | 24 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 439 | biometria_nh_vs_lib_codigo | 12 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 440 | biometria_nh_vs_lib_codigo | 7 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 441 | biometria_nh_vs_lib_codigo | 15 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 442 | biometria_nh_vs_lib_codigo | 6 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 475 | biometria_nh_vs_lib_codigo | 14 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 476 | biometria_nh_vs_lib_codigo | 17 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 477 | biometria_nh_vs_lib_codigo | 7 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.007 | 9 | 479 | biometria_nh_vs_lib_codigo | 4 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.015 | 2 | 65 | biometria_nh_vs_lib_codigo | 20 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.015 | 2 | 66 | biometria_nh_vs_lib_codigo | 8 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.015 | 2 | 67 | biometria_nh_vs_lib_codigo | 18 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.015 | 2 | 68 | biometria_nh_vs_lib_codigo | 5 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.015 | 2 | 69 | biometria_nh_vs_lib_codigo | 10 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.015 | 2 | 70 | biometria_nh_vs_lib_codigo | 10 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.015 | 2 | 71 | biometria_nh_vs_lib_codigo | 9 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.015 | 2 | 72 | biometria_nh_vs_lib_codigo | 17 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.015 | 2 | 73 | biometria_nh_vs_lib_codigo | 12 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.015 | 2 | 74 | biometria_nh_vs_lib_codigo | 8 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.015 | 2 | 75 | biometria_nh_vs_lib_codigo | 13 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.015 | 2 | 77 | biometria_nh_vs_lib_codigo | 8 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.015 | 2 | 78 | biometria_nh_vs_lib_codigo | 12 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.015 | 2 | 79 | biometria_nh_vs_lib_codigo | 15 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.015 | 2 | 80 | biometria_nh_vs_lib_codigo | 9 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.015 | 2 | 81 | biometria_nh_vs_lib_codigo | 11 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.015 | 2 | 82 | biometria_nh_vs_lib_codigo | 6 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.015 | 2 | 87 | biometria_nh_vs_lib_codigo | 12 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.015 | 2 | 88 | biometria_nh_vs_lib_codigo | 13 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.015 | 2 | 89 | biometria_nh_vs_lib_codigo | 6 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.015 | 2 | 90 | biometria_nh_vs_lib_codigo | 10 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.015 | 2 | 91 | biometria_nh_vs_lib_codigo | 14 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.015 | 2 | 92 | biometria_nh_vs_lib_codigo | 9 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.015 | 2 | 93 | biometria_nh_vs_lib_codigo | 18 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.015 | 2 | 94 | biometria_nh_vs_lib_codigo | 5 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.015 | 2 | 95 | biometria_nh_vs_lib_codigo | 14 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.015 | 2 | 101 | biometria_nh_vs_lib_codigo | 4 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.015 | 2 | 102 | biometria_nh_vs_lib_codigo | 7 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.015 | 2 | 103 | biometria_nh_vs_lib_codigo | 14 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.015 | 2 | 105 | biometria_nh_vs_lib_codigo | 8 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.015 | 2 | 106 | biometria_nh_vs_lib_codigo | 10 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.015 | 2 | 107 | biometria_nh_vs_lib_codigo | 16 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.015 | 2 | 109 | biometria_nh_vs_lib_codigo | 8 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.015 | 2 | 111 | biometria_nh_vs_lib_codigo | 19 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 576 | biometria_nh_vs_lib_codigo | 17 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 577 | biometria_nh_vs_lib_codigo | 11 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 578 | biometria_nh_vs_lib_codigo | 9 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 579 | biometria_nh_vs_lib_codigo | 9 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 580 | biometria_nh_vs_lib_codigo | 9 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 581 | biometria_nh_vs_lib_codigo | 8 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 582 | biometria_nh_vs_lib_codigo | 9 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 583 | biometria_nh_vs_lib_codigo | 24 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 584 | biometria_nh_vs_lib_codigo | 7 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 585 | biometria_nh_vs_lib_codigo | 9 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 586 | biometria_nh_vs_lib_codigo | 5 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 587 | biometria_nh_vs_lib_codigo | 6 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 588 | biometria_nh_vs_lib_codigo | 13 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 589 | biometria_nh_vs_lib_codigo | 12 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 590 | biometria_nh_vs_lib_codigo | 11 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 591 | biometria_nh_vs_lib_codigo | 11 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 592 | biometria_nh_vs_lib_codigo | 5 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 593 | biometria_nh_vs_lib_codigo | 11 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 594 | biometria_nh_vs_lib_codigo | 4 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 595 | biometria_nh_vs_lib_codigo | 8 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 596 | biometria_nh_vs_lib_codigo | 19 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 597 | biometria_nh_vs_lib_codigo | 5 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 598 | biometria_nh_vs_lib_codigo | 11 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 599 | biometria_nh_vs_lib_codigo | 9 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 600 | biometria_nh_vs_lib_codigo | 9 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 601 | biometria_nh_vs_lib_codigo | 7 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 602 | biometria_nh_vs_lib_codigo | 4 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 603 | biometria_nh_vs_lib_codigo | 3 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 604 | biometria_nh_vs_lib_codigo | 10 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 605 | biometria_nh_vs_lib_codigo | 9 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 606 | biometria_nh_vs_lib_codigo | 4 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 607 | biometria_nh_vs_lib_codigo | 7 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 608 | biometria_nh_vs_lib_codigo | 2 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 609 | biometria_nh_vs_lib_codigo | 11 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 610 | biometria_nh_vs_lib_codigo | 8 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 611 | biometria_nh_vs_lib_codigo | 11 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 612 | biometria_nh_vs_lib_codigo | 6 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 613 | biometria_nh_vs_lib_codigo | 13 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 614 | biometria_nh_vs_lib_codigo | 16 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 615 | biometria_nh_vs_lib_codigo | 11 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 616 | biometria_nh_vs_lib_codigo | 13 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 617 | biometria_nh_vs_lib_codigo | 15 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 618 | biometria_nh_vs_lib_codigo | 4 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 619 | biometria_nh_vs_lib_codigo | 16 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 620 | biometria_nh_vs_lib_codigo | 9 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 621 | biometria_nh_vs_lib_codigo | 11 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 622 | biometria_nh_vs_lib_codigo | 3 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 623 | biometria_nh_vs_lib_codigo | 8 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 624 | biometria_nh_vs_lib_codigo | 12 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 625 | biometria_nh_vs_lib_codigo | 6 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 626 | biometria_nh_vs_lib_codigo | 10 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 627 | biometria_nh_vs_lib_codigo | 10 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 628 | biometria_nh_vs_lib_codigo | 9 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 629 | biometria_nh_vs_lib_codigo | 7 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 630 | biometria_nh_vs_lib_codigo | 14 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 631 | biometria_nh_vs_lib_codigo | 9 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 797 | biometria_nh_vs_lib_codigo | 21 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 799 | biometria_nh_vs_lib_codigo | 7 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 851 | biometria_nh_vs_lib_codigo | 22 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.023 | 1 | 853 | biometria_nh_vs_lib_codigo | 8 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.031 | 3 | 58 | biometria_nh_vs_lib_codigo | 20 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.031 | 3 | 60 | biometria_nh_vs_lib_codigo | 10 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.031 | 3 | 65 | biometria_nh_vs_lib_codigo | 5 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.031 | 3 | 72 | biometria_nh_vs_lib_codigo | 13 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.031 | 3 | 76 | biometria_nh_vs_lib_codigo | 13 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.031 | 3 | 77 | biometria_nh_vs_lib_codigo | 3 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.031 | 3 | 87 | biometria_nh_vs_lib_codigo | 1 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.031 | 3 | 88 | biometria_nh_vs_lib_codigo | 12 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.031 | 3 | 95 | biometria_nh_vs_lib_codigo | 7 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.031 | 3 | 96 | biometria_nh_vs_lib_codigo | 7 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.031 | 3 | 122 | biometria_nh_vs_lib_codigo | 2 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.031 | 3 | 125 | biometria_nh_vs_lib_codigo | 2 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.031 | 3 | 152 | biometria_nh_vs_lib_codigo | 6 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.031 | 3 | 157 | biometria_nh_vs_lib_codigo | 11 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.031 | 3 | 170 | biometria_nh_vs_lib_codigo | 5 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.031 | 3 | 172 | biometria_nh_vs_lib_codigo | 1 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 73 | biometria_nh_vs_lib_codigo | 13 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 74 | biometria_nh_vs_lib_codigo | 11 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 75 | biometria_nh_vs_lib_codigo | 6 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 76 | biometria_nh_vs_lib_codigo | 5 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 114 | biometria_nh_vs_lib_codigo | 4 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 140 | biometria_nh_vs_lib_codigo | 3 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 141 | biometria_nh_vs_lib_codigo | 3 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 142 | biometria_nh_vs_lib_codigo | 3 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 143 | biometria_nh_vs_lib_codigo | 13 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 160 | biometria_nh_vs_lib_codigo | 8 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 161 | biometria_nh_vs_lib_codigo | 7 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 162 | biometria_nh_vs_lib_codigo | 5 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 163 | biometria_nh_vs_lib_codigo | 20 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 182 | biometria_nh_vs_lib_codigo | 11 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 196 | biometria_nh_vs_lib_codigo | 2 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 201 | biometria_nh_vs_lib_codigo | 12 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 203 | biometria_nh_vs_lib_codigo | 6 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 223 | biometria_nh_vs_lib_codigo | 23 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 230 | biometria_nh_vs_lib_codigo | 16 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 236 | biometria_nh_vs_lib_codigo | 10 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 237 | biometria_nh_vs_lib_codigo | 6 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 251 | biometria_nh_vs_lib_codigo | 5 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 279 | biometria_nh_vs_lib_codigo | 8 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 284 | biometria_nh_vs_lib_codigo | 2 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 294 | biometria_nh_vs_lib_codigo | 1 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 318 | biometria_nh_vs_lib_codigo | 8 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 324 | biometria_nh_vs_lib_codigo | 0 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 326 | biometria_nh_vs_lib_codigo | 10 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 327 | biometria_nh_vs_lib_codigo | 4 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 331 | biometria_nh_vs_lib_codigo | 6 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 337 | biometria_nh_vs_lib_codigo | 4 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 347 | biometria_nh_vs_lib_codigo | 6 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 359 | biometria_nh_vs_lib_codigo | 3 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 375 | biometria_nh_vs_lib_codigo | 7 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 384 | biometria_nh_vs_lib_codigo | 4 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 389 | biometria_nh_vs_lib_codigo | 1 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 424 | biometria_nh_vs_lib_codigo | 3 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 434 | biometria_nh_vs_lib_codigo | 7 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 435 | biometria_nh_vs_lib_codigo | 3 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 441 | biometria_nh_vs_lib_codigo | 15 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 443 | biometria_nh_vs_lib_codigo | 6 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 444 | biometria_nh_vs_lib_codigo | 8 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 456 | biometria_nh_vs_lib_codigo | 3 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 461 | biometria_nh_vs_lib_codigo | 8 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 463 | biometria_nh_vs_lib_codigo | 7 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 504 | biometria_nh_vs_lib_codigo | 7 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.040 | 4 | 506 | biometria_nh_vs_lib_codigo | 1 | BWEB | — | BUBIN |
-| B2 | 1 | AC | 1.058 | 6 | 1 | biometria_nh_vs_lib_codigo | 9 | BWEB | — | BUBIN |
+| B2 | 1 | MG | 41.238 | 39 | 168 | biometria_nh_vs_lib_codigo | 0 | BWEB | — | BUBIN |
+| B2 | 1 | MG | 50.075 | 47 | 41 | biometria_nh_vs_lib_codigo | 0 | BWEB | — | BUBIN |
+| B6 | 1 | BA | 39.934 | 183 | 175 | biometria_nh_vs_liberacao_manual_no_log | 17 | BWEB | 16 | LOG |
+| B6 | 1 | RJ | 60.011 | 8 | 61 | biometria_nh_vs_liberacao_manual_no_log | 38 | BWEB | 37 | LOG |
+| B6 | 1 | SP | 71.072 | 2 | 35 | biometria_nh_vs_liberacao_manual_no_log | 18 | BWEB | 16 | LOG |
+| B6 | 1 | BA | 39.934 | 183 | 175 | comparecimento_vs_votos_computados | 272 | BWEB | 236 | LOG |
+| B6 | 1 | ES | 56.995 | 53 | 211 | comparecimento_vs_votos_computados | 265 | BWEB | 264 | LOG |
+| B6 | 1 | RJ | 58.971 | 87 | 184 | comparecimento_vs_votos_computados | 258 | BWEB | 256 | LOG |
+| B6 | 1 | RN | 16.039 | 29 | 28 | comparecimento_vs_votos_computados | 242 | BWEB | 241 | LOG |
+| B6 | 1 | RS | 89.036 | 83 | 44 | comparecimento_vs_votos_computados | 279 | BWEB | 278 | LOG |
+| B6 | 1 | SP | 63.614 | 227 | 305 | comparecimento_vs_votos_computados | 290 | BWEB | 289 | LOG |
+| B6 | 1 | SP | 64.254 | 291 | 346 | comparecimento_vs_votos_computados | 278 | BWEB | 277 | LOG |
+| B6 | 1 | SP | 71.072 | 2 | 35 | comparecimento_vs_votos_computados | 247 | BWEB | 232 | LOG |
+| B6 | 1 | SP | 71.072 | 260 | 37 | comparecimento_vs_votos_computados | 285 | BWEB | 284 | LOG |
+| B6 | 1 | BA | 39.934 | 183 | 175 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 272 | BWEB | 236 | LOG |
+| B6 | 1 | RJ | 58.971 | 87 | 184 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 258 | BWEB | 256 | LOG |
+| B6 | 1 | RJ | 60.011 | 8 | 61 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 311 | BWEB | 309 | LOG |
+| B6 | 1 | RS | 89.036 | 83 | 44 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 279 | BWEB | 278 | LOG |
+| B6 | 1 | SP | 70.971 | 268 | 43 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 219 | BWEB | 220 | LOG |
+| B6 | 1 | SP | 71.072 | 2 | 35 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 247 | BWEB | 232 | LOG |
 
 
 Diagnóstico individual de cada caso (estrutura do log: arquivos, urnas, eventos de contingência) em `resultados/2026/diagnosticos/`.
@@ -367,4 +188,32 @@ Intervalo = tempo entre dois registros consecutivos de voto concluído na mesma 
 - **Existe explicação conhecida?** A distribuição dos modelos não é aleatória (logística do TSE por zona/local). O modelo 2020 tem leitor biométrico mais novo: a taxa de liberação manual é ~5 p.p. menor nas mesmas localidades, diferença técnica esperada.
 - **O que ainda não sabemos?** Sem covariáveis anteriores à eleição por seção (ex.: resultado de 2018 na mesma seção), não é possível separar efeito do modelo de efeito de localização. Diferença estatística ≠ causalidade.
 - **Como conferir?** `resultados/2026/modelos_efeito_controlado.csv`, `modelos_medias_ingenuas.csv`; gráfico `resultados/2026/graficos/modelos_efeito_22.png`.
+
+## 6. Testes estatísticos de dígitos e distribuição (Teste J)
+
+| teste | testes | rejeitados_holm_1pct | cramer_v_mediano | maior_desvio_pp_mediano |
+|---|---|---|---|---|
+| segundo_digito_benford_descritivo | 58 | 54 | 0,066 | 3,594 |
+| segundo_digito_vs_simulacao_binomial_zona | 58 | 33 | 0,020 | 1,046 |
+| ultimo_digito_uniforme | 58 | 9 | 0,012 | 0,721 |
+| ultimo_digito_vs_simulacao_binomial_zona | 58 | 0 | 0,010 | 0,605 |
+
+### Dígitos das contagens por seção
+
+**Classificação:** Diferença estatística (sem relevância prática) — não é evidência de irregularidade
+
+- **O que verificamos?** Se o último e o segundo dígito dos votos por seção de Lula (13) e Bolsonaro (22) seguem o esperado.
+- **O que os números mostram?** Contra a referência teórica (uniforme / Benford) há rejeições, com efeitos pequenos. Contra a referência simulada (binomial com o tamanho real das seções e a proporção da zona), o último dígito não é rejeitado em nenhum caso, e o desvio do 2º dígito cai para frações de ponto percentual.
+- **O que significa?** As rejeições contra Benford vêm da premissa errada (seções têm tamanho limitado), não dos votos.
+- **Existe explicação conhecida?** Literatura: Mebane (2006); Deckert, Myagkov & Ordeshook (2011) — testes de dígitos não detectam fraude de forma confiável.
+- **O que ainda não sabemos?** O modelo simulado ignora a heterogeneidade entre seções de uma zona (sobredispersão), o que explica o pequeno desvio residual no 2º dígito.
+- **Como conferir?** `resultados/2026/estatistica_testes_digitos.csv`.
+
+### Seções com 100% dos votos válidos para um único candidato
+
+| turno | faixa_validos | secoes | secoes_100pct_um_candidato |
+|---|---|---|---|
+| 1 | 100+ | 493.592 | 13 |
+| 1 | 50-99 | 4.892 | 16 |
+| 1 | <50 | 722 | 11 |
 

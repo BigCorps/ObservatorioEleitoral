@@ -1,0 +1,26 @@
+=== logd.dat: 5279 linhas do dia; ids={'01650564': 5279}
+    {'Urna pronta para receber votos': 2, 'Eleitor foi habilitado': 265, 'Voto confirmado para [Presidente]': 265, 'O voto do eleitor foi computado': 264, 'Inicio do Encerramento': 1}
+      07:18:16 INFO   01650564 LOGD  Urna ligada em 04/10/2026 às 07:17:06
+      07:19:17 INFO   01650564 GAP   Iniciando aplicação - 1º turno
+      07:19:17 INFO   01650564 GAP   Identificação do Modelo de Urna: UE2013
+      07:19:27 INFO   01650564 GAP   Identificação do Modelo de Urna: UE2013
+      07:19:31 INFO   01650564 GAP   Modo de carga da UE - Votação
+      07:19:31 INFO   01650564 GAP   Município: 56995
+      07:19:31 INFO   01650564 GAP   Zona Eleitoral: 0053
+      07:19:32 INFO   01650564 GAP   Seção Eleitoral: 0211
+      07:20:36 INFO   01650564 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - 1º turno
+      07:21:06 INFO   01650564 VOTA  Iniciando aplicação - 1º turno
+      08:00:01 INFO   01650564 VOTA  Urna pronta para receber votos
+      17:01:42 INFO   01650564 LOGD  Urna ligada em 04/10/2026 às 17:00:34
+      17:02:45 INFO   01650564 GAP   Iniciando aplicação - 1º turno
+      17:02:45 INFO   01650564 GAP   Identificação do Modelo de Urna: UE2013
+      17:03:00 INFO   01650564 GAP   Identificação do Modelo de Urna: UE2013
+      17:03:05 INFO   01650564 GAP   Modo de carga da UE - Votação
+      17:03:05 INFO   01650564 GAP   Município: 56995
+      17:03:05 INFO   01650564 GAP   Zona Eleitoral: 0053
+      17:03:05 INFO   01650564 GAP   Seção Eleitoral: 0211
+      17:04:08 INFO   01650564 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - 1º turno
+      17:04:41 INFO   01650564 VOTA  Iniciando aplicação - 1º turno
+      17:05:59 INFO   01650564 VOTA  Urna pronta para receber votos
+      17:17:46 INFO   01650564 VOTA  Inicio do Encerramento
+      17:17:47 INFO   01650564 VOTA  Gerando relatório [BU] [INÍCIO]
