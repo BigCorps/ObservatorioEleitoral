@@ -8,6 +8,7 @@ Fontes e definições (não se presume que anos ou arquivos usem as mesmas categ
   cadastrada; manual após falha biométrica; sem etapa biométrica (exterior).
 Habilitação alternativa é procedimento regular (Res. 23.669/2021, arts. 114-115;
 Res. 23.751/2026, arts. 134-135) e não indica, por si, irregularidade.
+Quantis de duração são aproximados (t-digest do DuckDB) por causa do volume (~250 milhões de votos).
 """
 from __future__ import annotations
 
@@ -22,6 +23,8 @@ T = PROCESSADOS / "tabelas"
 def executar(ano: int) -> dict:
     con = duckdb.connect()
     con.execute("SET enable_progress_bar=false")
+    con.execute("SET memory_limit='6GB'")
+    con.execute(f"SET temp_directory='{PROCESSADOS}/duckdb_tmp'")
     pasta = RESULTADOS / str(ano)
     pasta.mkdir(parents=True, exist_ok=True)
     con.execute(f"""CREATE VIEW lg AS SELECT turno, uf, cd_municipio, nr_zona, nr_secao, log_modelos,
@@ -61,8 +64,8 @@ def executar(ano: int) -> dict:
       TO '{pasta}/biometria_modalidade_por_hora.csv' (HEADER)""")
     # 3) Duração (habilitação -> voto) por modalidade e modelo de urna
     con.execute(f"""COPY (
-      SELECT turno, log_modelos modelo, m modalidade, count(*) votos, median(d) mediana_s,
-        quantile_cont(d, 0.1) p10_s, quantile_cont(d, 0.9) p90_s
+      SELECT turno, log_modelos modelo, m modalidade, count(*) votos, approx_quantile(d, 0.5) mediana_s,
+        approx_quantile(d, 0.1) p10_s, approx_quantile(d, 0.9) p90_s
       FROM (SELECT turno, log_modelos, unnest(dur_voto) d, unnest(dur_voto_mod) m FROM lg) GROUP BY ALL ORDER BY ALL)
       TO '{pasta}/biometria_duracao_por_modalidade_modelo.csv' (HEADER)""")
     # 4) Distribuição por seção do % de liberação manual (BU), para seções comparáveis
