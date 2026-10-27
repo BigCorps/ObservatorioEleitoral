@@ -1,0 +1,138 @@
+=== 6730598502102022092622-01.jez/logd.dat: 417 linhas do dia; ids={'67305985': 417}
+    {'Urna pronta para receber votos': 3, 'Eleitor foi habilitado': 8, 'Voto confirmado para [Presidente]': 8, 'O voto do eleitor foi computado': 8}
+      07:29:36 INFO   67305985 LOGD  Urna ligada em 02/10/2022 às 07:28:52
+      07:30:18 INFO   67305985 GAP   Iniciando aplicação - Oficial - 1º turno
+      07:30:18 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2011
+      07:30:27 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2011
+      07:30:31 INFO   67305985 GAP   Modo de carga da UE - Votação
+      07:30:31 INFO   67305985 GAP   Município: 66230
+      07:30:31 INFO   67305985 GAP   Zona Eleitoral: 0223
+      07:30:31 INFO   67305985 GAP   Seção Eleitoral: 0023
+      07:30:36 INFO   67305985 GAP   Serial de votação da MV: E5474DCC 22/09/2022 às 09:20:29 em ZSP223STD01
+      07:31:15 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      07:31:53 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 1º turno
+      08:00:01 INFO   67305985 VOTA  Urna pronta para receber votos
+      08:03:45 ERRO   67305985 VOTA  St13runtime_error - () Error ao encerrar captura - estado 1 (0xffffffed) call(0)
+      08:37:17 INFO   67305985 INITJE Urna desligada pela chave
+      08:39:04 INFO   67305985 LOGD  Urna ligada em 02/10/2022 às 08:38:19
+      08:39:46 INFO   67305985 GAP   Iniciando aplicação - Oficial - 1º turno
+      08:39:46 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2011
+      08:39:55 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2011
+      08:39:59 INFO   67305985 GAP   Modo de carga da UE - Votação
+      08:39:59 INFO   67305985 GAP   Município: 66230
+      08:39:59 INFO   67305985 GAP   Zona Eleitoral: 0223
+      08:39:59 INFO   67305985 GAP   Seção Eleitoral: 0023
+      08:40:04 INFO   67305985 GAP   Serial de votação da MV: E5474DCC 22/09/2022 às 09:20:29 em ZSP223STD01
+      08:40:44 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      08:41:22 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 1º turno
+      08:42:59 INFO   67305985 VOTA  Urna pronta para receber votos
+      08:54:35 ERRO   67305985 VOTA  St13runtime_error - () Error ao encerrar captura - estado 1 (0xffffffed) call(0)
+      08:55:15 INFO   67305985 INITJE Urna desligada pela chave
+      08:57:39 INFO   67305985 LOGD  Urna ligada em 02/10/2022 às 08:56:54
+      08:58:21 INFO   67305985 GAP   Iniciando aplicação - Oficial - 1º turno
+      08:58:21 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2011
+      08:58:31 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2011
+      08:58:35 INFO   67305985 GAP   Modo de carga da UE - Votação
+      08:58:35 INFO   67305985 GAP   Município: 66230
+      08:58:35 INFO   67305985 GAP   Zona Eleitoral: 0223
+      08:58:35 INFO   67305985 GAP   Seção Eleitoral: 0023
+      08:58:40 INFO   67305985 GAP   Serial de votação da MV: E5474DCC 22/09/2022 às 09:20:29 em ZSP223STD01
+      08:59:20 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      08:59:58 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 1º turno
+      09:00:35 INFO   67305985 VOTA  Urna pronta para receber votos
+      09:14:51 ERRO   67305985 VOTA  St13runtime_error - () Error ao encerrar captura - estado 1 (0xffffffed) call(0)
+      09:17:19 INFO   67305985 INITJE Urna desligada pela chave
+=== 6730598502102022101802ME.jez/logd.dat: 437 linhas do dia; ids={'67305985': 437}
+    {'Urna pronta para receber votos': 1, 'Eleitor foi habilitado': 1, 'Voto confirmado para [Presidente]': 1, 'O voto do eleitor foi computado': 1}
+      09:24:29 INFO   67305985 LOGD  Urna ligada em 02/10/2022 às 09:23:42
+      09:25:09 INFO   67305985 GAP   Iniciando aplicação - Oficial - 1º turno
+      09:25:09 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2013
+      09:25:09 INFO   67305985 LOGD  Log interno da urna reserva válido com sucesso
+      09:25:18 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2013
+      09:25:22 INFO   67305985 GAP   Modo de carga da UE - Urna de contingência
+      09:25:22 INFO   67305985 GAP   Município: 66230
+      09:25:22 INFO   67305985 GAP   Zona Eleitoral: 0223
+      09:25:22 INFO   67305985 GAP   Seção Eleitoral: 0000
+      09:25:28 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      09:25:47 INFO   67305985 GAP   Início do procedimento de contingência
+      09:26:20 INFO   67305985 GAP   Serial de votação da MV: E5474DCC 22/09/2022 às 09:20:29 em ZSP223STD01
+      09:26:21 INFO   67305985 GAP   Modo de carga da UE - Votação
+      09:26:25 INFO   67305985 GAP   Contingência executada com sucesso
+      09:27:46 INFO   67305985 LOGD  Urna ligada em 02/10/2022 às 09:27:00
+      09:28:28 INFO   67305985 GAP   Iniciando aplicação - Oficial - 1º turno
+      09:28:29 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2013
+      09:28:37 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2013
+      09:28:41 INFO   67305985 GAP   Modo de carga da UE - Votação
+      09:28:41 INFO   67305985 GAP   Município: 66230
+      09:28:41 INFO   67305985 GAP   Zona Eleitoral: 0223
+      09:28:41 INFO   67305985 GAP   Seção Eleitoral: 0023
+      09:28:46 INFO   67305985 GAP   Serial de votação da MV: E5474DCC 22/09/2022 às 09:20:29 em ZSP223STD01
+      09:29:26 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      09:29:53 INFO   67305985 INITJE Urna desligada pela chave
+      09:32:09 INFO   67305985 LOGD  Urna ligada em 02/10/2022 às 09:31:26
+      09:32:52 INFO   67305985 GAP   Iniciando aplicação - Oficial - 1º turno
+      09:32:52 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2013
+      09:33:01 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2013
+      09:33:05 INFO   67305985 GAP   Modo de carga da UE - Votação
+      09:33:05 INFO   67305985 GAP   Município: 66230
+      09:33:05 INFO   67305985 GAP   Zona Eleitoral: 0223
+      09:33:05 INFO   67305985 GAP   Seção Eleitoral: 0023
+      09:33:09 INFO   67305985 GAP   Serial de votação da MV: BD046A0D 22/09/2022 às 14:38:00 em ZSP223STD01
+      09:33:49 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      09:33:58 INFO   67305985 GAP   Início do procedimento de contingência de MV
+      09:33:58 INFO   67305985 GAP   Serial de votação da MV: BD046A0D 22/09/2022 às 14:38:00 em ZSP223STD01
+      09:35:13 INFO   67305985 GAP   Contingência de MV executada com sucesso
+      09:35:29 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 1º turno
+      09:36:08 INFO   67305985 VOTA  Urna pronta para receber votos
+      09:43:10 INFO   67305985 INITJE Urna desligada pela chave
+      09:43:11 INFO   67305985 VOTA  Votação suspensa
+      09:49:13 INFO   67305985 LOGD  Urna ligada em 02/10/2022 às 09:48:24
+      09:49:55 INFO   67305985 GAP   Iniciando aplicação - Oficial - 1º turno
+      09:49:55 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2013
+      09:50:04 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2013
+      09:50:08 INFO   67305985 GAP   Modo de carga da UE - Votação
+      09:50:08 INFO   67305985 GAP   Município: 66230
+      09:50:08 INFO   67305985 GAP   Zona Eleitoral: 0223
+      09:50:08 INFO   67305985 GAP   Seção Eleitoral: 0023
+      09:50:15 INFO   67305985 GAP   Serial de votação da MV: E5474DCC 22/09/2022 às 09:20:29 em ZSP223STD01
+      09:50:55 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      09:50:59 ERRO   67305985 GAP   Erro na aplicação - Código de erro: [256] e Código evento: [52]
+      09:51:57 INFO   67305985 GAP   Urna desligada a pedido do aplicativo
+      09:53:41 INFO   67305985 LOGD  Urna ligada em 02/10/2022 às 09:52:50
+      09:54:23 INFO   67305985 GAP   Iniciando aplicação - Oficial - 1º turno
+      09:54:23 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2013
+      09:54:32 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2013
+      09:54:36 INFO   67305985 GAP   Modo de carga da UE - Votação
+      09:54:36 INFO   67305985 GAP   Município: 66230
+=== 6730598523092022145013-01.jez/logd.dat: 0 linhas do dia; ids={}
+    {}
+=== logd.dat: 3833 linhas do dia; ids={'67305985': 3833}
+    {'Urna pronta para receber votos': 1, 'Eleitor foi habilitado': 207, 'Voto confirmado para [Presidente]': 207, 'O voto do eleitor foi computado': 207, 'Inicio do Encerramento': 1}
+      10:16:15 INFO   67305985 LOGD  Urna ligada em 02/10/2022 às 10:15:22
+      10:17:01 INFO   67305985 GAP   Iniciando aplicação - Oficial - 1º turno
+      10:17:01 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2015
+      10:17:01 INFO   67305985 LOGD  Log interno da urna reserva válido com sucesso
+      10:17:10 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2015
+      10:17:14 INFO   67305985 GAP   Modo de carga da UE - Urna de contingência
+      10:17:14 INFO   67305985 GAP   Município: 66230
+      10:17:14 INFO   67305985 GAP   Zona Eleitoral: 0223
+      10:17:14 INFO   67305985 GAP   Seção Eleitoral: 0000
+      10:17:20 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      10:17:39 INFO   67305985 GAP   Início do procedimento de contingência
+      10:18:14 INFO   67305985 GAP   Serial de votação da MV: E5474DCC 22/09/2022 às 09:20:29 em ZSP223STD01
+      10:18:15 INFO   67305985 GAP   Modo de carga da UE - Votação
+      10:18:20 INFO   67305985 GAP   Contingência executada com sucesso
+      10:19:44 INFO   67305985 LOGD  Urna ligada em 02/10/2022 às 10:18:54
+      10:20:33 INFO   67305985 GAP   Iniciando aplicação - Oficial - 1º turno
+      10:20:33 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2015
+      10:20:41 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2015
+      10:20:45 INFO   67305985 GAP   Modo de carga da UE - Votação
+      10:20:46 INFO   67305985 GAP   Município: 66230
+      10:20:46 INFO   67305985 GAP   Zona Eleitoral: 0223
+      10:20:46 INFO   67305985 GAP   Seção Eleitoral: 0023
+      10:20:50 INFO   67305985 GAP   Serial de votação da MV: E5474DCC 22/09/2022 às 09:20:29 em ZSP223STD01
+      10:21:32 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      10:22:17 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 1º turno
+      10:22:57 INFO   67305985 VOTA  Urna pronta para receber votos
+      17:13:51 INFO   67305985 VOTA  Inicio do Encerramento
+      17:13:52 INFO   67305985 VOTA  Gerando relatório [BU] [INÍCIO]
