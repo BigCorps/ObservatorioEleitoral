@@ -1,0 +1,62 @@
+=== logd.dat: 4372 linhas do dia; ids={'2084726': 4372}
+    {'Urna pronta para receber votos': 5, 'Eleitor foi habilitado': 327, 'Voto confirmado para [Presidente]': 327, 'O voto do eleitor foi computado': 326, 'Inicio do Encerramento': 1}
+      07:25:29 INFO   2084726 LOGD  Urna ligada em 30/10/2022 às 07:25:08
+      07:25:48 INFO   2084726 GAP   Iniciando aplicação - Oficial - 2º turno
+      07:25:48 INFO   2084726 GAP   Identificação do Modelo de Urna: UE2020
+      07:25:57 INFO   2084726 GAP   Identificação do Modelo de Urna: UE2020
+      07:26:01 INFO   2084726 GAP   Modo de carga da UE - Votação
+      07:26:01 INFO   2084726 GAP   Município: 70998
+      07:26:01 INFO   2084726 GAP   Zona Eleitoral: 0127
+      07:26:01 INFO   2084726 GAP   Seção Eleitoral: 0546
+      07:26:05 INFO   2084726 GAP   Serial de votação da MV: 818B3010 22/09/2022 às 18:56:13 em ZSP127STD02
+      07:26:20 INFO   2084726 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      07:26:44 INFO   2084726 VOTA  Iniciando aplicação - Oficial - 2º turno
+      07:33:53 ERRO   2084726 VOTA  Digitado título inválido para o registro de mesário
+      08:00:01 INFO   2084726 VOTA  Urna pronta para receber votos
+      08:21:16 INFO   2084726 INITJE Urna desligada pela chave
+      08:22:18 INFO   2084726 LOGD  Urna ligada em 30/10/2022 às 08:21:57
+      08:22:37 INFO   2084726 GAP   Iniciando aplicação - Oficial - 2º turno
+      08:22:37 INFO   2084726 GAP   Identificação do Modelo de Urna: UE2020
+      08:22:46 INFO   2084726 GAP   Identificação do Modelo de Urna: UE2020
+      08:22:50 INFO   2084726 GAP   Modo de carga da UE - Votação
+      08:22:50 INFO   2084726 GAP   Município: 70998
+      08:22:50 INFO   2084726 GAP   Zona Eleitoral: 0127
+      08:22:50 INFO   2084726 GAP   Seção Eleitoral: 0546
+      08:22:54 INFO   2084726 GAP   Serial de votação da MV: 818B3010 22/09/2022 às 18:56:13 em ZSP127STD02
+      08:23:09 INFO   2084726 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      08:23:27 INFO   2084726 VOTA  Iniciando aplicação - Oficial - 2º turno
+      08:24:15 INFO   2084726 VOTA  Urna pronta para receber votos
+      09:12:44 ERRO   2084726 VOTA  N3api10CExceptionE - (Código (-2)) ERROR opening the biometric reader
+      09:13:11 INFO   2084726 INITJE Urna desligada pela chave
+      09:14:21 INFO   2084726 LOGD  Urna ligada em 30/10/2022 às 09:13:57
+      09:14:40 INFO   2084726 GAP   Iniciando aplicação - Oficial - 2º turno
+      09:14:40 INFO   2084726 GAP   Identificação do Modelo de Urna: UE2020
+      09:14:50 INFO   2084726 GAP   Identificação do Modelo de Urna: UE2020
+      09:14:54 INFO   2084726 GAP   Modo de carga da UE - Votação
+      09:14:54 INFO   2084726 GAP   Município: 70998
+      09:14:54 INFO   2084726 GAP   Zona Eleitoral: 0127
+      09:14:54 INFO   2084726 GAP   Seção Eleitoral: 0546
+      09:14:58 INFO   2084726 GAP   Serial de votação da MV: 818B3010 22/09/2022 às 18:56:13 em ZSP127STD02
+      09:15:13 INFO   2084726 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      09:15:32 INFO   2084726 VOTA  Iniciando aplicação - Oficial - 2º turno
+      09:15:45 INFO   2084726 VOTA  Urna pronta para receber votos
+      11:57:40 ERRO   2084726 VOTA  N3api10CExceptionE - (Código (-2)) ERROR opening the biometric reader
+      11:58:03 INFO   2084726 INITJE Urna desligada pela chave
+      11:59:09 INFO   2084726 LOGD  Urna ligada em 30/10/2022 às 11:58:48
+      11:59:27 INFO   2084726 GAP   Iniciando aplicação - Oficial - 2º turno
+      11:59:27 INFO   2084726 GAP   Identificação do Modelo de Urna: UE2020
+      11:59:36 INFO   2084726 GAP   Identificação do Modelo de Urna: UE2020
+      11:59:41 INFO   2084726 GAP   Modo de carga da UE - Votação
+      11:59:41 INFO   2084726 GAP   Município: 70998
+      11:59:41 INFO   2084726 GAP   Zona Eleitoral: 0127
+      11:59:41 INFO   2084726 GAP   Seção Eleitoral: 0546
+      11:59:45 INFO   2084726 GAP   Serial de votação da MV: 818B3010 22/09/2022 às 18:56:13 em ZSP127STD02
+      12:00:00 INFO   2084726 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      12:00:17 INFO   2084726 VOTA  Iniciando aplicação - Oficial - 2º turno
+      12:00:30 INFO   2084726 VOTA  Urna pronta para receber votos
+      12:39:50 INFO   2084726 INITJE Urna desligada pela chave
+      12:40:50 INFO   2084726 LOGD  Urna ligada em 30/10/2022 às 12:40:29
+      12:41:09 INFO   2084726 GAP   Iniciando aplicação - Oficial - 2º turno
+      12:41:09 INFO   2084726 GAP   Identificação do Modelo de Urna: UE2020
+      12:41:19 INFO   2084726 GAP   Identificação do Modelo de Urna: UE2020
+      12:41:23 INFO   2084726 GAP   Modo de carga da UE - Votação
