@@ -640,14 +640,10 @@ function renderAudit() {
   const rows=data.auditsByYear[state.year]||[];
   setText('auditTableTitle','Testes documentais de '+state.year+(state.year==='2022'?' · dois turnos':' · primeiro turno'));
   setText('auditCoverageChip',state.year==='2022'?'2022: ambos os turnos':'2026: apenas primeiro turno');
-  setText('auditTableNote','Quadro nacional histórico de '+state.year+(state.year==='2022'?' (dados dos dois turnos).':' (somente o 1º turno).')+' Não é filtrado por UF, pois o resumo oficializado no repositório está agregado por ano. Cada linha conta comparações, não seções únicas nem votos irregulares.');
+  setText('auditTableNote','Quadro nacional histórico de '+state.year+(state.year==='2022'?' (dados dos dois turnos).':' (somente o 1º turno).')+' Não é filtrado por UF, pois o resumo oficializado no repositório está agregado por ano. A tabela apresenta testes com diferenças, explicadas ou pendentes; cada linha conta comparações, não seções únicas nem votos irregulares.');
   const body=document.getElementById('auditTableBody');
   body.replaceChildren();
-  const pending=rows.filter(r=>{
-    const d=numeric(r.divergencias),e=numeric(r.explicadas);
-    return d!==null&&e!==null&&d>e;
-  });
-  const relevant=pending.length?pending:rows;
+  const relevant=rows.filter(r=>(numeric(r.divergencias)||0)>0);
   relevant.forEach(r=>{
     const tr=node('tr'),delta=numeric(r.divergencias),explained=numeric(r.explicadas);
     const left=(delta!==null&&explained!==null)?Math.max(0,delta-explained):null;
@@ -656,7 +652,7 @@ function renderAudit() {
     tr.append(name,node('td',null,number(r.registros_comparados)),node('td',null,number(delta)),node('td',null,number(explained)),node('td',left>0?'audit-not-explained':'',number(left)));
     body.append(tr);
   });
-  if(!rows.length){const row=node('tr'),cell=node('td',null,'Resumo de reconciliação indisponível.');cell.colSpan=5;row.append(cell);body.append(row);}
+  if(!relevant.length){const row=node('tr'),cell=node('td',null,rows.length?'Nenhuma diferença registrada nos testes desta base.':'Resumo de reconciliação indisponível.');cell.colSpan=5;row.append(cell);body.append(row);}
 }
 function render() {
   if(!data)return;
