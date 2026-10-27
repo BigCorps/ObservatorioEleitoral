@@ -1,0 +1,40 @@
+=== logd.dat: 3684 linhas do dia; ids={'67305985': 3684}
+    {'Urna pronta para receber votos': 3, 'Eleitor foi habilitado': 339, 'Voto confirmado para [Presidente]': 339, 'O voto do eleitor foi computado': 338, 'Inicio do Encerramento': 1}
+      07:25:43 INFO   67305985 LOGD  Urna ligada em 30/10/2022 às 07:24:56
+      07:26:26 INFO   67305985 GAP   Iniciando aplicação - Oficial - 2º turno
+      07:26:26 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2010
+      07:26:40 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2010
+      07:26:44 INFO   67305985 GAP   Modo de carga da UE - Votação
+      07:26:44 INFO   67305985 GAP   Município: 40720
+      07:26:44 INFO   67305985 GAP   Zona Eleitoral: 0167
+      07:26:44 INFO   67305985 GAP   Seção Eleitoral: 0179
+      07:26:49 INFO   67305985 GAP   Serial de votação da MV: 6E19C2D6 21/09/2022 às 17:08:11 em ZMG167STD02
+      07:27:30 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      07:28:08 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 2º turno
+      08:00:01 INFO   67305985 VOTA  Urna pronta para receber votos
+      08:49:54 INFO   67305985 LOGD  Urna ligada em 30/10/2022 às 08:48:58
+      08:50:37 INFO   67305985 GAP   Iniciando aplicação - Oficial - 2º turno
+      08:50:37 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2010
+      08:50:49 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2010
+      08:50:53 INFO   67305985 GAP   Modo de carga da UE - Votação
+      08:50:53 INFO   67305985 GAP   Município: 40720
+      08:50:53 INFO   67305985 GAP   Zona Eleitoral: 0167
+      08:50:53 INFO   67305985 GAP   Seção Eleitoral: 0179
+      08:50:58 INFO   67305985 GAP   Serial de votação da MV: 6E19C2D6 21/09/2022 às 17:08:11 em ZMG167STD02
+      08:51:39 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      08:52:06 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 2º turno
+      08:54:33 INFO   67305985 VOTA  Urna pronta para receber votos
+      12:54:01 INFO   67305985 LOGD  Urna ligada em 30/10/2022 às 12:53:16
+      12:54:44 INFO   67305985 GAP   Iniciando aplicação - Oficial - 2º turno
+      12:54:44 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2010
+      12:55:01 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2010
+      12:55:05 INFO   67305985 GAP   Modo de carga da UE - Votação
+      12:55:05 INFO   67305985 GAP   Município: 40720
+      12:55:05 INFO   67305985 GAP   Zona Eleitoral: 0167
+      12:55:05 INFO   67305985 GAP   Seção Eleitoral: 0179
+      12:55:10 INFO   67305985 GAP   Serial de votação da MV: 6E19C2D6 21/09/2022 às 17:08:11 em ZMG167STD02
+      12:55:50 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      12:56:16 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 2º turno
+      12:56:57 INFO   67305985 VOTA  Urna pronta para receber votos
+      17:05:18 INFO   67305985 VOTA  Inicio do Encerramento
+      17:05:19 INFO   67305985 VOTA  Gerando relatório [BU] [INÍCIO]

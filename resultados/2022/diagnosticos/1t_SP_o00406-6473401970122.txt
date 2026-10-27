@@ -1,0 +1,52 @@
+=== 6730598502102022094445-01.jez/logd.dat: 331 linhas do dia; ids={'67305985': 331}
+    {'Urna pronta para receber votos': 1, 'Eleitor foi habilitado': 12, 'Voto confirmado para [Presidente]': 12, 'O voto do eleitor foi computado': 12}
+      07:20:54 INFO   67305985 LOGD  Urna ligada em 02/10/2022 às 07:20:09
+      07:21:36 INFO   67305985 GAP   Iniciando aplicação - Oficial - 1º turno
+      07:21:36 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2011
+      07:21:45 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2011
+      07:21:49 INFO   67305985 GAP   Modo de carga da UE - Votação
+      07:21:49 INFO   67305985 GAP   Município: 64734
+      07:21:49 INFO   67305985 GAP   Zona Eleitoral: 0197
+      07:21:49 INFO   67305985 GAP   Seção Eleitoral: 0122
+      07:21:54 INFO   67305985 GAP   Serial de votação da MV: D8A5D691 22/09/2022 às 13:57:35 em ZSP197STD11
+      07:22:34 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      07:23:12 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 1º turno
+      08:00:02 INFO   67305985 VOTA  Urna pronta para receber votos
+      08:42:22 ERRO   67305985 VOTA  Erro gravando RDV na Mídia Externa
+      09:09:48 INFO   67305985 INITJE Urna desligada pela chave
+      09:09:48 INFO   67305985 VOTA  Votação suspensa
+      09:11:49 INFO   67305985 LOGD  Urna ligada em 02/10/2022 às 09:11:03
+      09:12:31 INFO   67305985 GAP   Iniciando aplicação - Oficial - 1º turno
+      09:12:31 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2011
+      09:12:41 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2011
+=== logd.dat: 3286 linhas do dia; ids={'67305985': 3286}
+    {'Urna pronta para receber votos': 1, 'Eleitor foi habilitado': 180, 'Voto confirmado para [Presidente]': 180, 'O voto do eleitor foi computado': 180, 'Inicio do Encerramento': 1}
+      09:42:51 INFO   67305985 LOGD  Urna ligada em 02/10/2022 às 09:42:06
+      09:43:32 INFO   67305985 GAP   Iniciando aplicação - Oficial - 1º turno
+      09:43:32 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2010
+      09:43:32 INFO   67305985 LOGD  Log interno da urna reserva válido com sucesso
+      09:43:40 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2010
+      09:43:44 INFO   67305985 GAP   Modo de carga da UE - Urna de contingência
+      09:43:44 INFO   67305985 GAP   Município: 64734
+      09:43:44 INFO   67305985 GAP   Zona Eleitoral: 0197
+      09:43:44 INFO   67305985 GAP   Seção Eleitoral: 0000
+      09:43:51 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      09:44:09 INFO   67305985 GAP   Início do procedimento de contingência
+      09:44:44 INFO   67305985 GAP   Serial de votação da MV: D8A5D691 22/09/2022 às 13:57:35 em ZSP197STD11
+      09:44:44 INFO   67305985 GAP   Modo de carga da UE - Votação
+      09:44:48 INFO   67305985 GAP   Contingência executada com sucesso
+      09:46:08 INFO   67305985 LOGD  Urna ligada em 02/10/2022 às 09:45:22
+      09:46:50 INFO   67305985 GAP   Iniciando aplicação - Oficial - 1º turno
+      09:46:51 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2010
+      09:46:59 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2010
+      09:47:03 INFO   67305985 GAP   Modo de carga da UE - Votação
+      09:47:03 INFO   67305985 GAP   Município: 64734
+      09:47:03 INFO   67305985 GAP   Zona Eleitoral: 0197
+      09:47:03 INFO   67305985 GAP   Seção Eleitoral: 0122
+      09:47:08 INFO   67305985 GAP   Serial de votação da MV: D8A5D691 22/09/2022 às 13:57:35 em ZSP197STD11
+      09:47:48 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      09:48:26 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 1º turno
+      09:49:43 INFO   67305985 VOTA  Urna pronta para receber votos
+      17:02:55 ERRO   67305985 VOTA  Digitado título inválido para o registro de mesário
+      17:03:11 INFO   67305985 VOTA  Inicio do Encerramento
+      17:03:13 INFO   67305985 VOTA  Gerando relatório [BU] [INÍCIO]

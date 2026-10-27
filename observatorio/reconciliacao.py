@@ -160,6 +160,15 @@ def explicar(con, disp) -> None:
                    "a diferença é exatamente esse número.")
         regras.append((f"teste='B4' AND valor_b IS NULL AND valor_a = {tec}", txt_tec))
         regras.append((f"teste='B5' AND campo IN ('validos','nulos') AND abs(diferenca) = {tec} AND {tec} > 0", txt_tec))
+    if "logs" in disp:
+        regras.append(("teste='B2' AND campo='biometria_nh_vs_lib_codigo' AND valor_b IS NULL AND valor_a = 0 "
+                       "AND EXISTS (SELECT 1 FROM logs l WHERE l.turno=incompat.turno AND l.uf=incompat.uf "
+                       "AND l.cd_municipio=incompat.cd_municipio AND l.nr_zona=incompat.nr_zona "
+                       "AND l.nr_secao=incompat.nr_secao AND l.tem_log AND l.hab_biometrica = 0 "
+                       "AND l.hab_manual_apos_falha = 0)",
+                       "Seção sem identificação biométrica (o log não registra nenhuma etapa biométrica): o campo "
+                       "opcional qtdEleitoresLibCodigo é omitido no .bu (Res.-TSE 23.669/2021, art. 178, parágrafo "
+                       "único) e o CSV publica 0."))
     if "logs" in disp and "dsec" in disp:
         regras.append(("teste='B6' AND campo IN ('comparecimento_vs_votos_computados','biometria_nh_vs_liberacao_manual_no_log','comparecimento_vs_votos_presidente_mais_nulos_suspensao') "
                        "AND EXISTS (SELECT 1 FROM dsec d WHERE d.turno=incompat.turno AND d.uf=incompat.uf "

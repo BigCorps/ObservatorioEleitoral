@@ -1,0 +1,16 @@
+=== 0223871902102022213923-01.jez/logd.dat: 0 linhas do dia; ids={}
+    {}
+=== logd.dat: 108 linhas do dia; ids={'2238719': 108}
+    {}
+      21:38:50 INFO   2238719 LOGD  Urna ligada em 02/10/2022 às 21:38:29
+      21:39:09 INFO   2238719 GAP   Iniciando aplicação - Oficial - 1º turno
+      21:39:09 INFO   2238719 GAP   Identificação do Modelo de Urna: UE2020
+      21:39:09 INFO   2238719 LOGD  Log interno da urna reserva válido com sucesso
+      21:39:17 INFO   2238719 GAP   Identificação do Modelo de Urna: UE2020
+      21:39:21 INFO   2238719 GAP   Modo de carga da UE - Urna de contingência
+      21:39:21 INFO   2238719 GAP   Município: 38490
+      21:39:21 INFO   2238719 GAP   Zona Eleitoral: 0016
+      21:39:21 INFO   2238719 GAP   Seção Eleitoral: 0000
+      21:39:24 INFO   2238719 GAP   Iniciando aplicação RECUPERADOR DE DADOS - Sem fase
+      21:39:30 INFO   2238719 GAP   Serial de votação da MV: 9EA4C03C 14/09/2022 às 11:32:35 em ZBA002WKS01
+      21:40:01 INFO   2238719 RED   Iniciando aplicação - Oficial - 1º turno

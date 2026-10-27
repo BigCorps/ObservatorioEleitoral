@@ -1,0 +1,93 @@
+=== 0215549702102022120758-01.jez/logd.dat: 2075 linhas do dia; ids={'2196346': 2075}
+    {'Urna pronta para receber votos': 5, 'Eleitor foi habilitado': 102, 'Voto confirmado para [Presidente]': 100, 'O voto do eleitor foi computado': 100}
+      07:27:10 INFO   2196346 LOGD  Urna ligada em 02/10/2022 às 07:26:49
+      07:27:29 INFO   2196346 GAP   Iniciando aplicação - Oficial - 1º turno
+      07:27:29 INFO   2196346 GAP   Identificação do Modelo de Urna: UE2020
+      07:27:37 INFO   2196346 GAP   Identificação do Modelo de Urna: UE2020
+      07:27:41 INFO   2196346 GAP   Modo de carga da UE - Votação
+      07:27:41 INFO   2196346 GAP   Município: 30872
+      07:27:41 INFO   2196346 GAP   Zona Eleitoral: 0186
+      07:27:41 INFO   2196346 GAP   Seção Eleitoral: 0094
+      07:27:45 INFO   2196346 GAP   Serial de votação da MV: 453AC73F 16/09/2022 às 13:21:50 em ZBA186STD03
+      07:28:00 INFO   2196346 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      07:28:17 INFO   2196346 VOTA  Iniciando aplicação - Oficial - 1º turno
+      08:00:01 INFO   2196346 VOTA  Urna pronta para receber votos
+      09:14:45 ERRO   2196346 VOTA  N3api17CMessageExceptionE - (Código (0)) CMessageException - Erro na Mídia Externa - Mídia não está presente
+      09:20:11 INFO   2196346 INITJE Urna desligada pela chave
+      09:21:22 INFO   2196346 LOGD  Urna ligada em 02/10/2022 às 09:21:01
+      09:21:41 INFO   2196346 GAP   Iniciando aplicação - Oficial - 1º turno
+      09:21:41 INFO   2196346 GAP   Identificação do Modelo de Urna: UE2020
+      09:21:49 INFO   2196346 GAP   Identificação do Modelo de Urna: UE2020
+      09:21:53 INFO   2196346 GAP   Modo de carga da UE - Votação
+      09:21:53 INFO   2196346 GAP   Município: 30872
+      09:21:53 INFO   2196346 GAP   Zona Eleitoral: 0186
+      09:21:53 INFO   2196346 GAP   Seção Eleitoral: 0094
+      09:21:58 INFO   2196346 GAP   Serial de votação da MV: 453AC73F 16/09/2022 às 13:21:50 em ZBA186STD03
+      09:22:12 INFO   2196346 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      09:22:28 INFO   2196346 VOTA  Iniciando aplicação - Oficial - 1º turno
+      09:23:08 INFO   2196346 VOTA  Urna pronta para receber votos
+      11:10:23 ERRO   2196346 VOTA  Erro gravando EG/Eleitores na Mídia Externa
+      11:10:23 ERRO   2196346 VOTA  N3api17CMessageExceptionE - (Código (0)) CMessageException - Erro na Mídia Externa - Mídia não está presente
+      11:13:14 INFO   2196346 INITJE Urna desligada pela chave
+      11:14:30 INFO   2196346 LOGD  Urna ligada em 02/10/2022 às 11:14:06
+      11:14:48 INFO   2196346 GAP   Iniciando aplicação - Oficial - 1º turno
+      11:14:48 INFO   2196346 GAP   Identificação do Modelo de Urna: UE2020
+      11:14:57 INFO   2196346 GAP   Identificação do Modelo de Urna: UE2020
+      11:15:01 INFO   2196346 GAP   Modo de carga da UE - Votação
+      11:15:01 INFO   2196346 GAP   Município: 30872
+      11:15:01 INFO   2196346 GAP   Zona Eleitoral: 0186
+      11:15:01 INFO   2196346 GAP   Seção Eleitoral: 0094
+      11:15:05 INFO   2196346 GAP   Serial de votação da MV: 453AC73F 16/09/2022 às 13:21:50 em ZBA186STD03
+      11:15:20 INFO   2196346 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      11:15:27 ERRO   2196346 GAP   Erro na verificação de assinatura do arquivo - eg.vsu
+      11:15:36 INFO   2196346 VOTA  Iniciando aplicação - Oficial - 1º turno
+      11:16:02 INFO   2196346 VOTA  Urna pronta para receber votos
+      11:43:40 ERRO   2196346 VOTA  Erro gravando EG/Eleitores na Mídia Externa
+      11:43:40 ERRO   2196346 VOTA  N3api17CMessageExceptionE - (Código (0)) CMessageException - Erro na Mídia Externa - Mídia não está presente
+      11:46:11 INFO   2196346 INITJE Urna desligada pela chave
+      11:47:13 INFO   2196346 LOGD  Urna ligada em 02/10/2022 às 11:46:52
+      11:47:31 INFO   2196346 GAP   Iniciando aplicação - Oficial - 1º turno
+      11:47:31 INFO   2196346 GAP   Identificação do Modelo de Urna: UE2020
+      11:47:39 INFO   2196346 GAP   Identificação do Modelo de Urna: UE2020
+      11:47:44 INFO   2196346 GAP   Modo de carga da UE - Votação
+      11:47:44 INFO   2196346 GAP   Município: 30872
+      11:47:44 INFO   2196346 GAP   Zona Eleitoral: 0186
+      11:47:44 INFO   2196346 GAP   Seção Eleitoral: 0094
+      11:47:48 INFO   2196346 GAP   Serial de votação da MV: 453AC73F 16/09/2022 às 13:21:50 em ZBA186STD03
+      11:48:03 INFO   2196346 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      11:48:10 ERRO   2196346 GAP   Erro na verificação de assinatura do arquivo - eg.vsu
+      11:48:19 INFO   2196346 VOTA  Iniciando aplicação - Oficial - 1º turno
+      11:48:44 INFO   2196346 VOTA  Urna pronta para receber votos
+      11:49:19 ERRO   2196346 VOTA  N3api17CMessageExceptionE - (Código (0)) CMessageException - Erro na Mídia Externa - Mídia não está presente
+      11:49:55 INFO   2196346 INITJE Urna desligada pela chave
+=== logd.dat: 3781 linhas do dia; ids={'2155497': 3781}
+    {'Urna pronta para receber votos': 1, 'Eleitor foi habilitado': 219, 'Voto confirmado para [Presidente]': 219, 'O voto do eleitor foi computado': 219, 'Inicio do Encerramento': 1}
+      12:07:16 INFO   2155497 LOGD  Urna ligada em 02/10/2022 às 12:06:55
+      12:07:34 INFO   2155497 GAP   Iniciando aplicação - Oficial - 1º turno
+      12:07:34 INFO   2155497 GAP   Identificação do Modelo de Urna: UE2020
+      12:07:34 INFO   2155497 LOGD  Log interno da urna reserva válido com sucesso
+      12:07:42 INFO   2155497 GAP   Identificação do Modelo de Urna: UE2020
+      12:07:47 INFO   2155497 GAP   Modo de carga da UE - Urna de contingência
+      12:07:47 INFO   2155497 GAP   Município: 30872
+      12:07:47 INFO   2155497 GAP   Zona Eleitoral: 0186
+      12:07:47 INFO   2155497 GAP   Seção Eleitoral: 0000
+      12:07:49 INFO   2155497 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      12:07:52 INFO   2155497 GAP   Início do procedimento de contingência
+      12:07:57 INFO   2155497 GAP   Serial de votação da MV: 453AC73F 16/09/2022 às 13:21:50 em ZBA186STD03
+      12:07:58 INFO   2155497 GAP   Modo de carga da UE - Votação
+      12:08:00 INFO   2155497 GAP   Contingência executada com sucesso
+      12:08:44 INFO   2155497 LOGD  Urna ligada em 02/10/2022 às 12:08:23
+      12:09:03 INFO   2155497 GAP   Iniciando aplicação - Oficial - 1º turno
+      12:09:03 INFO   2155497 GAP   Identificação do Modelo de Urna: UE2020
+      12:09:11 INFO   2155497 GAP   Identificação do Modelo de Urna: UE2020
+      12:09:15 INFO   2155497 GAP   Modo de carga da UE - Votação
+      12:09:15 INFO   2155497 GAP   Município: 30872
+      12:09:15 INFO   2155497 GAP   Zona Eleitoral: 0186
+      12:09:15 INFO   2155497 GAP   Seção Eleitoral: 0094
+      12:09:19 INFO   2155497 GAP   Serial de votação da MV: 453AC73F 16/09/2022 às 13:21:50 em ZBA186STD03
+      12:09:34 INFO   2155497 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      12:09:51 INFO   2155497 VOTA  Iniciando aplicação - Oficial - 1º turno
+      12:10:19 INFO   2155497 VOTA  Urna pronta para receber votos
+      18:46:09 ERRO   2155497 VOTA  Digitado título inválido para o registro de mesário
+      18:46:23 INFO   2155497 VOTA  Inicio do Encerramento
+      18:46:24 INFO   2155497 VOTA  Gerando relatório [BU] [INÍCIO]

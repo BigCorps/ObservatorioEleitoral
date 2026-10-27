@@ -1,0 +1,77 @@
+=== 0208144002102022152826-01.jez/logd.dat: 4570 linhas do dia; ids={'2081992': 4570}
+    {'Urna pronta para receber votos': 3, 'Eleitor foi habilitado': 249, 'Voto confirmado para [Presidente]': 249, 'O voto do eleitor foi computado': 249}
+      07:39:36 INFO   2081992 LOGD  Urna ligada em 02/10/2022 às 07:39:15
+      07:39:54 INFO   2081992 GAP   Iniciando aplicação - Oficial - 1º turno
+      07:39:54 INFO   2081992 GAP   Identificação do Modelo de Urna: UE2020
+      07:40:03 INFO   2081992 GAP   Identificação do Modelo de Urna: UE2020
+      07:40:07 INFO   2081992 GAP   Modo de carga da UE - Votação
+      07:40:07 INFO   2081992 GAP   Município: 74071
+      07:40:07 INFO   2081992 GAP   Zona Eleitoral: 0171
+      07:40:07 INFO   2081992 GAP   Seção Eleitoral: 0041
+      07:40:11 INFO   2081992 GAP   Serial de votação da MV: 815B4EB4 17/09/2022 às 15:50:36 em ZPR171WKS52
+      07:40:26 INFO   2081992 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      07:40:43 INFO   2081992 VOTA  Iniciando aplicação - Oficial - 1º turno
+      07:51:41 ERRO   2081992 VOTA  Digitado título inválido para o registro de mesário
+      08:00:01 INFO   2081992 VOTA  Urna pronta para receber votos
+      14:24:54 ERRO   2081992 VOTA  St12length_error - () cannot create std::vector larger than max_size()
+      14:27:51 INFO   2081992 INITJE Urna desligada pela chave
+      14:28:51 INFO   2081992 LOGD  Urna ligada em 02/10/2022 às 14:28:30
+      14:29:09 INFO   2081992 GAP   Iniciando aplicação - Oficial - 1º turno
+      14:29:10 INFO   2081992 GAP   Identificação do Modelo de Urna: UE2020
+      14:29:18 INFO   2081992 GAP   Identificação do Modelo de Urna: UE2020
+      14:29:22 INFO   2081992 GAP   Modo de carga da UE - Votação
+      14:29:22 INFO   2081992 GAP   Município: 74071
+      14:29:22 INFO   2081992 GAP   Zona Eleitoral: 0171
+      14:29:22 INFO   2081992 GAP   Seção Eleitoral: 0041
+      14:29:27 INFO   2081992 GAP   Serial de votação da MV: 815B4EB4 17/09/2022 às 15:50:36 em ZPR171WKS52
+      14:29:41 INFO   2081992 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      14:29:58 INFO   2081992 VOTA  Iniciando aplicação - Oficial - 1º turno
+      14:30:27 INFO   2081992 VOTA  Urna pronta para receber votos
+      15:13:18 ERRO   2081992 VOTA  Erro gravando EG/Eleitores na Mídia Externa
+      15:13:19 ERRO   2081992 VOTA  N3api17CMessageExceptionE - (Código (0)) CMessageException - Erro na Mídia Externa - Mídia não está presente
+      15:14:08 INFO   2081992 INITJE Urna desligada pela chave
+      15:15:05 INFO   2081992 LOGD  Urna ligada em 02/10/2022 às 15:14:44
+      15:15:24 INFO   2081992 GAP   Iniciando aplicação - Oficial - 1º turno
+      15:15:24 INFO   2081992 GAP   Identificação do Modelo de Urna: UE2020
+      15:15:34 INFO   2081992 GAP   Identificação do Modelo de Urna: UE2020
+      15:15:38 INFO   2081992 GAP   Modo de carga da UE - Votação
+      15:15:38 INFO   2081992 GAP   Município: 74071
+      15:15:38 INFO   2081992 GAP   Zona Eleitoral: 0171
+      15:15:38 INFO   2081992 GAP   Seção Eleitoral: 0041
+      15:15:42 INFO   2081992 GAP   Serial de votação da MV: 815B4EB4 17/09/2022 às 15:50:36 em ZPR171WKS52
+      15:15:57 INFO   2081992 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      15:16:04 ERRO   2081992 GAP   Erro na verificação de assinatura do arquivo - eg.vsu
+      15:16:13 INFO   2081992 VOTA  Iniciando aplicação - Oficial - 1º turno
+      15:16:43 INFO   2081992 VOTA  Urna pronta para receber votos
+      15:17:50 ERRO   2081992 VOTA  N3api10CExceptionE - (Código (5)) static std::string api::CSystem::TemporaryPath(const string&) - Falha ao cri
+      15:19:45 INFO   2081992 INITJE Urna desligada pela chave
+=== logd.dat: 1257 linhas do dia; ids={'2081440': 1257}
+    {'Urna pronta para receber votos': 1, 'Eleitor foi habilitado': 60, 'Voto confirmado para [Presidente]': 60, 'O voto do eleitor foi computado': 60, 'Inicio do Encerramento': 1}
+      15:27:41 INFO   2081440 LOGD  Urna ligada em 02/10/2022 às 15:27:20
+      15:28:00 INFO   2081440 GAP   Iniciando aplicação - Oficial - 1º turno
+      15:28:00 INFO   2081440 GAP   Identificação do Modelo de Urna: UE2020
+      15:28:00 INFO   2081440 LOGD  Log interno da urna reserva válido com sucesso
+      15:28:08 INFO   2081440 GAP   Identificação do Modelo de Urna: UE2020
+      15:28:12 INFO   2081440 GAP   Modo de carga da UE - Urna de contingência
+      15:28:12 INFO   2081440 GAP   Município: 74071
+      15:28:12 INFO   2081440 GAP   Zona Eleitoral: 0171
+      15:28:12 INFO   2081440 GAP   Seção Eleitoral: 0000
+      15:28:14 INFO   2081440 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      15:28:17 INFO   2081440 GAP   Início do procedimento de contingência
+      15:28:25 INFO   2081440 GAP   Serial de votação da MV: 815B4EB4 17/09/2022 às 15:50:36 em ZPR171WKS52
+      15:28:25 INFO   2081440 GAP   Modo de carga da UE - Votação
+      15:28:29 INFO   2081440 GAP   Contingência executada com sucesso
+      15:29:12 INFO   2081440 LOGD  Urna ligada em 02/10/2022 às 15:28:51
+      15:29:31 INFO   2081440 GAP   Iniciando aplicação - Oficial - 1º turno
+      15:29:31 INFO   2081440 GAP   Identificação do Modelo de Urna: UE2020
+      15:29:39 INFO   2081440 GAP   Identificação do Modelo de Urna: UE2020
+      15:29:43 INFO   2081440 GAP   Modo de carga da UE - Votação
+      15:29:43 INFO   2081440 GAP   Município: 74071
+      15:29:43 INFO   2081440 GAP   Zona Eleitoral: 0171
+      15:29:43 INFO   2081440 GAP   Seção Eleitoral: 0041
+      15:29:47 INFO   2081440 GAP   Serial de votação da MV: 815B4EB4 17/09/2022 às 15:50:36 em ZPR171WKS52
+      15:30:02 INFO   2081440 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      15:30:19 INFO   2081440 VOTA  Iniciando aplicação - Oficial - 1º turno
+      15:30:49 INFO   2081440 VOTA  Urna pronta para receber votos
+      17:13:19 INFO   2081440 VOTA  Inicio do Encerramento
+      17:13:20 INFO   2081440 VOTA  Gerando relatório [BU] [INÍCIO]

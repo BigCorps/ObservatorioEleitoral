@@ -1,0 +1,85 @@
+=== 0209463330102022095438-01.jez/logd.dat: 953 linhas do dia; ids={'2124555': 953}
+    {'Urna pronta para receber votos': 2, 'Eleitor foi habilitado': 68, 'Voto confirmado para [Presidente]': 68, 'O voto do eleitor foi computado': 68}
+      07:08:25 INFO   2124555 LOGD  Urna ligada em 30/10/2022 às 07:08:04
+      07:08:44 INFO   2124555 GAP   Iniciando aplicação - Oficial - 2º turno
+      07:08:44 INFO   2124555 GAP   Identificação do Modelo de Urna: UE2020
+      07:08:53 INFO   2124555 GAP   Identificação do Modelo de Urna: UE2020
+      07:08:57 INFO   2124555 GAP   Modo de carga da UE - Votação
+      07:08:57 INFO   2124555 GAP   Município: 78859
+      07:08:57 INFO   2124555 GAP   Zona Eleitoral: 0199
+      07:08:57 INFO   2124555 GAP   Seção Eleitoral: 0186
+      07:09:01 INFO   2124555 GAP   Serial de votação da MV: B03DCBAE 18/09/2022 às 14:24:44 em ZPR199WKS61
+      07:09:16 INFO   2124555 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      07:09:39 INFO   2124555 VOTA  Iniciando aplicação - Oficial - 2º turno
+      08:00:01 INFO   2124555 VOTA  Urna pronta para receber votos
+      09:04:17 ERRO   2124555 VOTA  Erro gravando EG/Eleitores na Mídia Externa
+      09:04:18 ERRO   2124555 VOTA  N3api17CMessageExceptionE - (Código (0)) CMessageException - Erro na Mídia Externa - Mídia não está presente
+      09:07:34 INFO   2124555 INITJE Urna desligada pela chave
+      09:10:24 INFO   2124555 LOGD  Urna ligada em 30/10/2022 às 09:10:03
+      09:10:43 INFO   2124555 GAP   Iniciando aplicação - Oficial - 2º turno
+      09:10:43 INFO   2124555 GAP   Identificação do Modelo de Urna: UE2020
+      09:10:44 ERRO   2124555 GAP   N3api14CFileExceptionE - (Código (5)) CFileException - Input/output error
+      09:14:25 INFO   2124555 INITJE Urna desligada pela chave
+      09:15:30 INFO   2124555 LOGD  Urna ligada em 30/10/2022 às 09:15:09
+      09:15:48 INFO   2124555 GAP   Iniciando aplicação - Oficial - 2º turno
+      09:15:48 INFO   2124555 GAP   Identificação do Modelo de Urna: UE2020
+      09:15:58 INFO   2124555 GAP   Identificação do Modelo de Urna: UE2020
+      09:16:02 INFO   2124555 GAP   Modo de carga da UE - Votação
+      09:16:02 INFO   2124555 GAP   Município: 78859
+      09:16:02 INFO   2124555 GAP   Zona Eleitoral: 0199
+      09:16:02 INFO   2124555 GAP   Seção Eleitoral: 0186
+      09:16:06 INFO   2124555 GAP   Serial de votação da MV: B03DCBAE 18/09/2022 às 14:24:44 em ZPR199WKS61
+      09:16:21 INFO   2124555 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      09:16:29 ERRO   2124555 GAP   Erro na verificação de assinatura do arquivo - eg.vsu
+      09:16:40 INFO   2124555 VOTA  Iniciando aplicação - Oficial - 2º turno
+      09:18:00 INFO   2124555 VOTA  Urna pronta para receber votos
+      09:19:23 ERRO   2124555 VOTA  N3api10CExceptionE - (Código (5)) static std::string api::CSystem::TemporaryPath(const string&) - Falha ao cri
+      09:48:06 INFO   2124555 INITJE Urna desligada pela chave
+=== logd.dat: 3154 linhas do dia; ids={'2094633': 3154}
+    {'Urna pronta para receber votos': 1, 'Eleitor foi habilitado': 284, 'Voto confirmado para [Presidente]': 284, 'O voto do eleitor foi computado': 284, 'Inicio do Encerramento': 1}
+      09:53:50 INFO   2094633 LOGD  Urna ligada em 30/10/2022 às 09:53:29
+      09:54:08 INFO   2094633 GAP   Iniciando aplicação - Oficial - 1º turno
+      09:54:08 INFO   2094633 GAP   Identificação do Modelo de Urna: UE2020
+      09:54:08 INFO   2094633 LOGD  Log interno da urna reserva válido com sucesso
+      09:54:16 INFO   2094633 GAP   Identificação do Modelo de Urna: UE2020
+      09:54:21 INFO   2094633 GAP   Modo de carga da UE - Urna de contingência
+      09:54:21 INFO   2094633 GAP   Município: 78859
+      09:54:21 INFO   2094633 GAP   Zona Eleitoral: 0199
+      09:54:21 INFO   2094633 GAP   Seção Eleitoral: 0000
+      09:54:23 INFO   2094633 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      09:54:26 INFO   2094633 GAP   Início do procedimento de contingência
+      09:54:37 INFO   2094633 GAP   Serial de votação da MV: B03DCBAE 18/09/2022 às 14:24:44 em ZPR199WKS61
+      09:54:37 INFO   2094633 GAP   Modo de carga da UE - Votação
+      09:54:41 INFO   2094633 GAP   Contingência executada com sucesso
+      09:55:25 INFO   2094633 LOGD  Urna ligada em 30/10/2022 às 09:55:04
+      09:55:44 INFO   2094633 GAP   Iniciando aplicação - Oficial - 2º turno
+      09:55:44 INFO   2094633 GAP   Identificação do Modelo de Urna: UE2020
+      09:55:52 INFO   2094633 GAP   Identificação do Modelo de Urna: UE2020
+      09:55:56 INFO   2094633 GAP   Modo de carga da UE - Votação
+      09:55:56 INFO   2094633 GAP   Município: 78859
+      09:55:56 INFO   2094633 GAP   Zona Eleitoral: 0199
+      09:55:56 INFO   2094633 GAP   Seção Eleitoral: 0186
+      09:56:01 INFO   2094633 GAP   Serial de votação da MV: B03DCBAE 18/09/2022 às 14:24:44 em ZPR199WKS61
+      09:56:16 INFO   2094633 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      09:56:34 INFO   2094633 VOTA  Iniciando aplicação - Oficial - 2º turno
+      09:56:59 INFO   2094633 VOTA  Urna pronta para receber votos
+      17:03:58 INFO   2094633 VOTA  Inicio do Encerramento
+      17:03:59 INFO   2094633 VOTA  Gerando relatório [BU] [INÍCIO]
+      17:07:45 ERRO   2094633 VOTA  N3api17CMessageExceptionE - (Código (0)) CMessageException - tPrinterExtension::WaitForJobEnd TIMEOUT (elapsed
+      17:09:02 INFO   2094633 INITJE Urna desligada pela chave
+      17:13:09 INFO   2094633 LOGD  Urna ligada em 30/10/2022 às 17:12:48
+      17:13:28 INFO   2094633 GAP   Iniciando aplicação - Oficial - 2º turno
+      17:13:28 INFO   2094633 GAP   Identificação do Modelo de Urna: UE2020
+      17:16:59 ERRO   2094633 GAP   N3api17CMessageExceptionE - (Código (0)) CMessageException - CPrinter::Cut - IDLE wait timeout before cutting 
+      17:17:13 INFO   2094633 INITJE Urna desligada pela chave
+      17:18:41 INFO   2094633 LOGD  Urna ligada em 30/10/2022 às 17:18:20
+      17:18:59 INFO   2094633 GAP   Iniciando aplicação - Oficial - 2º turno
+      17:18:59 INFO   2094633 GAP   Identificação do Modelo de Urna: UE2020
+      17:19:10 INFO   2094633 GAP   Identificação do Modelo de Urna: UE2020
+      17:19:14 INFO   2094633 GAP   Modo de carga da UE - Votação
+      17:19:14 INFO   2094633 GAP   Município: 78859
+      17:19:14 INFO   2094633 GAP   Zona Eleitoral: 0199
+      17:19:14 INFO   2094633 GAP   Seção Eleitoral: 0186
+      17:19:18 INFO   2094633 GAP   Serial de votação da MV: B03DCBAE 18/09/2022 às 14:24:44 em ZPR199WKS61
+      17:19:33 INFO   2094633 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      17:19:51 INFO   2094633 VOTA  Iniciando aplicação - Oficial - 2º turno
