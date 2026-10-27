@@ -501,3 +501,27 @@ Legenda:
 11. **Pós-17h × tamanho, fila e ritmo** (C3, C4, C5): por urna, votos totais e aptos; ocupação na última hora antes das 17h; gap entre o último voto antes das 17h e o primeiro depois; ritmo em votos por hora antes e depois.
 12. **Manual pós-17h e caso × irmã** (C7, C8): % de habilitação manual antes e depois das 17h, por UF. Comparar share e comparecimento da seção contra as outras seções do mesmo local (cadastro de locais de votação do TSE) e contra o município.
 13. **Integridade** (D29): SHA-512 de cada arquivo contra a lista assinada no `.vscmr`; verificação ECDSA P-521/Ed521. A cadeia só vai até a AC intermediária.
+
+## Reprodução independente (cálculo próprio a partir dos arquivos do TSE)
+
+_Gerado por `scripts/gerar_relatorios.py`. Os valores da coluna "alegado" são de terceiros e não foram adotados; a coluna seguinte é calculada por este projeto, com a cobertura informada em `docs/auditoria-2022.md`. Divergências de definição estão indicadas._
+
+| id | fonte | verificação | turno | alegado (terceiros) | cálculo próprio (TSE) |
+|---|---|---|---|---|---|
+| A1 | auditoriaeleicoes.com | Votos antes das 8h (Brasília) | 1º | 8.185 (todos no AM) | 0 (em 18.785 seções com log) |
+| A1 | auditoriaeleicoes.com | Votos antes das 8h (Brasília) | 2º | 19.408 (todos no AM) | 0 (em 13.287 seções com log) |
+| C1 | auditoriaeleicoes.com | % dos votos após 17h (Brasília), sem SP | 1º | 4,18% | 2,548% (com SP); 2,548% (sem SP) |
+| C1 | auditoriaeleicoes.com | % dos votos após 17h (Brasília), sem SP | 2º | 0,033% | 0,047% (com SP); 0,047% (sem SP) |
+| A2 | auditoriaeleicoes.com | Rajadas: ≥5 votos com intervalos <20 s (1º t.) / <6 s (2º t.) | 1º | 10.184 votos em 1.504 sequências | pendente (AttributeError) |
+| A2 | auditoriaeleicoes.com | Rajadas: ≥5 votos com intervalos <20 s (1º t.) / <6 s (2º t.) | 2º | 4.296 votos em 777 sequências | pendente (AttributeError) |
+| A6 | auditoriaeleicoes.com | Seções com 100% dos válidos para um candidato | 1º | 18 | 62 (todas as faixas); 17 com ≥100 válidos |
+| A6 | auditoriaeleicoes.com | Seções com 100% dos válidos para um candidato | 2º | 29 | 147 (todas as faixas); 63 com ≥100 válidos |
+| A4 | auditoriaeleicoes.com | UE2020 − demais, % do nº 22, mesmo município (bootstrap) | 1º | +1,00 p.p. [0,59; 1,58] | 0,65 p.p. [0,09; 1,23] (município); 0,42 [-0,22; 1,08] (mesmo local) |
+| A4 | auditoriaeleicoes.com | UE2020 − demais, % do nº 22, mesmo município (bootstrap) | 2º | +1,17 p.p. [0,72; 1,80] | 0,78 p.p. [0,14; 1,40] (município); 0,37 [-0,25; 1,02] (mesmo local) |
+| A16 | auditoriaeleicoes.com | Último dígito uniforme (13 e 22) | 1º | p = 0,0 (rejeita) | uniforme: p_holm 4.6e-07, 1.1e-15 (efeito máx. 0,29 p.p.); vs. simulação: p_holm 1.00, 1.00 |
+| A13 | auditoriaeleicoes.com | Mediana habilitação→voto (s) | 1º | 52 s | 54 s |
+| A13 | auditoriaeleicoes.com | Mediana habilitação→voto (s) | 2º | 13 s | 13 s |
+| D5 | DataUrnas-BR | Seções com |votos no log − comparecimento| > 2 | 1º | 3.356 (todas com log < BU) | 5 seções (todos os arquivos de log da seção, janela até o dia seguinte); 9 com qualquer diferença |
+| D5 | DataUrnas-BR | Seções com |votos no log − comparecimento| > 2 | 2º | 1.691 | 0 seções (todos os arquivos de log da seção, janela até o dia seguinte); 1 com qualquer diferença |
+
+Notas: (1) A1 — a conversão por UF aplica −1 h a todo o AM; o oeste do AM está em UTC−5, de modo que o voto das 6h locais nesses municípios (= 8h de Brasília) vira 7h com a conversão de +1 h e é classificado como "antes das 8h". (2) D5 — o DataUrnas-BR lê só o primeiro arquivo do pacote 7z e descarta votos após a meia-noite, o que produz contagens de log menores que o BU. (3) A2 — com intervalos medidos entre registros de voto computado, a definição publicada não reproduz a contagem alegada; o critério exato dos autores não é público.

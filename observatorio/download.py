@@ -23,7 +23,7 @@ from .config import BRUTOS, MANIFESTOS
 
 REGISTRO = MANIFESTOS / "downloads.csv"
 _TRAVA = threading.Lock()
-CAMPOS = ["url", "arquivo_local", "etag", "last_modified", "tamanho_bytes", "sha256",
+CAMPOS = ["url", "arquivo_local", "etag", "last_modified", "tamanho_bytes", "aviso_versao", "sha256",
           "sha512", "sha512_oficial", "hash_oficial_confere", "zip_ok", "membros_zip",
           "status", "erro", "baixado_em"]
 
@@ -108,6 +108,23 @@ def baixar(url: str, sess: requests.Session | None = None, forcar: bool = False,
             if etag:
                 cab["If-Range"] = f'"{etag}"'
             with sess.get(url, headers=cab, stream=True, timeout=120) as r:
+                # A resposta do GET é a autoridade: o CDN pode responder HEAD com uma versão
+                # antiga e GET com outra (republicação em curso). Registra-se a divergência.
+                etag_get = r.headers.get("ETag", "").strip('"')
+                cr = r.headers.get("Content-Range", "")
+                total_get = int(cr.rsplit("/", 1)[1]) if "/" in cr and cr.rsplit("/", 1)[1].isdigit() else \
+                    int(r.headers.get("Content-Length", 0) or 0) + (ja if r.status_code == 206 else 0)
+                if etag_get and etag_get != etag:
+                    linha["aviso_versao"] = (f"HEAD: ETag {etag}, {total} bytes; GET: ETag {etag_get}, "
+                                             f"{total_get} bytes (versão do GET adotada)")
+                    if ja:  # parcial pertence a outra versão: recomeça
+                        r.close()
+                        parcial.unlink(missing_ok=True)
+                        etag, total = etag_get, total_get
+                        linha.update(etag=etag, tamanho_bytes=total, last_modified=r.headers.get("Last-Modified", ""))
+                        raise RuntimeError("versão mudou durante o download: recomeçando")
+                    etag, total = etag_get, total_get
+                    linha.update(etag=etag, tamanho_bytes=total, last_modified=r.headers.get("Last-Modified", ""))
                 if r.status_code == 416:  # parcial inconsistente com o arquivo remoto
                     parcial.unlink(missing_ok=True)
                     raise RuntimeError("HTTP 416: parcial descartado")

@@ -1,13 +1,13 @@
 # Auditoria 2022 — Presidente
 
-_Gerado automaticamente por `scripts/gerar_relatorios.py` em 27/10/2026 00:00 UTC. Todos os números vêm de `resultados/2022/`. Ver método em `docs/metodologia.md`._
+_Gerado automaticamente por `scripts/gerar_relatorios.py` em 27/10/2026 00:06 UTC. Todos os números vêm de `resultados/2022/`. Ver método em `docs/metodologia.md`._
 
 ## Cobertura dos arquivos de urna (logs e BU binário)
 
-- 1º turno: 12 de 28 pacotes (27 UFs + exterior) processados; 55.190 seções lidas, 0 com falha de leitura, 156 sem log no pacote.
-- 2º turno: 7 de 28 pacotes (27 UFs + exterior) processados; 19.802 seções lidas, 0 com falha de leitura, 33 sem log no pacote.
+- 1º turno: 15 de 28 pacotes (27 UFs + exterior) processados; 81.066 seções lidas, 0 com falha de leitura, 158 sem log no pacote.
+- 2º turno: 9 de 28 pacotes (27 UFs + exterior) processados; 33.462 seções lidas, 0 com falha de leitura, 33 sem log no pacote.
 
-**Pacotes ainda não processados** — 1º turno: BA, CE, ES, GO, MA, MG, PA, PB, PE, PI, PR, RJ, RN, RS, SC, SP; 2º turno: AL, AM, BA, CE, DF, ES, GO, MA, MG, MS, MT, PA, PB, PE, PI, PR, RJ, RN, RS, SC, SP. Indicadores de log abaixo valem apenas para a cobertura indicada.
+**Pacotes ainda não processados** — 1º turno: BA, CE, GO, MA, MG, PA, PB, PE, PR, RJ, RS, SC, SP; 2º turno: AL, AM, BA, CE, ES, GO, MA, MG, MT, PA, PB, PE, PI, PR, RJ, RN, RS, SC, SP. Indicadores de log abaixo valem apenas para a cobertura indicada.
 
 ## 1. Totais nacionais reproduzidos a partir das seções
 
@@ -58,9 +58,9 @@ Os totais nacionais publicados pelo TSE (histórico de totalização e detalhe p
 | B5 | comparecimento | BWEB | DMZ | 12.566 | 82 | 82 | 0 |
 | B5 | nulos | BWEB | DMZ | 12.566 | 82 | 82 | 0 |
 | B5 | validos | BWEB | DMZ | 12.566 | 82 | 82 | 0 |
-| B6 | biometria_nh_vs_liberacao_manual_no_log | BWEB | LOG | 74.803 | 6 | 0 | 6 |
-| B6 | comparecimento_vs_votos_computados | BWEB | LOG | 74.803 | 7 | 0 | 7 |
-| B6 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | BWEB | LOG | 74.803 | 50 | 0 | 50 |
+| B6 | biometria_nh_vs_liberacao_manual_no_log | BWEB | LOG | 82.475 | 6 | 3 | 3 |
+| B6 | comparecimento_vs_votos_computados | BWEB | LOG | 82.475 | 10 | 2 | 8 |
+| B6 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | BWEB | LOG | 82.475 | 56 | 49 | 7 |
 | C1 | aptos_vs_comp_mais_abst | BWEB | BWEB | 944.056 | 0 | 0 | 0 |
 | K1 | votos_votavel | BWEB | VSEC | 5.380.733 | 0 | 0 | 0 |
 
@@ -72,7 +72,7 @@ Legenda: BWEB = BU publicado em CSV; BUBIN = arquivo .bu transmitido pela urna; 
 **Classificação:** Conferido (com diferenças explicadas e incompatibilidades listadas)
 
 - **O que verificamos?** Se o mesmo número aparece igual em todas as publicações oficiais que deveriam coincidir, seção a seção (BU em CSV, BU binário, detalhe por seção, votação por seção) e na soma por zona.
-- **O que os números mostram?** 17 de 29 comparações sem nenhuma divergência; 63 divergências ainda sem explicação documental (listadas abaixo).
+- **O que os números mostram?** 17 de 29 comparações sem nenhuma divergência; 18 divergências ainda sem explicação documental (listadas abaixo).
 - **O que significa?** Os votos publicados por seção são os mesmos do arquivo binário assinado gerado pela urna e das demais tabelas do TSE.
 - **Existe explicação conhecida?** As divergências explicadas decorrem de seções não instaladas, seções apuradas pelo Sistema de Apuração (cédulas), campos opcionais omitidos no exterior e eleitores de seções não instaladas incluídos nos aptos por zona.
 - **O que ainda não sabemos?** A verificação criptográfica das assinaturas dos arquivos (.vscmr) não foi feita nesta etapa.
@@ -82,69 +82,24 @@ Legenda: BWEB = BU publicado em CSV; BUBIN = arquivo .bu transmitido pela urna; 
 
 | teste | turno | uf | cd_municipio | nr_zona | nr_secao | campo | valor_a | fonte_a | valor_b | fonte_b |
 |---|---|---|---|---|---|---|---|---|---|---|
-| B6 | 1 | AM | 2.550 | 40 | 454 | biometria_nh_vs_liberacao_manual_no_log | 0 | BWEB | 11 | LOG |
-| B6 | 1 | AM | 2.690 | 4 | 129 | biometria_nh_vs_liberacao_manual_no_log | 0 | BWEB | 15 | LOG |
 | B6 | 1 | DF | 97.012 | 17 | 90 | biometria_nh_vs_liberacao_manual_no_log | 49 | BWEB | 37 | LOG |
-| B6 | 1 | MS | 90.735 | 43 | 27 | biometria_nh_vs_liberacao_manual_no_log | 0 | BWEB | 14 | LOG |
-| B6 | 1 | MS | 98.035 | 38 | 8 | biometria_nh_vs_liberacao_manual_no_log | 38 | BWEB | 49 | LOG |
+| B6 | 1 | MS | 98.035 | 38 | 8 | biometria_nh_vs_liberacao_manual_no_log | 38 | BWEB | 36 | LOG |
 | B6 | 1 | SE | 31.690 | 12 | 77 | biometria_nh_vs_liberacao_manual_no_log | 52 | BWEB | 51 | LOG |
 | B6 | 1 | AL | 27.219 | 9 | 5 | comparecimento_vs_votos_computados | 242 | BWEB | 241 | LOG |
-| B6 | 1 | AM | 2.550 | 40 | 454 | comparecimento_vs_votos_computados | 276 | BWEB | 123 | LOG |
-| B6 | 1 | AM | 2.690 | 4 | 129 | comparecimento_vs_votos_computados | 167 | BWEB | 139 | LOG |
 | B6 | 1 | DF | 97.012 | 17 | 90 | comparecimento_vs_votos_computados | 274 | BWEB | 261 | LOG |
-| B6 | 1 | MS | 98.035 | 38 | 8 | comparecimento_vs_votos_computados | 193 | BWEB | 158 | LOG |
+| B6 | 1 | MS | 98.035 | 38 | 8 | comparecimento_vs_votos_computados | 193 | BWEB | 120 | LOG |
+| B6 | 1 | RN | 16.977 | 68 | 66 | comparecimento_vs_votos_computados | 270 | BWEB | 271 | LOG |
+| B6 | 1 | RN | 18.139 | 65 | 32 | comparecimento_vs_votos_computados | 249 | BWEB | 259 | LOG |
+| B6 | 1 | RN | 18.953 | 7 | 123 | comparecimento_vs_votos_computados | 267 | BWEB | 266 | LOG |
 | B6 | 1 | SE | 31.690 | 12 | 77 | comparecimento_vs_votos_computados | 209 | BWEB | 208 | LOG |
 | B6 | 2 | TO | 73.440 | 29 | 229 | comparecimento_vs_votos_computados | 270 | BWEB | 269 | LOG |
-| B6 | 1 | AC | 1.074 | 4 | 38 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 207 | BWEB | 208 | LOG |
-| B6 | 1 | AC | 1.139 | 7 | 59 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 201 | BWEB | 202 | LOG |
-| B6 | 1 | AL | 27.057 | 22 | 180 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 292 | BWEB | 293 | LOG |
-| B6 | 1 | AL | 27.057 | 22 | 185 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 286 | BWEB | 287 | LOG |
-| B6 | 1 | AL | 27.294 | 20 | 126 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 304 | BWEB | 305 | LOG |
-| B6 | 1 | AL | 27.650 | 39 | 75 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 276 | BWEB | 277 | LOG |
-| B6 | 1 | AM | 2.291 | 11 | 8 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 235 | BWEB | 236 | LOG |
 | B6 | 1 | AM | 2.550 | 40 | 454 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 276 | BWEB | 123 | LOG |
-| B6 | 1 | AM | 2.550 | 63 | 667 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 350 | BWEB | 351 | LOG |
-| B6 | 1 | AM | 2.550 | 68 | 644 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 316 | BWEB | 317 | LOG |
-| B6 | 1 | AM | 2.631 | 43 | 5 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 224 | BWEB | 225 | LOG |
 | B6 | 1 | AM | 2.690 | 4 | 129 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 167 | BWEB | 139 | LOG |
-| B6 | 1 | AM | 2.810 | 9 | 182 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 306 | BWEB | 307 | LOG |
-| B6 | 1 | AM | 98.493 | 60 | 35 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 175 | BWEB | 176 | LOG |
-| B6 | 1 | AP | 6.050 | 10 | 141 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 343 | BWEB | 344 | LOG |
-| B6 | 1 | AP | 6.076 | 5 | 85 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 229 | BWEB | 230 | LOG |
-| B6 | 1 | AP | 6.092 | 4 | 47 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 185 | BWEB | 186 | LOG |
-| B6 | 1 | AP | 6.130 | 7 | 170 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 289 | BWEB | 290 | LOG |
-| B6 | 1 | DF | 97.012 | 8 | 690 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 308 | BWEB | 309 | LOG |
-| B6 | 1 | DF | 97.012 | 13 | 402 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 303 | BWEB | 304 | LOG |
-| B6 | 1 | DF | 97.012 | 17 | 43 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 269 | BWEB | 270 | LOG |
 | B6 | 1 | DF | 97.012 | 17 | 90 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 274 | BWEB | 261 | LOG |
-| B6 | 1 | DF | 97.012 | 19 | 226 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 290 | BWEB | 291 | LOG |
-| B6 | 1 | DF | 97.012 | 21 | 133 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 332 | BWEB | 333 | LOG |
-| B6 | 1 | MS | 91.758 | 39 | 26 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 130 | BWEB | 131 | LOG |
-| B6 | 1 | MS | 98.035 | 38 | 8 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 193 | BWEB | 158 | LOG |
-| B6 | 1 | MT | 89.893 | 41 | 6 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 280 | BWEB | 281 | LOG |
-| B6 | 1 | MT | 90.468 | 56 | 121 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 199 | BWEB | 200 | LOG |
-| B6 | 1 | MT | 90.670 | 1 | 1.124 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 234 | BWEB | 235 | LOG |
-| B6 | 1 | MT | 90.670 | 55 | 129 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 310 | BWEB | 311 | LOG |
-| B6 | 1 | MT | 91.510 | 46 | 118 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 309 | BWEB | 310 | LOG |
-| B6 | 1 | MT | 91.510 | 46 | 352 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 254 | BWEB | 255 | LOG |
-| B6 | 1 | MT | 91.910 | 30 | 100 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 228 | BWEB | 229 | LOG |
-| B6 | 1 | MT | 98.876 | 18 | 274 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 87 | BWEB | 88 | LOG |
-| B6 | 1 | MT | 99.015 | 61 | 102 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 186 | BWEB | 187 | LOG |
-| B6 | 1 | RR | 3.034 | 2 | 160 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 196 | BWEB | 197 | LOG |
-| B6 | 1 | SE | 31.690 | 12 | 165 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 259 | BWEB | 260 | LOG |
-| B6 | 1 | SE | 32.212 | 14 | 111 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 168 | BWEB | 169 | LOG |
-| B6 | 1 | SE | 32.336 | 21 | 215 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 244 | BWEB | 245 | LOG |
-| B6 | 1 | TO | 92.002 | 4 | 132 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 172 | BWEB | 173 | LOG |
-| B6 | 1 | TO | 92.436 | 10 | 121 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 289 | BWEB | 290 | LOG |
-| B6 | 1 | TO | 92.487 | 16 | 90 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 266 | BWEB | 267 | LOG |
-| B6 | 1 | ZZ | 30.341 | 1 | 1.854 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 455 | BWEB | 456 | LOG |
-| B6 | 2 | AC | 1.074 | 4 | 378 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 207 | BWEB | 208 | LOG |
-| B6 | 2 | AP | 6.084 | 11 | 26 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 343 | BWEB | 344 | LOG |
-| B6 | 2 | RO | 132 | 4 | 218 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 255 | BWEB | 256 | LOG |
-| B6 | 2 | SE | 31.054 | 27 | 419 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 329 | BWEB | 330 | LOG |
-| B6 | 2 | SE | 32.034 | 29 | 92 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 248 | BWEB | 249 | LOG |
-| B6 | 2 | TO | 73.440 | 29 | 83 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 318 | BWEB | 319 | LOG |
-| B6 | 2 | TO | 92.576 | 11 | 36 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 193 | BWEB | 194 | LOG |
+| B6 | 1 | MS | 98.035 | 38 | 8 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 193 | BWEB | 120 | LOG |
+| B6 | 1 | RN | 16.330 | 5 | 173 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 260 | BWEB | 262 | LOG |
+| B6 | 1 | RN | 16.977 | 68 | 66 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 270 | BWEB | 271 | LOG |
+| B6 | 1 | RN | 18.139 | 65 | 32 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 249 | BWEB | 259 | LOG |
 
 
 Diagnóstico individual de cada caso (estrutura do log: arquivos, urnas, eventos de contingência) em `resultados/2022/diagnosticos/`.

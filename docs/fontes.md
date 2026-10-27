@@ -1,6 +1,6 @@
 # Fontes, versões e hashes
 
-_Gerado em 27/10/2026 00:00 UTC a partir de `manifestos/`._
+_Gerado em 27/10/2026 00:06 UTC a partir de `manifestos/`._
 
 Catálogos consultados (API CKAN do Portal de Dados Abertos do TSE): `eleitorado-2022`, `eleitorado-2026`, `resultados-2022`, `resultados-2022-arquivos-transmitidos-para-totalizacao`, `resultados-2022-boletim-de-urna`, `resultados-2026`, `resultados-2026-arquivos-transmitidos-para-totalizacao`, `resultados-2026-boletim-de-urna`. Cópias dos metadados em `manifestos/ckan/`.
 
@@ -43,7 +43,7 @@ O inventário completo (URL, datas do catálogo, `ETag`, `Last-Modified`, tamanh
 
 ## Arquivos baixados integralmente
 
-238 arquivos; status: ok = 232, incompleto = 5, falha_integridade = 1. Hash SHA-512 oficial (BU em CSV): sem hash publicado = 149, True = 84.
+238 arquivos; status: ok = 238. Hash SHA-512 oficial (BU em CSV): sem hash publicado = 154, True = 84.
 
 | arquivo_local | status | hash_oficial_confere | tamanho_bytes | last_modified | sha256 |
 |---|---|---|---|---|---|
@@ -165,7 +165,7 @@ O inventário completo (URL, datas do catálogo, `ETag`, `Last-Modified`, tamanh
 | detalhe_votacao_munzona_2022.zip | ok | sem hash publicado | 4.429.327 | Sat, 24 Oct 2026 06:52:18 GMT | dbf41c5e95c2efed… |
 | detalhe_votacao_munzona_2026.zip | ok | sem hash publicado | 2.511.067 | Sun, 25 Oct 2026 15:58:00 GMT | 7f6f40a14ba805b4… |
 | detalhe_votacao_secao_2022.zip | ok | sem hash publicado | 243.822.213 | Fri, 31 Jul 2026 19:47:56 GMT | ad22c50b9e6d9dfb… |
-| detalhe_votacao_secao_2026.zip | incompleto | — | 234.357.769 | Mon, 26 Oct 2026 15:35:35 GMT | — |
+| detalhe_votacao_secao_2026.zip | ok | sem hash publicado | 234.357.769 | Mon, 26 Oct 2026 15:35:35 GMT | 8ef9ce3a85cde260… |
 | perfil_eleitor_secao_2022_AC.zip | ok | sem hash publicado | 3.008.283 | Tue, 26 Aug 2025 00:05:59 GMT | 19a39068ffe5a467… |
 | perfil_eleitor_secao_2022_AL.zip | ok | sem hash publicado | 11.363.572 | Mon, 25 Aug 2025 23:59:41 GMT | b04db1f63a1683e6… |
 | perfil_eleitor_secao_2022_AM.zip | ok | sem hash publicado | 11.384.840 | Tue, 26 Aug 2025 00:04:31 GMT | dec6038b7e89ae46… |
@@ -262,12 +262,12 @@ O inventário completo (URL, datas do catálogo, `ETag`, `Last-Modified`, tamanh
 | votacao_secao_2026_AM.zip | ok | sem hash publicado | 35.311.558 | Tue, 06 Oct 2026 19:22:47 GMT | a359460257f8de5a… |
 | votacao_secao_2026_AP.zip | ok | sem hash publicado | 5.771.130 | Tue, 06 Oct 2026 19:22:45 GMT | 824f2f295cd4fa4e… |
 | votacao_secao_2026_BA.zip | ok | sem hash publicado | 159.441.051 | Tue, 06 Oct 2026 19:29:04 GMT | 752d6709c3ca5cbb… |
-| votacao_secao_2026_BR.zip | incompleto | — | 161.616.519 | Tue, 06 Oct 2026 19:22:49 GMT | — |
+| votacao_secao_2026_BR.zip | ok | sem hash publicado | 241.891.087 | Mon, 26 Oct 2026 17:42:32 GMT | c928321f63f2d095… |
 | votacao_secao_2026_CE.zip | ok | sem hash publicado | 100.505.036 | Tue, 06 Oct 2026 19:22:43 GMT | 917f9998a724abaf… |
 | votacao_secao_2026_DF.zip | ok | sem hash publicado | 35.961.696 | Mon, 26 Oct 2026 17:38:43 GMT | d1c189f728bb08ca… |
 | votacao_secao_2026_ES.zip | ok | sem hash publicado | 36.500.775 | Tue, 06 Oct 2026 19:22:41 GMT | 3c176bf91739dea6… |
-| votacao_secao_2026_GO.zip | incompleto | — | 81.562.914 | Tue, 06 Oct 2026 19:22:39 GMT | — |
-| votacao_secao_2026_MA.zip | falha_integridade | sem hash publicado | 68.021.627 | Mon, 26 Oct 2026 17:38:26 GMT | b0653791bb5893a0… |
+| votacao_secao_2026_GO.zip | ok | sem hash publicado | 83.816.451 | Mon, 26 Oct 2026 17:39:44 GMT | b82316c58e57139e… |
+| votacao_secao_2026_MA.zip | ok | sem hash publicado | 68.021.627 | Mon, 26 Oct 2026 17:38:26 GMT | 3e39391bb6c7a8ca… |
 | votacao_secao_2026_MG.zip | ok | sem hash publicado | 255.063.843 | Tue, 06 Oct 2026 19:32:09 GMT | 56826e143f4fb262… |
 | votacao_secao_2026_MS.zip | ok | sem hash publicado | 23.588.312 | Tue, 06 Oct 2026 19:22:38 GMT | dff2800ea4371111… |
 | votacao_secao_2026_MT.zip | ok | sem hash publicado | 31.060.799 | Mon, 26 Oct 2026 17:38:48 GMT | 3d91f38b185070a0… |
@@ -275,7 +275,7 @@ O inventário completo (URL, datas do catálogo, `ETag`, `Last-Modified`, tamanh
 | votacao_secao_2026_PB.zip | ok | sem hash publicado | 37.422.947 | Mon, 26 Oct 2026 17:40:12 GMT | c2a3a9f3434d8267… |
 | votacao_secao_2026_PE.zip | ok | sem hash publicado | 101.591.607 | Wed, 07 Oct 2026 21:03:22 GMT | b4a6978d407ce5af… |
 | votacao_secao_2026_PI.zip | ok | sem hash publicado | 30.590.209 | Tue, 06 Oct 2026 19:22:31 GMT | b075e46995ca84c0… |
-| votacao_secao_2026_PR.zip | incompleto | — | 152.428.338 | Mon, 26 Oct 2026 17:39:25 GMT | — |
+| votacao_secao_2026_PR.zip | ok | sem hash publicado | 146.080.760 | Tue, 06 Oct 2026 19:22:41 GMT | 63ef4e0f03fa4ee6… |
 | votacao_secao_2026_RJ.zip | ok | sem hash publicado | 288.342.281 | Tue, 06 Oct 2026 19:32:16 GMT | 85eaced8508e6023… |
 | votacao_secao_2026_RN.zip | ok | sem hash publicado | 23.383.338 | Tue, 06 Oct 2026 19:22:30 GMT | c695728b1f1511fb… |
 | votacao_secao_2026_RO.zip | ok | sem hash publicado | 11.476.238 | Tue, 06 Oct 2026 19:22:44 GMT | 9e881b2fad94ceaf… |
@@ -283,7 +283,7 @@ O inventário completo (URL, datas do catálogo, `ETag`, `Last-Modified`, tamanh
 | votacao_secao_2026_RS.zip | ok | sem hash publicado | 144.569.003 | Tue, 06 Oct 2026 19:22:34 GMT | 924062046eb3e992… |
 | votacao_secao_2026_SC.zip | ok | sem hash publicado | 77.963.794 | Tue, 06 Oct 2026 19:22:41 GMT | 034d396ca1e1bfad… |
 | votacao_secao_2026_SE.zip | ok | sem hash publicado | 18.746.487 | Tue, 06 Oct 2026 19:22:37 GMT | 837b45a1ca231122… |
-| votacao_secao_2026_SP.zip | incompleto | — | 808.337.068 | Mon, 26 Oct 2026 19:21:54 GMT | — |
+| votacao_secao_2026_SP.zip | ok | sem hash publicado | 767.459.830 | Tue, 06 Oct 2026 20:03:39 GMT | 49d5f1f6938425e5… |
 | votacao_secao_2026_TO.zip | ok | sem hash publicado | 12.707.217 | Tue, 06 Oct 2026 19:22:43 GMT | b7802f099755f74d… |
 
 
@@ -296,8 +296,11 @@ O inventário completo (URL, datas do catálogo, `ETag`, `Last-Modified`, tamanh
 | 2.022 | 1 | AM | 486f3d65-5ea632e1d54b6 | Thu, 06 Oct 2022 20:02:59 GMT | 1.215.249.765 | 7.453 | 4 | 7.453 | 0 | 2 |
 | 2.022 | 1 | AP | 10451900-5ea63350637d1 | Thu, 06 Oct 2022 20:04:55 GMT | 272.963.840 | 1.740 | 0 | 1.740 | 0 | 0 |
 | 2.022 | 1 | DF | 4007e740-5ea6b00d3c2e0 | Fri, 07 Oct 2022 05:22:59 GMT | 1.074.259.776 | 6.748 | 0 | 6.748 | 0 | 0 |
+| 2.022 | 1 | ES | 4b79e2a0-5ea644299d642 | Thu, 06 Oct 2022 21:20:18 GMT | 1.266.279.072 | 9.239 | 0 | 9.239 | 0 | 0 |
 | 2.022 | 1 | MS | 3d33204f-5ea65bf6a23ef | Thu, 06 Oct 2022 23:06:47 GMT | 1.026.760.783 | 6.912 | 1 | 6.912 | 0 | 0 |
 | 2.022 | 1 | MT | 43597918-5ea65df65df5e | Thu, 06 Oct 2022 23:15:44 GMT | 1.129.937.176 | 7.652 | 1 | 7.652 | 0 | 1 |
+| 2.022 | 1 | PI | 50f2d4fd-5ea66d78b17f6 | Fri, 07 Oct 2022 00:25:07 GMT | 1.358.091.517 | 8.963 | 0 | 8.963 | 0 | 0 |
+| 2.022 | 1 | RN | 4abcea01-5ea6802a2b89b | Fri, 07 Oct 2022 01:48:45 GMT | 1.253.894.657 | 7.674 | 2 | 7.674 | 0 | 2 |
 | 2.022 | 1 | RO | 254e803b-5ea6813f4b422 | Fri, 07 Oct 2022 01:53:35 GMT | 625.901.627 | 4.198 | 0 | 4.198 | 0 | 0 |
 | 2.022 | 1 | RR | b1c9d6d-5ea68190abdae | Fri, 07 Oct 2022 01:55:01 GMT | 186.424.685 | 1.268 | 0 | 1.268 | 0 | 0 |
 | 2.022 | 1 | SE | 3305f77b-5ea68f4198265 | Fri, 07 Oct 2022 02:56:16 GMT | 856.029.051 | 5.498 | 0 | 5.498 | 0 | 0 |
@@ -305,6 +308,8 @@ O inventário completo (URL, datas do catálogo, `ETag`, `Last-Modified`, tamanh
 | 2.022 | 1 | ZZ | 4c3b252-5ea6b03146a4f | Fri, 07 Oct 2022 05:23:37 GMT | 79.934.034 | 1.014 | 153 | 1.014 | 0 | 153 |
 | 2.022 | 2 | AC | 15dd826e-5ec83b30c26dc | Wed, 02 Nov 2022 21:41:12 GMT | 366.838.382 | 2.124 | 0 | 2.124 | 0 | 0 |
 | 2.022 | 2 | AP | 12f3b2ef-5ec83b3d791e1 | Wed, 02 Nov 2022 21:41:25 GMT | 317.960.943 | 1.740 | 0 | 1.740 | 0 | 0 |
+| 2.022 | 2 | DF | 4c6770c1-5ec83cd8bd355 | Wed, 02 Nov 2022 21:48:36 GMT | 1.281.847.489 | 6.748 | 1 | 6.748 | 0 | 0 |
+| 2.022 | 2 | MS | 4c3f9353-5ec83bc71ff0e | Wed, 02 Nov 2022 21:43:50 GMT | 1.279.234.899 | 6.912 | 0 | 6.912 | 0 | 0 |
 | 2.022 | 2 | RO | 2f1e9bd1-5ec83c3f240be | Wed, 02 Nov 2022 21:45:55 GMT | 790.535.121 | 4.198 | 0 | 4.198 | 0 | 0 |
 | 2.022 | 2 | RR | ccdae71-5ec83c401a636 | Wed, 02 Nov 2022 21:45:56 GMT | 214.806.129 | 1.268 | 0 | 1.268 | 0 | 0 |
 | 2.022 | 2 | SE | 41dc58ea-5ec83c6e5c5e0 | Wed, 02 Nov 2022 21:46:45 GMT | 1.104.959.722 | 5.498 | 0 | 5.498 | 0 | 0 |
