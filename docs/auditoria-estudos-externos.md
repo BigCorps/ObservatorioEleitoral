@@ -525,3 +525,29 @@ _Gerado por `scripts/gerar_relatorios.py`. Os valores da coluna "alegado" são d
 | D5 | DataUrnas-BR | Seções com |votos no log − comparecimento| > 2 | 2º | 1.691 | 15 seções (todos os arquivos de log da seção, janela até o dia seguinte); 50 com qualquer diferença |
 
 Notas: (1) A1 — a conversão por UF aplica −1 h a todo o AM; o oeste do AM está em UTC−5, de modo que o voto das 6h locais nesses municípios (= 8h de Brasília) vira 7h com a conversão de +1 h e é classificado como "antes das 8h". (2) D5 — o DataUrnas-BR lê só o primeiro arquivo do pacote 7z e descarta votos após a meia-noite, o que produz contagens de log menores que o BU. (3) A2 — com intervalos medidos entre registros de voto computado, a definição publicada não reproduz a contagem alegada; o critério exato dos autores não é público.
+
+## 2026 · 2º turno: extração própria × pesquisas independentes
+
+_Gerado por `scripts/comparar_estudos_externos.py`. Os números dos terceiros foram copiados das publicações e não adotados; "Nossa extração" vem dos arquivos de urna baixados seção a seção no Portal de Resultados do TSE, com hash conferido. Diferenças de definição (fuso, inclusão do exterior, limite 17:00:00) estão nas notas._
+
+| Verificação | Fonte | Nossa extração | Pesquisa independente | Diferença | Nota |
+|---|---|---|---|---|---|
+| Seções com log processadas (sem exterior) | CNN/setup.news | 497.896 | 497.895 | 1 | — |
+| Seções com log processadas (sem exterior) | Agnoletto | 497.896 | 497.896 | 0 | — |
+| Votos após 17h de Brasília (sem exterior) | CNN/setup.news | 34.050 | 34.330 | -280 | CNN não informa fuso nem se 17:00:00 conta; a partir de 17:00:00 = 34330 |
+| Votos a partir de 17:00:00 de Brasília (sem exterior) | CNN/setup.news | 34.330 | 34.330 | 0 | mesma definição que reproduz o número da CNN (inclui o segundo 17:00:00) |
+| Votos após o encerramento previsto (17h Brasília) | Agnoletto | 34.050 | 31.060 | 2.990 | Agnoletto usa o horário local previsto por seção |
+| Votos entre 17h00 e 17h05 | CNN/setup.news | 29.001 | 29.001 | 0 | — |
+| Votos após 18h de Brasília | CNN/setup.news | 1.993 | 1.993 | 0 | inclui seções prorrogadas até 19h por decisão do STF |
+| Votos após 19h de Brasília | CNN/setup.news | 11 | 11 | 0 | — |
+| Seções sem voto após 17h | CNN/setup.news | 468.287 | 468.043 | 244 | — |
+| Votos manuais após 17h (seções com modalidade alinhada) | Agnoletto | 2.746 | 2.512 | 234 | 497896 seções com modalidade por voto alinhada |
+| Seções com início de encerramento a partir de 18h55 | Agnoletto | 6.864 | 7.577 | -713 | — |
+| Mediana da duração do voto (s) | Agnoletto | 11 | 10 | 1 | — |
+| % habilitação manual após falha biométrica · UE2013 | Agnoletto | 10,800 | 11 | -0,200 | — |
+| % habilitação manual após falha biométrica · UE2015 | Agnoletto | 9,600 | 9,800 | -0,200 | — |
+| % habilitação manual após falha biométrica · UE2020 | Agnoletto | 6 | 6,200 | -0,200 | — |
+| % habilitação manual após falha biométrica · UE2022 | Agnoletto | 6 | 6,200 | -0,200 | — |
+| Arquivos e resultados publicados | kakaroto.dev | — | — | — | não reproduzido: site fora do ar (HTTP 530 em 26–27/10/2026) e sem código público |
+
+**Seção a seção com a base pública de André Agnoletto** (`secoes_logs_brasil.parquet`): 497.896 seções em ambas; só na nossa base 0 no Brasil e 1.281 no exterior (não incluído por ele); só na dele 0. Votos iguais em 497.893 seções (soma das diferenças: 535); habilitados iguais em 497.893; primeiro e último voto iguais em 497.895 e 497.896. Modalidade de habilitação: biometria igual em 497.681, manual em 496.554, sem biometria em 496.346 — as diferenças restantes são de classificação da modalidade (votos e habilitados coincidem); ver `resultados/2026/agnoletto_secao_a_secao.csv`. Nas seções com número de votos diferente (`agnoletto_secoes_votos_diferentes.csv`), a contagem desta extração é igual ao comparecimento oficial; a base externa soma arquivos de log de outras seções ou do 1º turno anexados ao pacote.

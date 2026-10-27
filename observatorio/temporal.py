@@ -110,6 +110,17 @@ def tabelas(ano: int) -> dict:
         count(*) votos
       FROM (SELECT turno, uf, desloc, unnest(votos_s) v FROM sec_base) GROUP BY ALL ORDER BY 1, 2, 3)
       TO '{o}/votos_por_15min.csv' (HEADER)""")
+    # Mesmo recorte por UF, município e zona (CSV compactado) e por seção (Parquet fora do Git)
+    con.execute("""CREATE OR REPLACE TEMP TABLE v15 AS
+      SELECT turno, uf, cd_municipio, nr_zona, nr_secao, CAST(floor((v + desloc) / 900) AS INT) * 15 AS minuto_do_dia,
+        count(*) votos
+      FROM (SELECT turno, uf, cd_municipio, nr_zona, nr_secao, desloc, unnest(votos_s) v FROM sec_base) GROUP BY ALL""")
+    for nivel, chave, ext in (("uf", "uf", "csv"), ("municipio", "uf, cd_municipio", "csv.gz"),
+                              ("zona", "uf, cd_municipio, nr_zona", "csv.gz")):
+        con.execute(f"""COPY (SELECT turno, {chave}, minuto_do_dia, sum(votos) votos FROM v15 GROUP BY ALL
+          ORDER BY ALL) TO '{o}/votos_por_15min_{nivel}.{ext}' (HEADER)""")
+    (PROCESSADOS / "temporal").mkdir(parents=True, exist_ok=True)
+    con.execute(f"COPY (SELECT * FROM v15 ORDER BY ALL) TO '{PROCESSADOS}/temporal/votos_por_15min_secao_{ano}.parquet'")
     # Distribuição dos intervalos entre votos consecutivos (segundos)
     con.execute(f"""COPY (
       SELECT turno, least(x, 600) AS intervalo_s_truncado_600, count(*) n

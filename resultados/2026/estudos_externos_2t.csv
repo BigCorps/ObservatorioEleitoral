@@ -1,0 +1,18 @@
+verificacao,fonte_externa,nossa_extracao,pesquisa_independente,diferenca,nota
+Seções com log processadas (sem exterior),CNN/setup.news,497896.0,497895.0,1.0,
+Seções com log processadas (sem exterior),Agnoletto,497896.0,497896.0,0.0,
+Votos após 17h de Brasília (sem exterior),CNN/setup.news,34050.0,34330.0,-280.0,CNN não informa fuso nem se 17:00:00 conta; a partir de 17:00:00 = 34330
+Votos a partir de 17:00:00 de Brasília (sem exterior),CNN/setup.news,34330.0,34330.0,0.0,mesma definição que reproduz o número da CNN (inclui o segundo 17:00:00)
+Votos após o encerramento previsto (17h Brasília),Agnoletto,34050.0,31060.0,2990.0,Agnoletto usa o horário local previsto por seção
+Votos entre 17h00 e 17h05,CNN/setup.news,29001.0,29001.0,0.0,
+Votos após 18h de Brasília,CNN/setup.news,1993.0,1993.0,0.0,inclui seções prorrogadas até 19h por decisão do STF
+Votos após 19h de Brasília,CNN/setup.news,11.0,11.0,0.0,
+Seções sem voto após 17h,CNN/setup.news,468287.0,468043.0,244.0,
+Votos manuais após 17h (seções com modalidade alinhada),Agnoletto,2746.0,2512.0,234.0,497896 seções com modalidade por voto alinhada
+Seções com início de encerramento a partir de 18h55,Agnoletto,6864.0,7577.0,-713.0,
+Mediana da duração do voto (s),Agnoletto,11.0,10.0,1.0,
+% habilitação manual após falha biométrica · UE2013,Agnoletto,10.8,11.0,-0.1999999999999993,
+% habilitação manual após falha biométrica · UE2015,Agnoletto,9.6,9.8,-0.20000000000000107,
+% habilitação manual após falha biométrica · UE2020,Agnoletto,6.0,6.2,-0.20000000000000018,
+% habilitação manual após falha biométrica · UE2022,Agnoletto,6.0,6.2,-0.20000000000000018,
+Arquivos e resultados publicados,kakaroto.dev,,,,não reproduzido: site fora do ar (HTTP 530 em 26–27/10/2026) e sem código público

@@ -58,11 +58,13 @@ ano,turno,categoria,teste,campo,apontamentos,secoes_distintas,votos_com_registro
 2026,1,Incompatibilidade documental pendente,B6,comparecimento_vs_votos_computados,9.0,9.0,59.0,diferença em número de votos registrados entre as fontes (não é voto irregular)
 2026,1,Incompatibilidade documental pendente,B6,comparecimento_vs_votos_presidente_mais_nulos_suspensao,6.0,6.0,,não é contagem de votos
 2026,1,Incompatibilidade documental pendente,B8,habilitados_por_biografia_vs_manual_apos_falha,3.0,3.0,,não é contagem de votos
-2026,1,Incompatibilidade documental pendente,B8,habilitados_por_biometria,4008.0,4008.0,,não é contagem de votos
+2026,1,Incompatibilidade documental pendente,B8,habilitados_por_biometria,11.0,11.0,,não é contagem de votos
 2026,1,Incompatibilidade documental pendente,B8,sem_biometria_cadastrada,2.0,2.0,,não é contagem de votos
-2026,2,Incompatibilidade documental pendente,A2,presenca,36088.0,36088.0,,não é contagem de votos
-2026,2,Incompatibilidade documental pendente,B7,votos_por_candidato_soma_dif_abs,2.0,2.0,,não é contagem de votos
-2026,2,Incompatibilidade documental pendente,B8,habilitados_por_biometria,257.0,257.0,,não é contagem de votos
+2026,2,Incompatibilidade documental pendente,B6o,comparecimento_vs_votos_computados,6.0,6.0,54.0,diferença em número de votos registrados entre as fontes (não é voto irregular)
+2026,2,Incompatibilidade documental pendente,B6o,comparecimento_vs_votos_presidente_mais_nulos_suspensao,5.0,5.0,,não é contagem de votos
+2026,2,Incompatibilidade documental pendente,B8,habilitados_por_biografia_vs_manual_apos_falha,3.0,3.0,,não é contagem de votos
+2026,2,Incompatibilidade documental pendente,B8,habilitados_por_biometria,5.0,5.0,,não é contagem de votos
+2026,2,Incompatibilidade documental pendente,B8,sem_biometria_cadastrada,1.0,1.0,,não é contagem de votos
 2026,1,Diferença explicada,A3,presenca,42.0,42.0,,não é contagem de votos
 2026,1,Diferença explicada,B2,biometria_nh_vs_lib_codigo,1309.0,1309.0,,não é contagem de votos
 2026,1,Diferença explicada,B4,votos_candidato_zona,2148.0,,,"não é contagem de votos; comparação por município/zona, sem contagem de seções"
@@ -73,17 +75,46 @@ ano,turno,categoria,teste,campo,apontamentos,secoes_distintas,votos_com_registro
 2026,1,Diferença explicada,B5,nulos,2189.0,,,"não é contagem de votos; comparação por município/zona, sem contagem de seções"
 2026,1,Diferença explicada,B5,validos,2189.0,,,"não é contagem de votos; comparação por município/zona, sem contagem de seções"
 2026,1,Diferença explicada,B6,comparecimento_vs_votos_presidente_mais_nulos_suspensao,148.0,148.0,,não é contagem de votos
-2026,2,Diferença explicada,B6o,comparecimento_vs_votos_presidente_mais_nulos_suspensao,2.0,2.0,,não é contagem de votos
-2026,1,Diferença estatística,I,"UE2020 x demais, pct_biometria_nh, controle mesma_zona",,147740.0,,-0.82 p.p. (IC95% -0.93 a -0.71)
-2026,1,Diferença estatística,I,"UE2020 x demais, pct_biometria_nh, controle mesmo_municipio",,186754.0,,-1.07 p.p. (IC95% -1.51 a -0.66)
-2026,1,Diferença estatística,I,"UE2020 x demais, pct_comparecimento, controle mesmo_local",,44142.0,,+0.12 p.p. (IC95% 0.02 a 0.21)
-2026,1,Diferença estatística,J,segundo_digito_vs_simulacao_binomial_zona,32.0,,,"32 recortes UF/candidato com p_holm<0,01; efeito mediano 1.47 p.p."
+2026,1,Diferença explicada,B8,habilitados_por_biometria,3997.0,3997.0,,não é contagem de votos
+2026,2,Diferença explicada,B6o,comparecimento_vs_votos_presidente_mais_nulos_suspensao,48.0,48.0,,não é contagem de votos
+2026,2,Diferença explicada,B8,habilitados_por_biometria,4333.0,4333.0,,não é contagem de votos
+2026,1,Diferença estatística,I,"UE2020 x demais, pct_biometria_nh, controle mesma_zona",,147740.0,,-0.82 p.p. (IC95% -0.93 a -0.72)
+2026,1,Diferença estatística,I,"UE2020 x demais, pct_biometria_nh, controle mesmo_municipio",,186754.0,,-1.07 p.p. (IC95% -1.54 a -0.65)
+2026,1,Diferença estatística,I,"UE2020 x demais, pct_comparecimento, controle mesmo_local",,44142.0,,+0.12 p.p. (IC95% 0.02 a 0.22)
+2026,1,Diferença estatística,J,segundo_digito_vs_simulacao_binomial_zona,33.0,,,"33 recortes UF/candidato com p_holm<0,01; efeito mediano 1.44 p.p."
+2026,2,Diferença estatística,H-UF,pct_hab_biometrica_log · RS,,,,RS: mudança 1º→2º turno -0.43 p.p. em 2026 contra +2.00 em 2022 (z robusto -5.1); p Holm 7.6e-05
+2026,2,Diferença estatística,H-UF,pct_hab_manual_apos_falha_log · RS,,,,RS: mudança 1º→2º turno +0.23 p.p. em 2026 contra -2.00 em 2022 (z robusto 4.2); p Holm 6.7e-03
+2026,2,Diferença estatística,H-UF,pct_nulos · AL,,,,AL: mudança 1º→2º turno -2.48 p.p. em 2026 contra +2.50 em 2022 (z robusto -4.2); p Holm 7.0e-03
+2026,2,Diferença estatística,H-seção,abstencao · BR,,,,BR: seções com |Δ| > 15 p.p. entre turnos: 0.17% em 2026 contra 0.12% em 2022; p Holm 4.0e-06
+2026,2,Diferença estatística,H-seção,abstencao · MS,,,,MS: seções com |Δ| > 15 p.p. entre turnos: 0.45% em 2026 contra 0.00% em 2022; p Holm 1.5e-06
+2026,2,Diferença estatística,H-seção,brancos · BR,,,,BR: seções com |Δ| > 5 p.p. entre turnos: 0.13% em 2026 contra 0.04% em 2022; p Holm 3.3e-55
+2026,2,Diferença estatística,H-seção,brancos · MG,,,,MG: seções com |Δ| > 5 p.p. entre turnos: 0.23% em 2026 contra 0.11% em 2022; p Holm 2.5e-04
+2026,2,Diferença estatística,H-seção,brancos · PR,,,,PR: seções com |Δ| > 5 p.p. entre turnos: 0.14% em 2026 contra 0.03% em 2022; p Holm 8.1e-04
+2026,2,Diferença estatística,H-seção,brancos · RJ,,,,RJ: seções com |Δ| > 5 p.p. entre turnos: 0.08% em 2026 contra 0.00% em 2022; p Holm 4.8e-05
+2026,2,Diferença estatística,H-seção,brancos · RS,,,,RS: seções com |Δ| > 5 p.p. entre turnos: 0.58% em 2026 contra 0.16% em 2022; p Holm 2.7e-14
+2026,2,Diferença estatística,H-seção,brancos · SP,,,,SP: seções com |Δ| > 5 p.p. entre turnos: 0.18% em 2026 contra 0.02% em 2022; p Holm 2.6e-27
+2026,2,Diferença estatística,H-seção,nulos · AM,,,,AM: seções com |Δ| > 5 p.p. entre turnos: 0.28% em 2026 contra 3.74% em 2022; p Holm 1.4e-53
+2026,2,Diferença estatística,H-seção,nulos · BA,,,,BA: seções com |Δ| > 5 p.p. entre turnos: 1.10% em 2026 contra 0.78% em 2022; p Holm 9.0e-04
+2026,2,Diferença estatística,H-seção,nulos · BR,,,,BR: seções com |Δ| > 5 p.p. entre turnos: 0.99% em 2026 contra 0.66% em 2022; p Holm 2.0e-70
+2026,2,Diferença estatística,H-seção,nulos · CE,,,,CE: seções com |Δ| > 5 p.p. entre turnos: 1.87% em 2026 contra 0.24% em 2022; p Holm 4.2e-63
+2026,2,Diferença estatística,H-seção,nulos · GO,,,,GO: seções com |Δ| > 5 p.p. entre turnos: 0.28% em 2026 contra 0.02% em 2022; p Holm 5.8e-07
+2026,2,Diferença estatística,H-seção,nulos · MS,,,,MS: seções com |Δ| > 5 p.p. entre turnos: 0.17% em 2026 contra 1.50% em 2022; p Holm 1.8e-16
+2026,2,Diferença estatística,H-seção,nulos · PA,,,,PA: seções com |Δ| > 5 p.p. entre turnos: 2.65% em 2026 contra 0.12% em 2022; p Holm 3.2e-94
+2026,2,Diferença estatística,H-seção,nulos · PB,,,,PB: seções com |Δ| > 5 p.p. entre turnos: 7.96% em 2026 contra 2.26% em 2022; p Holm 1.0e-71
+2026,2,Diferença estatística,H-seção,nulos · PE,,,,PE: seções com |Δ| > 5 p.p. entre turnos: 1.30% em 2026 contra 1.99% em 2022; p Holm 1.3e-06
+2026,2,Diferença estatística,H-seção,nulos · PI,,,,PI: seções com |Δ| > 5 p.p. entre turnos: 1.59% em 2026 contra 0.57% em 2022; p Holm 1.4e-09
+2026,2,Diferença estatística,H-seção,nulos · RJ,,,,RJ: seções com |Δ| > 5 p.p. entre turnos: 0.15% em 2026 contra 0.04% em 2022; p Holm 2.4e-04
+2026,2,Diferença estatística,H-seção,nulos · RS,,,,RS: seções com |Δ| > 5 p.p. entre turnos: 0.11% em 2026 contra 0.32% em 2022; p Holm 1.0e-05
+2026,2,Diferença estatística,H-seção,nulos · SE,,,,SE: seções com |Δ| > 5 p.p. entre turnos: 1.88% em 2026 contra 0.25% em 2022; p Holm 6.6e-15
+2026,2,Diferença estatística,H-seção,nulos · SP,,,,SP: seções com |Δ| > 5 p.p. entre turnos: 0.30% em 2026 contra 0.17% em 2022; p Holm 1.7e-08
+2026,2,Diferença estatística,H-seção,nulos · TO,,,,TO: seções com |Δ| > 5 p.p. entre turnos: 1.60% em 2026 contra 0.71% em 2022; p Holm 9.1e-03
 2026,2,Não verificado,B1,Comparecimento = nominais + brancos + nulos no BU em CSV,,,,BU em CSV do turno ainda não publicado nos Dados Abertos
 2026,2,Não verificado,B2,BU em CSV x BU binário,,,,BU em CSV do turno ainda não publicado nos Dados Abertos
 2026,2,Não verificado,B3,BU em CSV x Detalhe por seção,,,,BU em CSV do turno ainda não publicado nos Dados Abertos
 2026,2,Não verificado,B4,BU em CSV x Votação nominal por município/zona,,,,BU em CSV do turno ainda não publicado nos Dados Abertos
 2026,2,Não verificado,B5,BU em CSV x Detalhe por município/zona,,,,BU em CSV do turno ainda não publicado nos Dados Abertos
 2026,2,Não verificado,K1,BU em CSV x Votação por seção,,,,BU em CSV do turno ainda não publicado nos Dados Abertos
+2026,1,Conferido sem diferença,A2o,presenca,0.0,0.0,,
 2026,1,Conferido sem diferença,B1,comparecimento_vs_soma_votos,0.0,0.0,,
 2026,1,Conferido sem diferença,B2,aptos,0.0,0.0,,
 2026,1,Conferido sem diferença,B2,brancos,0.0,0.0,,
@@ -111,6 +142,8 @@ ano,turno,categoria,teste,campo,apontamentos,secoes_distintas,votos_com_registro
 2026,1,Conferido sem diferença,K2,brancos,0.0,0.0,,
 2026,1,Conferido sem diferença,K2,nulos,0.0,0.0,,
 2026,1,Conferido sem diferença,K2,votos_nominais,0.0,0.0,,
+2026,2,Conferido sem diferença,A2,presenca,0.0,0.0,,
+2026,2,Conferido sem diferença,A2o,presenca,0.0,0.0,,
 2026,2,Conferido sem diferença,A3,presenca,0.0,0.0,,
 2026,2,Conferido sem diferença,B1,comparecimento_vs_soma_votos,0.0,0.0,,
 2026,2,Conferido sem diferença,B2,aptos,0.0,0.0,,
@@ -137,14 +170,12 @@ ano,turno,categoria,teste,campo,apontamentos,secoes_distintas,votos_com_registro
 2026,2,Conferido sem diferença,B6,biometria_nh_vs_liberacao_manual_no_log,0.0,0.0,,
 2026,2,Conferido sem diferença,B6,comparecimento_vs_votos_computados,0.0,0.0,,
 2026,2,Conferido sem diferença,B6,comparecimento_vs_votos_presidente_mais_nulos_suspensao,0.0,0.0,,
-2026,2,Conferido sem diferença,B6o,comparecimento_vs_votos_computados,0.0,0.0,,
 2026,2,Conferido sem diferença,B7,aptos,0.0,0.0,,
 2026,2,Conferido sem diferença,B7,brancos,0.0,0.0,,
 2026,2,Conferido sem diferença,B7,comparecimento,0.0,0.0,,
 2026,2,Conferido sem diferença,B7,nulos,0.0,0.0,,
 2026,2,Conferido sem diferença,B7,votos_nominais,0.0,0.0,,
-2026,2,Conferido sem diferença,B8,habilitados_por_biografia_vs_manual_apos_falha,0.0,0.0,,
-2026,2,Conferido sem diferença,B8,sem_biometria_cadastrada,0.0,0.0,,
+2026,2,Conferido sem diferença,B7,votos_por_candidato_soma_dif_abs,0.0,0.0,,
 2026,2,Conferido sem diferença,C1,aptos_vs_comp_mais_abst,0.0,0.0,,
 2026,2,Conferido sem diferença,K1,votos_votavel,0.0,0.0,,
 2026,2,Conferido sem diferença,K2,brancos,0.0,0.0,,

@@ -83,6 +83,8 @@ def tabela(r: dict) -> pd.DataFrame:
     add("Seções com log processadas (sem exterior)", r["secoes_com_log_sem_zz"], AGN["urnas_sem_zz"], "Agnoletto")
     add("Votos após 17h de Brasília (sem exterior)", r["votos_apos_17h"], CNN["votos_apos_17h"], "CNN/setup.news",
         "CNN não informa fuso nem se 17:00:00 conta; a partir de 17:00:00 = " + str(r["votos_a_partir_17h"]))
+    add("Votos a partir de 17:00:00 de Brasília (sem exterior)", r["votos_a_partir_17h"], CNN["votos_apos_17h"],
+        "CNN/setup.news", "mesma definição que reproduz o número da CNN (inclui o segundo 17:00:00)")
     add("Votos após o encerramento previsto (17h Brasília)", r["votos_apos_17h"], AGN["votos_apos_fech"], "Agnoletto",
         "Agnoletto usa o horário local previsto por seção")
     add("Votos entre 17h00 e 17h05", r["votos_17h_17h05"], CNN["votos_17h_5min"], "CNN/setup.news")
@@ -111,6 +113,12 @@ def secao_a_secao(con, caminho: Path) -> pd.DataFrame:
               ("ultimo_voto_local_s", "t_ultimo_voto", "(epoch(ultimo_voto)::BIGINT % 86400)")]
     sel = ", ".join(f"count(*) FILTER (v.{n} IS NOT DISTINCT FROM {e}) AS {c}_iguais,"
                     f" sum(abs(v.{n} - {e})) AS {c}_soma_abs_dif" for c, n, e in campos)
+    con.execute(f"""COPY (SELECT v.uf, v.cd_municipio, v.nr_zona, v.nr_secao, v.n_votos_computados AS votos_nossa,
+        a.log_votos AS votos_agnoletto, o.qt_comparecimento AS comparecimento_oficial
+      FROM s v JOIN a ON v.uf = a.SG_UF AND v.cd_municipio = a.CD_MUNICIPIO AND v.nr_zona = a.NR_ZONA AND v.nr_secao = a.NR_SECAO
+      LEFT JOIN '{RAIZ}/dados/processados/secoes_oficiais_2026_2t.parquet' o ON o.uf = v.uf AND o.cd_municipio = v.cd_municipio
+        AND o.nr_zona = v.nr_zona AND o.nr_secao = v.nr_secao
+      WHERE v.n_votos_computados IS DISTINCT FROM a.log_votos) TO '{SAIDA}/agnoletto_secoes_votos_diferentes.csv' (HEADER)""")
     df = con.execute(f"""
       WITH j AS (SELECT * FROM s v FULL JOIN a ON v.uf = a.SG_UF AND v.cd_municipio = a.CD_MUNICIPIO
                  AND v.nr_zona = a.NR_ZONA AND v.nr_secao = a.NR_SECAO)

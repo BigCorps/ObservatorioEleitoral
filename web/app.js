@@ -777,7 +777,7 @@ function renderAudit() {
     cards.append(card);
   };
   record('ELEIÇÕES DE 2022','2 turnos processados','BUs, resultados e logs reconciliados; ainda existem observações sem explicação documental completa.','');
-  record('ELEIÇÕES DE 2026 · 1º TURNO','Processado','As verificações técnicas publicadas correspondem ao primeiro turno.','');
+  record('ELEIÇÕES DE 2026 · 1º TURNO','Processado','BU em CSV, BU binário, logs e resultados oficiais reconciliados seção a seção.','');
   if(has2026Round2Logs())record('ELEIÇÕES DE 2026 · 2º TURNO','Logs e BUs processados','Arquivos de urna coletados seção a seção no Portal de Resultados do TSE, com hashes conferidos. O BU em CSV do turno ainda não foi publicado: as verificações que dependem dele aparecem como não verificadas.','');
   else record('ELEIÇÕES DE 2026 · 2º TURNO','Dados técnicos pendentes','Resultados por seção disponíveis; BU e logs ainda não integram as verificações técnicas desta base.','audit-pending');
   const rows=data.auditsByYear[state.year]||[];
@@ -801,9 +801,9 @@ function renderAudit() {
 }
 const discCategories=['Diferença estatística','Diferença explicada','Incompatibilidade documental pendente','Não verificado'];
 function renderDiscrepancies() {
-  const rows=(data.discrepancies||[]).filter(r=>r.ano===state.year&&discCategories.includes(r.categoria));
-  setText('discTitle','Discrepâncias de '+state.year+' por categoria');
-  setText('discChip',state.year==='2022'?'2022: dois turnos':'2026: 1º e 2º turnos');
+  const rows=(data.discrepancies||[]).filter(r=>r.ano===state.year&&r.turno===state.round&&discCategories.includes(r.categoria));
+  setText('discTitle','Discrepâncias de '+state.year+' · '+state.round+'º turno');
+  setText('discChip','Filtro: '+state.year+' · '+state.round+'º turno');
   const cards=document.getElementById('discCards');
   cards.replaceChildren();
   for(const cat of discCategories){

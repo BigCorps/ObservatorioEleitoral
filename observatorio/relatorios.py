@@ -467,6 +467,33 @@ NOMES_IND = {
 }
 
 
+def testes_historicos_md() -> str:
+    a = RESULTADOS / "comparativo" / "testes_did_uf.csv"
+    b = RESULTADOS / "comparativo" / "testes_extremos_secao.csv"
+    if not a.exists() or not b.exists():
+        return ""
+    a, b = pd.read_csv(a), pd.read_csv(b)
+    out = ["## Mudança entre turnos: 2026 comparado a 2022 (testes estatísticos)\n",
+           "_Gerado por `observatorio/testes_historicos.py`. Correção de Holm sobre todos os testes de cada bloco; "
+           "significância declarada com p ajustado < 0,01. Efeito estatístico não é incompatibilidade documental nem "
+           "prova de irregularidade._\n",
+           f"**Por UF (diferença-em-diferenças, escore robusto entre UFs):** {len(a)} testes "
+           f"({a.indicador.nunique()} indicadores × {a.uf.nunique()} UFs); {int((a.p_holm < 0.01).sum())} significativos.\n",
+           tabela_md(a[a.p_holm < 0.01][["indicador", "uf", "delta_2022_pp", "delta_2026_pp", "did_pp",
+                                         "mediana_did_ufs", "z_robusto", "p_holm"]]),
+           f"\n**Por seção (proporção de seções com mudança extrema entre turnos, 2026 × 2022):** {len(b)} testes; "
+           f"{int((b.p_holm < 0.01).sum())} significativos. Limiares fixos: abstenção 15 p.p., brancos e nulos 5 p.p.; "
+           "seções com ao menos 50 aptos nos dois turnos.\n",
+           tabela_md(b[b.p_holm < 0.01].sort_values("z")[["indicador", "uf", "mediana_delta_pp_2022", "mediana_delta_pp_2026",
+                                                       "pct_extremas_2022", "pct_extremas_2026", "z", "p_holm"]], max_linhas=40),
+           "\nLeitura: o padrão dominante é a **queda** de brancos e nulos para Presidente do 1º para o 2º turno de 2026 "
+           "(nulos 2,93% → 2,12% no Brasil), oposta a 2022 (2,82% → 3,16%), concentrada em PB, PA, CE e SE. Não há votos "
+           "anulados em apuração separada nas tabelas (QT_VOTOS_ANULADOS_APU_SEP = 0); não há explicação documental — é "
+           "diferença de comportamento do eleitorado, registrada como **Diferença estatística**. A abstenção caiu 1,87 p.p. "
+           "entre os turnos de 2026 (21,08% → 19,22%), contra 0,36 p.p. em 2022.\n"]
+    return "\n".join(out)
+
+
 def comparativo_md() -> str:
     f = RESULTADOS / "comparativo" / "comparativo_largo.csv"
     if not f.exists():
@@ -518,7 +545,8 @@ def comparativo_md() -> str:
         if s.empty:
             continue
         out.append(f"### {NOMES_IND.get(ind, ind)}\n")
-        out.append(tabela_md(s[[c for c in ["abrangencia", "2022_1t", "2022_2t", "2026_1t", "dif_turnos_2022", "dif_1t_2026_menos_2022"] if c in s]], max_linhas=30))
+        out.append(tabela_md(s[[c for c in ["abrangencia", "2022_1t", "2022_2t", "2026_1t", "2026_2t", "dif_turnos_2022", "dif_turnos_2026", "dif_1t_2026_menos_2022"] if c in s]], max_linhas=30))
+    out.append(testes_historicos_md())
     return "\n".join(out) + "\n"
 
 
@@ -732,7 +760,9 @@ def estudos_externos_2t2026() -> str:
                 f"Modalidade de habilitação: biometria igual em {n(v.get('biometria_iguais'))}, manual em "
                 f"{n(v.get('manual_iguais'))}, sem biometria em {n(v.get('sem_biometria_iguais'))} — as diferenças "
                 "restantes são de classificação da modalidade (votos e habilitados coincidem); ver "
-                "`resultados/2026/agnoletto_secao_a_secao.csv`.\n")
+                "`resultados/2026/agnoletto_secao_a_secao.csv`. Nas seções com número de votos diferente "
+                "(`agnoletto_secoes_votos_diferentes.csv`), a contagem desta extração é igual ao comparecimento "
+                "oficial; a base externa soma arquivos de log de outras seções ou do 1º turno anexados ao pacote.\n")
     return txt
 
 
@@ -745,7 +775,9 @@ def escrever_tudo() -> list[str]:
     (DOCS / "relatorio-publico.md").write_text(publico_md(), encoding="utf-8")
     (DOCS / "limitacoes.md").write_text(limitacoes_md(), encoding="utf-8")
     quadro_discrepancias()
-    return feitos + ["auditoria-estudos-externos.md", "comparativo-historico.md", "relatorio-publico.md", "limitacoes.md"]
+    (DOCS / "auditoria-2026-2turno.md").write_text(segundo_turno_md(), encoding="utf-8")
+    return feitos + ["auditoria-estudos-externos.md", "comparativo-historico.md", "relatorio-publico.md", "limitacoes.md",
+                     "auditoria-2026-2turno.md"]
 
 
 # ---------------------------------------------------------------- quadro de discrepâncias
@@ -821,9 +853,135 @@ def quadro_discrepancias() -> pd.DataFrame:
                                "campo": teste, "apontamentos": len(g), "secoes_distintas": None,
                                "votos_com_registro_divergente": None,
                                "observacao": f"{len(g)} recortes UF/candidato com p_holm<0,01; efeito mediano {g.maior_desvio_pp.median():.2f} p.p."})
+    for nome, rot in (("testes_did_uf.csv", "H-UF"), ("testes_extremos_secao.csv", "H-seção")):
+        f = RESULTADOS / "comparativo" / nome
+        if f.exists():
+            h = pd.read_csv(f)
+            for r in h[h.p_holm < 0.01].itertuples():
+                if rot == "H-UF":
+                    obs = f"{r.uf}: mudança 1º→2º turno {r.delta_2026_pp:+.2f} p.p. em 2026 contra {r.delta_2022_pp:+.2f} em 2022 (z robusto {r.z_robusto:.1f})"
+                else:
+                    obs = (f"{r.uf}: seções com |Δ| > {r.limiar_pp:g} p.p. entre turnos: {r.pct_extremas_2026:.2f}% em 2026 "
+                           f"contra {r.pct_extremas_2022:.2f}% em 2022")
+                linhas.append({"ano": 2026, "turno": 2, "categoria": "Diferença estatística", "teste": rot,
+                               "campo": f"{r.indicador} · {r.uf}", "apontamentos": None, "secoes_distintas": None,
+                               "votos_com_registro_divergente": None, "observacao": obs + f"; p Holm {r.p_holm:.1e}"})
     q = pd.DataFrame(linhas)
     ordem = {c: i for i, c in enumerate(["Incompatibilidade documental pendente", "Diferença explicada",
                                          "Diferença estatística", "Não verificado", "Conferido sem diferença"])}
     q = q.sort_values(["ano", "categoria", "turno", "teste", "campo"], key=lambda c: c.map(ordem) if c.name == "categoria" else c)
     q.to_csv(RESULTADOS / "quadro_discrepancias.csv", index=False)
     return q
+
+
+# ---------------------------------------------------------------- relatório do 2º turno de 2026
+DIAG_CONTINGENCIA = """Diagnóstico das seções do 2º turno com comparecimento oficial maior que os votos computados no log
+(B6o, sem explicação documental), conferido arquivo a arquivo no pacote publicado de cada seção:
+
+| seção | oficial | log | o que o pacote mostra |
+|---|---|---|---|
+| MA 8893/47/609 | 224 | 188 | Urna substituída por contingência às 10h49–10h51 (1º voto no log: 10h58). A contingência anexa "o log da ME" (`-01.jez`), mas o arquivo anexado é de **outra urna, carregada para a seção 445**: em 25/10 só registra tentativas de inicialização das 10h25 às 10h35 com "GAP erro 72 – dados da mídia de votação não correspondem" e nenhum voto. O log da urna que registrou os 36 primeiros votos da seção 609 não está no pacote. |
+| BA 35653/173/235 | 217 | 204 | Contingência às 10h03–10h05 (1º voto no log: 10h12). Arquivos anexados: um da seção 83 (sem votos) e um da seção 235 com votos só de 04/10 (1º turno). 13 votos de 25/10 sem log publicado. |
+| RS 89060/17/191 | 92 | 90 | Log original anexado com 15 votos até 9h02 e log da contingência com 75 votos a partir de 10h03; 2 votos sem registro de voto computado. |
+| BA 34711/21/178, PB 21750/2/254 | — | −1 | Habilitados = comparecimento oficial; um voto a menos com a mensagem "O voto do eleitor foi computado". |
+| PI 11533/3/216 | 259 | 258 | 260 habilitações, 1 votação suspensa e 6 inicializações da urna. |
+
+Em todas, o BU binário (com hash conferido) e o resultado oficial coincidem; a lacuna é de **registro no log**. Nas
+três primeiras, o mecanismo é a substituição da urna: o resultado oficial inclui os votos recuperados da memória de
+votação, mas o log publicado da urna original está ausente ou é de outra urna/turno. Classificação: **Incompatibilidade
+documental pendente** — a confirmação depende da ata da mesa receptora e do relatório de contingência do cartório, não
+publicados."""
+
+
+def segundo_turno_md() -> str:
+    c = pd.read_csv(MANIFESTOS / "cobertura_arquivos_urna.csv")
+    c = c[(c.ano == 2026) & (c.turno == 2)].copy()
+    tot = c[["secoes_no_pacote", "secoes_processadas", "secoes_com_falha", "secoes_sem_log", "integridade_vsc_ok",
+             "integridade_log_ok", "integridade_bu_ok"]].sum()
+    tp = _ler(2026, "temporal_por_uf.csv")
+    bio = _ler(2026, "biometria_por_uf.csv")
+    rt = _ler(2026, "reconciliacao_por_turno.csv")
+    ext = _ler(2026, "estudos_externos_2t.csv")
+    q = pd.read_csv(RESULTADOS / "quadro_discrepancias.csv") if (RESULTADOS / "quadro_discrepancias.csv").exists() else pd.DataFrame()
+    o = ["# Auditoria do 2º turno de 2026 (25/10/2026) — Presidente\n",
+         "_Gerado por `scripts/gerar_relatorios.py`. Fonte dos arquivos de urna: Portal de Resultados do TSE, seção a seção "
+         "(`observatorio/arquivos_secao.py`), com verificação de hash. Os números de terceiros aparecem só como "
+         "afirmações a verificar._\n",
+         "## 1–3. Cobertura e integridade\n",
+         f"- Seções esperadas (resultado oficial por seção): {n(tot.secoes_no_pacote)}; processadas: {n(tot.secoes_processadas)} "
+         f"(**{n(100 * tot.secoes_processadas / tot.secoes_no_pacote, 2)}%**); falhas de download: {n(tot.secoes_com_falha)}.",
+         f"- Hash publicado = SHA-256 do `vota.vsc`: {n(tot.integridade_vsc_ok)} seções; SHA-512 do BU listado no `vsc`: "
+         f"{n(tot.integridade_bu_ok)}; SHA-512 do log listado no `vsc`: {n(tot.integridade_log_ok)}. Nenhuma falha de hash.",
+         f"- Sem log: {n(tot.secoes_sem_log)} seções — 29 do exterior apuradas pelo Sistema de Apuração (sem urna eletrônica: "
+         "arquivos `busa`/`logsa`, sem `vsc`) e 1 em SP (64777/395/298) cujo `aux.json` oficial lista apenas `bu`, `rdv` e "
+         "`vota` (log não publicado; BU com hash conferido).",
+         "- Assinaturas digitais do `vsc` não foram verificadas (exigem as chaves públicas do TSE); a verificação é de "
+         "consistência entre hash publicado, `vsc` e arquivos.\n",
+         tabela_md(c[["uf", "secoes_no_pacote", "secoes_processadas", "secoes_sem_log", "integridade_vsc_ok",
+                      "integridade_log_ok", "integridade_bu_ok"]].rename(columns={"secoes_no_pacote": "seções esperadas"}),
+                   max_linhas=30)]
+    if not tp.empty:
+        t2 = tp[tp.turno == 2]
+        br = t2[t2.uf != "ZZ"][["secoes_com_log", "votos", "votos_antes_8h", "votos_apos_17h", "votos_apos_18h",
+                                "votos_apos_19h", "secoes_com_voto_apos_17h"]].sum()
+        o += ["\n## 6–7. Horários: votos após 17h e primeiro/último voto por UF\n",
+              f"Brasil (sem exterior, hora de Brasília): {n(br.votos)} votos no log de {n(br.secoes_com_log)} seções; "
+              f"antes das 8h: {n(br.votos_antes_8h)}; após 17h: **{n(br.votos_apos_17h)}** ({100 * br.votos_apos_17h / br.votos:.4f}%) "
+              f"em {n(br.secoes_com_voto_apos_17h)} seções; após 18h: {n(br.votos_apos_18h)}; após 19h: {n(br.votos_apos_19h)}. "
+              "Parte das seções teve a votação prorrogada até 19h por decisão do STF (liminar às 17h03; orientação às 17h49 de "
+              "manter abertas até 19h as seções ainda não encerradas).\n",
+              tabela_md(t2[["uf", "secoes_com_log", "votos", "votos_apos_17h", "pct_votos_apos_17h", "votos_apos_18h",
+                            "votos_apos_19h", "mediana_primeiro_voto", "mediana_ultimo_voto", "ultimo_voto_maximo",
+                            "secoes_com_contingencia"]], max_linhas=30),
+              "\nPor faixa de 15 minutos: `resultados/2026/votos_por_15min.csv` (Brasil e exterior), `votos_por_15min_uf.csv`, "
+              "`votos_por_15min_municipio.csv.gz`, `votos_por_15min_zona.csv.gz`; por seção em "
+              "`dados/processados/temporal/votos_por_15min_secao_2026.parquet` (reproduzível; fora do Git pelo tamanho).\n"]
+    if not bio.empty:
+        g = bio[bio.uf != "ZZ"].groupby("turno")[["log_votantes_biometria", "log_votantes_manual_apos_falha",
+                                                  "log_votantes_sem_biometria_cadastrada", "bu_bin_habilitados_biometria",
+                                                  "bu_bin_habilitados_biografia", "bu_bin_sem_biometria_cadastrada"]].sum()
+        o += ["\n## 5. Biometria (2026, sem exterior)\n", tabela_md(g.reset_index()),
+              "\nA série de quatro turnos (2022 e 2026) está em `docs/comparativo-historico.md` (indicadores "
+              "`pct_hab_biometrica_log`, `pct_hab_manual_apos_falha_log`, `pct_hab_sem_biometria_log`).\n"]
+    if not rt.empty:
+        r2 = rt[(rt.turno == 2) & (rt.divergencias > 0)]
+        o += ["\n## 8–10. Incompatibilidades do 2º turno\n",
+              "Testes executáveis sem o BU em CSV (ainda não publicado nos Dados Abertos): A2o (seção oficial × pacote), "
+              "B7 (resultado oficial por seção × BU binário: aptos, comparecimento, nominais, brancos, nulos e votos por "
+              "candidato), B6o (resultado oficial × log), B8 (BU binário por forma de habilitação × log) e K2.\n",
+              f"- B7 e A2o: **{n(rt[(rt.turno == 2) & rt.teste.isin(['B7', 'A2o'])].divergencias.sum())} divergências** "
+              f"em {n(_ler(2026, 'reconciliacao_resumo.csv').query('teste == \"B7\"').registros_comparados.max())} seções — o BU de cada urna "
+              "reproduz exatamente o resultado oficial por seção, voto a voto por candidato.\n",
+              tabela_md(r2[["teste", "campo", "divergencias", "explicadas", "nao_explicadas",
+                            "soma_abs_diferencas_nao_explicadas"]]),
+              "\n" + DIAG_CONTINGENCIA + "\n",
+              "\nB8 (habilitados por biometria no BU um a mais que no log): a diferença é igual ao número de habilitações em "
+              "que o log registra a captura da digital e a habilitação sem a mensagem de tipo \"[biométrica]\"; padrão "
+              "conferido em cinco seções e aplicado como explicação somente quando a igualdade é exata.\n"]
+    if not q.empty:
+        q2 = q[(q.ano == 2026) & (q.turno == 2)]
+        resumo = q2.groupby("categoria").agg(itens=("teste", "count"), apontamentos=("apontamentos", "sum"),
+                                             votos=("votos_com_registro_divergente", "sum")).reset_index()
+        o += ["\n## Quadro de discrepâncias (2º turno)\n", tabela_md(resumo),
+              "\nVotos só são contados quando a diferença é contagem de votos registrados entre duas fontes (B6/B6o); "
+              "nos demais testes a coluna fica vazia. Detalhe: `resultados/quadro_discrepancias.csv`.\n"]
+    if not ext.empty:
+        o += ["\n## 11. Comparação com pesquisas independentes\n",
+              tabela_md(ext.rename(columns={"verificacao": "Verificação", "fonte_externa": "Fonte",
+                                            "nossa_extracao": "Nossa extração", "pesquisa_independente": "Pesquisa independente",
+                                            "diferenca": "Diferença", "nota": "Nota"}), max_linhas=40),
+              "\nSeção a seção com a base de André Agnoletto e explicação das diferenças: `docs/auditoria-estudos-externos.md`.\n"]
+    o += ["\n## Conclusão sobre a pergunta da missão\n",
+          "O 2º turno de 2026 **não apresentou incompatibilidade documental de resultado**: o BU de cada uma das 499.207 "
+          "seções, com hash conferido, reproduz o resultado oficial por seção (0 divergências), e os votos do log coincidem "
+          "com o comparecimento oficial em 499.171 das 499.177 seções com log. As pendências documentais são de **registro "
+          "no log** em 6 seções (54 votos sem registro de voto computado no log publicado, 3 casos ligados a substituição "
+          "de urna) e de classificação da forma de habilitação (poucas seções), além de 1 seção com log não publicado.\n\n"
+          "Houve **diferenças estatísticas** em relação a 2022: brancos e nulos para Presidente caíram do 1º para o 2º turno "
+          "(em 2022 subiram), com concentração em PB, PA, CE e SE; a abstenção caiu mais que em 2022. Não há explicação "
+          "documental para isso nas tabelas oficiais — são mudanças de comportamento do eleitorado e não indicam, por si, "
+          "irregularidade. Votos após 17h ficaram no nível de 2022 (0,027% contra 0,033%).\n\n"
+          "**O que ainda precisa ser investigado:** atas e relatórios de contingência das seções MA 8893/47/609, "
+          "BA 35653/173/235 e RS 89060/17/191; o log da seção SP 64777/395/298; o BU em CSV do 2º turno (quando publicado) "
+          "para executar B1–B5 e K1; as 11 + 5 seções pendentes de B8.\n"]
+    return "\n".join(o) + "\n"
