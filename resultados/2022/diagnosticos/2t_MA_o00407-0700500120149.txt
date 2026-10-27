@@ -1,0 +1,150 @@
+=== 6730598530102022083601ME.jez/logd.dat: 276 linhas do dia; ids={'67305985': 276}
+    {}
+      07:28:20 INFO   67305985 LOGD  Urna ligada em 30/10/2022 às 07:27:33
+      07:29:02 INFO   67305985 GAP   Iniciando aplicação - Oficial - 2º turno
+      07:29:02 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2009
+      07:29:13 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2009
+      07:29:17 INFO   67305985 GAP   Modo de carga da UE - Votação
+      07:29:17 INFO   67305985 GAP   Município: 07005
+      07:29:17 INFO   67305985 GAP   Zona Eleitoral: 0012
+      07:29:17 INFO   67305985 GAP   Seção Eleitoral: 0149
+      07:29:22 INFO   67305985 GAP   Serial de votação da MV: B32B2E9F 21/09/2022 às 13:17:53 em ZMA012WKS56139
+      07:30:03 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      07:30:40 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 2º turno
+      07:30:45 ERRO   67305985 VOTA  N3api10CExceptionE - (Código (0)) Exceção ao exibir imagem no LCD do terminal do mesário. - CScreenMT::LCDShow
+      07:36:15 INFO   67305985 INITJE Urna desligada pela chave
+      07:38:40 INFO   67305985 LOGD  Urna ligada em 30/10/2022 às 07:37:55
+      07:39:23 INFO   67305985 GAP   Iniciando aplicação - Oficial - 2º turno
+      07:39:23 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2009
+      07:39:33 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2009
+      07:39:37 INFO   67305985 GAP   Modo de carga da UE - Votação
+      07:39:37 INFO   67305985 GAP   Município: 07005
+      07:39:37 INFO   67305985 GAP   Zona Eleitoral: 0012
+      07:39:37 INFO   67305985 GAP   Seção Eleitoral: 0149
+      07:39:42 INFO   67305985 GAP   Serial de votação da MV: B32B2E9F 21/09/2022 às 13:17:53 em ZMA012WKS56139
+      07:40:23 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      07:41:00 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 2º turno
+      07:41:07 ERRO   67305985 VOTA  N3api10CExceptionE - (Código (0)) Exceção ao exibir imagem no LCD do terminal do mesário. - CScreenMT::LCDShow
+      08:18:11 INFO   67305985 LOGD  Urna ligada em 30/10/2022 às 08:17:28
+      08:18:53 INFO   67305985 GAP   Iniciando aplicação - Oficial - 2º turno
+      08:18:53 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2009
+      08:19:05 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2009
+      08:19:09 INFO   67305985 GAP   Modo de carga da UE - Votação
+      08:19:09 INFO   67305985 GAP   Município: 07005
+      08:19:09 INFO   67305985 GAP   Zona Eleitoral: 0012
+      08:19:09 INFO   67305985 GAP   Seção Eleitoral: 0149
+      08:19:14 INFO   67305985 GAP   Serial de votação da MV: B32B2E9F 21/09/2022 às 13:17:53 em ZMA012WKS56139
+      08:19:54 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      08:20:31 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 2º turno
+      08:20:36 ERRO   67305985 VOTA  N3api10CExceptionE - (Código (0)) Exceção ao exibir imagem no LCD do terminal do mesário. - CScreenMT::LCDShow
+      08:20:48 INFO   67305985 INITJE Urna desligada pela chave
+      08:24:43 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2009
+      08:24:47 INFO   67305985 GAP   Modo de carga da UE - Votação
+      08:24:47 INFO   67305985 GAP   Município: 07005
+      08:24:47 INFO   67305985 GAP   Zona Eleitoral: 0012
+      08:24:47 INFO   67305985 GAP   Seção Eleitoral: 0149
+      08:24:52 INFO   67305985 GAP   Serial de votação da MV: B32B2E9F 21/09/2022 às 13:17:53 em ZMA012WKS56139
+      08:25:32 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      08:26:09 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 2º turno
+      08:26:15 ERRO   67305985 VOTA  N3api10CExceptionE - (Código (0)) Exceção ao exibir imagem no LCD do terminal do mesário. - CScreenMT::LCDShow
+      08:26:27 INFO   67305985 INITJE Urna desligada pela chave
+=== 6730598530102022115219-01.jez/logd.dat: 257 linhas do dia; ids={'67305985': 257}
+    {'Urna pronta para receber votos': 2, 'Eleitor foi habilitado': 1, 'Voto confirmado para [Presidente]': 1, 'O voto do eleitor foi computado': 1}
+      08:34:23 INFO   67305985 LOGD  Urna ligada em 30/10/2022 às 08:33:34
+      08:35:03 INFO   67305985 GAP   Iniciando aplicação - Oficial - 1º turno
+      08:35:03 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2009
+      08:35:04 INFO   67305985 LOGD  Log interno da urna reserva válido com sucesso
+      08:35:12 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2009
+      08:35:16 INFO   67305985 GAP   Modo de carga da UE - Urna de contingência
+      08:35:16 INFO   67305985 GAP   Município: 07170
+      08:35:16 INFO   67305985 GAP   Zona Eleitoral: 0012
+      08:35:16 INFO   67305985 GAP   Seção Eleitoral: 0000
+      08:35:23 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      08:35:26 INFO   67305985 GAP   Início do procedimento de contingência
+      08:36:07 INFO   67305985 GAP   Serial de votação da MV: B32B2E9F 21/09/2022 às 13:17:53 em ZMA012WKS56139
+      08:36:07 INFO   67305985 GAP   Modo de carga da UE - Votação
+      08:36:13 INFO   67305985 GAP   Contingência executada com sucesso
+      08:38:24 INFO   67305985 LOGD  Urna ligada em 30/10/2022 às 08:37:31
+      08:39:07 INFO   67305985 GAP   Iniciando aplicação - Oficial - 2º turno
+      08:39:07 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2009
+      08:39:16 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2009
+      08:39:20 INFO   67305985 GAP   Modo de carga da UE - Votação
+      08:39:20 INFO   67305985 GAP   Município: 07005
+      08:39:20 INFO   67305985 GAP   Zona Eleitoral: 0012
+      08:39:20 INFO   67305985 GAP   Seção Eleitoral: 0149
+      08:39:25 INFO   67305985 GAP   Serial de votação da MV: B32B2E9F 21/09/2022 às 13:17:53 em ZMA012WKS56139
+      08:40:05 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      08:40:43 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 2º turno
+      08:44:15 ERRO   67305985 VOTA  Digitado título inválido para o registro de mesário
+      08:44:42 ERRO   67305985 VOTA  Digitado título inválido para o registro de mesário
+      08:45:05 ERRO   67305985 VOTA  Digitado título inválido para o registro de mesário
+      08:45:58 ERRO   67305985 VOTA  Digitado título inválido para o registro de mesário
+      08:46:47 ERRO   67305985 VOTA  Digitado título inválido para o registro de mesário
+      08:47:13 INFO   67305985 VOTA  Urna pronta para receber votos
+      08:55:00 INFO   67305985 INITJE Urna desligada pela chave
+      08:55:02 INFO   67305985 VOTA  Votação suspensa
+      08:59:23 INFO   67305985 LOGD  Urna ligada em 30/10/2022 às 08:58:33
+      09:00:06 INFO   67305985 GAP   Iniciando aplicação - Oficial - 2º turno
+      09:00:06 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2009
+      09:00:15 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2009
+      09:00:19 INFO   67305985 GAP   Modo de carga da UE - Votação
+      09:00:19 INFO   67305985 GAP   Município: 07005
+      09:00:19 INFO   67305985 GAP   Zona Eleitoral: 0012
+      09:00:19 INFO   67305985 GAP   Seção Eleitoral: 0149
+      09:00:24 INFO   67305985 GAP   Serial de votação da MV: B32B2E9F 21/09/2022 às 13:17:53 em ZMA012WKS56139
+      09:01:04 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      09:01:30 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 2º turno
+      09:02:51 ERRO   67305985 VOTA  Digitado título inválido para o registro de mesário
+      09:03:05 INFO   67305985 VOTA  Urna pronta para receber votos
+      09:11:50 INFO   67305985 INITJE Urna desligada pela chave
+      09:11:52 INFO   67305985 VOTA  Votação suspensa
+=== logd.dat: 2508 linhas do dia; ids={'67305985': 2508}
+    {'Urna pronta para receber votos': 1, 'Eleitor foi habilitado': 128, 'Voto confirmado para [Presidente]': 128, 'O voto do eleitor foi computado': 128, 'Inicio do Encerramento': 1}
+      11:50:05 INFO   67305985 LOGD  Urna ligada em 30/10/2022 às 11:48:48
+      11:50:05 INFO   67305985 SCUE  Iniciando aplicação - Oficial - 1º turno
+      11:51:22 INFO   67305985 SCUE  Identificação do Modelo de Urna: UE2009
+      11:52:17 INFO   67305985 SCUE  Modo de carga da UE - Votação
+      11:54:04 INFO   67305985 SCUE  Município: 07005
+      11:54:04 INFO   67305985 SCUE  Zona Eleitoral: 0012
+      11:54:04 INFO   67305985 SCUE  Seção Eleitoral: 0149
+      11:59:19 INFO   67305985 LOGD  Urna ligada em 30/10/2022 às 11:58:33
+      12:00:01 INFO   67305985 GAP   Iniciando aplicação - Oficial - 1º turno
+      12:00:01 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2009
+      12:00:09 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2009
+      12:00:14 INFO   67305985 GAP   Modo de carga da UE - Votação
+      12:00:14 INFO   67305985 GAP   Município: 07005
+      12:00:14 INFO   67305985 GAP   Zona Eleitoral: 0012
+      12:00:14 INFO   67305985 GAP   Seção Eleitoral: 0149
+      12:00:18 INFO   67305985 GAP   Serial de votação da MV: 352DBC70 21/09/2022 às 14:15:22 em ZMA012WKS56139
+      12:00:58 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      12:01:22 INFO   67305985 GAP   Início do procedimento de preparação da MV para utilização
+      12:01:22 INFO   67305985 GAP   Serial de votação da MV: 352DBC70 21/09/2022 às 14:15:22 em ZMA012WKS56139
+      12:01:51 INFO   67305985 ATUE  Iniciando aplicação - Oficial - 2º turno
+      12:01:51 INFO   67305985 ATUE  Identificação do Modelo de Urna: UE2009
+      12:07:28 INFO   67305985 GAP   Iniciando aplicação - Oficial - 2º turno
+      12:07:29 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2009
+      12:07:37 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2009
+      12:07:41 INFO   67305985 GAP   Modo de carga da UE - Votação
+      12:07:41 INFO   67305985 GAP   Município: 07005
+      12:07:41 INFO   67305985 GAP   Zona Eleitoral: 0012
+      12:07:41 INFO   67305985 GAP   Seção Eleitoral: 0149
+      12:07:46 INFO   67305985 GAP   Serial de votação da MV: 352DBC70 21/09/2022 às 14:15:22 em ZMA012WKS56139
+      12:08:13 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      12:08:46 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 2º turno
+      12:10:35 INFO   67305985 INITJE Urna desligada pela chave
+      12:14:31 INFO   67305985 LOGD  Urna ligada em 30/10/2022 às 12:13:47
+      12:15:13 INFO   67305985 GAP   Iniciando aplicação - Oficial - 2º turno
+      12:15:13 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2009
+      12:15:22 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2009
+      12:15:26 INFO   67305985 GAP   Modo de carga da UE - Votação
+      12:15:26 INFO   67305985 GAP   Município: 07005
+      12:15:26 INFO   67305985 GAP   Zona Eleitoral: 0012
+      12:15:26 INFO   67305985 GAP   Seção Eleitoral: 0149
+      12:15:31 INFO   67305985 GAP   Serial de votação da MV: 352DBC70 21/09/2022 às 14:15:22 em ZMA012WKS56139
+      12:16:11 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      12:16:47 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 2º turno
+      12:28:22 ERRO   67305985 VOTA  Digitado título inválido para o registro de mesário
+      12:29:01 ERRO   67305985 VOTA  Digitado título inválido para o registro de mesário
+      12:33:27 INFO   67305985 VOTA  Urna pronta para receber votos
+      17:13:27 INFO   67305985 VOTA  Inicio do Encerramento
+      17:13:28 INFO   67305985 VOTA  Gerando relatório [BU] [INÍCIO]
