@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=triagem-integrada-20261027">
-  <script src="./app.js?v=triagem-revisada-20261027" defer></script>
+  <link rel="stylesheet" href="./styles.css?v=eleitorado-simulador-20261027">
+  <script src="./app.js?v=eleitorado-simulador-20261027" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#conteudo">Pular para os dados</a>
@@ -221,6 +221,43 @@
         </div>
       </div>
     </section>
+
+<section class="municipal-section" id="eleitorado-populacao">
+  <div class="wrap">
+    <div class="section-intro"><div><span class="section-kicker">06 / ELEITORADO E POPULAÇÃO</span><h2>Mais eleitores do que moradores?</h2><p>Eleitorado cadastrado no TSE e população residente estimada pelo IBGE não medem a mesma população. Compare fontes e datas antes de interpretar esses números.</p></div></div>
+    <div class="municipal-cards">
+      <article><small>Reportagem UOL · julho de 2026</small><strong>23 municípios na Bahia</strong><p>Eleitorado do TSE de 2026 versus população estimada pelo IBGE para <b>2025</b>.</p><a href="https://noticias.uol.com.br/colunas/carlos-madeiro/2026/07/26/brasil-tem-um-em-cada-8-municipios-com-mais-eleitores-em-2026-que-moradores.htm" target="_blank" rel="noopener noreferrer">Consultar reportagem ↗</a></article>
+      <article><small>Levantamento externo · outubro de 2026</small><strong>24 municípios na Bahia</strong><p>Eleitorado TSE de 2026 versus estimativa de população do IBGE para <b>2026</b>. Contagem ainda não reproduzida diretamente neste projeto.</p><a href="https://notop10.com.br/ba/cidades-com-mais-eleitores-que-habitantes" target="_blank" rel="noopener noreferrer">Consultar atualização ↗</a></article>
+    </div>
+    <article class="municipal-box"><h3>Exemplos do levantamento de outubro</h3><p>Valores informados por fonte secundária, ainda não auditados individualmente pelo Observatório. Diferença = eleitores − moradores estimados.</p>
+      <div class="comparison-scroll"><table class="comparison-table municipal-table"><thead><tr><th scope="col">Município (BA)</th><th scope="col">Eleitores</th><th scope="col">Habitantes (2026)</th><th scope="col">Diferença</th></tr></thead><tbody>
+      <tr><td>Catolândia</td><td>4.189</td><td>3.566</td><td>+623</td></tr><tr><td>Saubara</td><td>13.431</td><td>11.875</td><td>+1.556</td></tr><tr><td>Firmino Alves</td><td>5.564</td><td>4.981</td><td>+583</td></tr><tr><td>Vereda</td><td>6.727</td><td>6.076</td><td>+651</td></tr><tr><td>Muniz Ferreira</td><td>8.225</td><td>7.462</td><td>+763</td></tr>
+      </tbody></table></div>
+      <p class="municipal-note"><strong>O que essa diferença significa?</strong> O domicílio eleitoral pode decorrer de vínculo familiar, afetivo ou profissional, mesmo fora da residência atual. O IBGE conta residentes. Relação acima de 100% não é evidência de votos inválidos. A auditoria integral exige cruzar todos os municípios com códigos e datas equivalentes.</p>
+      <div class="municipal-links"><a href="https://www.tse.jus.br/servicos-eleitorais/titulo-eleitoral/titulo-eleitoral-faq" target="_blank" rel="noopener noreferrer">TSE · Domicílio eleitoral ↗</a><a href="https://dadosabertos.tse.jus.br/dataset/eleitorado-2026" target="_blank" rel="noopener noreferrer">Dados do eleitorado ↗</a><a href="https://www.ibge.gov.br/estatisticas/sociais/populacao/9103-estimativas-de-populacao.html" target="_blank" rel="noopener noreferrer">Estimativa do IBGE ↗</a></div>
+    </article>
+  </div>
+</section>
+<section class="sim-section" id="simulador">
+ <div class="wrap">
+  <div class="section-intro"><div><span class="section-kicker">07 / EXERCÍCIO MATEMÁTICO · 2026</span><h2>Régua de combinações hipotéticas de votos</h2><p>Reproduza o crescimento líquido nacional do candidato nº 13 entre turnos com três percentuais ajustáveis. Este modelo não estima migração real de eleitores.</p></div></div>
+  <div class="sim-layout">
+   <article class="sim-panel">
+    <div class="sim-top"><strong>Mova qualquer régua para recalcular as outras</strong><button id="simReset" type="button">↺ Restaurar</button></div>
+    <div class="sim-control"><div class="sim-head"><label for="simReducao">Redução de abstenções, brancos e nulos</label><output id="simReducaoPct" for="simReducao">80,00%</output></div><input type="range" id="simReducao" min="0" max="100" step=".01" value="80"><div class="sim-foot"><span id="simReducaoBase">Carregando…</span><strong id="simReducaoVotes">—</strong></div></div>
+    <div class="sim-control"><div class="sim-head"><label for="simTerceira">Terceira via no 1º turno (exceto 13 e 22)</label><output id="simTerceiraPct" for="simTerceira">52,27%</output></div><input type="range" id="simTerceira" min="0" max="100" step=".01" value="52.27"><div class="sim-foot"><span id="simTerceiraBase">Carregando…</span><strong id="simTerceiraVotes">—</strong></div></div>
+    <div class="sim-control"><div class="sim-head"><label for="simFlavio">Votos do nº 22 no 1º turno</label><output id="simFlavioPct" for="simFlavio">3,00%</output></div><input type="range" id="simFlavio" min="0" max="100" step=".01" value="3"><div class="sim-foot"><span id="simFlavioBase">Carregando…</span><strong id="simFlavioVotes">—</strong></div></div>
+    <p class="sim-disclaimer">Ao alterar uma taxa, as outras duas se ajustam proporcionalmente enquanto possível. Há infinitas soluções numéricas: a regra de ajuste é uma convenção da interface, não uma estimativa da distribuição verdadeira.</p>
+   </article>
+   <article class="sim-result" aria-live="polite"><span class="card-eyebrow">TOTAL HIPOTÉTICO ADICIONAL PARA O Nº 13</span><strong id="simTotal" class="sim-total">—</strong>
+    <div class="sim-detail"><span>Crescimento observado entre turnos</span><strong id="simTarget">—</strong></div><div class="sim-detail"><span>Diferença da simulação</span><strong id="simDifference">—</strong></div>
+    <div class="sim-bar" role="img" aria-label="Participação proporcional das três contribuições hipotéticas"><div id="simBarReducao"></div><div id="simBarTerceira"></div><div id="simBarFlavio"></div></div>
+    <div class="sim-legend"><span><i class="sim-a"></i> Reduções</span><span><i class="sim-b"></i> Terceira via</span><span><i class="sim-c"></i> Nº 22</span></div>
+    <p id="simAssumptions">Carregando dados oficiais…</p><p class="sim-warning">As reduções são saldos agregados, não trajetórias de eleitores. Não é possível inferir transferências reais ou irregularidades apenas com estes totais.</p>
+   </article>
+  </div><p class="audit-source">Fonte dos parâmetros: <a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/resultados/2026/resultados_brasil.csv" target="_blank" rel="noopener noreferrer">resultados nacionais TSE/Observatório de 2026 ↗</a>. Este exercício abrange Brasil e exterior, independentemente dos filtros gerais.</p>
+ </div>
+</section>
 </main>
 
   <aside class="filter-dock" id="filterDock" role="region" aria-label="Filtros gerais do Observatório">
