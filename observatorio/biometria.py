@@ -30,7 +30,29 @@ def executar(ano: int) -> dict:
     con.execute(f"""CREATE VIEW lg AS SELECT turno, uf, cd_municipio, nr_zona, nr_secao, log_modelos,
         n_votos_computados, {sql_desloc_brt()} desloc, hab_s, hab_mod, dur_voto, dur_voto_mod
       FROM read_parquet({logs_concluidos(ano)}, union_by_name=true) WHERE tem_log""")
-    con.execute(f"CREATE VIEW bw AS SELECT * FROM '{PROCESSADOS}/secoes_bu_{ano}.parquet'")
+    cols = ("turno, uf, cd_municipio, nr_zona, nr_secao, qt_aptos, qt_comparecimento, qt_eleitores_biometria_nh")
+    base = f"SELECT {cols} FROM '{PROCESSADOS}/secoes_bu_{ano}.parquet'"
+    turnos_bu = {r[0] for r in con.execute(f"SELECT DISTINCT turno FROM '{PROCESSADOS}/secoes_bu_{ano}.parquet'").fetchall()}
+    for t in (1, 2):
+        of = PROCESSADOS / f"secoes_oficiais_{ano}_{t}t.parquet"
+        if t not in turnos_bu and of.exists():  # turno sem BU em CSV: tabela oficial (sem campo de biometria)
+            base += (f" UNION ALL SELECT turno, uf, cd_municipio, nr_zona, nr_secao, qt_aptos, qt_comparecimento, "
+                     f"NULL::INT FROM '{of}'")
+    con.execute(f"CREATE VIEW bw AS {base}")
+    # BU binário: detalhamento por forma de habilitação (formato v2, 2026)
+    try:
+        con.execute(f"""CREATE VIEW bub AS SELECT
+            CAST(regexp_extract(filename, '_(\\d)t_', 1) AS INT) turno,
+            regexp_extract(filename, '_([A-Z]{{2}})\\.parquet', 1) uf,
+            sum(bu_qtd_hab_biometria) bu_bin_habilitados_biometria,
+            sum(bu_qtd_hab_biografia) bu_bin_habilitados_biografia,
+            sum(bu_qtd_sem_biometria) bu_bin_sem_biometria_cadastrada,
+            count(bu_qtd_hab_biometria) bu_bin_secoes
+          FROM read_parquet({logs_concluidos(ano, 'bu')}, union_by_name=true, filename=true) GROUP BY ALL""")
+        tem_bub = "bu_qtd_hab_biometria" in {r[0] for r in con.execute(
+            f"DESCRIBE SELECT * FROM read_parquet({logs_concluidos(ano, 'bu')}, union_by_name=true)").fetchall()}
+    except Exception:
+        tem_bub = False
     tem_perfil = bool(list((T / "perfil_secao").glob(f"{ano}_*.parquet"))) if (T / "perfil_secao").exists() else False
     if tem_perfil:
         con.execute(f"""CREATE VIEW pf AS SELECT SG_UF uf, CAST(CD_MUNICIPIO AS INT) cd_municipio,
@@ -57,6 +79,17 @@ def executar(ano: int) -> dict:
         count(l.nr_secao) secoes_com_log
       FROM bw b {perfil_join} LEFT JOIN lm l USING (turno, uf, cd_municipio, nr_zona, nr_secao)
       GROUP BY ALL ORDER BY 1, 2) TO '{pasta}/biometria_por_uf.csv' (HEADER)""")
+    if tem_bub:
+        import pandas as pd
+        f = pasta / "biometria_por_uf.csv"
+        d = pd.read_csv(f)
+        b = con.execute("SELECT * FROM bub").df()
+        d = d.merge(b, on=["turno", "uf"], how="left")
+        tot = d[["bu_bin_habilitados_biometria", "bu_bin_habilitados_biografia", "bu_bin_sem_biometria_cadastrada"]].sum(axis=1)
+        d["pct_bu_bin_biometria"] = (100 * d.bu_bin_habilitados_biometria / tot).round(3)
+        d["pct_bu_bin_biografia"] = (100 * d.bu_bin_habilitados_biografia / tot).round(3)
+        d["pct_bu_bin_sem_biometria"] = (100 * d.bu_bin_sem_biometria_cadastrada / tot).round(3)
+        d.to_csv(f, index=False)
     # 2) Modalidade por hora (Brasília) — habilitações
     con.execute(f"""COPY (
       SELECT turno, CAST(floor((h + desloc)/3600) AS INT) hora_brasilia, m modalidade, count(*) habilitacoes
