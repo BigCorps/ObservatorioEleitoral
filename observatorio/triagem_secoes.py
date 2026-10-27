@@ -212,7 +212,7 @@ def _resumir(ano: int, registros, ano_turnos: dict, max_exemplos: int):
                               x[0].validos >= MIN_VALIDOS)
                              and (teste not in {"mudanca20", "mudanca30", "mudanca40", "virada13_22",
                                                "comparecimento20", "brancos_nulos15", "combinados"}
-                                  or (teste == "combinados" or x[2]["comparacao_entre_turnos_aplicavel"]))]
+                                  or x[2]["comparacao_entre_turnos_aplicavel"])]
                 destacados = [x for x in grupo if teste in x[1]]
                 votos_dest = sum(s.validos for s, _, _ in destacados)
                 resumo.append({
@@ -268,8 +268,11 @@ def executar(ano: int, max_exemplos: int = 15, processados: Path | None = None,
     fontes = _fontes(con, ano, processados)
     if not fontes:
         raise FileNotFoundError("Nenhum turno publicado")
-    registros = []
+    # Agregar incrementalmente por UF: jamais manter ~1 milhão de dicionários na memória.
+    agregado = {}
+    ranking = defaultdict(list)
     invalidas = 0
+    incluidas = 0
     info = {}
     for uf in UFS_COM_EXTERIOR:
         secoes = []
@@ -289,11 +292,38 @@ def executar(ano: int, max_exemplos: int = 15, processados: Path | None = None,
         if not secoes:
             continue
         amostra, excluidas = linhas_de_triagem(secoes)
-        registros.extend(amostra)
         invalidas += excluidas
+        incluidas += len(amostra)
         info[uf] = {"secoes_processadas": len(amostra), "secoes_quarentena": excluidas}
+        parcial, amostras = _resumir(ano, amostra, {t:fonte for t,(path,fonte) in fontes.items()}, max_exemplos)
+        for linha in parcial:
+            chave=(linha["turno"],linha["uf"],linha["teste"])
+            if chave not in agregado:
+                agregado[chave]=dict(linha)
+            else:
+                target=agregado[chave]
+                for campo in ("secoes_com_dados","secoes_elegiveis","secoes_sinalizadas",
+                              "votos_validos_no_recorte","votos_validos_em_secoes_sinalizadas"):
+                    target[campo] += linha[campo]
+        for ex in amostras:
+            chave=(ex["turno"],ex["abrangencia"],ex["teste"])
+            ranking[chave].append(ex)
+            ranking[chave].sort(key=lambda x: (x["intensidade"],x["validos"],x["uf"],x["secao"]), reverse=True)
+            del ranking[chave][max_exemplos:]
+        # Descarta as seções deste estado antes de seguir para o próximo.
+        del amostra, secoes, parcial, amostras
     con.close()
-    result, exemplos = _resumir(ano, registros, {t:fonte for t,(path,fonte) in fontes.items()}, max_exemplos)
+    result=list(agregado.values())
+    for linha in result:
+        sinal=linha["secoes_sinalizadas"]
+        elig=linha["secoes_elegiveis"]
+        total=linha["votos_validos_no_recorte"]
+        votos=linha["votos_validos_em_secoes_sinalizadas"]
+        linha["pct_secoes_sinalizadas"]=round(100*sinal/elig,4) if elig else None
+        linha["pct_validos_em_secoes_sinalizadas"]=round(100*votos/total,4) if total else None
+    result.sort(key=lambda r: (r["turno"],r["uf"],r["teste"]))
+    exemplos=[x for grupo in ranking.values() for x in grupo]
+    exemplos.sort(key=lambda r:(r["turno"],r["abrangencia"],r["teste"],-r["intensidade"]))
     resultados.mkdir(parents=True, exist_ok=True)
     def gravar_csv(nome, linhas):
         destino = resultados / nome
@@ -307,7 +337,7 @@ def executar(ano: int, max_exemplos: int = 15, processados: Path | None = None,
     gravar_csv('triagem_secoes_exemplos.csv',exemplos)
     meta = {"ano":ano,"gerado_utc":datetime.now(timezone.utc).isoformat(),
             "fontes_por_turno": {str(t):fonte for t,(p,fonte) in fontes.items()},
-            "cobertura_por_uf":info,"secoes_incluidas":len(registros),
+            "cobertura_por_uf":info,"secoes_incluidas":incluidas,
             "secoes_excluidas_por_inconsistencia":invalidas,
             "criterios":"docs/triagem-secoes.md",
             "aviso":"Seção destacada NÃO significa voto irregular; votos nos recortes NÃO são votos afetados."}
