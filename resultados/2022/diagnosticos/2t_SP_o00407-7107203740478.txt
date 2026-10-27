@@ -1,0 +1,69 @@
+=== 6730598530102022160356-01.jez/logd.dat: 3215 linhas do dia; ids={'67305985': 3215}
+    {'Urna pronta para receber votos': 2, 'Eleitor foi habilitado': 255, 'Voto confirmado para [Presidente]': 255, 'O voto do eleitor foi computado': 254}
+      07:13:23 INFO   67305985 LOGD  Urna ligada em 30/10/2022 às 07:12:38
+      07:14:07 INFO   67305985 GAP   Iniciando aplicação - Oficial - 2º turno
+      07:14:07 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2011
+      07:14:19 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2011
+      07:14:23 INFO   67305985 GAP   Modo de carga da UE - Votação
+      07:14:23 INFO   67305985 GAP   Município: 71072
+      07:14:23 INFO   67305985 GAP   Zona Eleitoral: 0374
+      07:14:23 INFO   67305985 GAP   Seção Eleitoral: 0478
+      07:14:28 INFO   67305985 GAP   Serial de votação da MV: DF008C8C 25/09/2022 às 17:24:37 em ZSP374STD02
+      07:15:09 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      07:15:48 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 2º turno
+      08:00:01 INFO   67305985 VOTA  Urna pronta para receber votos
+      15:30:48 INFO   67305985 LOGD  Urna ligada em 30/10/2022 às 15:30:04
+      15:31:32 INFO   67305985 GAP   Iniciando aplicação - Oficial - 2º turno
+      15:31:32 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2011
+      15:31:45 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2011
+      15:31:49 INFO   67305985 GAP   Modo de carga da UE - Votação
+      15:31:49 INFO   67305985 GAP   Município: 71072
+      15:31:49 INFO   67305985 GAP   Zona Eleitoral: 0374
+      15:31:49 INFO   67305985 GAP   Seção Eleitoral: 0478
+      15:31:54 INFO   67305985 GAP   Serial de votação da MV: DF008C8C 25/09/2022 às 17:24:37 em ZSP374STD02
+      15:32:34 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      15:33:02 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 2º turno
+      15:34:11 INFO   67305985 INITJE Urna desligada pela chave
+      15:34:16 INFO   67305985 VOTA  Votação suspensa
+      15:35:46 INFO   67305985 LOGD  Urna ligada em 30/10/2022 às 15:35:02
+      15:36:29 INFO   67305985 GAP   Iniciando aplicação - Oficial - 2º turno
+      15:36:29 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2011
+      15:36:45 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2011
+      15:36:49 INFO   67305985 GAP   Modo de carga da UE - Votação
+      15:36:49 INFO   67305985 GAP   Município: 71072
+      15:36:49 INFO   67305985 GAP   Zona Eleitoral: 0374
+      15:36:49 INFO   67305985 GAP   Seção Eleitoral: 0478
+      15:36:54 INFO   67305985 GAP   Serial de votação da MV: DF008C8C 25/09/2022 às 17:24:37 em ZSP374STD02
+      15:37:34 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      15:38:00 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 2º turno
+      15:38:55 INFO   67305985 VOTA  Urna pronta para receber votos
+=== logd.dat: 545 linhas do dia; ids={'67305985': 545}
+    {'Urna pronta para receber votos': 1, 'Eleitor foi habilitado': 32, 'Voto confirmado para [Presidente]': 32, 'O voto do eleitor foi computado': 32, 'Inicio do Encerramento': 1}
+      16:00:39 INFO   67305985 LOGD  Urna ligada em 30/10/2022 às 15:59:56
+      16:01:20 INFO   67305985 GAP   Iniciando aplicação - Oficial - 1º turno
+      16:01:20 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2011
+      16:01:20 INFO   67305985 LOGD  Log interno da urna reserva válido com sucesso
+      16:01:28 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2011
+      16:01:32 INFO   67305985 GAP   Modo de carga da UE - Urna de contingência
+      16:01:32 INFO   67305985 GAP   Município: 71072
+      16:01:32 INFO   67305985 GAP   Zona Eleitoral: 0374
+      16:01:32 INFO   67305985 GAP   Seção Eleitoral: 0000
+      16:01:38 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      16:01:43 INFO   67305985 GAP   Início do procedimento de contingência
+      16:03:54 INFO   67305985 GAP   Serial de votação da MV: DF008C8C 25/09/2022 às 17:24:37 em ZSP374STD02
+      16:03:55 INFO   67305985 GAP   Modo de carga da UE - Votação
+      16:04:02 INFO   67305985 GAP   Contingência executada com sucesso
+      16:05:23 INFO   67305985 LOGD  Urna ligada em 30/10/2022 às 16:04:36
+      16:06:07 INFO   67305985 GAP   Iniciando aplicação - Oficial - 2º turno
+      16:06:07 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2011
+      16:06:15 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2011
+      16:06:19 INFO   67305985 GAP   Modo de carga da UE - Votação
+      16:06:19 INFO   67305985 GAP   Município: 71072
+      16:06:19 INFO   67305985 GAP   Zona Eleitoral: 0374
+      16:06:19 INFO   67305985 GAP   Seção Eleitoral: 0478
+      16:06:24 INFO   67305985 GAP   Serial de votação da MV: DF008C8C 25/09/2022 às 17:24:37 em ZSP374STD02
+      16:07:04 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      16:07:31 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 2º turno
+      16:08:05 INFO   67305985 VOTA  Urna pronta para receber votos
+      17:00:27 INFO   67305985 VOTA  Inicio do Encerramento
+      17:00:28 INFO   67305985 VOTA  Gerando relatório [BU] [INÍCIO]
