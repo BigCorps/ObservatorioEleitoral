@@ -133,6 +133,25 @@ def explicar(con, disp) -> None:
                        "CAST(m.CD_MUNICIPIO AS INT)=incompat.cd_municipio AND CAST(m.NR_ZONA AS INT)=incompat.nr_zona)",
                        "A tabela por município/zona inclui em QT_APTOS os eleitores de seções não instaladas "
                        "(QT_ELEITORES_SECOES_NAO_INSTALADAS), que não têm BU; a diferença é exatamente esse número."))
+    if "logs" in disp and "dsec" in disp:
+        regras.append(("teste='B6' AND campo IN ('comparecimento_vs_votos_computados','biometria_nh_vs_liberacao_manual_no_log','comparecimento_vs_votos_presidente_mais_nulos_suspensao') "
+                       "AND EXISTS (SELECT 1 FROM dsec d WHERE d.turno=incompat.turno AND d.uf=incompat.uf "
+                       "AND d.cd_municipio=incompat.cd_municipio AND d.nr_zona=incompat.nr_zona AND d.nr_secao=incompat.nr_secao "
+                       "AND d.DS_ORIGEM_VOTO = 'Sistema de apuração') "
+                       "AND (campo = 'biometria_nh_vs_liberacao_manual_no_log' OR valor_b < valor_a)",
+                       "Apuração mista: o resultado da seção foi gerado pelo Sistema de Apuração (DS_ORIGEM_VOTO), com "
+                       "votos em cédula após falha da urna; esses votos e liberações não constam do log eletrônico."))
+    if "logs" in disp:
+        regras.append(("teste='B6' AND campo='comparecimento_vs_votos_presidente_mais_nulos_suspensao' "
+                       "AND valor_b = valor_a + 1 AND NOT EXISTS (SELECT 1 FROM incompat j WHERE j.teste='B6' "
+                       "AND j.campo='comparecimento_vs_votos_computados' AND j.turno=incompat.turno AND j.uf=incompat.uf "
+                       "AND j.cd_municipio=incompat.cd_municipio AND j.nr_zona=incompat.nr_zona AND j.nr_secao=incompat.nr_secao) "
+                       "AND EXISTS (SELECT 1 FROM logs l WHERE l.turno=incompat.turno AND l.uf=incompat.uf "
+                       "AND l.cd_municipio=incompat.cd_municipio AND l.nr_zona=incompat.nr_zona AND l.nr_secao=incompat.nr_secao "
+                       "AND l.n_ligada > 1)",
+                       "Urna religada no dia (log): compatível com interrupção entre 'Voto confirmado para [Presidente]' e "
+                       "'O voto do eleitor foi computado'; o BU coincide com o nº de votos computados no log. "
+                       "Caso verificado manualmente: AC 1074/4/38 (desligamento às 10:25, religada às 10:54)."))
     for cond, txt in regras:
         con.execute(f"UPDATE incompat SET classificacao='Diferença explicada', explicacao=? WHERE {cond}", [txt])
     con.execute("""ALTER TABLE resumo ADD COLUMN explicadas BIGINT""")

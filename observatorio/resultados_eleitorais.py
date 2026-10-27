@@ -34,6 +34,14 @@ def _agregado(con, nivel: str, chaves: str, ano: int, pasta) -> None:
       sum(votos_candidato[13]) votos_13, sum(votos_candidato[22]) votos_22
     FROM bweb GROUP BY turno, {grp}""")
     cols_join = (chaves if nivel != "brasil" else "abrangencia")
+    if con.execute("SELECT count(DISTINCT turno) FROM bweb").fetchone()[0] < 2:
+        # apenas um turno disponível (ex.: 2026 enquanto o 2º turno não é publicado)
+        con.execute(f"""COPY (SELECT *, round(100.0*abstencoes/aptos,4) pct_abstencao,
+            round(100.0*comparecimento/aptos,4) pct_comparecimento, round(100.0*brancos/comparecimento,4) pct_brancos,
+            round(100.0*nulos/comparecimento,4) pct_nulos, round(100.0*(brancos+nulos)/comparecimento,4) pct_brancos_nulos,
+            round(100.0*validos/comparecimento,4) pct_validos FROM a ORDER BY ALL)
+            TO '{pasta}/resultados_{nivel}.csv' (HEADER)""")
+        return
     con.execute(f"""COPY (
       WITH t AS (SELECT * ,
           round(100.0 * abstencoes / aptos, 4) pct_abstencao,
@@ -68,9 +76,11 @@ def executar(ano: int = 2022) -> dict:
     con.execute(f"CREATE VIEW bweb AS SELECT * FROM '{PROCESSADOS}/secoes_bu_{ano}.parquet'")
     pasta = RESULTADOS / str(ano)
     pasta.mkdir(parents=True, exist_ok=True)
-    # renomeia colunas do turno 2 com sufixo para legibilidade
     for nivel, chaves in NIVEIS.items():
         _agregado(con, nivel, chaves, ano, pasta)
+    if con.execute("SELECT count(DISTINCT turno) FROM bweb").fetchone()[0] < 2:
+        con.close()
+        return {"turnos": 1}
     # nível de seção: grava em Parquet (grande) + resumo de consistência
     con.execute(f"""COPY (
       SELECT b1.uf, b1.cd_municipio, b1.nr_zona, b1.nr_secao,

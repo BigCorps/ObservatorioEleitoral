@@ -132,3 +132,53 @@ def tabelas(ano: int) -> dict:
     r = con.execute("SELECT turno, count(*), sum(n_votos_computados) FROM ind GROUP BY 1 ORDER BY 1").fetchall()
     con.close()
     return {"secoes_por_turno": r}
+
+
+def rajadas(ano: int, base: str = "votos_s") -> "pd.DataFrame":
+    """Sequências de eventos consecutivos (mesma seção) com intervalos abaixo de um limiar.
+    `base` = "votos_s" (voto computado) ou "hab_s" (eleitor habilitado).
+
+    Reproduz a definição publicada por auditoriaeleicoes.com (≥5 votos com intervalo
+    < 20 s no 1º turno; < 6 s com um único cargo) e uma grade de sensibilidade. Intervalo =
+    diferença entre registros "O voto do eleitor foi computado" consecutivos. Um
+    intervalo curto entre CONCLUSÕES pode ocorrer legitimamente quando o eleitor seguinte
+    já estava habilitado/identificado (o atendimento se sobrepõe); por isso o resultado é
+    descritivo."""
+    import numpy as np
+    import pandas as pd
+    con = duckdb.connect()
+    con.execute("SET enable_progress_bar=false")
+    linhas = []
+    df = con.execute(f"""SELECT turno, uf, list_sort({base}) votos_s FROM read_parquet({logs_concluidos(ano)}, union_by_name=true)
+                         WHERE tem_log AND len({base}) > 1""").df()
+    grade = [(6, 5), (10, 5), (20, 5), (20, 3), (30, 3), (30, 5)]
+    for (turno, uf), g in df.groupby(["turno", "uf"]):
+        acc = {k: [0, 0, 0] for k in grade}
+        total = 0
+        for v in g.votos_s:
+            d = np.diff(np.asarray(v))
+            total += len(v)
+            for lim, minv in grade:
+                curto = d < lim
+                # comprimentos das sequências de intervalos curtos
+                if not curto.any():
+                    continue
+                pad = np.concatenate(([0], curto.astype(np.int8), [0]))
+                ini = np.flatnonzero(np.diff(pad) == 1)
+                fim = np.flatnonzero(np.diff(pad) == -1)
+                votos = (fim - ini) + 1
+                sel = votos >= minv
+                if sel.any():
+                    a = acc[(lim, minv)]
+                    a[0] += int(sel.sum())
+                    a[1] += int(votos[sel].sum())
+                    a[2] += 1
+        for (lim, minv), (seq, vot, sec) in acc.items():
+            linhas.append({"base": "voto_computado" if base == "votos_s" else "habilitacao",
+                           "turno": turno, "uf": uf, "limiar_s": lim, "min_votos": minv, "sequencias": seq,
+                           "votos_em_sequencias": vot, "secoes": sec, "votos_total_log": total,
+                           "pct_votos": round(100 * vot / total, 5) if total else None})
+    out = pd.DataFrame(linhas)
+    out.to_csv(RESULTADOS / str(ano) / f"rajadas_sensibilidade_{'votos' if base == 'votos_s' else 'habilitacoes'}.csv", index=False)
+    con.close()
+    return out

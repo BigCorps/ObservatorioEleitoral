@@ -4,6 +4,7 @@ Uso: python scripts/diagnosticar_secao.py ANO TURNO UF ARQUIVO   (ex.: o00406-31
 Não imprime linhas brutas que contenham números de título (dados pessoais).
 """
 import collections
+import re
 import sys
 
 sys.path.insert(0, ".")
@@ -36,4 +37,5 @@ for nome, cont in L.extrair_7z(dados):
     print(f"=== {nome}: {len(linhas)} linhas do dia; ids={dict(ids)}")
     print("   ", dict(c))
     for x in marcos[:60]:
-        print("     ", x)
+        # privacidade: oculta sequências com formato de título de eleitor/CPF
+        print("     ", re.sub(r"\d{10,12}", "[omitido]", x))
