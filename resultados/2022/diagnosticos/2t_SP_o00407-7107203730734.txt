@@ -1,0 +1,29 @@
+=== 6730598530102022182401ME.jez/logd.dat: 0 linhas do dia; ids={}
+    {}
+=== logd.dat: 140 linhas do dia; ids={'67305985': 140}
+    {}
+      18:21:36 INFO   67305985 LOGD  Urna ligada em 30/10/2022 às 18:20:49
+      18:22:17 INFO   67305985 GAP   Iniciando aplicação - Oficial - 1º turno
+      18:22:17 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2011
+      18:22:17 INFO   67305985 LOGD  Log interno da urna reserva válido com sucesso
+      18:22:25 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2011
+      18:22:30 INFO   67305985 GAP   Modo de carga da UE - Urna de contingência
+      18:22:30 INFO   67305985 GAP   Município: 71072
+      18:22:30 INFO   67305985 GAP   Zona Eleitoral: 0373
+      18:22:30 INFO   67305985 GAP   Seção Eleitoral: 0000
+      18:22:36 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      18:22:41 INFO   67305985 GAP   Início do procedimento de contingência
+      18:24:14 INFO   67305985 GAP   Serial de votação da MV: 5C3A2F29 21/09/2022 às 16:30:48 em ZSP373STD11
+      18:24:15 INFO   67305985 GAP   Modo de carga da UE - Votação
+      18:24:23 INFO   67305985 GAP   Contingência executada com sucesso
+      18:25:54 INFO   67305985 LOGD  Urna ligada em 30/10/2022 às 18:24:57
+      18:26:38 INFO   67305985 GAP   Iniciando aplicação - Oficial - 2º turno
+      18:26:38 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2011
+      18:26:46 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2011
+      18:26:50 INFO   67305985 GAP   Modo de carga da UE - Votação
+      18:26:50 INFO   67305985 GAP   Município: 71072
+      18:26:50 INFO   67305985 GAP   Zona Eleitoral: 0373
+      18:26:50 INFO   67305985 GAP   Seção Eleitoral: 0734
+      18:26:55 INFO   67305985 GAP   Serial de votação da MV: 5C3A2F29 21/09/2022 às 16:30:48 em ZSP373STD11
+      18:27:36 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      18:28:03 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 2º turno
