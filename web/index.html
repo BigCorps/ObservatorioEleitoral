@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1c28">
+  <meta name="description" content="Explore os dados oficiais das eleições presidenciais de 2022 e 2026: comparecimento, biometria, abstenção, horários e verificações reproduzíveis.">
+  <title>Observatório Eleitoral | Dados para conferir</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para os dados</a>
+  <div class="topline"><div class="wrap topline-inner"><span><span class="live-dot"></span> Pesquisa independente com dados oficiais do TSE</span><span>Atualização de referência: 27 out 2026</span></div></div>
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="./" aria-label="Observatório Eleitoral, início"><span class="brand-symbol" aria-hidden="true"><i></i><i></i><i></i></span><span>OBSERVATÓRIO <small>ELEITORAL</small></span></a>
+      <nav aria-label="Principal"><a href="#painel">Painel</a><a href="#estados">Estados</a><a href="#comparacao">Comparativo</a><a href="#metodologia">Metodologia</a></nav>
+      <a class="nav-github" href="https://github.com/BigCorps/ObservatorioEleitoral" target="_blank" rel="noopener noreferrer">Ver código <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+  <main id="conteudo">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-line"></span> TRANSPARÊNCIA ELEITORAL EM DADOS</div>
+          <h1>Os números.<br><em>O contexto.</em><br>As perguntas certas.</h1>
+          <p>Uma leitura independente e reproduzível das eleições presidenciais de 2022 e 2026. Compare estados, períodos e métodos de identificação — sem transformar diferenças estatísticas em conclusões precipitadas.</p>
+          <div class="hero-actions"><a class="primary-btn" href="#painel">Explorar os dados <span aria-hidden="true">↗</span></a><a class="secondary-btn" href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/docs/relatorio-publico.md" target="_blank" rel="noopener noreferrer">Ler o relatório <span aria-hidden="true">↗</span></a></div>
+        </div>
+        <aside class="hero-panel" aria-label="Situação da pesquisa">
+          <div class="panel-header"><span>COBERTURA DA PESQUISA</span><span class="panel-spark" aria-hidden="true">✳</span></div>
+          <div class="panel-period">2022 <span>→</span> 2026</div>
+          <div class="panel-line"></div>
+          <div class="progress-item"><div><strong>2022 • 1º e 2º turnos</strong><span class="status-done">BU + logs</span></div><p>Resultados e análises técnicas processados; incompatibilidades documentadas.</p></div>
+          <div class="progress-item"><div><strong>2026 • 1º turno</strong><span class="status-done">BU + logs</span></div><p>Processamento nacional concluído conforme a cobertura do repositório.</p></div>
+          <div class="progress-item"><div><strong>2026 • 2º turno</strong><span class="status-pending">Em atualização</span></div><p>Resultados oficiais por seção disponíveis; BU e logs ainda pendentes na referência publicada.</p></div>
+          <p class="panel-footnote">Situação declarada pelo projeto em 27/10/2026. O painel exibe “não disponível” quando falta evidência.</p>
+        </aside>
+      </div>
+      <div class="wrap hero-bottom"><span><span class="hero-cross">+</span> 27 UFs analisadas</span><span><span class="hero-cross">+</span> Metodologia aberta</span><span><span class="hero-cross">+</span> Resultados verificáveis</span></div>
+    </section>
+
+    <section class="dashboard-section" id="painel">
+      <div class="wrap">
+        <div class="section-intro"><div><span class="section-kicker">01 / EXPLORE OS DADOS</span><h2>Panorama eleitoral</h2><p>Escolha um recorte para atualizar os indicadores e as comparações.</p></div><span id="coverageBadge" class="coverage-badge">Carregando dados…</span></div>
+        <div class="filter-card">
+          <div class="filter-group"><label for="yearFilter">ELEIÇÃO</label><select id="yearFilter"><option value="2022">2022</option><option value="2026">2026</option></select></div>
+          <div class="filter-group"><label for="roundFilter">TURNO</label><select id="roundFilter"><option value="1">1º turno</option><option value="2" selected>2º turno</option></select></div>
+          <div class="filter-group filter-uf"><label for="ufFilter">ABRANGÊNCIA</label><select id="ufFilter"><option value="BR">Brasil (27 UFs, sem exterior)</option></select></div>
+          <button id="resetButton" class="reset-button" type="button">↺ <span>Restaurar filtros</span></button>
+        </div>
+        <div id="loadError" class="error-state" role="alert" hidden>Não foi possível carregar os dados publicados. Atualize a página; se o problema continuar, confira a publicação do GitHub Pages.</div>
+        <div id="kpiGrid" class="kpi-grid" aria-live="polite">
+          <article class="kpi"><span class="kpi-label">Comparecimento</span><strong id="kpiAttendance">—</strong><span id="kpiAttendanceSub" class="kpi-sub">Eleitores que votaram</span></article>
+          <article class="kpi"><span class="kpi-label">Abstenção</span><strong id="kpiAbstention">—</strong><span class="kpi-sub">Dos eleitores aptos</span></article>
+          <article class="kpi"><span class="kpi-label">Brancos + nulos</span><strong id="kpiBlankNull">—</strong><span class="kpi-sub">Dos que compareceram</span></article>
+          <article class="kpi"><span class="kpi-label">Liberação manual após falha</span><strong id="kpiBiometry">—</strong><span class="kpi-sub">Percentual das habilitações em log</span></article>
+          <article class="kpi"><span class="kpi-label">Votos após 17h</span><strong id="kpiLate">—</strong><span class="kpi-sub">Percentual dos votos nos logs</span></article>
+          <article class="kpi"><span class="kpi-label">Primeiro → último voto</span><strong id="kpiClock">—</strong><span class="kpi-sub">Medianas das seções, hora de Brasília</span></article>
+        </div>
+        <p class="data-disclaimer">O recorte “Brasil” soma as 27 UFs, <strong>sem o eleitorado no exterior</strong>. Os totais podem diferir da apuração nacional completa. Indicadores dos logs cobrem somente as seções disponíveis; nenhum horário permite identificar o voto dado a um candidato.</p>
+        <div class="two-columns overview-charts">
+          <article class="chart-card">
+            <div class="card-heading"><div><span class="card-eyebrow">COMPARAÇÃO DOS TURNOS</span><h3>Como o indicador mudou?</h3></div><div class="mini-filter"><label for="trendMetric">Indicador</label><select id="trendMetric"><option value="pct_abstencao">Abstenção</option><option value="pct_brancos">Votos brancos</option><option value="pct_nulos">Votos nulos</option><option value="pct_hab_manual_apos_falha_log">Liberação manual (log)</option><option value="pct_votos_apos_17h">Após 17h (log)</option><option value="comparecimento">Comparecimento</option></select></div></div>
+            <div id="trendChart" class="trend-chart" role="img" aria-label="Comparação dos quatro turnos"></div>
+            <p class="chart-note" id="trendNote">Valores calculados a partir das tabelas e logs oficiais publicados.</p>
+          </article>
+          <article class="chart-card">
+            <div class="card-heading"><div><span class="card-eyebrow">FLUXO DE VOTAÇÃO</span><h3>Votos ao longo do dia</h3></div><span class="chart-tag">BRASIL • HORÁRIO DE BRASÍLIA</span></div>
+            <div id="timelineChart" class="timeline-chart" role="img" aria-label="Votos por intervalos de 15 minutos"></div>
+            <div class="time-legend"><span><i class="legend-block teal"></i> Até 17h</span><span><i class="legend-block amber"></i> Depois das 17h</span></div>
+            <p id="timelineNote" class="chart-note">Distribuição nacional em intervalos de 15 minutos, somente nas seções com log.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="states-section" id="estados"><div class="wrap">
+      <div class="section-intro"><div><span class="section-kicker">02 / BRASIL EM PERSPECTIVA</span><h2>Explore os 27 estados</h2><p>Compare proporções, veja os contrastes regionais e toque em uma UF para abrir seu recorte.</p></div></div>
+      <div class="states-layout"><div class="states-lead"><span class="eyebrow-small">O QUE OBSERVAR</span><h3>Uma diferença chama a atenção.<br><em>O contexto explica?</em></h3><p>Variações de comparecimento, votos brancos e nulos, biometria e horários têm explicações possíveis. O estudo mostra os números e documenta o que ainda precisa de conferência.</p><div class="attention-card"><strong>Importante</strong><p>Correlação não é prova de fraude, e diferenças estaduais não revelam como votou uma pessoa sem biometria.</p></div></div>
+      <article class="states-card"><div class="card-heading"><div><span class="card-eyebrow">CLASSIFICAÇÃO POR UF</span><h3 id="rankingTitle">Abstenção por estado</h3></div><div class="mini-filter"><label for="rankingMetric">Ordenar por</label><select id="rankingMetric"><option value="pct_abstencao">Abstenção</option><option value="pct_brancos">Brancos</option><option value="pct_nulos">Nulos</option><option value="pct_hab_manual_apos_falha_log">Liberação manual</option><option value="pct_votos_apos_17h">Após 17h</option></select></div></div><div class="ranking-head"><span>UF</span><span>PERCENTUAL</span></div><div id="stateRanking" class="ranking-list" aria-label="Estados ordenados por indicador"></div><div class="ranking-foot">Clique em um estado para atualizar o painel superior.</div></article>
+      </div>
+    </div></section>
+
+    <section class="comparison-section" id="comparacao"><div class="wrap">
+      <div class="section-intro"><div><span class="section-kicker">03 / COMPARATIVO HISTÓRICO</span><h2>Quatro turnos, lado a lado</h2><p>O mesmo indicador medido nas eleições de 2022 e 2026.</p></div><span class="comparison-chip" id="comparisonScope">Brasil · 27 UFs</span></div>
+      <div class="comparison-scroll"><table class="comparison-table"><thead><tr><th scope="col">Indicador</th><th scope="col">2022 · 1º</th><th scope="col">2022 · 2º</th><th scope="col">2026 · 1º</th><th scope="col">2026 · 2º</th></tr></thead><tbody id="comparisonBody"></tbody></table></div>
+      <div class="comparison-explainer"><span class="explainer-symbol">i</span><p>As regras de identificação, modelos de urna, cargos em disputa e composição das seções mudaram entre os anos. Comparações diretas exigem esses controles. Um traço (—) significa <strong>dado ainda não disponível</strong>, não valor zero.</p></div>
+    </div></section>
+
+    <section class="method-section" id="metodologia"><div class="wrap">
+      <div class="section-intro"><div><span class="section-kicker">04 / AUDITORIA ABERTA</span><h2>Conferir é parte do método.</h2><p>Os números precisam de origem, cálculo reproduzível e limitações transparentes.</p></div></div>
+      <div class="method-grid">
+        <article class="method-card"><span class="method-num">01</span><h3>Dados oficiais</h3><p>Boletins de Urna, tabelas por seção e registros técnicos públicos do TSE, com inventário e hashes quando disponíveis.</p><a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/docs/fontes.md" target="_blank" rel="noopener noreferrer">Conferir fontes ↗</a></article>
+        <article class="method-card"><span class="method-num">02</span><h3>Testes reproduzíveis</h3><p>Recontagem, cruzamento de fontes, biometria, cronologia e comparação histórica documentados em código aberto.</p><a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/docs/metodologia.md" target="_blank" rel="noopener noreferrer">Ver metodologia ↗</a></article>
+        <article class="method-card"><span class="method-num">03</span><h3>Resultados com limites</h3><p>Casos explicados, incompatibilidades restantes e dados pendentes são separados de achados meramente estatísticos.</p><a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/docs/limitacoes.md" target="_blank" rel="noopener noreferrer">Ler limitações ↗</a></article>
+      </div>
+      <div class="conclusion-box"><div><span class="eyebrow-small">A REGRA DO OBSERVATÓRIO</span><h3>Uma discrepância é uma pergunta.<br>Não uma sentença.</h3></div><p>Resultados fora do padrão podem justificar investigação documental adicional. Sozinhos, não demonstram irregularidade, causa ou intenção. Nosso compromisso é permitir que qualquer pessoa confira o caminho entre a fonte e a conclusão.</p></div>
+      <div class="document-links"><a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/docs/auditoria-2022.md" target="_blank" rel="noopener noreferrer">Auditoria 2022 ↗</a><a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/docs/auditoria-2026.md" target="_blank" rel="noopener noreferrer">Auditoria 2026 ↗</a><a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/docs/comparativo-historico.md" target="_blank" rel="noopener noreferrer">Comparativo completo ↗</a><a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/docs/perguntas-frequentes.md" target="_blank" rel="noopener noreferrer">Perguntas frequentes ↗</a></div>
+    </div></section>
+  </main>
+  <footer><div class="wrap footer-inner"><div><span class="footer-brand">OBSERVATÓRIO ELEITORAL</span><p>Pesquisa independente de interesse público. Não é uma publicação oficial do TSE.</p></div><div><p>BigCorps Tecnologia · Dados e metodologia abertos</p><a href="https://github.com/BigCorps/ObservatorioEleitoral" target="_blank" rel="noopener noreferrer">Repositório no GitHub ↗</a></div></div></footer>
+</body>
+</html>

@@ -1,0 +1,62 @@
+name: Publicar painel eleitoral
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'web/**'
+      - 'resultados/comparativo/indicadores_2022_2026.csv'
+      - 'resultados/2022/votos_por_15min.csv'
+      - 'resultados/2026/votos_por_15min.csv'
+      - '.github/workflows/publicar-site.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  publicar:
+    name: Preparar e publicar site estático
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Baixar código revisado
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Montar site com CSVs consolidados
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p _site/dados
+          cp web/index.html web/styles.css web/app.js _site/
+          cp resultados/comparativo/indicadores_2022_2026.csv _site/dados/indicadores.csv
+          cp resultados/2022/votos_por_15min.csv _site/dados/votos_por_15min_2022.csv
+          cp resultados/2026/votos_por_15min.csv _site/dados/votos_por_15min_2026.csv
+          touch _site/.nojekyll
+          test -s _site/index.html
+          test -s _site/dados/indicadores.csv
+          test -s _site/dados/votos_por_15min_2022.csv
+          test -s _site/dados/votos_por_15min_2026.csv
+          python -c 'import csv; r=list(csv.DictReader(open("_site/dados/indicadores.csv", encoding="utf-8"))); assert len(r)>=100 and all(x in r[0] for x in ("ano", "turno", "abrangencia", "pct_abstencao")); print("Dados disponíveis:", len(r), "recortes")'
+
+      - name: Configurar GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Enviar arquivos estáticos
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+      - name: Publicar
+        id: deployment
+        uses: actions/deploy-pages@v4
