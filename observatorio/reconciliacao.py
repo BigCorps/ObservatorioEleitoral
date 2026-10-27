@@ -405,6 +405,18 @@ def executar(ano: int) -> dict:
     con.execute(f"COPY (SELECT * FROM resumo ORDER BY teste, campo) TO '{out}/reconciliacao_resumo.csv' (HEADER)")
     con.execute(f"""COPY (SELECT * FROM incompat ORDER BY teste, campo, turno, uf, cd_municipio, nr_zona, nr_secao)
                     TO '{out}/incompatibilidades.csv' (HEADER)""")
+    # resumo por turno (as comparações por seção são contadas por turno; zonas idem)
+    con.execute(f"""COPY (
+      SELECT r.teste, r.descricao, r.campo, r.fonte_a, r.fonte_b, t.turno,
+        coalesce(i.divergencias, 0) divergencias, coalesce(i.explicadas, 0) explicadas,
+        coalesce(i.divergencias, 0) - coalesce(i.explicadas, 0) nao_explicadas,
+        i.soma_abs_diferencas_nao_explicadas
+      FROM resumo r CROSS JOIN (SELECT DISTINCT turno FROM incompat UNION SELECT DISTINCT turno FROM bweb) t
+      LEFT JOIN (SELECT teste, campo, turno, count(*) divergencias,
+                   count(*) FILTER (WHERE classificacao = 'Diferença explicada') explicadas,
+                   sum(abs(diferenca)) FILTER (WHERE classificacao <> 'Diferença explicada') soma_abs_diferencas_nao_explicadas
+                 FROM incompat GROUP BY ALL) i USING (teste, campo, turno)
+      ORDER BY r.teste, r.campo, t.turno) TO '{out}/reconciliacao_por_turno.csv' (HEADER)""")
     res = con.execute("SELECT * FROM resumo ORDER BY teste, campo").df()
     con.close()
     return {"disponiveis": disp, "resumo": res}

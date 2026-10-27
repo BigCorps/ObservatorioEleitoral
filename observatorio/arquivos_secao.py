@@ -111,6 +111,11 @@ def hashes_vsc(vsc: bytes) -> tuple[dict, str]:
     return saida, modelo
 
 
+def hash_publicado(texto_hex: str) -> bytes:
+    """`hash` do aux.json: hex de um texto base64 em que "/" vira "-" (uso em caminho de URL)."""
+    return base64.b64decode(bytes.fromhex(texto_hex).decode().replace("-", "/"))
+
+
 def _processar(base: str, uf: str, mun: int, zona: int, sec: int, d_eleicao: str, d_seguinte: str):
     """Executado em processo filho. Retorna (linha, bu_bytes, manifesto)."""
     caminho = f"{base}/{uf}/{mun:05d}/{zona:04d}/{sec:04d}"
@@ -145,8 +150,7 @@ def _processar(base: str, uf: str, mun: int, zona: int, sec: int, d_eleicao: str
             conteudo[tp] = b
     # cadeia de integridade
     try:
-        # texto base64 em que "/" vira "-" (uso em caminho de URL)
-        esperado = base64.b64decode(bytes.fromhex(v["hash"]).decode().replace("-", "/"))
+        esperado = hash_publicado(v["hash"])
         man["vsc_confere_hash_publicado"] = ("vota" in conteudo and hashlib.sha256(conteudo["vota"]).digest() == esperado)
     except Exception as e:  # noqa: BLE001
         man["vsc_confere_hash_publicado"] = f"erro: {e!r}"[:100]

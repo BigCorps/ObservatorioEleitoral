@@ -717,4 +717,80 @@ def escrever_tudo() -> list[str]:
     (DOCS / "comparativo-historico.md").write_text(comparativo_md(), encoding="utf-8")
     (DOCS / "relatorio-publico.md").write_text(publico_md(), encoding="utf-8")
     (DOCS / "limitacoes.md").write_text(limitacoes_md(), encoding="utf-8")
+    quadro_discrepancias()
     return feitos + ["auditoria-estudos-externos.md", "comparativo-historico.md", "relatorio-publico.md", "limitacoes.md"]
+
+
+# ---------------------------------------------------------------- quadro de discrepâncias
+# Testes cujo valor de diferença é contagem de VOTOS registrados (log x BU/resultado): a diferença
+# mede votos presentes em uma fonte e ausentes na outra. Os demais (biometria, presença, zonas)
+# não são votos e não entram na soma de votos.
+TESTES_VOTOS = {("B6", "comparecimento_vs_votos_computados"), ("B6o", "comparecimento_vs_votos_computados")}
+NAO_VERIFICAVEIS_SEM_BU_CSV = [
+    ("B1", "Comparecimento = nominais + brancos + nulos no BU em CSV"),
+    ("B2", "BU em CSV x BU binário"), ("B3", "BU em CSV x Detalhe por seção"),
+    ("B4", "BU em CSV x Votação nominal por município/zona"), ("B5", "BU em CSV x Detalhe por município/zona"),
+    ("K1", "BU em CSV x Votação por seção"),
+]
+
+
+def quadro_discrepancias() -> pd.DataFrame:
+    linhas = []
+    for ano in (2022, 2026):
+        f = RESULTADOS / str(ano) / "incompatibilidades.csv"
+        rt = RESULTADOS / str(ano) / "reconciliacao_por_turno.csv"
+        if not f.exists():
+            continue
+        inc = pd.read_csv(f, low_memory=False)
+        for (turno, teste, campo), g in inc.groupby(["turno", "teste", "campo"]):
+            for cat, sub in (("Diferença explicada", g[g.classificacao == "Diferença explicada"]),
+                             ("Incompatibilidade documental pendente", g[g.classificacao != "Diferença explicada"])):
+                if sub.empty:
+                    continue
+                secoes = sub.dropna(subset=["nr_secao"]).drop_duplicates(["uf", "cd_municipio", "nr_zona", "nr_secao"])
+                votos = int(sub.diferenca.abs().sum()) if (teste, campo) in TESTES_VOTOS else None
+                linhas.append({"ano": ano, "turno": int(turno), "categoria": cat, "teste": teste, "campo": campo,
+                               "apontamentos": len(sub), "secoes_distintas": len(secoes),
+                               "votos_com_registro_divergente": votos,
+                               "observacao": ("diferença em número de votos registrados entre as fontes (não é voto irregular)"
+                                              if votos is not None else "não é contagem de votos")})
+        if rt.exists():
+            r = pd.read_csv(rt)
+            for (turno, teste, campo), g in r.groupby(["turno", "teste", "campo"]):
+                if g.divergencias.sum() == 0:
+                    linhas.append({"ano": ano, "turno": int(turno), "categoria": "Conferido sem diferença", "teste": teste,
+                                   "campo": campo, "apontamentos": 0, "secoes_distintas": 0,
+                                   "votos_com_registro_divergente": None, "observacao": ""})
+    # turnos sem BU em CSV publicado: verificações não executáveis
+    for t in (1, 2):
+        if (PROCESSADOS_OF := RESULTADOS.parent / "dados" / "processados" / f"secoes_oficiais_2026_{t}t.parquet").exists():
+            bw = RESULTADOS.parent / "dados" / "processados" / "secoes_bu_2026.parquet"
+            import duckdb
+            turnos_bu = {x[0] for x in duckdb.sql(f"SELECT DISTINCT turno FROM '{bw}'").fetchall()} if bw.exists() else set()
+            if t not in turnos_bu:
+                for teste, desc in NAO_VERIFICAVEIS_SEM_BU_CSV:
+                    linhas.append({"ano": 2026, "turno": t, "categoria": "Não verificado", "teste": teste, "campo": desc,
+                                   "apontamentos": None, "secoes_distintas": None, "votos_com_registro_divergente": None,
+                                   "observacao": "BU em CSV do turno ainda não publicado nos Dados Abertos"})
+    # diferenças estatísticas
+    for ano in (2022, 2026):
+        m = _ler(ano, "modelos_efeito_controlado.csv")
+        if not m.empty:
+            for r in m.itertuples():
+                if r.ic95_inf > 0 or r.ic95_sup < 0:
+                    linhas.append({"ano": ano, "turno": int(r.turno), "categoria": "Diferença estatística",
+                                   "teste": "I", "campo": f"UE2020 x demais, {r.indicador}, controle {r.controle}",
+                                   "apontamentos": None, "secoes_distintas": int(r.secoes_ref + r.secoes_outras),
+                                   "votos_com_registro_divergente": None,
+                                   "observacao": f"{r.diferenca_controlada_pp:+.2f} p.p. (IC95% {r.ic95_inf:.2f} a {r.ic95_sup:.2f})"})
+        dg = _ler(ano, "estatistica_testes_digitos.csv")
+        if not dg.empty:
+            sim = dg[dg.teste.str.contains("simulacao") & (dg.p_holm < 0.01)]
+            for (turno, teste), g in sim.groupby(["turno", "teste"]):
+                linhas.append({"ano": ano, "turno": int(turno), "categoria": "Diferença estatística", "teste": "J",
+                               "campo": teste, "apontamentos": len(g), "secoes_distintas": None,
+                               "votos_com_registro_divergente": None,
+                               "observacao": f"{len(g)} recortes UF/candidato com p_holm<0,01; efeito mediano {g.maior_desvio_pp.median():.2f} p.p."})
+    q = pd.DataFrame(linhas)
+    q.to_csv(RESULTADOS / "quadro_discrepancias.csv", index=False)
+    return q
