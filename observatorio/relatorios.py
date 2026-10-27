@@ -477,9 +477,10 @@ def comparativo_md() -> str:
            "`resultados/comparativo/`._\n",
            "**Pergunta central:** quais diferenças observadas em 2026 também ocorreram em 2022, quais podem ser "
            "explicadas pelas condições eleitorais e quais exigem verificação documental adicional?\n",
-           "**Disponibilidade:** 2026 — apenas o 1º turno estava publicado no Portal de Dados Abertos em "
-           "27/10/2026; a coluna do 2º turno de 2026 fica vazia até a publicação. Indicadores de log valem para "
-           "a cobertura indicada em cada `docs/auditoria-ANO.md`.\n",
+           "**Disponibilidade:** 2026, 2º turno — em 27/10/2026 só as tabelas oficiais por seção (Detalhe e "
+           "Votação por seção) estavam publicadas; indicadores de resultado do 2º turno de 2026 vêm delas, e os "
+           "baseados em BU/log ficam vazios até a publicação. Indicadores de log valem para a cobertura indicada "
+           "em cada `docs/auditoria-ANO.md`.\n",
            "## Brasil (27 UFs, sem exterior)\n"]
     br = d[d.abrangencia == "BR"].copy()
     br["indicador"] = br.indicador.map(lambda x: NOMES_IND.get(x, x))
@@ -612,13 +613,13 @@ def publico_md() -> str:
         r = br26.iloc[0]
         out.append(bloco(
             "E 2026?",
-            "Os mesmos procedimentos aplicados ao 1º turno de 2026 (o 2º turno ainda não foi publicado nos dados abertos).",
+            "Os mesmos procedimentos aplicados a 2026. Do 2º turno, só as tabelas oficiais por seção já foram publicadas.",
             f"1º turno de 2026: {n(r.comparecimento)} votantes de {n(r.aptos)} aptos (abstenção {n(r.pct_abstencao, 2)}%); "
             f"brancos {n(r.pct_brancos, 2)}%, nulos {n(r.pct_nulos, 2)}%.",
             "Os totais por seção reproduzem o resultado oficial; a diferença em votos válidos corresponde aos "
             "votos dados a um candidato posteriormente considerados nulos (\"nulos técnicos\").",
             "Ver `docs/auditoria-2026.md`.",
-            "Segundo turno de 2026: aguardando publicação.",
+            "Segundo turno de 2026: BU, logs e arquivos das urnas aguardando publicação.",
             "`docs/auditoria-2026.md` e `docs/comparativo-historico.md`.",
             "Conferido (1º turno) / Pendente (2º turno)"))
     out.append("\n## Como ler as classificações\n\n"
@@ -658,8 +659,11 @@ indicadores baseados no BU em CSV e nas tabelas oficiais são nacionais (todas a
 
 ## Dados não publicados ou indisponíveis
 
-- **2º turno de 2026** (25/10/2026): BU, arquivos de urna e tabelas ainda não estavam no Portal de
-  Dados Abertos em 27/10/2026. Totais oficiais conhecidos apenas pelo portal de resultados.
+- **2º turno de 2026** (25/10/2026): em 27/10/2026 estavam publicadas apenas as tabelas oficiais por
+  seção (Detalhe da apuração por seção e Votação por seção, geradas em 26/10/2026), que foram usadas
+  nos indicadores de resultado (fonte marcada `DSEC+VSEC`). **Ainda não publicados:** BU em CSV,
+  arquivos de urna (logs, BU binário) e tabelas por município/zona do 2º turno; por isso os testes de
+  log, horário, biometria efetiva e B2/B6 do 2º turno de 2026 estão pendentes.
 - **Especificação ASN.1 oficial e catálogo de mensagens do log**: a página de documentação técnica
   do TSE respondeu HTTP 403 a este ambiente; usaram-se espelhos (procedência em `especificacoes/`),
   validados pela decodificação e pela concordância com o BU publicado.

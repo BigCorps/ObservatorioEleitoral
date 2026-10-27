@@ -21,13 +21,23 @@ def _indicadores_bu(con, ano: int) -> pd.DataFrame:
     f = PROCESSADOS / f"secoes_bu_{ano}.parquet"
     if not f.exists():
         return pd.DataFrame()
+    cols = ("turno, uf, cd_municipio, nr_zona, nr_secao, qt_aptos, qt_comparecimento, qt_abstencoes, votos_nominais, "
+            "votos_brancos, votos_nulos, qt_eleitores_biometria_nh")
+    src = f"SELECT {cols} FROM '{f}'"
+    turnos = {r[0] for r in con.execute(f"SELECT DISTINCT turno FROM '{f}'").fetchall()}
+    for t in (1, 2):
+        of = PROCESSADOS / f"secoes_oficiais_{ano}_{t}t.parquet"
+        if t not in turnos and of.exists():  # turno sem BU em CSV: tabelas oficiais por seção
+            src += (f" UNION ALL SELECT turno, uf, cd_municipio, nr_zona, nr_secao, qt_aptos, qt_comparecimento, "
+                    f"qt_abstencoes, votos_nominais, votos_brancos, votos_nulos, NULL::INT FROM '{of}'")
+    f = f"({src})"
     q = f"""SELECT {ano} ano, turno, abr, count(*) secoes, sum(qt_aptos) aptos, sum(qt_comparecimento) comparecimento,
         round(100.0*sum(qt_abstencoes)/sum(qt_aptos),3) pct_abstencao,
         round(100.0*sum(votos_brancos)/sum(qt_comparecimento),3) pct_brancos,
         round(100.0*sum(votos_nulos)/sum(qt_comparecimento),3) pct_nulos,
         round(100.0*sum(votos_nominais)/sum(qt_comparecimento),3) pct_validos,
         round(100.0*sum(qt_eleitores_biometria_nh) FILTER (WHERE qt_eleitores_biometria_nh>=0)/sum(qt_comparecimento),3) pct_biometria_nao_habilitados_bu
-      FROM (SELECT *, uf abr FROM '{f}' UNION ALL SELECT *, 'BR' FROM '{f}' WHERE uf <> 'ZZ')
+      FROM (SELECT *, uf abr FROM {f} UNION ALL SELECT *, 'BR' FROM {f} WHERE uf <> 'ZZ')
       GROUP BY ALL"""
     return con.execute(q).df()
 

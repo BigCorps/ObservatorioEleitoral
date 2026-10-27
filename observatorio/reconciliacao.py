@@ -26,7 +26,15 @@ T = PROCESSADOS / "tabelas"
 
 
 def _existe(padrao: str) -> bool:
-    return bool(list(Path("/").glob(padrao.lstrip("/"))))
+    """Há Parquets de pacotes CONCLUÍDOS (registrados na cobertura) para o padrão?"""
+    from .config import logs_concluidos
+    pasta = "bu" if "/bu/" in padrao else "logs"
+    ano = int(padrao.rsplit("/", 1)[-1][:4])
+    try:
+        logs_concluidos(ano, pasta)
+        return True
+    except FileNotFoundError:
+        return False
 
 
 def preparar(con: duckdb.DuckDBPyConnection, ano: int) -> list[str]:
@@ -64,7 +72,7 @@ def preparar(con: duckdb.DuckDBPyConnection, ano: int) -> list[str]:
             ST_SECAO_INSTALADA, ST_SECAO_ANULADA, DS_MODELO_URNA, DS_ORIGEM_VOTO
           FROM '{T}/detalhe_secao_{ano}.parquet'""")
         disponiveis.append("dsec")
-    if _existe(f"{T}/votacao_secao/{ano}_*.parquet"):
+    if list((T / "votacao_secao").glob(f"{ano}_*.parquet")):
         con.execute(f"""CREATE OR REPLACE VIEW vsec AS SELECT
             CAST(NR_TURNO AS INT) turno, SG_UF uf, CAST(CD_MUNICIPIO AS INT) cd_municipio,
             CAST(NR_ZONA AS INT) nr_zona, CAST(NR_SECAO AS INT) nr_secao,
@@ -133,6 +141,25 @@ def explicar(con, disp) -> None:
                        "CAST(m.CD_MUNICIPIO AS INT)=incompat.cd_municipio AND CAST(m.NR_ZONA AS INT)=incompat.nr_zona)",
                        "A tabela por município/zona inclui em QT_APTOS os eleitores de seções não instaladas "
                        "(QT_ELEITORES_SECOES_NAO_INSTALADAS), que não têm BU; a diferença é exatamente esse número."))
+    if "dsec" in disp:
+        regras.append(("teste='A3' AND valor_b IS NULL AND EXISTS (SELECT 1 FROM dsec d WHERE d.turno=incompat.turno "
+                       "AND d.uf=incompat.uf AND d.cd_municipio=incompat.cd_municipio AND d.nr_zona=incompat.nr_zona "
+                       "AND d.nr_secao=incompat.nr_secao AND d.qt_comparecimento = 0)",
+                       "Seção instalada sem nenhum votante (comparecimento 0 no Detalhe por seção): o BU em CSV lista "
+                       "apenas votáveis com votos, portanto não tem linhas para a seção."))
+        regras.append(("teste='B5' AND valor_a IS NULL AND (SELECT sum(qt_comparecimento) FROM dsec d WHERE "
+                       "d.turno=incompat.turno AND d.uf=incompat.uf AND d.cd_municipio=incompat.cd_municipio "
+                       "AND d.nr_zona=incompat.nr_zona) = 0",
+                       "Zona cujas seções não tiveram votantes: ausente do BU em CSV (que só lista votáveis com votos)."))
+    if "dmz" in disp:
+        tec = ("(SELECT sum(TRY_CAST(QT_VOTOS_NULOS_TECNICOS AS BIGINT)) FROM dmz_raw m WHERE "
+               "CAST(m.NR_TURNO AS INT)=incompat.turno AND m.SG_UF=incompat.uf AND "
+               "CAST(m.CD_MUNICIPIO AS INT)=incompat.cd_municipio AND CAST(m.NR_ZONA AS INT)=incompat.nr_zona)")
+        txt_tec = ("Nulos técnicos: votos dados a candidato cuja votação foi anulada após a eleição constam como "
+                   "nominais no BU e como nulos na totalização (QT_VOTOS_NULOS_TECNICOS do Detalhe por município/zona); "
+                   "a diferença é exatamente esse número.")
+        regras.append((f"teste='B4' AND valor_b IS NULL AND valor_a = {tec}", txt_tec))
+        regras.append((f"teste='B5' AND campo IN ('validos','nulos') AND abs(diferenca) = {tec} AND {tec} > 0", txt_tec))
     if "logs" in disp and "dsec" in disp:
         regras.append(("teste='B6' AND campo IN ('comparecimento_vs_votos_computados','biometria_nh_vs_liberacao_manual_no_log','comparecimento_vs_votos_presidente_mais_nulos_suspensao') "
                        "AND EXISTS (SELECT 1 FROM dsec d WHERE d.turno=incompat.turno AND d.uf=incompat.uf "
@@ -256,8 +283,22 @@ def executar(ano: int) -> dict:
               f"""SELECT coalesce(d.turno,b.turno) turno, coalesce(d.uf,b.uf) uf, coalesce(d.cd_municipio,b.cd_municipio) cd_municipio,
                   coalesce(d.nr_zona,b.nr_zona) nr_zona, coalesce(d.nr_secao,b.nr_secao) nr_secao,
                   CASE WHEN d.nr_secao IS NULL THEN NULL ELSE 1 END pa, CASE WHEN b.nr_secao IS NULL THEN NULL ELSE 1 END pb
-                  FROM dsec d FULL JOIN bweb b USING ({CHAVE})""",
+                  FROM dsec d FULL JOIN bweb b USING ({CHAVE})
+                  WHERE coalesce(d.turno, b.turno) IN (SELECT DISTINCT turno FROM bweb)""",
               [("presenca", "pa", "pb")])
+        if "vsec" in disp:
+            # K2 — Detalhe por seção x Votação por seção (vale também para turnos sem BU em CSV)
+            _diff(con, "K2", "Detalhe por seção x Votação por seção (soma dos votáveis)", "DSEC", "VSEC",
+                  f"""WITH v AS (SELECT turno, uf, cd_municipio, nr_zona, nr_secao,
+                         sum(qt_votos) FILTER (WHERE nr_votavel NOT IN (95,96,97,98)) nom,
+                         sum(qt_votos) FILTER (WHERE nr_votavel = 95) br, sum(qt_votos) FILTER (WHERE nr_votavel = 96) nu
+                       FROM vsec GROUP BY ALL)
+                      SELECT d.turno, d.uf, d.cd_municipio, d.nr_zona, d.nr_secao,
+                        d.votos_nominais n1, coalesce(v.nom, 0) n2, d.votos_brancos b1, coalesce(v.br, 0) b2,
+                        d.votos_nulos u1, coalesce(v.nu, 0) u2
+                      FROM dsec d LEFT JOIN v USING ({CHAVE})
+                      WHERE d.ST_SECAO_INSTALADA NOT IN ('Não', 'N')""",
+                  [("votos_nominais", "n1", "n2"), ("brancos", "b1", "b2"), ("nulos", "u1", "u2")])
     if "vsec" in disp:
         _diff(con, "K1", "BU-CSV x Votação por seção (caminho independente), por candidato", "BWEB", "VSEC",
               f"""WITH bl AS (SELECT turno, uf, cd_municipio, nr_zona, nr_secao, unnest(map_keys(votos_candidato)) k,
@@ -269,7 +310,8 @@ def executar(ano: int) -> dict:
                     coalesce(bl.k, v.nr_votavel) k
                   FROM bl FULL JOIN vsec v ON bl.turno=v.turno AND bl.uf=v.uf AND bl.cd_municipio=v.cd_municipio
                     AND bl.nr_zona=v.nr_zona AND bl.nr_secao=v.nr_secao AND bl.k=v.nr_votavel
-                  WHERE coalesce(bl.v,0) <> 0 OR coalesce(v.qt_votos,0) <> 0""",
+                  WHERE (coalesce(bl.v,0) <> 0 OR coalesce(v.qt_votos,0) <> 0)
+                    AND coalesce(bl.turno, v.turno) IN (SELECT DISTINCT turno FROM bweb)""",
               [("votos_votavel", "v", "qt_votos")])
     if "cmz" in disp:
         # B4 — soma das seções x votação por município e zona, por candidato

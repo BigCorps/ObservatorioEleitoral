@@ -1,0 +1,21 @@
+teste,descricao,campo,fonte_a,fonte_b,registros_comparados,divergencias,ausencias,soma_abs_diferencas,explicadas
+A3,Seções no Detalhe por seção sem BU-CSV (e vice-versa),presenca,DSEC,BWEB,499248,42,42,0,42
+B1,"Comparecimento = nominais + brancos + nulos (BU-CSV, Presidente)",comparecimento_vs_soma_votos,BWEB,BWEB,499206,0,0,0,0
+B3,BU-CSV x Detalhe da apuração por seção,abstencoes,BWEB,DSEC,499206,0,0,0,0
+B3,BU-CSV x Detalhe da apuração por seção,aptos,BWEB,DSEC,499206,0,0,0,0
+B3,BU-CSV x Detalhe da apuração por seção,brancos,BWEB,DSEC,499206,0,0,0,0
+B3,BU-CSV x Detalhe da apuração por seção,comparecimento,BWEB,DSEC,499206,0,0,0,0
+B3,BU-CSV x Detalhe da apuração por seção,nulos,BWEB,DSEC,499206,0,0,0,0
+B3,BU-CSV x Detalhe da apuração por seção,votos_nominais,BWEB,DSEC,499206,0,0,0,0
+B4,Soma das seções (BU-CSV) x Votação nominal por município e zona,votos_candidato_zona,BWEB,CMZ,62388,2148,2148,0,2148
+B5,Soma das seções (BU-CSV) x Detalhe por município e zona,abstencoes,BWEB,DMZ,6292,41,41,0,41
+B5,Soma das seções (BU-CSV) x Detalhe por município e zona,aptos,BWEB,DMZ,6292,41,41,0,41
+B5,Soma das seções (BU-CSV) x Detalhe por município e zona,brancos,BWEB,DMZ,6292,41,41,0,41
+B5,Soma das seções (BU-CSV) x Detalhe por município e zona,comparecimento,BWEB,DMZ,6292,41,41,0,41
+B5,Soma das seções (BU-CSV) x Detalhe por município e zona,nulos,BWEB,DMZ,6292,2189,41,5246,2189
+B5,Soma das seções (BU-CSV) x Detalhe por município e zona,validos,BWEB,DMZ,6292,2189,41,5246,2189
+C1,Aptos = comparecimento + abstenções (BU-CSV),aptos_vs_comp_mais_abst,BWEB,BWEB,499206,0,0,0,0
+K1,"BU-CSV x Votação por seção (caminho independente), por candidato",votos_votavel,BWEB,VSEC,3800511,0,0,0,0
+K2,Detalhe por seção x Votação por seção (soma dos votáveis),brancos,DSEC,VSEC,998414,0,0,0,0
+K2,Detalhe por seção x Votação por seção (soma dos votáveis),nulos,DSEC,VSEC,998414,0,0,0,0
+K2,Detalhe por seção x Votação por seção (soma dos votáveis),votos_nominais,DSEC,VSEC,998414,0,0,0,0

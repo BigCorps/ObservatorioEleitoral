@@ -33,8 +33,9 @@ e `manifestos/cobertura_arquivos_urna.csv`. Em 26–27/10/2026:
   concluídas; processamento dos logs e BUs binários por UF em andamento/concluído conforme
   a cobertura registrada.
 - 2026, 1º turno: BU em CSV e tabelas oficiais processados; logs conforme cobertura.
-- 2026, 2º turno (25/10/2026): **ainda não publicado** no Portal de Dados Abertos
-  (verificado em 27/10/2026). O procedimento está pronto para ser reexecutado.
+- 2026, 2º turno (25/10/2026): em 27/10/2026 só as tabelas oficiais **por seção** (Detalhe e
+  Votação por seção) estavam publicadas e foram processadas; BU em CSV, logs e arquivos das
+  urnas ainda não. O procedimento está pronto para ser reexecutado quando forem publicados.
 
 ## Como reproduzir
 

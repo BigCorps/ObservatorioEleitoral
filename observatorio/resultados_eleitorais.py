@@ -73,7 +73,16 @@ def _agregado(con, nivel: str, chaves: str, ano: int, pasta) -> None:
 def executar(ano: int = 2022) -> dict:
     con = duckdb.connect()
     con.execute("SET enable_progress_bar=false")
-    con.execute(f"CREATE VIEW bweb AS SELECT * FROM '{PROCESSADOS}/secoes_bu_{ano}.parquet'")
+    cols = ("turno, uf, cd_municipio, nm_municipio, nr_zona, nr_secao, qt_aptos, qt_comparecimento, qt_abstencoes, "
+            "votos_nominais, votos_brancos, votos_nulos, votos_candidato")
+    base = f"SELECT {cols}, 'BU-CSV' fonte FROM '{PROCESSADOS}/secoes_bu_{ano}.parquet'"
+    turnos_bu = {r[0] for r in con.execute(f"SELECT DISTINCT turno FROM '{PROCESSADOS}/secoes_bu_{ano}.parquet'").fetchall()}
+    for t in (1, 2):
+        of = PROCESSADOS / f"secoes_oficiais_{ano}_{t}t.parquet"
+        if t not in turnos_bu and of.exists():
+            # turno sem BU em CSV publicado: usa Detalhe por seção + Votação por seção (fonte registrada)
+            base += f" UNION ALL SELECT {cols}, fonte FROM '{of}'"
+    con.execute(f"CREATE VIEW bweb AS {base}")
     pasta = RESULTADOS / str(ano)
     pasta.mkdir(parents=True, exist_ok=True)
     for nivel, chaves in NIVEIS.items():
