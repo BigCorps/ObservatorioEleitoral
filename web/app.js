@@ -4,7 +4,7 @@
 'use strict';
 
 const ufNames = {
-  BR:'Brasil (27 UFs)', AC:'Acre',AL:'Alagoas',AP:'Amapá',AM:'Amazonas',
+  BR:'Brasil (27 UFs + exterior)', AC:'Acre',AL:'Alagoas',AP:'Amapá',AM:'Amazonas',
   BA:'Bahia',CE:'Ceará',DF:'Distrito Federal',ES:'Espírito Santo',
   GO:'Goiás',MA:'Maranhão',MT:'Mato Grosso',MS:'Mato Grosso do Sul',
   MG:'Minas Gerais',PA:'Pará',PB:'Paraíba',PR:'Paraná',PE:'Pernambuco',
@@ -172,8 +172,8 @@ function renderTimeline() {
     bar.setAttribute('aria-label',bar.title);
     chart.append(bar);
   });
-  chart.setAttribute('aria-label','Volume nacional de votos a cada 15 minutos, eleição '+state.year+', '+state.round+'º turno. Passe sobre as barras para os valores.');
-  setText('timelineNote','Curva nacional (27 UFs, sem exterior) em horário de Brasília. Este gráfico não muda com o filtro de estado. Votos depois das 17h podem ser regulares quando havia eleitores na fila.');
+  chart.setAttribute('aria-label','Volume das 27 UFs com logs a cada 15 minutos, eleição '+state.year+', '+state.round+'º turno. Passe sobre as barras para os valores.');
+  setText('timelineNote','Curva de logs das 27 UFs, sem os votos do exterior (ZZ), em horário de Brasília. Este gráfico não muda com o filtro de estado e não representa a distribuição de todos os votos nacionais. Votos depois das 17h podem ser regulares quando havia eleitores na fila.');
 }
 function renderRanking() {
   const metric=state.rankingMetric;
@@ -203,7 +203,7 @@ function renderRanking() {
   });
 }
 function renderComparison() {
-  setText('comparisonScope',state.uf==='ZZ'?'Exterior (ZZ)':ufNames[state.uf]+(state.uf==='BR'?' · sem exterior':''));
+  setText('comparisonScope',state.uf==='ZZ'?'Exterior (ZZ)':ufNames[state.uf]);
   const rows=[
     ['Comparecimento','comparecimento','number'],
     ['Abstenção','pct_abstencao','percent'],
@@ -240,7 +240,7 @@ function renderScopeInfo() {
     const coverage=sections&&logs!==null?(' Cobertura dos logs: '+number(logs)+' de '+number(sections)+' seções.'): ' Logs técnicos ainda não disponíveis para este recorte.';
     el.textContent='Exterior (ZZ): resultados oficiais por seção apresentados separadamente das 27 UFs.'+coverage+' As categorias biométricas não são diretamente comparáveis às utilizadas no território nacional; aparecem como não aplicáveis. Não é possível associar modalidade de identificação a candidato.';
   }else if(state.uf==='BR'){
-    el.textContent='O recorte “Brasil” soma as 27 UFs, sem o eleitorado no exterior. Para conferir o exterior, selecione “Exterior (ZZ)”. Percentuais de biometria referem-se às habilitações nos logs disponíveis; nenhuma modalidade revela como uma pessoa votou.';
+    el.textContent='O recorte “Brasil” inclui as 27 UFs e o eleitorado do exterior (ZZ) nos totais de aptos, comparecimento, abstenção, brancos, nulos e votos válidos. Para analisar apenas quem votou fora do país, selecione “Exterior (ZZ)”. Os indicadores de biometria e horários dos logs continuam restritos às 27 UFs, devido às diferenças de registro no exterior; nenhuma modalidade revela como uma pessoa votou.';
   }else{
     el.textContent=ufNames[state.uf]+': dados estaduais por turno. Os percentuais biométricos são calculados sobre as habilitações nos logs disponíveis, não sobre o cadastro geral. Variações não demonstram irregularidade isoladamente.';
   }
@@ -286,7 +286,7 @@ function renderDelta(){
 function voteData(year,round,uf) {
   if(!data)return null;
   const rows=data.votesByYear[year];
-  const regionRows=uf==='BR'?[...rows.values()].filter(r=>r.uf!=='ZZ'):[rows.get(uf)].filter(Boolean);
+  const regionRows=uf==='BR'?[...rows.values()]:[rows.get(uf)].filter(Boolean);
   if(!regionRows.length)return null;
   const suffix=round==='1'?'1t':'2t';
   const sum=key=>regionRows.reduce((t,r)=>t+(numeric(r[key+'_'+suffix])||0),0);
@@ -393,7 +393,7 @@ function renderPresidentialVotes() {
   const region=ufNames[state.uf];
   setText('voteScope',region);
   const candidate22=state.year==='2022'?'Jair Bolsonaro':'Flávio Bolsonaro';
-  setText('voteContext',state.year+' · '+state.round+'º turno · '+(state.uf==='BR'?'27 UFs, sem exterior':state.uf==='ZZ'?'eleitorado no exterior':'UF selecionada'));
+  setText('voteContext',state.year+' · '+state.round+'º turno · '+(state.uf==='BR'?'27 UFs + exterior (ZZ)':state.uf==='ZZ'?'eleitorado no exterior':'UF selecionada'));
   const bars=document.getElementById('voteBars');bars.replaceChildren();
   const summary=document.getElementById('voteSummary');summary.replaceChildren();
   if(!result||!result.valid) {

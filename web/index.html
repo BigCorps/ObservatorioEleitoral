@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=contorno-20261027">
-  <script src="./app.js?v=contorno-20261027" defer></script>
+  <link rel="stylesheet" href="./styles.css?v=exterior-20261027">
+  <script src="./app.js?v=exterior-20261027" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#conteudo">Pular para os dados</a>
@@ -46,11 +46,11 @@
 
     <section class="dashboard-section" id="painel">
       <div class="wrap">
-        <div class="section-intro"><div><span class="section-kicker">01 / EXPLORE OS DADOS</span><h2>Panorama eleitoral</h2><p>Escolha um recorte para atualizar os indicadores, incluindo os resultados do exterior (ZZ).</p></div><span id="coverageBadge" class="coverage-badge">Carregando dados…</span></div>
+        <div class="section-intro"><div><span class="section-kicker">01 / EXPLORE OS DADOS</span><h2>Panorama eleitoral</h2><p>O recorte Brasil já inclui os votos do exterior (ZZ). Selecione uma UF ou o exterior para detalhar.</p></div><span id="coverageBadge" class="coverage-badge">Carregando dados…</span></div>
         <div class="filter-card">
           <div class="filter-group"><label for="yearFilter">ELEIÇÃO</label><select id="yearFilter"><option value="2022">2022</option><option value="2026">2026</option></select></div>
           <div class="filter-group"><label for="roundFilter">TURNO</label><select id="roundFilter"><option value="1">1º turno</option><option value="2" selected>2º turno</option></select></div>
-          <div class="filter-group filter-uf"><label for="ufFilter">ABRANGÊNCIA</label><select id="ufFilter"><option value="BR">Brasil (27 UFs, sem exterior)</option></select></div>
+          <div class="filter-group filter-uf"><label for="ufFilter">ABRANGÊNCIA</label><select id="ufFilter"><option value="BR">Brasil (27 UFs + exterior)</option></select></div>
           <button id="resetButton" class="reset-button" type="button">↺ <span>Restaurar filtros</span></button>
         </div>
         <div id="loadError" class="error-state" role="alert" hidden>Não foi possível carregar os dados publicados. Atualize a página; se o problema continuar, confira a publicação do GitHub Pages.</div>
@@ -65,10 +65,10 @@
           <article class="kpi"><span class="kpi-label">Primeiro → último voto</span><strong id="kpiClock">—</strong><span class="kpi-sub">Medianas das seções, hora de Brasília</span></article>
         </div>
         <div class="bio-explainer"><div><strong>Sem biometria cadastrada</strong><p>Eleitor sem registro biométrico no cadastro.</p></div><div><strong>Biometria não reconhecida</strong><p>Eleitor com cadastro, mas liberado pelo mesário após falha na leitura.</p></div><div><strong>Biometria confirmada</strong><p>Habilitação realizada com reconhecimento biométrico.</p></div></div>
-        <p id="scopeDisclaimer" class="data-disclaimer">O recorte “Brasil” soma as 27 UFs, sem o eleitorado no exterior. Percentuais de biometria referem-se às habilitações registradas nos logs disponíveis e não permitem inferir como alguém votou.</p>
+        <p id="scopeDisclaimer" class="data-disclaimer">O recorte “Brasil” inclui as 27 UFs e o eleitorado do exterior (ZZ) nos totais eleitorais. Percentuais de biometria referem-se às habilitações registradas nos logs disponíveis e não permitem inferir como alguém votou.</p>
 
         <section class="map-section" id="mapa" aria-label="Mapa do Brasil e votos presidenciais">
-          <div class="section-intro map-section-heading"><div><span class="section-kicker">MAPA INTERATIVO</span><h2>Escolha um estado no mapa</h2><p>Clique em uma UF para atualizar os resultados do panorama e os votos para presidente.</p></div><span class="comparison-chip">27 UFs · mesmo recorte dos filtros</span></div>
+          <div class="section-intro map-section-heading"><div><span class="section-kicker">MAPA INTERATIVO</span><h2>Escolha um estado no mapa</h2><p>Clique em uma UF para atualizar os resultados do panorama e os votos para presidente.</p></div><span class="comparison-chip">Mapa: 27 UFs · exterior incluído nos totais do Brasil</span></div>
           <div class="map-layout">
             <article class="map-card">
               <div class="card-heading"><div><span class="card-eyebrow">DISTRIBUIÇÃO DOS VOTOS VÁLIDOS</span><h3>Participação do candidato nº 13</h3></div><span class="chart-tag">TURNO SELECIONADO</span></div>
@@ -79,7 +79,7 @@
             </article>
             <article class="vote-card">
               <span class="card-eyebrow">VOTAÇÃO PRESIDENCIAL NO RECORTE</span>
-              <h3 id="voteScope">Brasil (27 UFs)</h3>
+              <h3 id="voteScope">Brasil (27 UFs + exterior)</h3>
               <p id="voteContext" class="vote-context">Selecione um estado para detalhar.</p>
               <div id="voteBars" class="candidate-bars" aria-live="polite"></div>
               <div id="voteSummary" class="vote-summary"></div>
@@ -100,7 +100,7 @@
             <p class="chart-note" id="trendNote">Valores calculados a partir das tabelas e logs oficiais publicados.</p>
           </article>
           <article class="chart-card">
-            <div class="card-heading"><div><span class="card-eyebrow">FLUXO DE VOTAÇÃO</span><h3>Votos ao longo do dia</h3></div><span class="chart-tag">BRASIL • HORÁRIO DE BRASÍLIA</span></div>
+            <div class="card-heading"><div><span class="card-eyebrow">FLUXO DE VOTAÇÃO</span><h3>Votos ao longo do dia</h3></div><span class="chart-tag">LOGS DAS 27 UFs • HORÁRIO DE BRASÍLIA</span></div>
             <div id="timelineChart" class="timeline-chart" role="img" aria-label="Votos por intervalos de 15 minutos"></div>
             <div class="time-legend"><span><i class="legend-block teal"></i> Até 17h</span><span><i class="legend-block amber"></i> Depois das 17h</span></div>
             <p id="timelineNote" class="chart-note">Distribuição nacional em intervalos de 15 minutos, somente nas seções com log.</p>
@@ -117,7 +117,7 @@
     </div></section>
 
     <section class="comparison-section" id="comparacao"><div class="wrap">
-      <div class="section-intro"><div><span class="section-kicker">03 / COMPARATIVO HISTÓRICO</span><h2>Quatro turnos, lado a lado</h2><p>O mesmo indicador medido nas eleições de 2022 e 2026.</p></div><span class="comparison-chip" id="comparisonScope">Brasil · 27 UFs</span></div>
+      <div class="section-intro"><div><span class="section-kicker">03 / COMPARATIVO HISTÓRICO</span><h2>Quatro turnos, lado a lado</h2><p>O mesmo indicador medido nas eleições de 2022 e 2026.</p></div><span class="comparison-chip" id="comparisonScope">Brasil · 27 UFs + exterior</span></div>
       <div class="comparison-scroll"><table class="comparison-table"><thead><tr><th scope="col">Indicador</th><th scope="col">2022 · 1º</th><th scope="col">2022 · 2º</th><th scope="col">2026 · 1º</th><th scope="col">2026 · 2º</th></tr></thead><tbody id="comparisonBody"></tbody></table></div>
       <div class="comparison-explainer"><span class="explainer-symbol">i</span><p>As regras de identificação, modelos de urna, cargos em disputa e composição das seções mudaram entre os anos. Comparações diretas exigem esses controles. Um traço (—) significa <strong>dado ainda não disponível</strong>, não valor zero.</p></div>
     <div class="delta-header"><div><span class="card-eyebrow">MUDANÇAS ARITMÉTICAS</span><h3>O que mudou de um turno para outro?</h3><p>Além dos quatro resultados lado a lado, veja quanto cada indicador variou em cada eleição e como essas variações diferem entre 2022 e 2026.</p></div></div>

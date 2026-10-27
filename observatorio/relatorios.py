@@ -463,7 +463,7 @@ NOMES_IND = {
     "pct_hab_biometrica_log": "Habilitação biométrica (% habilitações, log)",
     "pct_hab_manual_apos_falha_log": "Liberação manual após falha (% habilitações, log)",
     "pct_hab_sem_biometria_log": "Sem biometria cadastrada (% habilitações, log)",
-    "mediana_duracao_voto_s": "Mediana habilitação→voto (s)", "secoes": "Seções com BU", "secoes_com_log": "Seções com log",
+    "mediana_duracao_voto_s": "Mediana habilitação→voto (s)", "secoes": "Seções eleitorais apuradas", "secoes_com_log": "Seções com log",
 }
 
 
@@ -481,7 +481,9 @@ def comparativo_md() -> str:
            "Votação por seção) estavam publicadas; indicadores de resultado do 2º turno de 2026 vêm delas, e os "
            "baseados em BU/log ficam vazios até a publicação. Indicadores de log valem para a cobertura indicada "
            "em cada `docs/auditoria-ANO.md`.\n",
-           "## Brasil (27 UFs, sem exterior)\n"]
+           "## Brasil (27 UFs + exterior ZZ)\n",
+           "Os totais eleitorais nacionais (aptos, seções, comparecimento, abstenção, votos brancos, nulos e válidos) incluem os eleitores no exterior. "
+           "Os indicadores de biometria e horários baseados em BU/log permanecem restritos às 27 UFs quando os registros do exterior não são diretamente comparáveis.\n"]
     br = d[d.abrangencia == "BR"].copy()
     br["indicador"] = br.indicador.map(lambda x: NOMES_IND.get(x, x))
     cols = [c for c in ["indicador", "2022_1t", "2022_2t", "2026_1t", "2026_2t", "dif_turnos_2022", "dif_1t_2026_menos_2022"] if c in br]
@@ -509,7 +511,7 @@ def comparativo_md() -> str:
                    "`mesmo_local_aptos_mudaram`; `local_mudou`; `apenas_2022`/`apenas_2026` = sem par. Só pares "
                    "\"correspondência provável\" devem ser usados em comparações seção a seção. Arquivo por seção: "
                    "`resultados/comparativo/correspondencia_secoes_2022_2026.parquet`.\n")
-    out.append("## Por UF\n\nTabela completa (Brasil e 27 UFs, todos os indicadores): "
+    out.append("## Por UF\n\nTabela completa (Brasil, 27 UFs e exterior ZZ, todos os indicadores): "
                "`resultados/comparativo/comparativo_largo.csv` e `indicadores_2022_2026.csv`.\n")
     for ind in ("pct_abstencao", "pct_brancos", "pct_nulos", "pct_votos_apos_17h", "pct_biometria_nao_habilitados_bu"):
         s = d[(d.indicador == ind) & (d.abrangencia != "BR") & (d.abrangencia != "ZZ")]

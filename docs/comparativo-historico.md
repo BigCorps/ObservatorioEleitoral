@@ -1,35 +1,37 @@
 # Comparação histórica 2022 × 2026 — Presidente
 
-_Gerado em 27/10/2026 05:05 UTC a partir de `resultados/comparativo/`._
+_Atualizado em 27/10/2026 a partir de `resultados/comparativo/` e dos consolidados oficiais de votação presidencial._
 
 **Pergunta central:** quais diferenças observadas em 2026 também ocorreram em 2022, quais podem ser explicadas pelas condições eleitorais e quais exigem verificação documental adicional?
 
 **Disponibilidade:** 2026, 2º turno — em 27/10/2026 só as tabelas oficiais por seção (Detalhe e Votação por seção) estavam publicadas; indicadores de resultado do 2º turno de 2026 vêm delas, e os baseados em BU/log ficam vazios até a publicação. Indicadores de log valem para a cobertura indicada em cada `docs/auditoria-ANO.md`.
 
-## Brasil (27 UFs, sem exterior)
+## Brasil (27 UFs + exterior ZZ)
+
+Os totais de seções, aptos, comparecimento, abstenção, brancos, nulos e válidos incluem a votação do exterior. Indicadores de biometria e horários do BU/log permanecem restritos às 27 UFs, por diferenças de registro no exterior.
 
 | indicador | 2022_1t | 2022_2t | 2026_1t | 2026_2t | dif_turnos_2022 | dif_1t_2026_menos_2022 |
 |---|---|---|---|---|---|---|
-| Eleitores aptos | 155.758.572 | 155.758.349 | 157.828.968 | 157.828.819 | -223 | 2.070.396 |
-| Comparecimento | 123.378.340 | 123.942.648 | 124.934.069 | 127.854.631 | 564.308 | 1.555.729 |
+| Eleitores aptos | 156.453.354 | 156.453.354 | 158.745.007 | 158.745.079 | 0 | 2.291.653 |
+| Comparecimento | 123.682.372 | 124.252.796 | 125.275.835 | 128.236.074 | 570.424 | 1.593.463 |
 | Duração média 1º→último voto (h) | 9,068 | 8,775 | 9,054 | — | -0,293 | -0,014 |
 | Mediana habilitação→voto (s) | 51 | 15 | 55 | — | -36 | 4 |
 | Mediana do 1º voto (h, Brasília) | 8,078 | 8,036 | 8,066 | — | -0,042 | -0,012 |
 | Mediana do último voto (h, Brasília) | 16,981 | 16,852 | 16,978 | — | -0,129 | -0,003 |
-| Abstenção (% aptos) | 20,789 | 20,426 | 20,842 | 18,992 | -0,363 | 0,053 |
+| Abstenção (% aptos) | 20,946 | 20,582 | 21,084 | 19,219 | -0,364 | 0,138 |
 | Com biometria, não habilitados por ela (% comparec., BU) | 8,738 | 8,077 | 6,677 | — | -0,661 | -2,061 |
-| Brancos (% comparec.) | 1,589 | 1,423 | 1,837 | 1,115 | -0,166 | 0,248 |
+| Brancos (% comparec.) | 1,589 | 1,424 | 1,837 | 1,116 | -0,165 | 0,248 |
 | Habilitação biométrica (% habilitações, log) | 75,269 | 75,866 | 87,762 | — | 0,597 | 12,493 |
 | Liberação manual após falha (% habilitações, log) | 8,742 | 8,078 | 6,680 | — | -0,664 | -2,062 |
 | Sem biometria cadastrada (% habilitações, log) | 15,123 | 15,193 | 5,555 | — | 0,070 | -9,568 |
-| Nulos (% comparec.) | 2,823 | 3,167 | 2,933 | 2,126 | 0,344 | 0,110 |
+| Nulos (% comparec.) | 2,820 | 3,164 | 2,929 | 2,124 | 0,344 | 0,109 |
 | Seções com contingência (%) | 1,966 | 1,175 | 0,566 | — | -0,791 | -1,400 |
 | Seções com reabertura (%) | 16,932 | 14,491 | 5,664 | — | -2,441 | -11,268 |
-| Válidos (% comparec.) | 95,588 | 95,410 | 95,230 | 96,759 | -0,178 | -0,358 |
+| Válidos (% comparec.) | 95,591 | 95,412 | 95,235 | 96,761 | -0,179 | -0,356 |
 | Votos antes das 8h (% votos do log) | 0 | 0 | 0 | — | 0 | 0 |
 | Votos após 17h (%) | 3,506 | 0,033 | 2,981 | — | -3,473 | -0,525 |
 | Votos após 19h (%) | 0,196 | 0 | 0,105 | — | -0,196 | -0,091 |
-| Seções com BU | 471.010 | 471.010 | 497.897 | 497.897 | 0 | 26.887 |
+| Seções eleitorais apuradas | 472.028 | 472.028 | 499.206 | 499.207 | 0 | 27.178 |
 | Seções com log | 470.998 | 470.999 | 497.895 | — | 1 | 26.897 |
 
 
@@ -61,7 +63,7 @@ Classes: `correspondencia_provavel` = mesmo local de votação e aptos com varia
 
 ## Por UF
 
-Tabela completa (Brasil e 27 UFs, todos os indicadores): `resultados/comparativo/comparativo_largo.csv` e `indicadores_2022_2026.csv`.
+Tabela completa (Brasil, 27 UFs e exterior ZZ, todos os indicadores): `resultados/comparativo/comparativo_largo.csv` e `indicadores_2022_2026.csv`.
 
 ### Abstenção (% aptos)
 

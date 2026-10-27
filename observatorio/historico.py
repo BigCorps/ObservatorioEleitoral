@@ -36,12 +36,14 @@ def _indicadores_bu(con, ano: int) -> pd.DataFrame:
         round(100.0*sum(votos_brancos)/sum(qt_comparecimento),3) pct_brancos,
         round(100.0*sum(votos_nulos)/sum(qt_comparecimento),3) pct_nulos,
         round(100.0*sum(votos_nominais)/sum(qt_comparecimento),3) pct_validos,
-        round(100.0*sum(qt_eleitores_biometria_nh) FILTER (WHERE qt_eleitores_biometria_nh>=0)/sum(qt_comparecimento),3) pct_biometria_nao_habilitados_bu
-      FROM (SELECT *, uf abr FROM {f} UNION ALL SELECT *, 'BR' FROM {f} WHERE uf <> 'ZZ')
+        round(100.0*sum(qt_eleitores_biometria_nh) FILTER (WHERE qt_eleitores_biometria_nh>=0 AND uf <> 'ZZ')/nullif(sum(qt_comparecimento) FILTER (WHERE uf <> 'ZZ'), 0),3) pct_biometria_nao_habilitados_bu
+      FROM (SELECT *, uf abr FROM {f} UNION ALL SELECT *, 'BR' FROM {f})
       GROUP BY ALL"""
     return con.execute(q).df()
 
 
+# Os indicadores dos logs permanecem baseados nas 27 UFs: as habilitações e
+# os horários da zona exterior (ZZ) seguem cobertura e regras distintas.
 def _indicadores_log(con, ano: int) -> pd.DataFrame:
     f = PROCESSADOS / f"indicadores_temporais_{ano}.parquet"
     if not f.exists():
