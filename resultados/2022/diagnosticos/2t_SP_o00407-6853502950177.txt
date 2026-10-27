@@ -1,0 +1,54 @@
+=== logd.dat: 3063 linhas do dia; ids={'67305985': 3063}
+    {'Urna pronta para receber votos': 3, 'Eleitor foi habilitado': 197, 'Voto confirmado para [Presidente]': 197, 'O voto do eleitor foi computado': 196, 'Inicio do Encerramento': 1}
+      07:15:47 INFO   67305985 LOGD  Urna ligada em 30/10/2022 às 07:15:02
+      07:16:31 INFO   67305985 GAP   Iniciando aplicação - Oficial - 2º turno
+      07:16:31 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2010
+      07:16:41 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2010
+      07:16:45 INFO   67305985 GAP   Modo de carga da UE - Votação
+      07:16:45 INFO   67305985 GAP   Município: 68535
+      07:16:45 INFO   67305985 GAP   Zona Eleitoral: 0295
+      07:16:45 INFO   67305985 GAP   Seção Eleitoral: 0177
+      07:16:50 INFO   67305985 GAP   Serial de votação da MV: CF3B93D4 21/09/2022 às 15:47:58 em ZSP295STD01
+      07:17:31 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      07:18:11 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 2º turno
+      08:00:01 INFO   67305985 VOTA  Urna pronta para receber votos
+      08:47:54 INFO   67305985 INITJE Urna desligada pela chave
+      08:47:54 INFO   67305985 VOTA  Votação suspensa
+      08:49:29 INFO   67305985 LOGD  Urna ligada em 30/10/2022 às 08:48:46
+      08:50:12 INFO   67305985 GAP   Iniciando aplicação - Oficial - 2º turno
+      08:50:12 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2010
+      08:50:26 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2010
+      08:50:30 INFO   67305985 GAP   Modo de carga da UE - Votação
+      08:50:30 INFO   67305985 GAP   Município: 68535
+      08:50:30 INFO   67305985 GAP   Zona Eleitoral: 0295
+      08:50:30 INFO   67305985 GAP   Seção Eleitoral: 0177
+      08:50:35 INFO   67305985 GAP   Serial de votação da MV: CF3B93D4 21/09/2022 às 15:47:58 em ZSP295STD01
+      08:51:16 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      08:51:43 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 2º turno
+      08:52:31 INFO   67305985 VOTA  Urna pronta para receber votos
+      08:56:57 INFO   67305985 INITJE Urna desligada pela chave
+      08:57:01 INFO   67305985 VOTA  Votação suspensa
+      08:59:40 INFO   67305985 LOGD  Urna ligada em 30/10/2022 às 08:58:56
+      09:00:23 INFO   67305985 GAP   Iniciando aplicação - Oficial - 2º turno
+      09:00:24 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2010
+      09:00:35 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2010
+      09:00:39 INFO   67305985 GAP   Modo de carga da UE - Votação
+      09:00:39 INFO   67305985 GAP   Município: 68535
+      09:00:39 INFO   67305985 GAP   Zona Eleitoral: 0295
+      09:00:39 INFO   67305985 GAP   Seção Eleitoral: 0177
+      09:00:44 INFO   67305985 GAP   Serial de votação da MV: CF3B93D4 21/09/2022 às 15:47:58 em ZSP295STD01
+      09:01:22 INFO   67305985 INITJE Urna desligada pela chave
+      09:03:25 INFO   67305985 LOGD  Urna ligada em 30/10/2022 às 09:02:40
+      09:04:08 INFO   67305985 GAP   Iniciando aplicação - Oficial - 2º turno
+      09:04:08 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2010
+      09:04:21 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2010
+      09:04:25 INFO   67305985 GAP   Modo de carga da UE - Votação
+      09:04:25 INFO   67305985 GAP   Município: 68535
+      09:04:25 INFO   67305985 GAP   Zona Eleitoral: 0295
+      09:04:25 INFO   67305985 GAP   Seção Eleitoral: 0177
+      09:04:30 INFO   67305985 GAP   Serial de votação da MV: CF3B93D4 21/09/2022 às 15:47:58 em ZSP295STD01
+      09:05:11 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      09:05:39 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 2º turno
+      09:06:07 INFO   67305985 VOTA  Urna pronta para receber votos
+      17:02:27 INFO   67305985 VOTA  Inicio do Encerramento
+      17:02:28 INFO   67305985 VOTA  Gerando relatório [BU] [INÍCIO]

@@ -1,0 +1,29 @@
+=== logd.dat: 2895 linhas do dia; ids={'2122700': 2895}
+    {'Urna pronta para receber votos': 2, 'Eleitor foi habilitado': 241, 'Voto confirmado para [Presidente]': 241, 'O voto do eleitor foi computado': 240, 'Inicio do Encerramento': 1}
+      07:18:20 INFO   2122700 LOGD  Urna ligada em 30/10/2022 às 07:17:59
+      07:18:39 INFO   2122700 GAP   Iniciando aplicação - Oficial - 2º turno
+      07:18:39 INFO   2122700 GAP   Identificação do Modelo de Urna: UE2020
+      07:18:48 INFO   2122700 GAP   Identificação do Modelo de Urna: UE2020
+      07:18:52 INFO   2122700 GAP   Modo de carga da UE - Votação
+      07:18:52 INFO   2122700 GAP   Município: 70572
+      07:18:52 INFO   2122700 GAP   Zona Eleitoral: 0156
+      07:18:52 INFO   2122700 GAP   Seção Eleitoral: 0309
+      07:18:56 INFO   2122700 GAP   Serial de votação da MV: E600B009 22/09/2022 às 13:05:08 em ZSP156STD22
+      07:19:11 INFO   2122700 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      07:19:34 INFO   2122700 VOTA  Iniciando aplicação - Oficial - 2º turno
+      08:00:01 INFO   2122700 VOTA  Urna pronta para receber votos
+      08:04:39 INFO   2122700 INITJE Urna desligada pela chave
+      08:05:30 INFO   2122700 LOGD  Urna ligada em 30/10/2022 às 08:05:09
+      08:05:50 INFO   2122700 GAP   Iniciando aplicação - Oficial - 2º turno
+      08:05:50 INFO   2122700 GAP   Identificação do Modelo de Urna: UE2020
+      08:05:58 INFO   2122700 GAP   Identificação do Modelo de Urna: UE2020
+      08:06:02 INFO   2122700 GAP   Modo de carga da UE - Votação
+      08:06:02 INFO   2122700 GAP   Município: 70572
+      08:06:02 INFO   2122700 GAP   Zona Eleitoral: 0156
+      08:06:02 INFO   2122700 GAP   Seção Eleitoral: 0309
+      08:06:06 INFO   2122700 GAP   Serial de votação da MV: E600B009 22/09/2022 às 13:05:08 em ZSP156STD22
+      08:06:21 INFO   2122700 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      08:06:39 INFO   2122700 VOTA  Iniciando aplicação - Oficial - 2º turno
+      08:07:03 INFO   2122700 VOTA  Urna pronta para receber votos
+      17:02:26 INFO   2122700 VOTA  Inicio do Encerramento
+      17:02:27 INFO   2122700 VOTA  Gerando relatório [BU] [INÍCIO]
