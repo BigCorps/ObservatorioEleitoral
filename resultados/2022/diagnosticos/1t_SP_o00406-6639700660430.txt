@@ -1,0 +1,54 @@
+=== logd.dat: 4512 linhas do dia; ids={'67305985': 4512}
+    {'Urna pronta para receber votos': 4, 'Eleitor foi habilitado': 223, 'Voto confirmado para [Presidente]': 222, 'O voto do eleitor foi computado': 221, 'Inicio do Encerramento': 1}
+      07:17:06 INFO   67305985 LOGD  Urna ligada em 02/10/2022 às 07:16:20
+      07:17:48 INFO   67305985 GAP   Iniciando aplicação - Oficial - 1º turno
+      07:17:48 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2011
+      07:17:57 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2011
+      07:18:01 INFO   67305985 GAP   Modo de carga da UE - Votação
+      07:18:01 INFO   67305985 GAP   Município: 66397
+      07:18:01 INFO   67305985 GAP   Zona Eleitoral: 0066
+      07:18:01 INFO   67305985 GAP   Seção Eleitoral: 0430
+      07:18:06 INFO   67305985 GAP   Serial de votação da MV: B0026B15 25/09/2022 às 14:10:13 em ZSP066STD01
+      07:18:46 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      07:19:25 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 1º turno
+      08:00:01 INFO   67305985 VOTA  Urna pronta para receber votos
+      12:25:38 ERRO   67305985 VOTA  N3api17CMessageExceptionE - (Código (12)) CMessageException - CScreenMT::Write - erro na escrita de texto 12: 
+      12:34:21 INFO   67305985 INITJE Urna desligada pela chave
+      12:39:08 INFO   67305985 LOGD  Urna ligada em 02/10/2022 às 12:38:14
+      12:39:50 INFO   67305985 GAP   Iniciando aplicação - Oficial - 1º turno
+      12:39:50 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2011
+      12:40:01 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2011
+      12:40:05 INFO   67305985 GAP   Modo de carga da UE - Votação
+      12:40:05 INFO   67305985 GAP   Município: 66397
+      12:40:05 INFO   67305985 GAP   Zona Eleitoral: 0066
+      12:40:05 INFO   67305985 GAP   Seção Eleitoral: 0430
+      12:40:10 INFO   67305985 GAP   Serial de votação da MV: B0026B15 25/09/2022 às 14:10:13 em ZSP066STD01
+      12:40:51 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      12:41:30 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 1º turno
+      12:43:51 INFO   67305985 VOTA  Urna pronta para receber votos
+      16:22:06 INFO   67305985 LOGD  Urna ligada em 02/10/2022 às 16:21:15
+      16:22:48 INFO   67305985 GAP   Iniciando aplicação - Oficial - 1º turno
+      16:22:48 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2011
+      16:23:03 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2011
+      16:23:07 INFO   67305985 GAP   Modo de carga da UE - Votação
+      16:23:07 INFO   67305985 GAP   Município: 66397
+      16:23:07 INFO   67305985 GAP   Zona Eleitoral: 0066
+      16:23:07 INFO   67305985 GAP   Seção Eleitoral: 0430
+      16:23:12 INFO   67305985 GAP   Serial de votação da MV: B0026B15 25/09/2022 às 14:10:13 em ZSP066STD01
+      16:23:52 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      16:24:33 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 1º turno
+      16:25:12 INFO   67305985 VOTA  Urna pronta para receber votos
+      16:39:04 INFO   67305985 LOGD  Urna ligada em 02/10/2022 às 16:38:17
+      16:39:46 INFO   67305985 GAP   Iniciando aplicação - Oficial - 1º turno
+      16:39:47 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2011
+      16:39:57 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2011
+      16:40:01 INFO   67305985 GAP   Modo de carga da UE - Votação
+      16:40:01 INFO   67305985 GAP   Município: 66397
+      16:40:02 INFO   67305985 GAP   Zona Eleitoral: 0066
+      16:40:02 INFO   67305985 GAP   Seção Eleitoral: 0430
+      16:40:07 INFO   67305985 GAP   Serial de votação da MV: B0026B15 25/09/2022 às 14:10:13 em ZSP066STD01
+      16:40:47 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL PRIMEIRO TURNO - Oficial - 1º turno
+      16:41:25 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 1º turno
+      16:42:02 INFO   67305985 VOTA  Urna pronta para receber votos
+      17:04:36 INFO   67305985 VOTA  Inicio do Encerramento
+      17:04:37 INFO   67305985 VOTA  Gerando relatório [BU] [INÍCIO]
