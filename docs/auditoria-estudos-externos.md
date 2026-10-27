@@ -521,7 +521,7 @@ _Gerado por `scripts/gerar_relatorios.py`. Os valores da coluna "alegado" são d
 | A16 | auditoriaeleicoes.com | Último dígito uniforme (13 e 22) | 1º | p = 0,0 (rejeita) | uniforme: p_holm 4.6e-07, 1.1e-15 (efeito máx. 0,29 p.p.); vs. simulação: p_holm 1.00, 1.00 |
 | A13 | auditoriaeleicoes.com | Mediana habilitação→voto (s) | 1º | 52 s | 54 s |
 | A13 | auditoriaeleicoes.com | Mediana habilitação→voto (s) | 2º | 13 s | 13 s |
-| D5 | DataUrnas-BR | Seções com |votos no log − comparecimento| > 2 | 1º | 3.356 (todas com log < BU) | 5 seções (todos os arquivos de log da seção, janela até o dia seguinte); 9 com qualquer diferença |
-| D5 | DataUrnas-BR | Seções com |votos no log − comparecimento| > 2 | 2º | 1.691 | 0 seções (todos os arquivos de log da seção, janela até o dia seguinte); 1 com qualquer diferença |
+| D5 | DataUrnas-BR | Seções com |votos no log − comparecimento| > 2 | 1º | 3.356 (todas com log < BU) | 5 seções (todos os arquivos de log da seção, janela até o dia seguinte); 12 com qualquer diferença |
+| D5 | DataUrnas-BR | Seções com |votos no log − comparecimento| > 2 | 2º | 1.691 | 0 seções (todos os arquivos de log da seção, janela até o dia seguinte); 3 com qualquer diferença |
 
 Notas: (1) A1 — a conversão por UF aplica −1 h a todo o AM; o oeste do AM está em UTC−5, de modo que o voto das 6h locais nesses municípios (= 8h de Brasília) vira 7h com a conversão de +1 h e é classificado como "antes das 8h". (2) D5 — o DataUrnas-BR lê só o primeiro arquivo do pacote 7z e descarta votos após a meia-noite, o que produz contagens de log menores que o BU. (3) A2 — com intervalos medidos entre registros de voto computado, a definição publicada não reproduz a contagem alegada; o critério exato dos autores não é público.

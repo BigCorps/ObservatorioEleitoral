@@ -1,3 +1,204 @@
-# Comparação histórica 2022 × 2026
+# Comparação histórica 2022 × 2026 — Presidente
 
-_Pendente: execute `historico.executar()`._
+_Gerado em 27/10/2026 00:32 UTC a partir de `resultados/comparativo/`._
+
+**Pergunta central:** quais diferenças observadas em 2026 também ocorreram em 2022, quais podem ser explicadas pelas condições eleitorais e quais exigem verificação documental adicional?
+
+**Disponibilidade:** 2026, 2º turno — em 27/10/2026 só as tabelas oficiais por seção (Detalhe e Votação por seção) estavam publicadas; indicadores de resultado do 2º turno de 2026 vêm delas, e os baseados em BU/log ficam vazios até a publicação. Indicadores de log valem para a cobertura indicada em cada `docs/auditoria-ANO.md`.
+
+## Brasil (27 UFs, sem exterior)
+
+| indicador | 2022_1t | 2022_2t | 2026_1t | 2026_2t | dif_turnos_2022 | dif_1t_2026_menos_2022 |
+|---|---|---|---|---|---|---|
+| Eleitores aptos | 155.758.572 | 155.758.349 | 157.828.968 | 157.828.819 | -223 | 2.070.396 |
+| Comparecimento | 123.378.340 | 123.942.648 | 124.934.069 | 127.854.631 | 564.308 | 1.555.729 |
+| Duração média 1º→último voto (h) | 8,961 | 8,770 | — | — | -0,191 | — |
+| Mediana habilitação→voto (s) | 55 | 12,500 | — | — | -42,500 | — |
+| Mediana do 1º voto (h, Brasília) | 8,074 | 8,040 | — | — | -0,034 | — |
+| Mediana do último voto (h, Brasília) | 16,942 | 16,861 | — | — | -0,081 | — |
+| Abstenção (% aptos) | 20,789 | 20,426 | 20,842 | 18,992 | -0,363 | 0,053 |
+| Com biometria, não habilitados por ela (% comparec., BU) | 8,738 | 8,077 | 6,677 | — | -0,661 | -2,061 |
+| Brancos (% comparec.) | 1,589 | 1,423 | 1,837 | 1,115 | -0,166 | 0,248 |
+| Habilitação biométrica (% habilitações, log) | 83,730 | 84,475 | — | — | 0,745 | — |
+| Liberação manual após falha (% habilitações, log) | 9,092 | 8,008 | — | — | -1,084 | — |
+| Sem biometria cadastrada (% habilitações, log) | 7,178 | 7,517 | — | — | 0,339 | — |
+| Nulos (% comparec.) | 2,823 | 3,167 | 2,933 | 2,126 | 0,344 | 0,110 |
+| Seções com contingência (%) | 1,884 | 1,024 | — | — | -0,860 | — |
+| Seções com reabertura (%) | 16,348 | 14,081 | — | — | -2,267 | — |
+| Válidos (% comparec.) | 95,588 | 95,410 | 95,230 | 96,759 | -0,178 | -0,358 |
+| Votos antes das 8h (% votos do log) | 0 | 0 | — | — | 0 | — |
+| Votos após 17h (%) | 2,548 | 0,047 | — | — | -2,502 | — |
+| Votos após 19h (%) | 0,088 | 0 | — | — | -0,088 | — |
+| Seções com BU | 471.010 | 471.010 | 497.897 | 497.897 | 0 | 26.887 |
+| Seções com log | 18.785 | 13.287 | — | — | -5.498 | — |
+
+
+## Limitações de comparabilidade
+
+- **Cargos:** 1º turno de 2022 com 5 votos por eleitor; 1º turno de 2026 com 6 (duas vagas de Senador).
+  Duração do voto e horário do último voto dependem disso.
+- **Identificação:** em 2026 o mesário pode digitar CPF ou título e a urna exibe foto; a habilitação
+  sem biometria passa a ser registrada pelo ano de nascimento. As categorias do log e do BU mudaram
+  (`docs/dicionario-dados.md`).
+- **Equipamentos:** 2026 introduz o modelo UE2022; a composição por modelo difere entre os anos.
+- **Eleitorado:** cadastro, revisões biométricas e criação/remanejamento de seções mudam a base.
+  A mesma numeração de seção não garante o mesmo eleitorado (ver correspondência abaixo).
+- **Regras:** horário de Brasília em ambos os anos; no 2º turno de 2026 há notícia de prorrogação do
+  horário em parte do país por decisão judicial (a verificar quando os dados forem publicados).
+
+## Correspondência de seções entre 2022 e 2026 (1º turno)
+
+| uf | classe | secoes |
+|---|---|---|
+| BR | apenas_2022 | 10.809 |
+| BR | apenas_2026 | 37.987 |
+| BR | correspondencia_provavel | 323.324 |
+| BR | local_mudou | 17.158 |
+| BR | mesmo_local_aptos_mudaram | 120.737 |
+
+
+Classes: `correspondencia_provavel` = mesmo local de votação e aptos com variação ≤ 10%; `mesmo_local_aptos_mudaram`; `local_mudou`; `apenas_2022`/`apenas_2026` = sem par. Só pares "correspondência provável" devem ser usados em comparações seção a seção. Arquivo por seção: `resultados/comparativo/correspondencia_secoes_2022_2026.parquet`.
+
+## Por UF
+
+Tabela completa (Brasil e 27 UFs, todos os indicadores): `resultados/comparativo/comparativo_largo.csv` e `indicadores_2022_2026.csv`.
+
+### Abstenção (% aptos)
+
+| abrangencia | 2022_1t | 2022_2t | 2026_1t | dif_turnos_2022 | dif_1t_2026_menos_2022 |
+|---|---|---|---|---|---|
+| AC | 22,431 | 28,414 | 20,434 | 5,983 | -1,997 |
+| AL | 22,374 | 23,253 | 20,625 | 0,879 | -1,749 |
+| AM | 20,140 | 21,880 | 20,155 | 1,740 | 0,015 |
+| AP | 19,507 | 27,166 | 17,405 | 7,659 | -2,102 |
+| BA | 21,346 | 20,485 | 19,970 | -0,861 | -1,376 |
+| CE | 17,454 | 17,142 | 15,523 | -0,312 | -1,931 |
+| DF | 17,539 | 16,721 | 18,904 | -0,818 | 1,365 |
+| ES | 20,753 | 20,532 | 21,372 | -0,221 | 0,619 |
+| GO | 21,717 | 20,742 | 21,828 | -0,975 | 0,111 |
+| MA | 22,203 | 23,505 | 19,733 | 1,302 | -2,470 |
+| MG | 22,283 | 20,991 | 22,813 | -1,292 | 0,530 |
+| MS | 22,084 | 22,354 | 23,869 | 0,270 | 1,785 |
+| MT | 23,381 | 22,535 | 22,203 | -0,846 | -1,178 |
+| PA | 21,219 | 22,654 | 19,096 | 1,435 | -2,123 |
+| PB | 17,289 | 16,738 | 17,378 | -0,551 | 0,089 |
+| PE | 18,203 | 17,311 | 18,168 | -0,892 | -0,035 |
+| PI | 17,693 | 18,742 | 17,150 | 1,049 | -0,543 |
+| PR | 19,479 | 18,633 | 20,574 | -0,846 | 1,095 |
+| RJ | 22,741 | 22,244 | 23,316 | -0,497 | 0,575 |
+| RN | 18,167 | 17,442 | 18,378 | -0,725 | 0,211 |
+| RO | 24,648 | 24,684 | 21,709 | 0,036 | -2,939 |
+| RR | 16,700 | 21,921 | 17,122 | 5,221 | 0,422 |
+| RS | 19,785 | 19,312 | 21,351 | -0,473 | 1,566 |
+| SC | 18,431 | 17,423 | 18,946 | -1,008 | 0,515 |
+| SE | 18,347 | 18,895 | 17,301 | 0,548 | -1,046 |
+| SP | 21,609 | 21,059 | 22,539 | -0,550 | 0,930 |
+| TO | 18,540 | 20,384 | 18,344 | 1,844 | -0,196 |
+
+### Brancos (% comparec.)
+
+| abrangencia | 2022_1t | 2022_2t | 2026_1t | dif_turnos_2022 | dif_1t_2026_menos_2022 |
+|---|---|---|---|---|---|
+| AC | 1,023 | 1,122 | 1,142 | 0,099 | 0,119 |
+| AL | 1,594 | 1,310 | 1,739 | -0,284 | 0,145 |
+| AM | 0,926 | 1,044 | 1,092 | 0,118 | 0,166 |
+| AP | 0,743 | 1,003 | 0,926 | 0,260 | 0,183 |
+| BA | 1,391 | 1,351 | 1,711 | -0,040 | 0,320 |
+| CE | 1,284 | 1,187 | 1,748 | -0,097 | 0,464 |
+| DF | 1,383 | 1,613 | 1,385 | 0,230 | 0,002 |
+| ES | 1,707 | 1,602 | 1,837 | -0,105 | 0,130 |
+| GO | 1,273 | 1,130 | 1,149 | -0,143 | -0,124 |
+| MA | 0,908 | 0,929 | 1,113 | 0,021 | 0,205 |
+| MG | 1,813 | 1,424 | 2,123 | -0,389 | 0,310 |
+| MS | 1,135 | 1,165 | 1,380 | 0,030 | 0,245 |
+| MT | 0,987 | 0,853 | 1,011 | -0,134 | 0,024 |
+| PA | 0,854 | 0,927 | 1,070 | 0,073 | 0,216 |
+| PB | 1,639 | 1,378 | 1,948 | -0,261 | 0,309 |
+| PE | 1,570 | 1,283 | 1,852 | -0,287 | 0,282 |
+| PI | 0,921 | 0,911 | 1,264 | -0,010 | 0,343 |
+| PR | 1,595 | 1,385 | 1,791 | -0,210 | 0,196 |
+| RJ | 1,612 | 1,270 | 2,049 | -0,342 | 0,437 |
+| RN | 1,251 | 0,976 | 1,528 | -0,275 | 0,277 |
+| RO | 1,009 | 1,018 | 0,993 | 0,009 | -0,016 |
+| RR | 0,738 | 0,759 | 0,787 | 0,021 | 0,049 |
+| RS | 1,877 | 1,767 | 2,213 | -0,110 | 0,336 |
+| SC | 1,490 | 1,243 | 1,485 | -0,247 | -0,005 |
+| SE | 1,482 | 1,346 | 1,727 | -0,136 | 0,245 |
+| SP | 2,101 | 1,924 | 2,394 | -0,177 | 0,293 |
+| TO | 0,762 | 0,822 | 0,864 | 0,060 | 0,102 |
+
+### Nulos (% comparec.)
+
+| abrangencia | 2022_1t | 2022_2t | 2026_1t | dif_turnos_2022 | dif_1t_2026_menos_2022 |
+|---|---|---|---|---|---|
+| AC | 2,264 | 1,598 | 2,798 | -0,666 | 0,534 |
+| AL | 2,933 | 5,432 | 4,426 | 2,499 | 1,493 |
+| AM | 1,775 | 3,847 | 1,759 | 2,072 | -0,016 |
+| AP | 1,669 | 1,547 | 1,526 | -0,122 | -0,143 |
+| BA | 3,700 | 4,410 | 3,735 | 0,710 | 0,035 |
+| CE | 2,258 | 2,478 | 3,201 | 0,220 | 0,943 |
+| DF | 1,767 | 2,078 | 1,811 | 0,311 | 0,044 |
+| ES | 2,384 | 3,279 | 2,460 | 0,895 | 0,076 |
+| GO | 2,166 | 2,113 | 2,468 | -0,053 | 0,302 |
+| MA | 2,632 | 1,759 | 2,482 | -0,873 | -0,150 |
+| MG | 3,233 | 2,727 | 3,103 | -0,506 | -0,130 |
+| MS | 1,962 | 3,333 | 1,920 | 1,371 | -0,042 |
+| MT | 1,618 | 1,432 | 1,851 | -0,186 | 0,233 |
+| PA | 1,430 | 1,599 | 2,940 | 0,169 | 1,510 |
+| PB | 3,670 | 5,217 | 4,391 | 1,547 | 0,721 |
+| PE | 3,420 | 4,940 | 3,391 | 1,520 | -0,029 |
+| PI | 2,448 | 2,445 | 2,950 | -0,003 | 0,502 |
+| PR | 2,239 | 2,013 | 1,951 | -0,226 | -0,288 |
+| RJ | 2,957 | 2,878 | 2,918 | -0,079 | -0,039 |
+| RN | 2,736 | 2,373 | 3,035 | -0,363 | 0,299 |
+| RO | 1,537 | 2,261 | 1,323 | 0,724 | -0,214 |
+| RR | 1,565 | 1,205 | 1,381 | -0,360 | -0,184 |
+| RS | 1,784 | 2,646 | 1,958 | 0,862 | 0,174 |
+| SC | 1,997 | 1,911 | 1,680 | -0,086 | -0,317 |
+| SE | 3,376 | 3,924 | 3,472 | 0,548 | 0,096 |
+| SP | 3,539 | 4,081 | 3,461 | 0,542 | -0,078 |
+| TO | 2,565 | 2,047 | 2,733 | -0,518 | 0,168 |
+
+### Votos após 17h (%)
+
+| abrangencia | 2022_1t | 2022_2t | 2026_1t | dif_turnos_2022 | dif_1t_2026_menos_2022 |
+|---|---|---|---|---|---|
+| AC | 1,333 | 0,050 | — | -1,284 | — |
+| AP | 4,636 | 0,023 | — | -4,613 | — |
+| RO | 1,760 | 0,066 | — | -1,694 | — |
+| RR | 1,908 | 0,059 | — | -1,849 | — |
+| SE | 2,758 | — | — | — | — |
+| TO | 2,850 | 0,031 | — | -2,819 | — |
+
+### Com biometria, não habilitados por ela (% comparec., BU)
+
+| abrangencia | 2022_1t | 2022_2t | 2026_1t | dif_turnos_2022 | dif_1t_2026_menos_2022 |
+|---|---|---|---|---|---|
+| AC | 8,096 | 7,216 | 4,990 | -0,880 | -3,106 |
+| AL | 10,689 | 10,887 | 6,527 | 0,198 | -4,162 |
+| AM | 6,828 | 6,418 | 5,390 | -0,410 | -1,438 |
+| AP | 7,010 | 6,882 | 4,399 | -0,128 | -2,611 |
+| BA | 10,655 | 9,999 | 7,289 | -0,656 | -3,366 |
+| CE | 9,701 | 9,627 | 6,883 | -0,074 | -2,818 |
+| DF | 4,798 | 5,131 | 4,835 | 0,333 | 0,037 |
+| ES | 3,662 | 3,253 | 6,434 | -0,409 | 2,772 |
+| GO | 9,849 | 9,440 | 6,802 | -0,409 | -3,047 |
+| MA | 8,344 | 8,090 | 5,989 | -0,254 | -2,355 |
+| MG | 7,890 | 7,551 | 6,686 | -0,339 | -1,204 |
+| MS | 10,443 | 9,662 | 7,820 | -0,781 | -2,623 |
+| MT | 8,246 | 7,524 | 6,723 | -0,722 | -1,523 |
+| PA | 6,911 | 6,442 | 5,405 | -0,469 | -1,506 |
+| PB | 8,150 | 8,028 | 6,969 | -0,122 | -1,181 |
+| PE | 8,234 | 7,853 | 6,255 | -0,381 | -1,979 |
+| PI | 11,911 | 11,336 | 8,652 | -0,575 | -3,259 |
+| PR | 9,499 | 8,477 | 7,479 | -1,022 | -2,020 |
+| RJ | 8,627 | 8,419 | 7,051 | -0,208 | -1,576 |
+| RN | 11,517 | 11,157 | 7,909 | -0,360 | -3,608 |
+| RO | 11,086 | 10,223 | 6,244 | -0,863 | -4,842 |
+| RR | 3,194 | 3,279 | 3,843 | 0,085 | 0,649 |
+| RS | 11,620 | 9,627 | 8,227 | -1,993 | -3,393 |
+| SC | 9,907 | 8,540 | 7,556 | -1,367 | -2,351 |
+| SE | 9,583 | 9,383 | 6,761 | -0,200 | -2,822 |
+| SP | 7,754 | 6,776 | 6,023 | -0,978 | -1,731 |
+| TO | 9,803 | 8,105 | 5,282 | -1,698 | -4,521 |
+
