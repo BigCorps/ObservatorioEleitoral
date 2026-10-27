@@ -614,8 +614,14 @@ def publico_md() -> str:
         out.append(bloco(
             "E 2026?",
             "Os mesmos procedimentos aplicados a 2026. Do 2º turno, só as tabelas oficiais por seção já foram publicadas.",
-            f"1º turno de 2026: {n(r.comparecimento)} votantes de {n(r.aptos)} aptos (abstenção {n(r.pct_abstencao, 2)}%); "
-            f"brancos {n(r.pct_brancos, 2)}%, nulos {n(r.pct_nulos, 2)}%.",
+            (f"1º turno de 2026: {n(r.comparecimento_1t)} votantes de {n(r.aptos_1t)} aptos (abstenção {n(r.pct_abstencao_1t, 2)}%); "
+             f"brancos {n(r.pct_brancos_1t, 2)}%, nulos {n(r.pct_nulos_1t, 2)}%. 2º turno (tabelas oficiais por seção): "
+             f"{n(r.comparecimento_2t)} votantes (abstenção {n(r.pct_abstencao_2t, 2)}%); Lula {n(r.votos_13_2t)} "
+             f"({n(r.pct_validos_13_2t, 2)}% dos válidos), Flávio Bolsonaro {n(r.votos_22_2t)} ({n(r.pct_validos_22_2t, 2)}%); "
+             f"a identidade válidos = comparecimento − brancos − nulos fecha com resíduo {n(r.residuo_reconciliacao)}.")
+            if "comparecimento_1t" in br26.columns else
+            (f"1º turno de 2026: {n(r.comparecimento)} votantes de {n(r.aptos)} aptos (abstenção {n(r.pct_abstencao, 2)}%); "
+             f"brancos {n(r.pct_brancos, 2)}%, nulos {n(r.pct_nulos, 2)}%."),
             "Os totais por seção reproduzem o resultado oficial; a diferença em votos válidos corresponde aos "
             "votos dados a um candidato posteriormente considerados nulos (\"nulos técnicos\").",
             "Ver `docs/auditoria-2026.md`.",

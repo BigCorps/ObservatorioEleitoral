@@ -1,6 +1,6 @@
 # Comparação histórica 2022 × 2026 — Presidente
 
-_Gerado em 27/10/2026 00:32 UTC a partir de `resultados/comparativo/`._
+_Gerado em 27/10/2026 04:28 UTC a partir de `resultados/comparativo/`._
 
 **Pergunta central:** quais diferenças observadas em 2026 também ocorreram em 2022, quais podem ser explicadas pelas condições eleitorais e quais exigem verificação documental adicional?
 

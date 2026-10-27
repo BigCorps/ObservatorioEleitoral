@@ -1,12 +1,12 @@
 # Limitações e pendências
 
-_Atualizado em 27/10/2026 00:06 UTC._
+_Atualizado em 27/10/2026 04:28 UTC._
 
 ## Cobertura do processamento dos arquivos de urna (logs + BU binário)
 
-- 2022, 1º turno: 15/28 pacotes processados; faltam: BA, CE, GO, MA, MG, PA, PB, PE, PR, RJ, RS, SC, SP.
-- 2022, 2º turno: 9/28 pacotes processados; faltam: AL, AM, BA, CE, ES, GO, MA, MG, MT, PA, PB, PE, PI, PR, RJ, RN, RS, SC, SP.
-- 2026, 1º turno: 0/28 pacotes processados; faltam: AC, AL, AM, AP, BA, CE, DF, ES, GO, MA, MG, MS, MT, PA, PB, PE, PI, PR, RJ, RN, RO, RR, RS, SC, SE, SP, TO, ZZ.
+- 2022, 1º turno: 28/28 pacotes processados (completo).
+- 2022, 2º turno: 28/28 pacotes processados (completo).
+- 2026, 1º turno: 24/28 pacotes processados; faltam: BA, MG, RJ, SP.
 
 Enquanto houver pacotes faltando, os indicadores baseados em log (horários, intervalos,
 modalidade de habilitação, B6) **não são nacionais**: valem para as UFs processadas. Os
@@ -14,8 +14,11 @@ indicadores baseados no BU em CSV e nas tabelas oficiais são nacionais (todas a
 
 ## Dados não publicados ou indisponíveis
 
-- **2º turno de 2026** (25/10/2026): BU, arquivos de urna e tabelas ainda não estavam no Portal de
-  Dados Abertos em 27/10/2026. Totais oficiais conhecidos apenas pelo portal de resultados.
+- **2º turno de 2026** (25/10/2026): em 27/10/2026 estavam publicadas apenas as tabelas oficiais por
+  seção (Detalhe da apuração por seção e Votação por seção, geradas em 26/10/2026), que foram usadas
+  nos indicadores de resultado (fonte marcada `DSEC+VSEC`). **Ainda não publicados:** BU em CSV,
+  arquivos de urna (logs, BU binário) e tabelas por município/zona do 2º turno; por isso os testes de
+  log, horário, biometria efetiva e B2/B6 do 2º turno de 2026 estão pendentes.
 - **Especificação ASN.1 oficial e catálogo de mensagens do log**: a página de documentação técnica
   do TSE respondeu HTTP 403 a este ambiente; usaram-se espelhos (procedência em `especificacoes/`),
   validados pela decodificação e pela concordância com o BU publicado.
@@ -50,8 +53,9 @@ identificada pelo SHA-256.
 ## Questões metodológicas em aberto
 
 - **Assinaturas digitais** (`.vscmr`/`-vota.vsc`) não foram verificadas criptograficamente nesta etapa.
-- **Ajustes de relógio**: o log registra a aplicação "AJUSTE DE DATA E HORA"; a contagem sistemática
-  ainda não foi incorporada ao leitor (identificado em diagnóstico de caso, RN 18139/65/32).
+- **Ajustes de relógio**: o log registra a aplicação "AJUSTE DE DATA E HORA". A contagem foi
+  incorporada ao leitor depois do processamento de 2022 (identificada no caso RN 18139/65/32), e por
+  isso só existe para 2026 (`secoes_com_ajuste_de_hora`); para 2022 exige reprocessar os logs.
 - **Transferências temporárias**: ~3% das seções com variação de aptos entre turnos não são
   explicadas pelo arquivo de TTE (gerado em 2024); verificação documental pendente.
 - **Modelos de urna**: sem covariáveis anteriores por seção, efeito de modelo e de localização não se

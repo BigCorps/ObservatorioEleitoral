@@ -1,10 +1,12 @@
 # Auditoria 2026 — Presidente
 
-_Gerado automaticamente por `scripts/gerar_relatorios.py` em 27/10/2026 00:32 UTC. Todos os números vêm de `resultados/2026/`. Ver método em `docs/metodologia.md`._
+_Gerado automaticamente por `scripts/gerar_relatorios.py` em 27/10/2026 04:28 UTC. Todos os números vêm de `resultados/2026/`. Ver método em `docs/metodologia.md`._
 
 ## Cobertura dos arquivos de urna (logs e BU binário)
 
-Nenhum pacote de arquivos de urna processado.
+- 1º turno: 24 de 28 pacotes (27 UFs + exterior) processados; 270.338 seções lidas, 0 com falha de leitura, 29 sem log no pacote.
+
+**Pacotes ainda não processados** — 1º turno: BA, MG, RJ, SP. Indicadores de log abaixo valem apenas para a cobertura indicada.
 
 ## 1. Totais nacionais reproduzidos a partir das seções
 

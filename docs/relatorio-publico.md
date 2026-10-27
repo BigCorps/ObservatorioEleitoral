@@ -22,7 +22,7 @@ Somando os boletins de cada uma das cerca de 472 mil seções eleitorais de 2022
 **Classificação:** Conferido, com incompatibilidades pontuais documentadas
 
 - **O que verificamos?** Comparamos, seção por seção, o boletim publicado em tabela com o arquivo binário assinado que cada urna transmitiu, com duas outras tabelas do TSE e com o log (diário de eventos) da urna.
-- **O que os números mostram?** 17 de 29 comparações sem nenhuma diferença. Restam 18 diferenças sem explicação documental, todas entre o log de poucas urnas e o boletim.
+- **O que os números mostram?** 20 de 32 comparações sem nenhuma diferença. Restam 260 diferenças sem explicação documental, todas entre o log de poucas urnas e o boletim.
 - **O que significa?** Votos e totais coincidem em todas as publicações; as diferenças restantes estão no registro de eventos, não nos votos publicados.
 - **Existe explicação conhecida?** Casos explicados: seções que votaram em cédula após falha da urna, troca de urna com logs de várias seções no mesmo pacote, urna desligada no meio de um voto.
 - **O que ainda não sabemos?** Os casos restantes precisam da ata da mesa receptora (documento físico) para serem esclarecidos.
@@ -35,7 +35,7 @@ Somando os boletins de cada uma das cerca de 472 mil seções eleitorais de 2022
 **Classificação:** Conferido
 
 - **O que verificamos?** Convertemos o relógio de cada urna para o horário de Brasília (a urna marca hora local) e contamos os votos antes das 8h e depois das 17h.
-- **O que os números mostram?** Antes das 8h: 0 votos no 1º turno e 0 no 2º. Depois das 17h: 2,55% dos votos no 1º turno e 0,047% no 2º (nas seções com log processado).
+- **O que os números mostram?** Antes das 8h: 0 votos no 1º turno e 0 no 2º. Depois das 17h: 3,51% dos votos no 1º turno e 0,033% no 2º (nas seções com log processado).
 - **O que significa?** Votar depois das 17h é permitido para quem está na fila. No 1º turno havia 5 cargos, o que alonga as filas.
 - **Existe explicação conhecida?** Fila com senha às 17h (Resolução TSE 23.669/2021, art. 136).
 - **O que ainda não sabemos?** O log não registra quem recebeu senha.
@@ -68,6 +68,17 @@ Somando os boletins de cada uma das cerca de 472 mil seções eleitorais de 2022
 - **Como conferir?** `resultados/2022/modelos_efeito_controlado.csv`; gráfico abaixo.
 
 ![Modelos de urna](../resultados/2022/graficos/modelos_efeito_22.png)
+
+### E 2026?
+
+**Classificação:** Conferido (1º turno) / Pendente (2º turno)
+
+- **O que verificamos?** Os mesmos procedimentos aplicados a 2026. Do 2º turno, só as tabelas oficiais por seção já foram publicadas.
+- **O que os números mostram?** 1º turno de 2026: 125.275.835 votantes de 158.745.007 aptos (abstenção 21,08%); brancos 1,84%, nulos 2,93%. 2º turno (tabelas oficiais por seção): 128.236.074 votantes (abstenção 19,22%); Lula 64.256.232 (51,79% dos válidos), Flávio Bolsonaro 59.826.041 (48,21%); a identidade válidos = comparecimento − brancos − nulos fecha com resíduo 0.
+- **O que significa?** Os totais por seção reproduzem o resultado oficial; a diferença em votos válidos corresponde aos votos dados a um candidato posteriormente considerados nulos ("nulos técnicos").
+- **Existe explicação conhecida?** Ver `docs/auditoria-2026.md`.
+- **O que ainda não sabemos?** Segundo turno de 2026: BU, logs e arquivos das urnas aguardando publicação.
+- **Como conferir?** `docs/auditoria-2026.md` e `docs/comparativo-historico.md`.
 
 
 ## Como ler as classificações
