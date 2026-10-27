@@ -1,0 +1,29 @@
+=== logd.dat: 4283 linhas do dia; ids={'67305985': 4283}
+    {'Urna pronta para receber votos': 2, 'Eleitor foi habilitado': 298, 'Voto confirmado para [Presidente]': 298, 'O voto do eleitor foi computado': 297, 'Inicio do Encerramento': 1}
+      07:23:38 INFO   67305985 LOGD  Urna ligada em 30/10/2022 às 07:22:54
+      07:24:21 INFO   67305985 GAP   Iniciando aplicação - Oficial - 2º turno
+      07:24:21 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2010
+      07:24:32 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2010
+      07:24:36 INFO   67305985 GAP   Modo de carga da UE - Votação
+      07:24:36 INFO   67305985 GAP   Município: 07277
+      07:24:37 INFO   67305985 GAP   Zona Eleitoral: 0022
+      07:24:37 INFO   67305985 GAP   Seção Eleitoral: 0122
+      07:24:41 INFO   67305985 GAP   Serial de votação da MV: F77D0057 26/09/2022 às 11:16:52 em ZMA022WKS51760
+      07:25:22 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      07:25:58 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 2º turno
+      07:35:50 ERRO   67305985 VOTA  Digitado título inválido para o registro de mesário
+      08:00:03 INFO   67305985 VOTA  Urna pronta para receber votos
+      15:35:43 INFO   67305985 LOGD  Urna ligada em 30/10/2022 às 15:34:46
+      15:36:25 INFO   67305985 GAP   Iniciando aplicação - Oficial - 2º turno
+      15:36:25 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2010
+      15:36:43 INFO   67305985 GAP   Identificação do Modelo de Urna: UE2010
+      15:36:47 INFO   67305985 GAP   Modo de carga da UE - Votação
+      15:36:47 INFO   67305985 GAP   Município: 07277
+      15:36:47 INFO   67305985 GAP   Zona Eleitoral: 0022
+      15:36:47 INFO   67305985 GAP   Seção Eleitoral: 0122
+      15:36:51 INFO   67305985 GAP   Serial de votação da MV: F77D0057 26/09/2022 às 11:16:52 em ZMA022WKS51760
+      15:37:32 INFO   67305985 GAP   Iniciando aplicação - ELEIÇÃO OFICIAL SEGUNDO TURNO - Oficial - 2º turno
+      15:37:58 INFO   67305985 VOTA  Iniciando aplicação - Oficial - 2º turno
+      15:38:52 INFO   67305985 VOTA  Urna pronta para receber votos
+      17:03:24 INFO   67305985 VOTA  Inicio do Encerramento
+      17:03:25 INFO   67305985 VOTA  Gerando relatório [BU] [INÍCIO]
