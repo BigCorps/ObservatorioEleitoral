@@ -757,9 +757,9 @@ function renderAuditFocus(rows) {
     const checked=numeric(r.registros_comparados);
     const item=node('div','audit-breakdown-row');
     item.append(node('span','audit-breakdown-name',titleFor(r)),
-      node('strong',null,number(residual)+' apontamentos'));
+      node('strong',null,number(residual)+' '+(residual===1?'apontamento':'apontamentos')));
     const ratio=node('small',null,checked>0
-      ? percent(residual/checked*100)+' dos '+number(checked)+' registros comparados neste teste'
+      ? new Intl.NumberFormat('pt-BR',{minimumFractionDigits:4,maximumFractionDigits:4}).format(residual/checked*100)+'% dos '+number(checked)+' registros comparados neste teste'
       : 'Base não disponível');
     item.append(ratio);
     breakdown.append(item);
