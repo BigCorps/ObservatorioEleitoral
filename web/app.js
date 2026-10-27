@@ -10,11 +10,12 @@ const ufNames = {
   MG:'Minas Gerais',PA:'Pará',PB:'Paraíba',PR:'Paraná',PE:'Pernambuco',
   PI:'Piauí',RJ:'Rio de Janeiro',RN:'Rio Grande do Norte',RS:'Rio Grande do Sul',
   RO:'Rondônia',RR:'Roraima',SC:'Santa Catarina',SP:'São Paulo',
-  SE:'Sergipe',TO:'Tocantins'
+  SE:'Sergipe',TO:'Tocantins',ZZ:'Exterior (ZZ)'
 };
 const metricNames = {
   pct_abstencao:'Abstenção',pct_brancos:'Votos brancos',pct_nulos:'Votos nulos',
-  pct_hab_manual_apos_falha_log:'Liberação manual após falha',
+  pct_hab_sem_biometria_log:'Sem biometria cadastrada',
+  pct_hab_manual_apos_falha_log:'Biometria não reconhecida (liberação manual)',
   pct_votos_apos_17h:'Votos após 17h',comparecimento:'Comparecimento'
 };
 const files = {
@@ -63,6 +64,19 @@ function timeFromDecimal(value) {
 }
 function key(year,round,uf){return year+'-'+round+'-'+uf;}
 function indicator(year,round,uf) {return data?.indicators.get(key(year,round,uf))||null;}
+const biometricFields=new Set(['pct_hab_biometrica_log','pct_hab_manual_apos_falha_log','pct_hab_sem_biometria_log','pct_biometria_nao_habilitados_bu']);
+function effectiveMetric(year,round,uf,field) {
+  if(uf==='ZZ' && biometricFields.has(field)) return null;
+  return numeric(indicator(year,round,uf)?.[field]);
+}
+function metricValue(year,round,uf,field) {
+  if(field==='pct_brancos_nulos') {
+    const a=effectiveMetric(year,round,uf,'pct_brancos');
+    const b=effectiveMetric(year,round,uf,'pct_nulos');
+    return a===null||b===null?null:a+b;
+  }
+  return effectiveMetric(year,round,uf,field);
+}
 function node(tag,className,text) {
   const el=document.createElement(tag);
   if(className)el.className=className;
@@ -72,7 +86,8 @@ function node(tag,className,text) {
 function setText(id,value) {document.getElementById(id).textContent=value;}
 function setUpFilters() {
   const select=document.getElementById('ufFilter');
-  Object.keys(ufNames).filter(uf=>uf!=='BR').sort((a,b)=>ufNames[a].localeCompare(ufNames[b],'pt-BR')).forEach(uf=>{
+  const exterior=node('option',null,'Exterior (ZZ) · votação fora do país'); exterior.value='ZZ';select.append(exterior);
+  Object.keys(ufNames).filter(uf=>uf!=='BR'&&uf!=='ZZ').sort((a,b)=>ufNames[a].localeCompare(ufNames[b],'pt-BR')).forEach(uf=>{
     const opt=node('option',null,uf+' · '+ufNames[uf]);opt.value=uf;select.append(opt);
   });
   for(const [id,field] of [['yearFilter','year'],['roundFilter','round'],['ufFilter','uf'],['trendMetric','trendMetric'],['rankingMetric','rankingMetric']]){
@@ -90,8 +105,8 @@ function setUpFilters() {
 function renderCoverage() {
   const partial=state.year==='2026'&&state.round==='2';
   const badge=document.getElementById('coverageBadge');
-  badge.textContent=partial?'2026 · 2º turno: BU e logs pendentes':'BU e logs processados · confira cobertura';
-  badge.classList.toggle('partial',partial);
+  badge.textContent=partial?'2026 · 2º turno: BU e logs pendentes':state.uf==='ZZ'?'Exterior · cobertura de logs específica':'BU e logs processados · confira cobertura';
+  badge.classList.toggle('partial',partial||state.uf==='ZZ');
 }
 function renderKpis() {
   const d=indicator(state.year,state.round,state.uf)||{};
@@ -100,7 +115,9 @@ function renderKpis() {
   setText('kpiAbstention',percent(d.pct_abstencao));
   const blank=numeric(d.pct_brancos),nullVotes=numeric(d.pct_nulos);
   setText('kpiBlankNull',blank===null||nullVotes===null?'—':percent(blank+nullVotes));
-  setText('kpiBiometry',percent(d.pct_hab_manual_apos_falha_log));
+  setText('kpiBioNoReg',percent(effectiveMetric(state.year,state.round,state.uf,'pct_hab_sem_biometria_log')));
+  setText('kpiBiometry',percent(effectiveMetric(state.year,state.round,state.uf,'pct_hab_manual_apos_falha_log')));
+  setText('kpiBioConfirmed',percent(effectiveMetric(state.year,state.round,state.uf,'pct_hab_biometrica_log')));
   setText('kpiLate',percent(d.pct_votos_apos_17h));
   const first=timeFromDecimal(d.mediana_primeiro_voto_h),last=timeFromDecimal(d.mediana_ultimo_voto_h);
   setText('kpiClock',first==='—'||last==='—'?'—':first+' → '+last);
@@ -109,7 +126,7 @@ function renderTrend() {
   const chart=document.getElementById('trendChart');
   chart.replaceChildren();
   const combinations=[['2022','1'],['2022','2'],['2026','1'],['2026','2']];
-  const values=combinations.map(([year,round])=>numeric(indicator(year,round,state.uf)?.[state.trendMetric]));
+  const values=combinations.map(([year,round])=>metricValue(year,round,state.uf,state.trendMetric));
   const available=values.filter(v=>v!==null);
   const max=Math.max(1,...available);
   const absolute=state.trendMetric==='comparecimento';
@@ -129,6 +146,12 @@ function renderTrend() {
 function renderTimeline() {
   const chart=document.getElementById('timelineChart');
   chart.replaceChildren();
+  if(state.uf==='ZZ'){
+    chart.append(node('p','empty-chart','Curva de 15 minutos do exterior ainda não publicada neste conjunto consolidado.'));
+    chart.setAttribute('aria-label','Distribuição de votos por horário do exterior não disponível');
+    setText('timelineNote','Para o exterior, o painel oferece comparecimento e indicadores por turno, mas não uma curva de votação por 15 minutos.');
+    return;
+  }
   const all=(state.year==='2022'?data.timeline2022:data.timeline2026);
   const rows=all.filter(r=>r.turno===state.round && r.abrangencia.startsWith('BR')).sort((a,b)=>Number(a.minuto_do_dia)-Number(b.minuto_do_dia));
   if(!rows.length){
@@ -155,7 +178,7 @@ function renderRanking() {
   const list=document.getElementById('stateRanking');
   list.replaceChildren();
   setText('rankingTitle',metricNames[metric]+' por estado');
-  const rows=Object.keys(ufNames).filter(uf=>uf!=='BR').map(uf=>({uf,value:numeric(indicator(state.year,state.round,uf)?.[metric])})).filter(x=>x.value!==null).sort((a,b)=>b.value-a.value);
+  const rows=Object.keys(ufNames).filter(uf=>uf!=='BR'&&uf!=='ZZ').map(uf=>({uf,value:metricValue(state.year,state.round,uf,metric)})).filter(x=>x.value!==null).sort((a,b)=>b.value-a.value);
   if(!rows.length){
     list.append(node('p','empty-chart','Esse indicador depende de logs ainda não disponíveis para o turno selecionado.'));
     return;
@@ -178,13 +201,16 @@ function renderRanking() {
   });
 }
 function renderComparison() {
-  setText('comparisonScope',ufNames[state.uf]+(state.uf==='BR'?' · sem exterior':''));
+  setText('comparisonScope',state.uf==='ZZ'?'Exterior (ZZ)':ufNames[state.uf]+(state.uf==='BR'?' · sem exterior':''));
   const rows=[
     ['Comparecimento','comparecimento','number'],
     ['Abstenção','pct_abstencao','percent'],
     ['Votos brancos','pct_brancos','percent'],
     ['Votos nulos','pct_nulos','percent'],
-    ['Liberação manual (log)','pct_hab_manual_apos_falha_log','percent'],
+    ['Brancos + nulos','pct_brancos_nulos','percent'],
+    ['Sem biometria cadastrada (log)','pct_hab_sem_biometria_log','percent'],
+    ['Biometria não reconhecida (log)','pct_hab_manual_apos_falha_log','percent'],
+    ['Biometria confirmada (log)','pct_hab_biometrica_log','percent'],
     ['Votos após 17h (log)','pct_votos_apos_17h','percent'],
     ['Primeiro voto (mediana)','mediana_primeiro_voto_h','time'],
     ['Último voto (mediana)','mediana_ultimo_voto_h','time']
@@ -194,7 +220,7 @@ function renderComparison() {
     const tr=node('tr');
     const th=node('td',null,label);tr.append(th);
     for(const [year,round] of [['2022','1'],['2022','2'],['2026','1'],['2026','2']]){
-      const raw=indicator(year,round,state.uf)?.[field];
+      const raw=metricValue(year,round,state.uf,field);
       const value=type==='number'?number(raw):type==='percent'?percent(raw):timeFromDecimal(raw);
       const td=node('td',value==='—'?'na':null,value);
       if(value==='—')td.title='Dado ainda não disponível';
@@ -203,9 +229,58 @@ function renderComparison() {
     target.append(tr);
   }
 }
+
+function renderScopeInfo() {
+  const el=document.getElementById('scopeDisclaimer');
+  if(state.uf==='ZZ'){
+    const d=indicator(state.year,state.round,'ZZ')||{};
+    const sections=numeric(d.secoes),logs=numeric(d.secoes_com_log);
+    const coverage=sections&&logs!==null?(' Cobertura dos logs: '+number(logs)+' de '+number(sections)+' seções.'): ' Logs técnicos ainda não disponíveis para este recorte.';
+    el.textContent='Exterior (ZZ): resultados oficiais por seção apresentados separadamente das 27 UFs.'+coverage+' As categorias biométricas não são diretamente comparáveis às utilizadas no território nacional; aparecem como não aplicáveis. Não é possível associar modalidade de identificação a candidato.';
+  }else if(state.uf==='BR'){
+    el.textContent='O recorte “Brasil” soma as 27 UFs, sem o eleitorado no exterior. Para conferir o exterior, selecione “Exterior (ZZ)”. Percentuais de biometria referem-se às habilitações nos logs disponíveis; nenhuma modalidade revela como uma pessoa votou.';
+  }else{
+    el.textContent=ufNames[state.uf]+': dados estaduais por turno. Os percentuais biométricos são calculados sobre as habilitações nos logs disponíveis, não sobre o cadastro geral. Variações não demonstram irregularidade isoladamente.';
+  }
+}
+function signedDifference(a,b){
+  return a===null||b===null?null:b-a;
+}
+function formatDifference(value,type){
+  if(value===null||!Number.isFinite(value))return '—';
+  const prefix=value>0?'+':value<0?'−':'';
+  const n=Math.abs(value);
+  return prefix+(type==='count'?number(Math.round(n)):df.format(n)+' p.p.');
+}
+function renderDelta(){
+  const rows=[
+    ['Comparecimento','comparecimento','count'],
+    ['Abstenção','pct_abstencao','pp'],
+    ['Brancos + nulos','pct_brancos_nulos','pp'],
+    ['Votos brancos','pct_brancos','pp'],
+    ['Votos nulos','pct_nulos','pp'],
+    ['Sem biometria cadastrada (log)','pct_hab_sem_biometria_log','pp'],
+    ['Biometria não reconhecida (log)','pct_hab_manual_apos_falha_log','pp'],
+    ['Votos após 17h (log)','pct_votos_apos_17h','pp']
+  ];
+  const tbody=document.getElementById('deltaBody');tbody.replaceChildren();
+  for(const [label,field,type] of rows){
+    const [a,b,c,d]=[['2022','1'],['2022','2'],['2026','1'],['2026','2']].map(([year,round])=>metricValue(year,round,state.uf,field));
+    const delta22=signedDifference(a,b),delta26=signedDifference(c,d);
+    const compareDeltas=delta22===null||delta26===null?null:delta26-delta22;
+    const values=[delta22,delta26,compareDeltas,signedDifference(a,c),signedDifference(b,d)];
+    const tr=node('tr');tr.append(node('td',null,label));
+    values.forEach(v=>{
+      const td=node('td',v===null?'na':null,formatDifference(v,type));
+      if(v===null)td.title='Comparação pendente: faltam dados para este par';
+      tr.append(td);
+    });
+    tbody.append(tr);
+  }
+}
 function render() {
   if(!data)return;
-  renderCoverage();renderKpis();renderTrend();renderTimeline();renderRanking();renderComparison();
+  renderCoverage();renderKpis();renderScopeInfo();renderTrend();renderTimeline();renderRanking();renderComparison();renderDelta();
 }
 async function init() {
   setUpFilters();

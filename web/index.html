@@ -46,7 +46,7 @@
 
     <section class="dashboard-section" id="painel">
       <div class="wrap">
-        <div class="section-intro"><div><span class="section-kicker">01 / EXPLORE OS DADOS</span><h2>Panorama eleitoral</h2><p>Escolha um recorte para atualizar os indicadores e as comparações.</p></div><span id="coverageBadge" class="coverage-badge">Carregando dados…</span></div>
+        <div class="section-intro"><div><span class="section-kicker">01 / EXPLORE OS DADOS</span><h2>Panorama eleitoral</h2><p>Escolha um recorte para atualizar os indicadores, incluindo os resultados do exterior (ZZ).</p></div><span id="coverageBadge" class="coverage-badge">Carregando dados…</span></div>
         <div class="filter-card">
           <div class="filter-group"><label for="yearFilter">ELEIÇÃO</label><select id="yearFilter"><option value="2022">2022</option><option value="2026">2026</option></select></div>
           <div class="filter-group"><label for="roundFilter">TURNO</label><select id="roundFilter"><option value="1">1º turno</option><option value="2" selected>2º turno</option></select></div>
@@ -58,14 +58,17 @@
           <article class="kpi"><span class="kpi-label">Comparecimento</span><strong id="kpiAttendance">—</strong><span id="kpiAttendanceSub" class="kpi-sub">Eleitores que votaram</span></article>
           <article class="kpi"><span class="kpi-label">Abstenção</span><strong id="kpiAbstention">—</strong><span class="kpi-sub">Dos eleitores aptos</span></article>
           <article class="kpi"><span class="kpi-label">Brancos + nulos</span><strong id="kpiBlankNull">—</strong><span class="kpi-sub">Dos que compareceram</span></article>
-          <article class="kpi"><span class="kpi-label">Liberação manual após falha</span><strong id="kpiBiometry">—</strong><span class="kpi-sub">Percentual das habilitações em log</span></article>
+          <article class="kpi"><span class="kpi-label">Sem biometria cadastrada</span><strong id="kpiBioNoReg">—</strong><span class="kpi-sub">Habilitações sem cadastro biométrico (log)</span></article>
+          <article class="kpi"><span class="kpi-label">Biometria não reconhecida</span><strong id="kpiBiometry">—</strong><span class="kpi-sub">Liberação manual após falha (log)</span></article>
+          <article class="kpi"><span class="kpi-label">Biometria confirmada</span><strong id="kpiBioConfirmed">—</strong><span class="kpi-sub">Habilitações biométricas (log)</span></article>
           <article class="kpi"><span class="kpi-label">Votos após 17h</span><strong id="kpiLate">—</strong><span class="kpi-sub">Percentual dos votos nos logs</span></article>
           <article class="kpi"><span class="kpi-label">Primeiro → último voto</span><strong id="kpiClock">—</strong><span class="kpi-sub">Medianas das seções, hora de Brasília</span></article>
         </div>
-        <p class="data-disclaimer">O recorte “Brasil” soma as 27 UFs, <strong>sem o eleitorado no exterior</strong>. Os totais podem diferir da apuração nacional completa. Indicadores dos logs cobrem somente as seções disponíveis; nenhum horário permite identificar o voto dado a um candidato.</p>
+        <div class="bio-explainer"><div><strong>Sem biometria cadastrada</strong><p>Eleitor sem registro biométrico no cadastro.</p></div><div><strong>Biometria não reconhecida</strong><p>Eleitor com cadastro, mas liberado pelo mesário após falha na leitura.</p></div><div><strong>Biometria confirmada</strong><p>Habilitação realizada com reconhecimento biométrico.</p></div></div>
+        <p id="scopeDisclaimer" class="data-disclaimer">O recorte “Brasil” soma as 27 UFs, sem o eleitorado no exterior. Percentuais de biometria referem-se às habilitações registradas nos logs disponíveis e não permitem inferir como alguém votou.</p>
         <div class="two-columns overview-charts">
           <article class="chart-card">
-            <div class="card-heading"><div><span class="card-eyebrow">COMPARAÇÃO DOS TURNOS</span><h3>Como o indicador mudou?</h3></div><div class="mini-filter"><label for="trendMetric">Indicador</label><select id="trendMetric"><option value="pct_abstencao">Abstenção</option><option value="pct_brancos">Votos brancos</option><option value="pct_nulos">Votos nulos</option><option value="pct_hab_manual_apos_falha_log">Liberação manual (log)</option><option value="pct_votos_apos_17h">Após 17h (log)</option><option value="comparecimento">Comparecimento</option></select></div></div>
+            <div class="card-heading"><div><span class="card-eyebrow">COMPARAÇÃO DOS TURNOS</span><h3>Como o indicador mudou?</h3></div><div class="mini-filter"><label for="trendMetric">Indicador</label><select id="trendMetric"><option value="pct_abstencao">Abstenção</option><option value="pct_brancos">Votos brancos</option><option value="pct_nulos">Votos nulos</option><option value="pct_hab_sem_biometria_log">Sem biometria cadastrada (log)</option><option value="pct_hab_manual_apos_falha_log">Biometria não reconhecida (log)</option><option value="pct_votos_apos_17h">Após 17h (log)</option><option value="comparecimento">Comparecimento</option></select></div></div>
             <div id="trendChart" class="trend-chart" role="img" aria-label="Comparação dos quatro turnos"></div>
             <p class="chart-note" id="trendNote">Valores calculados a partir das tabelas e logs oficiais publicados.</p>
           </article>
@@ -80,9 +83,9 @@
     </section>
 
     <section class="states-section" id="estados"><div class="wrap">
-      <div class="section-intro"><div><span class="section-kicker">02 / BRASIL EM PERSPECTIVA</span><h2>Explore os 27 estados</h2><p>Compare proporções, veja os contrastes regionais e toque em uma UF para abrir seu recorte.</p></div></div>
+      <div class="section-intro"><div><span class="section-kicker">02 / BRASIL EM PERSPECTIVA</span><h2>Explore os 27 estados</h2><p>Compare as 27 UFs e selecione “Exterior (ZZ)” no filtro principal para analisar os votos fora do país.</p></div></div>
       <div class="states-layout"><div class="states-lead"><span class="eyebrow-small">O QUE OBSERVAR</span><h3>Uma diferença chama a atenção.<br><em>O contexto explica?</em></h3><p>Variações de comparecimento, votos brancos e nulos, biometria e horários têm explicações possíveis. O estudo mostra os números e documenta o que ainda precisa de conferência.</p><div class="attention-card"><strong>Importante</strong><p>Correlação não é prova de fraude, e diferenças estaduais não revelam como votou uma pessoa sem biometria.</p></div></div>
-      <article class="states-card"><div class="card-heading"><div><span class="card-eyebrow">CLASSIFICAÇÃO POR UF</span><h3 id="rankingTitle">Abstenção por estado</h3></div><div class="mini-filter"><label for="rankingMetric">Ordenar por</label><select id="rankingMetric"><option value="pct_abstencao">Abstenção</option><option value="pct_brancos">Brancos</option><option value="pct_nulos">Nulos</option><option value="pct_hab_manual_apos_falha_log">Liberação manual</option><option value="pct_votos_apos_17h">Após 17h</option></select></div></div><div class="ranking-head"><span>UF</span><span>PERCENTUAL</span></div><div id="stateRanking" class="ranking-list" aria-label="Estados ordenados por indicador"></div><div class="ranking-foot">Clique em um estado para atualizar o painel superior.</div></article>
+      <article class="states-card"><div class="card-heading"><div><span class="card-eyebrow">CLASSIFICAÇÃO POR UF</span><h3 id="rankingTitle">Abstenção por estado</h3></div><div class="mini-filter"><label for="rankingMetric">Ordenar por</label><select id="rankingMetric"><option value="pct_abstencao">Abstenção</option><option value="pct_brancos">Brancos</option><option value="pct_nulos">Nulos</option><option value="pct_hab_sem_biometria_log">Sem biometria cadastrada</option><option value="pct_hab_manual_apos_falha_log">Biometria não reconhecida</option><option value="pct_votos_apos_17h">Após 17h</option></select></div></div><div class="ranking-head"><span>UF</span><span>PERCENTUAL</span></div><div id="stateRanking" class="ranking-list" aria-label="Estados ordenados por indicador"></div><div class="ranking-foot">Clique em um estado para atualizar o painel superior.</div></article>
       </div>
     </div></section>
 
@@ -90,7 +93,10 @@
       <div class="section-intro"><div><span class="section-kicker">03 / COMPARATIVO HISTÓRICO</span><h2>Quatro turnos, lado a lado</h2><p>O mesmo indicador medido nas eleições de 2022 e 2026.</p></div><span class="comparison-chip" id="comparisonScope">Brasil · 27 UFs</span></div>
       <div class="comparison-scroll"><table class="comparison-table"><thead><tr><th scope="col">Indicador</th><th scope="col">2022 · 1º</th><th scope="col">2022 · 2º</th><th scope="col">2026 · 1º</th><th scope="col">2026 · 2º</th></tr></thead><tbody id="comparisonBody"></tbody></table></div>
       <div class="comparison-explainer"><span class="explainer-symbol">i</span><p>As regras de identificação, modelos de urna, cargos em disputa e composição das seções mudaram entre os anos. Comparações diretas exigem esses controles. Um traço (—) significa <strong>dado ainda não disponível</strong>, não valor zero.</p></div>
-    </div></section>
+    <div class="delta-header"><div><span class="card-eyebrow">MUDANÇAS ARITMÉTICAS</span><h3>O que mudou de um turno para outro?</h3><p>Além dos quatro resultados lado a lado, veja quanto cada indicador variou em cada eleição e como essas variações diferem entre 2022 e 2026.</p></div></div>
+      <div class="comparison-scroll"><table class="comparison-table delta-table"><thead><tr><th scope="col">Indicador</th><th scope="col">Δ turnos 2022</th><th scope="col">Δ turnos 2026</th><th scope="col">Diferença dos Δ</th><th scope="col">2026 − 2022 (1º)</th><th scope="col">2026 − 2022 (2º)</th></tr></thead><tbody id="deltaBody"></tbody></table></div>
+      <div class="comparison-explainer"><span class="explainer-symbol">i</span><p>Δ turnos = resultado do 2º menos o do 1º turno. “Diferença dos Δ” compara essas duas variações. Para percentuais, mostramos <strong>pontos percentuais (p.p.)</strong>; para comparecimento, pessoas. Sinal positivo significa aumento, não avaliação favorável. <strong>Essas diferenças não são testes de significância estatística</strong> nem evidência isolada de irregularidade.</p></div>
+      </div></section>
 
     <section class="method-section" id="metodologia"><div class="wrap">
       <div class="section-intro"><div><span class="section-kicker">04 / AUDITORIA ABERTA</span><h2>Conferir é parte do método.</h2><p>Os números precisam de origem, cálculo reproduzível e limitações transparentes.</p></div></div>
