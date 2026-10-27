@@ -1,6 +1,8 @@
 teste,descricao,campo,fonte_a,fonte_b,turno,divergencias,explicadas,nao_explicadas,soma_abs_diferencas_nao_explicadas
 A2,Seção presente no BU-CSV e ausente no pacote de arquivos de urna (e vice-versa),presenca,BWEB,BUBIN,1,1,0,1,
-A2,Seção presente no BU-CSV e ausente no pacote de arquivos de urna (e vice-versa),presenca,BWEB,BUBIN,2,36088,0,36088,
+A2,Seção presente no BU-CSV e ausente no pacote de arquivos de urna (e vice-versa),presenca,BWEB,BUBIN,2,0,0,0,
+A2o,"Seção no resultado oficial por seção e ausente no pacote de arquivos de urna (e vice-versa), turno sem BU-CSV",presenca,DSEC+VSEC,BUBIN,1,0,0,0,
+A2o,"Seção no resultado oficial por seção e ausente no pacote de arquivos de urna (e vice-versa), turno sem BU-CSV",presenca,DSEC+VSEC,BUBIN,2,0,0,0,
 A3,Seções no Detalhe por seção sem BU-CSV (e vice-versa),presenca,DSEC,BWEB,1,42,42,0,
 A3,Seções no Detalhe por seção sem BU-CSV (e vice-versa),presenca,DSEC,BWEB,2,0,0,0,
 B1,"Comparecimento = nominais + brancos + nulos (BU-CSV, Presidente)",comparecimento_vs_soma_votos,BWEB,BWEB,1,0,0,0,
@@ -54,9 +56,9 @@ B6,BU-CSV x log da urna (contagens),comparecimento_vs_votos_computados,BWEB,LOG,
 B6,BU-CSV x log da urna (contagens),comparecimento_vs_votos_presidente_mais_nulos_suspensao,BWEB,LOG,1,154,148,6,57
 B6,BU-CSV x log da urna (contagens),comparecimento_vs_votos_presidente_mais_nulos_suspensao,BWEB,LOG,2,0,0,0,
 B6o,Resultado oficial por seção x log da urna (turno sem BU-CSV),comparecimento_vs_votos_computados,DSEC+VSEC,LOG,1,0,0,0,
-B6o,Resultado oficial por seção x log da urna (turno sem BU-CSV),comparecimento_vs_votos_computados,DSEC+VSEC,LOG,2,0,0,0,
+B6o,Resultado oficial por seção x log da urna (turno sem BU-CSV),comparecimento_vs_votos_computados,DSEC+VSEC,LOG,2,6,0,6,54
 B6o,Resultado oficial por seção x log da urna (turno sem BU-CSV),comparecimento_vs_votos_presidente_mais_nulos_suspensao,DSEC+VSEC,LOG,1,0,0,0,
-B6o,Resultado oficial por seção x log da urna (turno sem BU-CSV),comparecimento_vs_votos_presidente_mais_nulos_suspensao,DSEC+VSEC,LOG,2,2,2,0,
+B6o,Resultado oficial por seção x log da urna (turno sem BU-CSV),comparecimento_vs_votos_presidente_mais_nulos_suspensao,DSEC+VSEC,LOG,2,53,48,5,55
 B7,"Resultado oficial por seção (DSEC+VSEC) x BU binário (.bu), turno sem BU-CSV",aptos,DSEC+VSEC,BUBIN,1,0,0,0,
 B7,"Resultado oficial por seção (DSEC+VSEC) x BU binário (.bu), turno sem BU-CSV",aptos,DSEC+VSEC,BUBIN,2,0,0,0,
 B7,"Resultado oficial por seção (DSEC+VSEC) x BU binário (.bu), turno sem BU-CSV",brancos,DSEC+VSEC,BUBIN,1,0,0,0,
@@ -68,13 +70,13 @@ B7,"Resultado oficial por seção (DSEC+VSEC) x BU binário (.bu), turno sem BU-
 B7,"Resultado oficial por seção (DSEC+VSEC) x BU binário (.bu), turno sem BU-CSV",votos_nominais,DSEC+VSEC,BUBIN,1,0,0,0,
 B7,"Resultado oficial por seção (DSEC+VSEC) x BU binário (.bu), turno sem BU-CSV",votos_nominais,DSEC+VSEC,BUBIN,2,0,0,0,
 B7,"Resultado oficial por seção (DSEC+VSEC) x BU binário (.bu), turno sem BU-CSV",votos_por_candidato_soma_dif_abs,DSEC+VSEC,BUBIN,1,0,0,0,
-B7,"Resultado oficial por seção (DSEC+VSEC) x BU binário (.bu), turno sem BU-CSV",votos_por_candidato_soma_dif_abs,DSEC+VSEC,BUBIN,2,2,0,2,
+B7,"Resultado oficial por seção (DSEC+VSEC) x BU binário (.bu), turno sem BU-CSV",votos_por_candidato_soma_dif_abs,DSEC+VSEC,BUBIN,2,0,0,0,
 B8,BU binário (detalhamento por forma de habilitação) x log da urna,habilitados_por_biografia_vs_manual_apos_falha,BUBIN,LOG,1,3,0,3,4
-B8,BU binário (detalhamento por forma de habilitação) x log da urna,habilitados_por_biografia_vs_manual_apos_falha,BUBIN,LOG,2,0,0,0,
-B8,BU binário (detalhamento por forma de habilitação) x log da urna,habilitados_por_biometria,BUBIN,LOG,1,4008,0,4008,4072
-B8,BU binário (detalhamento por forma de habilitação) x log da urna,habilitados_por_biometria,BUBIN,LOG,2,257,0,257,257
+B8,BU binário (detalhamento por forma de habilitação) x log da urna,habilitados_por_biografia_vs_manual_apos_falha,BUBIN,LOG,2,3,0,3,17
+B8,BU binário (detalhamento por forma de habilitação) x log da urna,habilitados_por_biometria,BUBIN,LOG,1,4008,3997,11,53
+B8,BU binário (detalhamento por forma de habilitação) x log da urna,habilitados_por_biometria,BUBIN,LOG,2,4338,4333,5,36
 B8,BU binário (detalhamento por forma de habilitação) x log da urna,sem_biometria_cadastrada,BUBIN,LOG,1,2,0,2,5
-B8,BU binário (detalhamento por forma de habilitação) x log da urna,sem_biometria_cadastrada,BUBIN,LOG,2,0,0,0,
+B8,BU binário (detalhamento por forma de habilitação) x log da urna,sem_biometria_cadastrada,BUBIN,LOG,2,1,0,1,1
 C1,Aptos = comparecimento + abstenções (BU-CSV),aptos_vs_comp_mais_abst,BWEB,BWEB,1,0,0,0,
 C1,Aptos = comparecimento + abstenções (BU-CSV),aptos_vs_comp_mais_abst,BWEB,BWEB,2,0,0,0,
 K1,"BU-CSV x Votação por seção (caminho independente), por candidato",votos_votavel,BWEB,VSEC,1,0,0,0,
