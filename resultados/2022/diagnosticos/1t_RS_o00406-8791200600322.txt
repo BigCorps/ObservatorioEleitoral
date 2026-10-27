@@ -1,0 +1,9 @@
+=== logd.dat: 15 linhas do dia; ids={'2158647': 15}
+    {}
+      07:09:54 INFO   2158647 LOGD  Urna ligada em 02/10/2022 às 07:09:33
+      07:10:13 INFO   2158647 GAP   Iniciando aplicação - Oficial - 1º turno
+      07:10:13 INFO   2158647 GAP   Identificação do Modelo de Urna: UE2020
+      07:18:37 INFO   2158647 LOGD  Urna ligada em 02/10/2022 às 07:18:16
+      07:21:25 INFO   2158647 LOGD  Urna ligada em 02/10/2022 às 07:21:04
+      07:21:44 INFO   2158647 GAP   Iniciando aplicação - Oficial - 1º turno
+      07:21:44 INFO   2158647 GAP   Identificação do Modelo de Urna: UE2020
