@@ -16,6 +16,7 @@ técnicos das urnas —, não demonstrar uma hipótese escolhida antes.
 | [docs/auditoria-2022.md](docs/auditoria-2022.md) | resultados reproduzidos dos dois turnos de 2022 |
 | [docs/auditoria-2026.md](docs/auditoria-2026.md) | resultados disponíveis de 2026 |
 | [docs/auditoria-2026-2turno.md](docs/auditoria-2026-2turno.md) | auditoria final do 2º turno de 2026 (cobertura, hashes, horários, biometria, discrepâncias, estudos externos) |
+| [docs/biometria-perfil-e-abstencao-por-idade.md](docs/biometria-perfil-e-abstencao-por-idade.md) | falha de biometria × concentração de votos × idade e escolaridade; abstenção por faixa etária |
 | [docs/comparativo-historico.md](docs/comparativo-historico.md) | 2022 × 2026 |
 | [docs/metodologia.md](docs/metodologia.md) | fórmulas, regras de leitura, critérios |
 | [docs/fontes.md](docs/fontes.md) | URLs, versões (ETag), hashes, cobertura |
