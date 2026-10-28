@@ -892,12 +892,69 @@ function renderDiscrepancies() {
   }
   if(!rows.length){const row=node('tr'),c=node('td',null,'Quadro indisponível.');c.colSpan=5;row.append(c);body.append(row);}
 }
+
+/* Simulação aritmética do crescimento líquido do nº 13, sem inferência de voto individual. */
+let simRates=null;
+const simKeys=['reducao','terceira','flavio'];
+const simIds={reducao:'simReducao',terceira:'simTerceira',flavio:'simFlavio'};
+function simMetrics(){
+ const rows=data?.votesByYear?.['2026'];
+ if(!rows||rows.size!==28)return null;
+ const all=[...rows.values()];
+ const n=k=>all.reduce((total,r)=>total+Number(r[k]),0);
+ const required=['validos_1t','votos_13_1t','votos_22_1t','votos_13_2t','brancos_1t','nulos_1t','brancos_2t','nulos_2t','abstencoes_1t','abstencoes_2t'];
+ if(all.some(r=>required.some(k=>numeric(r[k])===null)))return null;
+ const third=n('validos_1t')-n('votos_13_1t')-n('votos_22_1t');
+ const invalid=n('brancos_1t')+n('nulos_1t')-n('brancos_2t')-n('nulos_2t');
+ const abstention=n('abstencoes_1t')-n('abstencoes_2t');
+ const goal=n('votos_13_2t')-n('votos_13_1t');
+ if(third<=0||invalid+abstention<=0||goal<=0||n('votos_22_1t')<=0)return null;
+ return {goal,invalid,abstention,pools:{reducao:invalid+abstention,terceira:third,flavio:n('votos_22_1t')}};
+}
+function renderSimulator(){
+ const m=simMetrics();if(!m)return;
+ if(!simRates)simRates={reducao:80,terceira:100*(m.goal-0.8*m.pools.reducao-0.03*m.pools.flavio)/m.pools.terceira,flavio:3};
+ let total=0;
+ for(const key of simKeys){
+  const cap=Math.min(100,100*m.goal/m.pools[key]);
+  const input=document.getElementById(simIds[key]);input.max=String(cap);input.value=String(simRates[key]);
+  const votes=m.pools[key]*simRates[key]/100;total+=votes;
+  setText(simIds[key]+'Pct',df.format(simRates[key])+'%');
+  setText(simIds[key]+'Base','Base: '+number(m.pools[key])+' votos');
+  setText(simIds[key]+'Votes',number(votes)+' votos');
+  document.getElementById('simBar'+key[0].toUpperCase()+key.slice(1)).style.width=(100*votes/m.goal)+'%';
+ }
+ setText('simTotal',number(total));setText('simTarget',number(m.goal));
+ setText('simDifference',number(Math.abs(m.goal-total))+' votos');
+ setText('simAssumptions','Saldos nacionais: '+number(m.invalid)+' votos brancos/nulos a menos e '+number(m.abstention)+' abstenções a menos. A terceira via exclui os votos de 13 e 22.');
+}
+function simAdjust(changed,value){
+ const m=simMetrics();if(!m)return;
+ if(!simRates)renderSimulator();
+ const p=m.pools;const raw=Number(value);
+ if(!Number.isFinite(raw))return;
+ const next=Math.max(0,Math.min(100*m.goal/p[changed],100,raw));
+ const [a,b]=simKeys.filter(x=>x!==changed);
+ const remaining=m.goal-p[changed]*next/100;
+ const previousA=p[a]*simRates[a]/100,previousB=p[b]*simRates[b]/100;
+ const weight=previousA+previousB>0?previousA/(previousA+previousB):p[a]/(p[a]+p[b]);
+ const votesA=Math.max(Math.max(0,remaining-p[b]),Math.min(Math.min(p[a],remaining),remaining*weight));
+ const votesB=remaining-votesA;
+ simRates={...simRates,[changed]:next,[a]:100*votesA/p[a],[b]:100*votesB/p[b]};
+ renderSimulator();
+}
+function simReset(){simRates=null;renderSimulator();}
+function setUpSimulator(){
+ for(const key of simKeys)document.getElementById(simIds[key]).addEventListener('input',e=>simAdjust(key,e.target.value));
+ document.getElementById('simReset').addEventListener('click',simReset);
+}
+
 function render() {
   if(!data)return;
-  syncControls();renderTriagem();renderAudit();renderDiscrepancies();renderCoverage();renderKpis();renderScopeInfo();renderMap();renderPresidentialVotes();renderTrend();renderTimeline();renderRanking();renderComparison();renderDelta();renderAbsoluteDeltas();
+  renderSimulator();syncControls();renderTriagem();renderAudit();renderDiscrepancies();renderCoverage();renderKpis();renderScopeInfo();renderMap();renderPresidentialVotes();renderTrend();renderTimeline();renderRanking();renderComparison();renderDelta();renderAbsoluteDeltas();
 }
 async function init() {
-  setUpFilters();
+  setUpFilters();setUpSimulator();
   try{
     const entries=await Promise.all(Object.entries(files).map(async ([name,path])=>{
       const response=await fetch(path,{cache:'no-cache'});
