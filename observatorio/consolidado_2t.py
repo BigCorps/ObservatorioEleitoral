@@ -234,7 +234,7 @@ def afirmacoes_externas() -> pd.DataFrame:
         ("Relatório externo com recortes 17h01–17h15 / 17h16–18h59", "valores por recorte de horário", None, None, N,
          "os valores não foram fornecidos ao Observatório; nossos recortes estão em resultados/2026/horario_recortes_votos.csv"),
         ("Afirmações gerais de inconsistência na totalização do 2º turno", "BU ≠ resultado oficial", None,
-         "0 divergências em 499.205 seções", R,
+         "0 divergências em 499.207 seções", R,
          "BU em CSV consolidado, BU binário assinado e tabelas oficiais coincidem em todos os campos de votos"),
         ("2026, 2º turno (cálculo próprio, sem afirmação externa)", "seções com mais de 90% / com 100%", None,
          f"{conc[(2026, 2)][0]} / {conc[(2026, 2)][1]}", "Referência", "mesma definição aplicada a todos os anos"),

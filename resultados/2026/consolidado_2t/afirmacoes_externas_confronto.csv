@@ -19,5 +19,5 @@ Painel auditoriaeleicoes.com,"2026, 1º turno: soma dos BUs difere do oficial em
 Observatório (destaque anterior do painel),"SP, encerramento após 19h: 13 com 57,12% dos válidos em 1.676 seções","57,12% / 1.676",57.12% / 1676,Confirmada pelos dados,diferença bruta; no mesmo local de votação o efeito ajustado é ~0
 kakaroto.dev,afirmações sobre arquivos e totalização do 2º turno,,,Não verificável com as fontes disponíveis,site fora do ar desde 26/10/2026 e sem código público
 Relatório externo com recortes 17h01–17h15 / 17h16–18h59,valores por recorte de horário,,,Não verificável com as fontes disponíveis,os valores não foram fornecidos ao Observatório; nossos recortes estão em resultados/2026/horario_recortes_votos.csv
-Afirmações gerais de inconsistência na totalização do 2º turno,BU ≠ resultado oficial,,0 divergências em 499.205 seções,Contrariada pelos dados,"BU em CSV consolidado, BU binário assinado e tabelas oficiais coincidem em todos os campos de votos"
+Afirmações gerais de inconsistência na totalização do 2º turno,BU ≠ resultado oficial,,0 divergências em 499.207 seções,Contrariada pelos dados,"BU em CSV consolidado, BU binário assinado e tabelas oficiais coincidem em todos os campos de votos"
 "2026, 2º turno (cálculo próprio, sem afirmação externa)",seções com mais de 90% / com 100%,,7194 / 110,Referência,mesma definição aplicada a todos os anos
