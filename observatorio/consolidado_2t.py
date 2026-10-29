@@ -65,7 +65,8 @@ def comparar(con) -> tuple[pd.DataFrame, pd.DataFrame]:
           WHERE c.nr_secao IS NULL OR o.nr_secao IS NULL""").df()
         ausentes["fonte_anterior"] = nome
         linhas.append(ausentes)
-        for col, rot in CAMPOS + [("v13", "votos_13"), ("v22", "votos_22"), ("cand", "votos_por_candidato_soma_dif_abs")]:
+        extra = [("nr_local_votacao", "local_de_votacao (metadado, não é voto)")] if v == "ant" else []
+        for col, rot in CAMPOS + [("v13", "votos_13"), ("v22", "votos_22"), ("cand", "votos_por_candidato_soma_dif_abs")] + extra:
             if col == "v13":
                 ea, eb = "coalesce(o.votos_candidato[13], 0)", "coalesce(c.votos_candidato[13], 0)"
             elif col == "v22":
@@ -84,7 +85,8 @@ def comparar(con) -> tuple[pd.DataFrame, pd.DataFrame]:
             linhas.append(d)
             resumo.append({"comparacao": f"BU em CSV consolidado × {nome}", "campo": rot, "secoes_em_ambas": pres[0],
                            "so_no_consolidado": pres[1], "so_na_fonte_anterior": pres[2], "divergencias": len(d),
-                           "soma_abs_diferencas": int((d.valor_fonte_anterior - d.valor_consolidado).abs().sum()) if len(d) else 0})
+                           "soma_abs_diferencas": (int((d.valor_fonte_anterior - d.valor_consolidado).abs().sum())
+                                                   if len(d) and "local" not in rot else None)})
     return pd.concat(linhas, ignore_index=True), pd.DataFrame(resumo)
 
 

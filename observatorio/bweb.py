@@ -28,8 +28,11 @@ def converter(ano: int, turno: int, uf: str) -> int:
     if not z.exists():
         raise FileNotFoundError(f"{z} ainda não baixado")
     saida = DIR / f"presidente_{ano}_{turno}t_{uf}.parquet"
-    return csv_zip_para_parquet(z, saida, "bweb_*.csv", filtro_sql="CD_CARGO_PERGUNTA = '1'",
-                                prefiltro=b'"Presidente";')
+    # Seção sem nenhum votante aparece numa única linha com CD_CARGO_PERGUNTA = -1 (#NULO#): é mantida
+    # (só quando o comparecimento é 0) para que aptos e abstenções da seção não se percam.
+    return csv_zip_para_parquet(z, saida, "bweb_*.csv",
+                                filtro_sql="CD_CARGO_PERGUNTA = '1' OR (CD_CARGO_PERGUNTA = '-1' AND QT_COMPARECIMENTO = '0')",
+                                prefiltro=(b'"Presidente";', b';-1;"#NULO#";'))
 
 
 def consolidar(ano: int) -> Path:
@@ -70,8 +73,8 @@ def consolidar(ano: int) -> Path:
       sum(CAST(QT_VOTOS AS INT)) votos_total,
       count(*) n_linhas,
       count(DISTINCT CAST(NR_VOTAVEL AS INT)) n_votaveis_distintos,
-      map_from_entries(list(struct_pack(k := CAST(NR_VOTAVEL AS INT), v := CAST(QT_VOTOS AS INT)))
-                       FILTER (WHERE DS_TIPO_VOTAVEL='Nominal')) votos_candidato,
+      coalesce(map_from_entries(list(struct_pack(k := CAST(NR_VOTAVEL AS INT), v := CAST(QT_VOTOS AS INT)))
+                       FILTER (WHERE DS_TIPO_VOTAVEL='Nominal')), map([]::INT[], []::INT[])) votos_candidato,
       any_value(DS_TIPO_URNA) ds_tipo_urna, count(DISTINCT DS_TIPO_URNA) n_tipos_urna,
       any_value(NR_URNA_EFETIVADA) nr_urna_efetivada,
       any_value(CD_CARGA_1_URNA_EFETIVADA) cd_carga_1, any_value(CD_CARGA_2_URNA_EFETIVADA) cd_carga_2,
