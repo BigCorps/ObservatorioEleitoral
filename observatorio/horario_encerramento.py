@@ -66,7 +66,10 @@ def _agregar(con, chave: str) -> pd.DataFrame:
             sum(brancos) brancos, sum(nulos) nulos, sum(validos) validos,
             round(100.0 * sum(v13) / sum(validos), 3) pct_validos_13, round(100.0 * sum(v22) / sum(validos), 3) pct_validos_22,
             sum(votos_apos_17h) votos_registrados_apos_17h, sum(votos_apos_19h) votos_registrados_apos_19h,
-            sum(comparecimento) - sum(v13) - sum(v22) - sum(brancos) - sum(nulos) residuo_soma
+            sum(comparecimento) - sum(v13) - sum(v22) - sum(brancos) - sum(nulos) residuo_soma,
+            round(100.0 * sum(l_1t) / sum(validos_1t), 3) pct_validos_13_1t_mesmas_secoes,
+            round(100.0 * sum(b_1t) / sum(validos_1t), 3) pct_validos_22_1t_mesmas_secoes,
+            round(100.0 * sum(comparecimento) / sum(aptos), 3) pct_comparecimento
           FROM base WHERE {cond} GROUP BY ALL ORDER BY ALL""").df()
         partes.append(d)
     return pd.concat(partes, ignore_index=True)
@@ -97,11 +100,13 @@ def _pareado(con) -> pd.DataFrame:
         CASE WHEN validos_1t > 0 THEN 100.0 * l_1t / validos_1t END s13_1t,
         (encerramento_brt > {H19})::INT d_tarde, (encerramento_brt > 62100)::INT e_tarde,
         (votos_apos_17h > 0)::INT a_tarde
-      FROM base WHERE uf <> 'ZZ' AND validos >= 50 AND aptos > 0""").df()
+      FROM base WHERE uf <> 'ZZ' AND validos >= 50 AND aptos > 0 AND encerramento_brt IS NOT NULL""").df()
     for c in ("s13", "s13_1t", "comp_pct", "validos", "aptos"):
         df[c] = pd.to_numeric(df[c], errors="coerce").astype(float)
     df["log_aptos"] = np.log(df.aptos)
-    df = df[np.isfinite(df[["s13", "s13_1t", "comp_pct", "log_aptos"]]).all(axis=1)].reset_index(drop=True)
+    for c in ("a_tarde", "d_tarde", "e_tarde"):
+        df[c] = pd.to_numeric(df[c], errors="coerce").astype(float)
+    df = df[np.isfinite(df[["s13", "s13_1t", "comp_pct", "log_aptos", "a_tarde", "d_tarde", "e_tarde"]]).all(axis=1)].reset_index(drop=True)
     nomes = {"a_tarde": "A (voto após 17h)", "d_tarde": "D (encerramento após 19h)",
              "e_tarde": "encerramento após 17h15 (auxiliar)"}
     linhas = []
@@ -149,7 +154,10 @@ def executar() -> dict:
     tot = con.execute("""SELECT abrangencia, count(*) secoes, sum(aptos) aptos, sum(comparecimento) comparecimento,
         sum(v13) votos_13, sum(v22) votos_22, sum(brancos) brancos, sum(nulos) nulos,
         round(100.0 * sum(v13) / sum(validos), 3) pct_validos_13, round(100.0 * sum(v22) / sum(validos), 3) pct_validos_22,
-        sum(votos_apos_17h) votos_registrados_apos_17h, sum(votos_apos_19h) votos_registrados_apos_19h
+        sum(votos_apos_17h) votos_registrados_apos_17h, sum(votos_apos_19h) votos_registrados_apos_19h,
+        round(100.0 * sum(l_1t) / sum(validos_1t), 3) pct_validos_13_1t_mesmas_secoes,
+        round(100.0 * sum(b_1t) / sum(validos_1t), 3) pct_validos_22_1t_mesmas_secoes,
+        round(100.0 * sum(comparecimento) / sum(aptos), 3) pct_comparecimento
       FROM base GROUP BY 1 ORDER BY 1""").df()
     sem_log = con.execute("SELECT count(*) FROM ofic WHERE (uf, cd_municipio, nr_zona, nr_secao) NOT IN (SELECT (uf, cd_municipio, nr_zona, nr_secao) FROM tmp)").fetchone()[0]
     con.close()
