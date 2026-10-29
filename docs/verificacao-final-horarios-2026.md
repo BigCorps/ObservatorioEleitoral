@@ -12,9 +12,9 @@ Código: `observatorio/confronto_horarios_tse.py`, `observatorio/sensibilidade_l
 
 | verificação | resultado |
 |---|---|
-| Quadro TSE "Total de votos após 17h" × logs | Diferenças residuais de 63 (após 17h) e 2 (após 19h) **explicadas pela conversão de fuso**: o quadro do TSE converte o relógio de cada urna para o horário de Brasília usando o fuso **da UF**; o Observatório usa o fuso legal de cada **município** (Fernando de Noronha UTC−2; 11 municípios do oeste do AM UTC−5). Com a convenção do TSE, a diferença é **0 em todas as 27 UFs** nos três recortes. |
+| Quadro TSE "Total de votos após 17h" × logs | Diferenças residuais de 63 (após 17h) e 2 (após 19h) **explicadas pela conversão de fuso**: o quadro publicado pelo TSE é reproduzido aplicando o fuso **da UF** a cada urna; o Observatório usa o fuso legal de cada **município** (Fernando de Noronha UTC−2; 11 municípios do oeste do AM UTC−5). Com essa convenção alternativa, a diferença é **0 em todas as 27 UFs** nos três recortes. O TSE não publicou nesta fonte o algoritmo interno de normalização; sua adoção exata pelo órgão é inferência, não fato documental confirmado. |
 | 7.315 códigos de local divergentes | Efeitos estatísticos praticamente iguais sob o código do BU em CSV e o do Detalhe por seção (diferenças ≤ 0,002 p.p., muito menores que o erro padrão). Nenhuma conclusão muda. |
-| BU do pacote oficial × BU coletado no Portal | **499.207 de 499.207 seções idênticas** (tamanho e CRC32), nas 28 UFs. |
+| BU do pacote oficial × BU coletado no Portal | **499.207 de 499.207 seções com tamanho e CRC32 coincidentes** (não verificação criptográfica dos 499.207 conteúdos), nas 28 UFs. |
 | PE: vsc e log do pacote × coleta anterior | 618 seções conferidas, **618 idênticas**: SHA-256 do `vsc` = hash publicado no Portal; SHA-512 do log consta do `vsc`; log reinterpretado = indicadores já publicados. |
 | Pendências em outras UFs | 14 seções conferidas; logs do pacote **idênticos** aos do Portal; SP 64777/395/298 **também sem log no pacote**. |
 
@@ -63,8 +63,7 @@ de que as 7.315 divergências estão de fato presentes.
 | Evolução 2022→2026, seções tardias em 2022 | −0,0075 [−0,0333; 0,0184] | −0,0058 [−0,0318; 0,0202] |
 | Seções correspondentes 2022 × 2026 | 322.703 | 318.674 |
 
-Sem controles, o efeito em 2026 é −0,0523 (BU em CSV) e −0,0545 (Detalhe). **A escolha do código de local não altera
-nenhuma conclusão estatística.** As análises continuam usando o Detalhe por seção.
+Sem controles, o efeito em 2026 é −0,0523 (BU em CSV) e −0,0545 (Detalhe). A correspondência entre anos muda em **4.029 seções** (cerca de 1,26% do conjunto com código do Detalhe). **Apesar da mudança de amostra, a escolha do código do local não altera as conclusões dos modelos avaliados.** As análises continuam usando o Detalhe por seção.
 
 ## 3. Pacotes oficiais do 2º turno × coleta anterior
 
@@ -90,15 +89,14 @@ Sem baixar os pacotes: lemos apenas o diretório de cada ZIP (HTTP Range) e comp
 com o BU coletado no Portal de Resultados em 27/10
 (`resultados/2026/consolidado_2t/pacote_oficial_2t_bu_x_portal_todas_ufs.csv`).
 
-**Resultado: 499.207 seções, 499.207 idênticas, nenhuma só no pacote ou só no Portal.** As 29 seções do exterior
-apuradas pelo Sistema de Apuração aparecem no pacote como `-busa.dat` (com `-sa.vsc` e `-logsa.jez`). Elas também são
-idênticas.
+**Resultado: 499.207 seções, todas com tamanho e CRC32 correspondentes; nenhuma só no pacote ou só no Portal.** Essa checagem dos diretórios ZIP não prova, isoladamente, igualdade byte a byte nem valida assinaturas digitais das 499.207 seções. As 29 seções do exterior
+apuradas pelo Sistema de Apuração aparecem no pacote como `-busa.dat` (com `-sa.vsc` e `-logsa.jez`). Elas também apresentam tamanho e CRC32 coincidentes.
 
 ### 3.3 Pernambuco
 
 `pacote_oficial_2t_PE_resumo.csv`, `pacote_oficial_2t_PE_bu_x_portal.csv`, `pacote_oficial_2t_PE_secoes_conferidas.csv`.
 
-- Pacote: 107.095 membros. **BU idêntico nas 21.418 seções.**
+- Pacote: 107.095 membros. **BU com tamanho e CRC32 coincidentes nas 21.418 seções.**
 - 618 seções baixadas (somente `vsc` e log): todas as 446 com versão "Recebido" em 26–27/10, as 106 com voto após 18h,
   as 10 de Fernando de Noronha, as 2 pendências E1 e 60 seções de controle sorteadas (semente 20261029).
 - **618/618:** SHA-256 do `vsc` = hash publicado no Portal; SHA-512 do log consta do `vsc`; o log reinterpretado dá os

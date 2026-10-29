@@ -3,7 +3,7 @@
 > **Correção e atualização (29/10/2026, tarde):** os pacotes de **arquivos transmitidos do 2º turno** estão no CKAN
 > desde 28/10 14:07 UTC (Last-Modified 26/10). O registro "não publicado" abaixo veio de uma resposta desatualizada do
 > `package_show` do CKAN. O BU em CSV de RR também está cadastrado, mas o recurso aponta para o `.sha512` (erro de
-> cadastro). O confronto já foi executado: **BU idêntico em 499.207/499.207 seções**; em PE, `vsc` e log idênticos
+> cadastro). O confronto já foi executado: **tamanho e CRC32 do BU coincidentes em 499.207/499.207 seções**; em PE, `vsc` e log idênticos
 > em 618/618 seções conferidas; nas pendências das demais UFs, logs idênticos (as pendências continuam). Ver
 > [verificação de horários, códigos de local e pacotes oficiais](verificacao-final-horarios-2026.md). Os trechos
 > corrigidos estão marcados abaixo.
@@ -20,7 +20,7 @@ tratada como ausência de voto._
 | `resultados-2026-boletim-de-urna` | **28 BU em CSV do 2º turno** (27 UFs + exterior, 144,3 MB) e **28 hashes `.sha512`** | baixados; **SHA-512 oficial confere nos 28** |
 | idem | BU de **RR** | ~~não listado no CKAN~~ **corrigido:** cadastrado em 27/10 19:12 UTC, mas o recurso aponta para o `.sha512` (erro de cadastro); o `.zip` existe no CDN pelo padrão oficial (`bweb_2t_RR_261020260742.zip`, Last-Modified 26/10 12:01 UTC) com `.sha512` publicado, que confere |
 | `resultados-2026` | Detalhe e Votação por seção (já usados antes), Votação/Detalhe por município-zona, Relatórios de totalização | munzona atualizados em 28–29/10 e baixados novamente (as versões antigas tinham só o 1º turno); por seção: versão local = versão vigente |
-| `resultados-2026-arquivos-transmitidos-para-totalizacao` | 1º turno (28 pacotes); ~~2º turno não publicado~~ **corrigido:** 2º turno cadastrado em 28/10 14:07 UTC (28 pacotes, 124,1 GB), mas ausente da resposta do `package_show` | BU dos pacotes = BU coletado em 499.207/499.207 seções; os arquivos do 2º turno (BU, log, RDV, VOTA) foram coletados em 27/10 no Portal de Resultados (499.207 seções, hash conferido) |
+| `resultados-2026-arquivos-transmitidos-para-totalizacao` | 1º turno (28 pacotes); ~~2º turno não publicado~~ **corrigido:** 2º turno cadastrado em 28/10 14:07 UTC (28 pacotes, 124,1 GB), mas ausente da resposta do `package_show` | BU dos pacotes com tamanho e CRC32 coincidentes com a coleta em 499.207/499.207 seções; os arquivos do 2º turno (BU, log, RDV, VOTA) foram coletados em 27/10 no Portal de Resultados (499.207 seções, hash conferido) |
 
 Inventário completo com URL, data de acesso, tamanho, ETag, Last-Modified, SHA-256, SHA-512 e hash oficial:
 `resultados/2026/consolidado_2t/inventario_arquivos_oficiais_2026.csv` e `manifestos/inventario_fontes.csv`.

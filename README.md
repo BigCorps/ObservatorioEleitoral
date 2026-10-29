@@ -40,9 +40,9 @@ e `manifestos/cobertura_arquivos_urna.csv`. Em 26–27/10/2026:
   oficial conferido) adotado como fonte principal em 29/10/2026 e reconciliado seção a seção com os BUs binários e
   logs coletados no Portal de Resultados e com o resultado oficial por seção — ver
   [docs/reconciliacao-consolidado-2026-2t.md](docs/reconciliacao-consolidado-2026-2t.md). Os pacotes de arquivos transmitidos
-  do 2º turno (no CKAN desde 28/10) foram confrontados com a coleta: BU idêntico em 499.207/499.207 seções; em PE,
+  do 2º turno (no CKAN desde 28/10) foram confrontados com a coleta: tamanho e CRC32 do BU coincidentes em 499.207/499.207 seções; em PE,
   `vsc` e log idênticos em 618 seções conferidas; diferença residual com o quadro de horários do TSE explicada pelo
-  fuso (0 em todas as UFs pela convenção do TSE); códigos de local sem efeito nas análises:
+  fuso (0 em todas as UFs com convenção uniforme por UF, que reproduz o quadro do TSE); códigos de local sem efeito nas análises:
   [docs/verificacao-final-horarios-2026.md](docs/verificacao-final-horarios-2026.md).
 
 ## Como reproduzir
