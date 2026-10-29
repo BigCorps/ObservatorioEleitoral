@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=horario-historico-20261029">
+  <link rel="stylesheet" href="./styles.css?v=consolidado-20261029">
   <script src="./app.js?v=eleitorado-simulador-20261027" defer></script>
 </head>
 <body>
@@ -37,7 +37,7 @@
           <div class="panel-line"></div>
           <div class="progress-item"><div><strong>2022 • 1º e 2º turnos</strong><span class="status-done">BU + logs</span></div><p>Resultados e análises técnicas processados; incompatibilidades documentadas.</p></div>
           <div class="progress-item"><div><strong>2026 • 1º turno</strong><span class="status-done">BU + logs</span></div><p>Processamento nacional concluído conforme a cobertura do repositório.</p></div>
-          <div class="progress-item"><div><strong>2026 • 2º turno</strong><span class="status-done">BU + logs</span></div><p>499.207 seções coletadas no Portal de Resultados com hash conferido; BU em CSV ainda não publicado pelo TSE.</p></div>
+          <div class="progress-item"><div><strong>2026 • 2º turno</strong><span class="status-done">BU + logs</span></div><p>BU em CSV consolidado (SHA-512 oficial) = BU de cada urna = resultado oficial por seção: 0 divergências de votos em 499.207 seções.</p></div>
           <p class="panel-footnote">Situação declarada pelo projeto em 27/10/2026. O painel exibe “não disponível” quando falta evidência.</p>
         </aside>
       </div>
@@ -293,6 +293,19 @@
             <tbody id="auditTableBody"></tbody>
           </table></div>
           <p class="audit-source">Fontes: <a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/resultados/2022/reconciliacao_resumo.csv" target="_blank" rel="noopener noreferrer">2022 ↗</a> e <a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/resultados/2026/reconciliacao_resumo.csv" target="_blank" rel="noopener noreferrer">2026 ↗</a>. Até que existam registros individualizados completos e conferidos, o quadro é um resumo por tipo de teste, não uma relação exaustiva de seções.</p>
+        </div>
+        <div class="audit-report" id="reconciliacao-consolidada">
+          <div class="audit-report-heading"><div><span class="card-eyebrow">RECONCILIAÇÃO DO BU CONSOLIDADO · 2º TURNO DE 2026</span><h3>BU em CSV oficial × arquivos de urna × resultado por seção</h3></div><span class="comparison-chip">Atualizado em 29/10/2026</span></div>
+          <div class="comparison-scroll"><table class="comparison-table audit-table">
+            <thead><tr><th scope="col">Verificação</th><th scope="col">Cobertura</th><th scope="col">Divergências de votos</th><th scope="col">Explicadas</th><th scope="col">Pendentes</th></tr></thead>
+            <tbody>
+              <tr><td>BU em CSV (SHA-512 oficial conferido nos 28 arquivos) × BU binário de cada urna</td><td>499.207 seções</td><td>0</td><td>—</td><td>—</td></tr>
+              <tr><td>BU em CSV × resultado oficial por seção e por zona</td><td>499.207 seções</td><td>0</td><td>—</td><td>—</td></tr>
+              <tr><td>BU em CSV × votos computados no log da urna</td><td>499.177 seções com log</td><td>54 votos em 6 seções</td><td>0</td><td>6 seções (log incompleto em substituição de urna)</td></tr>
+              <tr><td>Abertura, encerramento e urna do BU × log</td><td>499.177 seções</td><td>não envolve votos</td><td>8 (urna de reserva)</td><td>10 seções</td></tr>
+            </tbody>
+          </table></div>
+          <p class="audit-source">Totais do BU consolidado = totais oficiais (13: 64.256.232; 22: 59.826.041). Nenhuma divergência altera a totalização. Pendências: logs ausentes ou incompletos, 1 log não publicado (SP), pacotes de arquivos transmitidos do 2º turno ainda fora dos Dados Abertos. <a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/docs/reconciliacao-consolidado-2026-2t.md" target="_blank" rel="noopener noreferrer">Relatório completo ↗</a> · <a href="https://github.com/BigCorps/ObservatorioEleitoral/tree/main/resultados/2026/consolidado_2t" target="_blank" rel="noopener noreferrer">CSVs ↗</a></p>
         </div>
         <div class="audit-report" id="discrepancias">
           <div class="audit-report-heading"><div><span class="card-eyebrow">QUADRO DE DISCREPÂNCIAS POR CATEGORIA</span><h3 id="discTitle">Discrepâncias classificadas</h3></div><span class="comparison-chip" id="discChip">—</span></div>

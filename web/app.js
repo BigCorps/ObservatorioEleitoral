@@ -840,7 +840,7 @@ function renderAudit() {
   };
   record('ELEIÇÕES DE 2022','2 turnos processados','BUs, resultados e logs reconciliados; ainda existem observações sem explicação documental completa.','');
   record('ELEIÇÕES DE 2026 · 1º TURNO','Processado','BU em CSV, BU binário, logs e resultados oficiais reconciliados seção a seção.','');
-  if(has2026Round2Logs())record('ELEIÇÕES DE 2026 · 2º TURNO','Logs e BUs processados','Arquivos de urna coletados seção a seção no Portal de Resultados do TSE, com hashes conferidos. O BU em CSV do turno ainda não foi publicado: as verificações que dependem dele aparecem como não verificadas.','');
+  if(has2026Round2Logs())record('ELEIÇÕES DE 2026 · 2º TURNO','Logs e BUs processados','BU em CSV consolidado (Dados Abertos, SHA-512 oficial conferido) reconciliado com os arquivos de urna do Portal de Resultados e com o resultado oficial por seção: 0 divergências de votos em 499.207 seções.','');
   else record('ELEIÇÕES DE 2026 · 2º TURNO','Dados técnicos pendentes','Resultados por seção disponíveis; BU e logs ainda não integram as verificações técnicas desta base.','audit-pending');
   const rows=data.auditsByYear[state.year]||[];
   renderAuditFocus(rows);

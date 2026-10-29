@@ -60,7 +60,6 @@ ano,turno,categoria,teste,campo,apontamentos,secoes_distintas,votos_com_registro
 2026,1,Incompatibilidade documental pendente,B8,habilitados_por_biografia_vs_manual_apos_falha,3.0,3.0,,não é contagem de votos
 2026,1,Incompatibilidade documental pendente,B8,habilitados_por_biometria,11.0,11.0,,não é contagem de votos
 2026,1,Incompatibilidade documental pendente,B8,sem_biometria_cadastrada,2.0,2.0,,não é contagem de votos
-2026,2,Incompatibilidade documental pendente,B2,votos_por_candidato_soma_dif_abs,2.0,2.0,,não é contagem de votos
 2026,2,Incompatibilidade documental pendente,B6,biometria_nh_vs_liberacao_manual_no_log,3.0,3.0,,não é contagem de votos
 2026,2,Incompatibilidade documental pendente,B6,comparecimento_vs_votos_computados,6.0,6.0,54.0,diferença em número de votos registrados entre as fontes (não é voto irregular)
 2026,2,Incompatibilidade documental pendente,B6,comparecimento_vs_votos_presidente_mais_nulos_suspensao,5.0,5.0,,não é contagem de votos
@@ -146,6 +145,7 @@ ano,turno,categoria,teste,campo,apontamentos,secoes_distintas,votos_com_registro
 2026,2,Conferido sem diferença,B2,comparecimento,0.0,0.0,,
 2026,2,Conferido sem diferença,B2,nulos,0.0,0.0,,
 2026,2,Conferido sem diferença,B2,votos_nominais,0.0,0.0,,
+2026,2,Conferido sem diferença,B2,votos_por_candidato_soma_dif_abs,0.0,0.0,,
 2026,2,Conferido sem diferença,B2c,votos_extra_no_bu,0.0,0.0,,
 2026,2,Conferido sem diferença,B3,abstencoes,0.0,0.0,,
 2026,2,Conferido sem diferença,B3,aptos,0.0,0.0,,

@@ -16,6 +16,7 @@ técnicos das urnas —, não demonstrar uma hipótese escolhida antes.
 | [docs/auditoria-2022.md](docs/auditoria-2022.md) | resultados reproduzidos dos dois turnos de 2022 |
 | [docs/auditoria-2026.md](docs/auditoria-2026.md) | resultados disponíveis de 2026 |
 | [docs/auditoria-2026-2turno.md](docs/auditoria-2026-2turno.md) | auditoria final do 2º turno de 2026 (cobertura, hashes, horários, biometria, discrepâncias, estudos externos) |
+| [docs/reconciliacao-consolidado-2026-2t.md](docs/reconciliacao-consolidado-2026-2t.md) | reconciliação do BU em CSV consolidado do 2º turno de 2026, cronologia de publicação e afirmações externas |
 | [docs/biometria-perfil-e-abstencao-por-idade.md](docs/biometria-perfil-e-abstencao-por-idade.md) | falha de biometria × concentração de votos × idade e escolaridade; abstenção por faixa etária |
 | [docs/comparativo-historico.md](docs/comparativo-historico.md) | 2022 × 2026 |
 | [docs/metodologia.md](docs/metodologia.md) | fórmulas, regras de leitura, critérios |
@@ -35,10 +36,11 @@ e `manifestos/cobertura_arquivos_urna.csv`. Em 26–27/10/2026:
   concluídas; processamento dos logs e BUs binários por UF em andamento/concluído conforme
   a cobertura registrada.
 - 2026, 1º turno: BU em CSV e tabelas oficiais processados; logs conforme cobertura.
-- 2026, 2º turno (25/10/2026): arquivos de urna (BU binário, log, `vsc`) coletados **seção a seção** no Portal de
-  Resultados do TSE — 499.207 de 499.207 seções, hash publicado conferido com o `vsc` e o `vsc` com BU e log;
-  reconciliação com o resultado oficial por seção. O BU em CSV do 2º turno ainda não está nos Dados Abertos: os
-  testes que dependem dele aparecem como "Não verificado" (`resultados/quadro_discrepancias.csv`).
+- 2026, 2º turno (25/10/2026): BU em CSV consolidado (Dados Abertos, publicado no CKAN em 27/10/2026, SHA-512
+  oficial conferido) adotado como fonte principal em 29/10/2026 e reconciliado seção a seção com os BUs binários e
+  logs coletados no Portal de Resultados e com o resultado oficial por seção — ver
+  [docs/reconciliacao-consolidado-2026-2t.md](docs/reconciliacao-consolidado-2026-2t.md). Os arquivos transmitidos
+  para totalização do 2º turno ainda não estão nos Dados Abertos.
 
 ## Como reproduzir
 

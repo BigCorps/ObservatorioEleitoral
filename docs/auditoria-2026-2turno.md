@@ -93,15 +93,14 @@ A série de quatro turnos (2022 e 2026) está em `docs/comparativo-historico.md`
 
 ## 8–10. Incompatibilidades do 2º turno
 
-Testes executáveis sem o BU em CSV (ainda não publicado nos Dados Abertos): A2o (seção oficial × pacote), B7 (resultado oficial por seção × BU binário: aptos, comparecimento, nominais, brancos, nulos e votos por candidato), B6o (resultado oficial × log), B8 (BU binário por forma de habilitação × log) e K2.
+Desde 29/10/2026 o BU em CSV do 2º turno (Dados Abertos, SHA-512 oficial conferido) é a fonte principal; todos os testes A–K foram executados. Reconciliação específica com as fontes anteriores e com o log em `docs/reconciliacao-consolidado-2026-2t.md`.
 
-- B7 e A2o: **0 divergências** em — seções — o BU de cada urna reproduz exatamente o resultado oficial por seção, voto a voto por candidato.
+- BU em CSV × BU binário (B2), × Detalhe por seção (B3), × Votação por seção (K1) e × Votação por zona (B4): **0 divergências de votos** — o BU de cada urna reproduz exatamente o resultado oficial, voto a voto por candidato.
 
 | teste | campo | divergencias | explicadas | nao_explicadas | soma_abs_diferencas_nao_explicadas |
 |---|---|---|---|---|---|
 | A3 | presenca | 41 | 41 | 0 | — |
 | B2 | biometria_nh_vs_lib_codigo | 1.310 | 1.310 | 0 | — |
-| B2 | votos_por_candidato_soma_dif_abs | 2 | 0 | 2 | — |
 | B5 | abstencoes | 40 | 40 | 0 | — |
 | B5 | aptos | 40 | 40 | 0 | — |
 | B5 | brancos | 40 | 40 | 0 | — |
@@ -141,10 +140,10 @@ B8 (habilitados por biometria no BU um a mais que no log): a diferença é igual
 
 | categoria | itens | apontamentos | votos |
 |---|---|---|---|
-| Conferido sem diferença | 20 | 0 | 0 |
+| Conferido sem diferença | 21 | 0 | 0 |
 | Diferença estatística | 28 | 33 | 0 |
 | Diferença explicada | 10 | 5.972 | 0 |
-| Incompatibilidade documental pendente | 7 | 25 | 54 |
+| Incompatibilidade documental pendente | 6 | 23 | 54 |
 
 
 Votos só são contados quando a diferença é contagem de votos registrados entre duas fontes (B6/B6o); nos demais testes a coluna fica vazia. Detalhe: `resultados/quadro_discrepancias.csv`.
@@ -182,5 +181,5 @@ O 2º turno de 2026 **não apresentou incompatibilidade documental de resultado*
 
 Houve **diferenças estatísticas** em relação a 2022: brancos e nulos para Presidente caíram do 1º para o 2º turno (em 2022 subiram), com concentração em PB, PA, CE e SE; a abstenção caiu mais que em 2022. Não há explicação documental para isso nas tabelas oficiais — são mudanças de comportamento do eleitorado e não indicam, por si, irregularidade. Votos após 17h ficaram no nível de 2022 (0,027% contra 0,033%).
 
-**O que ainda precisa ser investigado:** atas e relatórios de contingência das seções MA 8893/47/609, BA 35653/173/235 e RS 89060/17/191; o log da seção SP 64777/395/298; o BU em CSV do 2º turno (quando publicado) para executar B1–B5 e K1; as 11 + 5 seções pendentes de B8.
+**O que ainda precisa ser investigado:** atas e relatórios de contingência das seções MA 8893/47/609, BA 35653/173/235 e RS 89060/17/191; o log da seção SP 64777/395/298 (ainda não publicado em 29/10/2026); as 5 seções sem substituição de urna em que a abertura do BU antecede o primeiro registro do log; as seções pendentes de B8; os arquivos transmitidos para totalização do 2º turno, ainda não publicados nos Dados Abertos.
 

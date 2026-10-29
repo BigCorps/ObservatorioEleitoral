@@ -833,7 +833,7 @@ def quadro_discrepancias() -> pd.DataFrame:
                 for teste, desc in NAO_VERIFICAVEIS_SEM_BU_CSV:
                     linhas.append({"ano": 2026, "turno": t, "categoria": "Não verificado", "teste": teste, "campo": desc,
                                    "apontamentos": None, "secoes_distintas": None, "votos_com_registro_divergente": None,
-                                   "observacao": "BU em CSV do turno ainda não publicado nos Dados Abertos"})
+                                   "observacao": "BU em CSV do turno ainda não publicado nos Dados Abertos (verificado em 29/10/2026: publicado)"})
     # diferenças estatísticas
     for ano in (2022, 2026):
         m = _ler(ano, "modelos_efeito_controlado.csv")
@@ -946,12 +946,12 @@ def segundo_turno_md() -> str:
     if not rt.empty:
         r2 = rt[(rt.turno == 2) & (rt.divergencias > 0)]
         o += ["\n## 8–10. Incompatibilidades do 2º turno\n",
-              "Testes executáveis sem o BU em CSV (ainda não publicado nos Dados Abertos): A2o (seção oficial × pacote), "
-              "B7 (resultado oficial por seção × BU binário: aptos, comparecimento, nominais, brancos, nulos e votos por "
-              "candidato), B6o (resultado oficial × log), B8 (BU binário por forma de habilitação × log) e K2.\n",
-              f"- B7 e A2o: **{n(rt[(rt.turno == 2) & rt.teste.isin(['B7', 'A2o'])].divergencias.sum())} divergências** "
-              f"em {n(_ler(2026, 'reconciliacao_resumo.csv').query('teste == \"B7\"').registros_comparados.max())} seções — o BU de cada urna "
-              "reproduz exatamente o resultado oficial por seção, voto a voto por candidato.\n",
+              "Desde 29/10/2026 o BU em CSV do 2º turno (Dados Abertos, SHA-512 oficial conferido) é a fonte principal; "
+              "todos os testes A–K foram executados. Reconciliação específica com as fontes anteriores e com o log em "
+              "`docs/reconciliacao-consolidado-2026-2t.md`.\n",
+              f"- BU em CSV × BU binário (B2), × Detalhe por seção (B3), × Votação por seção (K1) e × Votação por zona (B4): "
+              f"**{n(rt[(rt.turno == 2) & rt.teste.isin(['B2', 'B3', 'K1', 'B4']) & ~rt.campo.str.contains('biometria')].divergencias.sum())} "
+              "divergências de votos** — o BU de cada urna reproduz exatamente o resultado oficial, voto a voto por candidato.\n",
               tabela_md(r2[["teste", "campo", "divergencias", "explicadas", "nao_explicadas",
                             "soma_abs_diferencas_nao_explicadas"]]),
               "\n" + DIAG_CONTINGENCIA + "\n",
@@ -982,6 +982,7 @@ def segundo_turno_md() -> str:
           "documental para isso nas tabelas oficiais — são mudanças de comportamento do eleitorado e não indicam, por si, "
           "irregularidade. Votos após 17h ficaram no nível de 2022 (0,027% contra 0,033%).\n\n"
           "**O que ainda precisa ser investigado:** atas e relatórios de contingência das seções MA 8893/47/609, "
-          "BA 35653/173/235 e RS 89060/17/191; o log da seção SP 64777/395/298; o BU em CSV do 2º turno (quando publicado) "
-          "para executar B1–B5 e K1; as 11 + 5 seções pendentes de B8.\n"]
+          "BA 35653/173/235 e RS 89060/17/191; o log da seção SP 64777/395/298 (ainda não publicado em 29/10/2026); "
+          "as 5 seções sem substituição de urna em que a abertura do BU antecede o primeiro registro do log; as seções "
+          "pendentes de B8; os arquivos transmitidos para totalização do 2º turno, ainda não publicados nos Dados Abertos.\n"]
     return "\n".join(o) + "\n"

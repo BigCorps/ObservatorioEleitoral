@@ -1,6 +1,6 @@
 # Auditoria 2026 — Presidente
 
-_Gerado automaticamente por `scripts/gerar_relatorios.py` em 29/10/2026 14:44 UTC. Todos os números vêm de `resultados/2026/`. Ver método em `docs/metodologia.md`._
+_Gerado automaticamente por `scripts/gerar_relatorios.py` em 29/10/2026 14:49 UTC. Todos os números vêm de `resultados/2026/`. Ver método em `docs/metodologia.md`._
 
 ## Cobertura dos arquivos de urna (logs e BU binário)
 
@@ -41,7 +41,7 @@ Os totais nacionais publicados pelo TSE (histórico de totalização e detalhe p
 | B2 | comparecimento | BWEB | BUBIN | 998.413 | 0 | 0 | 0 |
 | B2 | nulos | BWEB | BUBIN | 998.413 | 0 | 0 | 0 |
 | B2 | votos_nominais | BWEB | BUBIN | 998.413 | 0 | 0 | 0 |
-| B2 | votos_por_candidato_soma_dif_abs | BWEB | BUBIN | 998.413 | 2 | 0 | 2 |
+| B2 | votos_por_candidato_soma_dif_abs | BWEB | BUBIN | 998.413 | 0 | 0 | 0 |
 | B2c | votos_extra_no_bu | BUBIN | BWEB | 998.413 | 0 | 0 | 0 |
 | B3 | abstencoes | BWEB | DSEC | 998.413 | 0 | 0 | 0 |
 | B3 | aptos | BWEB | DSEC | 998.413 | 0 | 0 | 0 |
@@ -76,7 +76,7 @@ Legenda: BWEB = BU publicado em CSV; BUBIN = arquivo .bu transmitido pela urna; 
 **Classificação:** Conferido (com diferenças explicadas e incompatibilidades listadas)
 
 - **O que verificamos?** Se o mesmo número aparece igual em todas as publicações oficiais que deveriam coincidir, seção a seção (BU em CSV, BU binário, detalhe por seção, votação por seção) e na soma por zona.
-- **O que os números mostram?** 18 de 35 comparações sem nenhuma divergência; 62 divergências ainda sem explicação documental (listadas abaixo).
+- **O que os números mostram?** 19 de 35 comparações sem nenhuma divergência; 60 divergências ainda sem explicação documental (listadas abaixo).
 - **O que significa?** Os votos publicados por seção são os mesmos do arquivo binário assinado gerado pela urna e das demais tabelas do TSE.
 - **Existe explicação conhecida?** As divergências explicadas decorrem de seções não instaladas, seções apuradas pelo Sistema de Apuração (cédulas), campos opcionais omitidos no exterior e eleitores de seções não instaladas incluídos nos aptos por zona.
 - **O que ainda não sabemos?** A verificação criptográfica das assinaturas dos arquivos (.vscmr) não foi feita nesta etapa.
@@ -89,8 +89,6 @@ Legenda: BWEB = BU publicado em CSV; BUBIN = arquivo .bu transmitido pela urna; 
 | A2 | 1 | ZZ | 29.564 | 1 | 91 | presenca | — | BWEB | 1 | BUBIN |
 | B2 | 1 | MG | 41.238 | 39 | 168 | biometria_nh_vs_lib_codigo | 0 | BWEB | — | BUBIN |
 | B2 | 1 | MG | 50.075 | 47 | 41 | biometria_nh_vs_lib_codigo | 0 | BWEB | — | BUBIN |
-| B2 | 2 | ZZ | 29.564 | 1 | 91 | votos_por_candidato_soma_dif_abs | — | BWEB | 0 | BUBIN |
-| B2 | 2 | ZZ | 30.686 | 1 | 443 | votos_por_candidato_soma_dif_abs | — | BWEB | 0 | BUBIN |
 | B6 | 1 | BA | 39.934 | 183 | 175 | biometria_nh_vs_liberacao_manual_no_log | 17 | BWEB | 16 | LOG |
 | B6 | 1 | RJ | 60.011 | 8 | 61 | biometria_nh_vs_liberacao_manual_no_log | 38 | BWEB | 37 | LOG |
 | B6 | 1 | SP | 71.072 | 2 | 35 | biometria_nh_vs_liberacao_manual_no_log | 18 | BWEB | 16 | LOG |
