@@ -40,7 +40,9 @@ e `manifestos/cobertura_arquivos_urna.csv`. Em 26–27/10/2026:
   oficial conferido) adotado como fonte principal em 29/10/2026 e reconciliado seção a seção com os BUs binários e
   logs coletados no Portal de Resultados e com o resultado oficial por seção — ver
   [docs/reconciliacao-consolidado-2026-2t.md](docs/reconciliacao-consolidado-2026-2t.md). Os arquivos transmitidos
-  para totalização do 2º turno ainda não estão nos Dados Abertos.
+  para totalização do 2º turno passaram a constar nos Dados Abertos na verificação posterior de 29/10;
+  o confronto específico com os pacotes novos está preparado, mas depende de execução com os Parquets locais:
+  [docs/verificacao-final-horarios-2026.md](docs/verificacao-final-horarios-2026.md).
 
 ## Como reproduzir
 

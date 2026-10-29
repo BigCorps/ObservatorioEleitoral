@@ -1,5 +1,7 @@
 # Reconciliação do BU em CSV consolidado — 2º turno de 2026
 
+> **Atualização posterior no dia 29/10/2026:** após o inventário abaixo, o Portal de Dados Abertos do TSE passou a exibir recursos do **2º turno de 2026 para os arquivos transmitidos para totalização**, incluindo SP e RR (recursos cadastrados em 28/10). As informações históricas deste relatório reproduzem o estado da coleta anterior e não devem ser interpretadas como status atual. O confronto individual com esses novos pacotes ainda não foi executado. Ver [verificação complementar de horários, pacotes e códigos de local](verificacao-final-horarios-2026.md).
+
 _Executada em 29/10/2026 a partir de arquivos oficiais do TSE com hash conferido. Código:
 `observatorio/consolidado_2t.py`, `observatorio/reconciliacao.py`, `observatorio/cronologia.py`. Saídas em
 `resultados/2026/consolidado_2t/`. Nenhuma diferença aqui é tratada como indício de fraude; ausência de log não é
