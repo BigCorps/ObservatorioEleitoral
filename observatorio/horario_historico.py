@@ -51,7 +51,7 @@ def carregar(con: duckdb.DuckDBPyConnection, ano: int) -> None:
              coalesce(o.votos_candidato[22], 0) AS v22,
              o.votos_brancos AS brancos, o.votos_nulos AS nulos,
              t.votos_apos_17h, t.votos_apos_19h, t.encerramento_brt,
-             r.validos_1t, r.l_1t
+             r.validos_1t, r.l_1t, r.b_1t
       FROM (SELECT * FROM '{fonte}' WHERE turno = 2 AND uf <> 'ZZ') o
       JOIN (SELECT uf, cd_municipio, nr_zona, nr_secao,
                    votos_apos_17h, votos_apos_19h, encerramento_brt
@@ -91,7 +91,10 @@ def _resumo(con: duckdb.DuckDBPyConnection) -> pd.DataFrame:
                 sum(votos_apos_17h) votos_apos_17h,
                 sum(votos_apos_19h) votos_apos_19h,
                 round(100.0 * sum(v13) / nullif(sum(validos),0), 4) pct_13,
-                round(100.0 * sum(l_1t) / nullif(sum(validos_1t),0), 4) pct_13_primeiro_turno
+                round(100.0 * sum(l_1t) / nullif(sum(validos_1t),0), 4) pct_13_primeiro_turno,
+                round(100.0 * sum(v22) / nullif(sum(validos),0), 4) pct_22,
+                round(100.0 * sum(b_1t) / nullif(sum(validos_1t),0), 4) pct_22_primeiro_turno,
+                sum(validos_1t) validos_1t, sum(l_1t) votos_13_1t, sum(b_1t) votos_22_1t
               FROM b{ano} WHERE {cond} GROUP BY uf
             """).df()
             rows.append(d)
@@ -175,6 +178,21 @@ def _comparacao_anual(con: duckdb.DuckDBPyConnection) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
+def _comparacao_por_uf(con: duckdb.DuckDBPyConnection) -> pd.DataFrame:
+    """Mesmo método da comparação anual, separadamente por UF (mesmo local de votação)."""
+    rows = []
+    for ano in (2022, 2026):
+        df = _base_regressao(con, ano)
+        for uf, d in df.groupby("uf"):
+            d = d.reset_index(drop=True)
+            for controles in ([], ["s13_1t", "comp_pct", "log_aptos"]):
+                result = _wls_fe(d, "late17", "s13", "validos", LOCAL, controles)
+                if result and result["secoes_tardias"] >= 30:
+                    rows.append({"ano": ano, "uf": uf, "comparacao": "mesmo_local",
+                                 "controles": ",".join(controles) or "nenhum", **result})
+    return pd.DataFrame(rows)
+
+
 def _historico_mesmas_secoes(con: duckdb.DuckDBPyConnection) -> tuple[pd.DataFrame, pd.DataFrame]:
     """Pares conservadores: mesmo código, local e aptos com variação de até 10%."""
     df = con.execute("""
@@ -183,6 +201,8 @@ def _historico_mesmas_secoes(con: duckdb.DuckDBPyConnection) -> tuple[pd.DataFra
         b.validos validos26, a.comparecimento comp22, b.comparecimento comp26,
         100.0*a.v13/nullif(a.validos,0) s13_2022,
         100.0*b.v13/nullif(b.validos,0) s13_2026,
+        100.0*a.v22/nullif(a.validos,0) s22_2022,
+        100.0*b.v22/nullif(b.validos,0) s22_2026,
         100.0*b.l_1t/nullif(b.validos_1t,0) s13_1t_2026,
         (a.votos_apos_17h > 0)::INT late22,
         (b.votos_apos_17h > 0)::INT late26
@@ -207,18 +227,24 @@ def _historico_mesmas_secoes(con: duckdb.DuckDBPyConnection) -> tuple[pd.DataFra
             "voto_tardio_2022":int(l22), "voto_tardio_2026":int(l26),
             "secoes":len(d), "validos_2022":int(d.validos22.sum()),
             "validos_2026":int(d.validos26.sum()),
-            "pct_13_2022":round(100.0*np.sum(d.s13_2022*d.validos22)/d.validos22.sum(),4),
-            "pct_13_2026":round(100.0*np.sum(d.s13_2026*d.validos26)/d.validos26.sum(),4),
+            "pct_13_2022":round(np.sum(d.s13_2022*d.validos22)/d.validos22.sum(),4),
+            "pct_13_2026":round(np.sum(d.s13_2026*d.validos26)/d.validos26.sum(),4),
+            "pct_22_2022":round(np.sum(d.s22_2022*d.validos22)/d.validos22.sum(),4),
+            "pct_22_2026":round(np.sum(d.s22_2026*d.validos26)/d.validos26.sum(),4),
+            "pct_comparecimento_2022":round(100.0*d.comp22.sum()/d.aptos22.sum(),4),
+            "pct_comparecimento_2026":round(100.0*d.comp26.sum()/d.aptos26.sum(),4),
         })
     linha = []
     for nome,nivel in (("mesmo_local",LOCAL),("mesmo_municipio",["uf","cd_municipio"])):
-        for controles in ([], ["s13_2022","s13_1t_2026","pct_comparecimento26","log_aptos26"]):
-            result = _wls_fe(df,"late26","delta_13_pp","peso",nivel,controles)
-            if result:
-                linha.append({
-                    "comparacao":nome, "controles":",".join(controles) or "nenhum",
-                    "variavel":"delta_13_pp_2026_menos_2022",
-                    **result})
+        for grupo in ("late26", "late22"):
+            for controles in ([], ["s13_2022","s13_1t_2026","pct_comparecimento26","log_aptos26"]):
+                result = _wls_fe(df,grupo,"delta_13_pp","peso",nivel,controles)
+                if result:
+                    linha.append({
+                        "grupo_tardio": {"late26": "voto após 17h em 2026", "late22": "voto após 17h em 2022"}[grupo],
+                        "comparacao":nome, "controles":",".join(controles) or "nenhum",
+                        "variavel":"delta_13_pp_2026_menos_2022",
+                        **result})
     return pd.DataFrame(tabela),pd.DataFrame(linha)
 
 
@@ -230,6 +256,7 @@ def executar() -> dict:
         carregar(con,ano)
     resumo = _resumo(con)
     controle = _comparacao_anual(con)
+    por_uf = _comparacao_por_uf(con)
     pares, historico = _historico_mesmas_secoes(con)
     con.close()
     # Coberturas que já tinham sido publicadas na auditoria, para detectar regressão.
@@ -241,7 +268,8 @@ def executar() -> dict:
     controle.to_csv(SAIDA/"horario_historico_pareado.csv",index=False)
     pares.to_csv(SAIDA/"horario_historico_mesmas_secoes.csv",index=False)
     historico.to_csv(SAIDA/"horario_historico_delta_mesmo_local.csv",index=False)
-    return {"resumo":resumo,"controle":controle,"pares":pares,"historico":historico}
+    por_uf.to_csv(SAIDA/"horario_historico_pareado_uf.csv",index=False)
+    return {"resumo":resumo,"controle":controle,"pares":pares,"historico":historico,"por_uf":por_uf}
 
 
 if __name__ == "__main__":
