@@ -1,0 +1,23 @@
+fonte,afirmacao,valor_alegado,valor_reproduzido,classificacao,nota
+CNN/setup.news,497.895 urnas analisadas (sem exterior),497895,497896,Dependente de metodologia ou definição,nossa base tem 497.896 seções com log; diferença de 1 seção de universo
+CNN/setup.news,34.330 votos após as 17h,34330,34330,Confirmada pelos dados,reproduzido contando a partir de 17:00:00 (≥); após 17:00:00 (>) são 34.050
+CNN/setup.news,29.001 votos nos primeiros 5 minutos após 17h,29001,29001,Confirmada pelos dados,17:00:00 a 17:04:59
+CNN/setup.news,1.993 votos após 18h,1993,1993,Confirmada pelos dados,
+CNN/setup.news,11 votos após 19h,11,11,Confirmada pelos dados,
+CNN/setup.news,468.043 urnas sem voto após 17h,468043,468042,Confirmada pelos dados,diferença de 1 = universo de seções
+André Agnoletto,497.896 urnas com log (sem exterior),497896,497896,Confirmada pelos dados,
+André Agnoletto,31.060 votos após o encerramento previsto,31060,34050.0,Dependente de metodologia ou definição,"ele usa o horário local previsto; 17h de Brasília dá 34.050 e 17h da hora local, 30.979"
+André Agnoletto,2.512 votos com habilitação manual após o encerramento,2512,2746.0,Dependente de metodologia ou definição,definição de horário diferente
+André Agnoletto,7.577 urnas encerradas às 19h,7577,6864.0,Dependente de metodologia ou definição,início do encerramento a partir de 18h55; após 19h00:00 são 6.766 (grupo D)
+André Agnoletto,mediana de 10 s por voto,10,11.0,Dependente de metodologia ou definição,medimos habilitação → voto computado
+André Agnoletto,"habilitação manual após falha: UE2013 11,0% / UE2015 9,8% / UE2020 6,2% / UE2022 6,2%",,"10,8 / 9,6 / 6,0 / 6,0",Confirmada pelos dados,"diferenças de até 0,2 p.p. por regra de classificação das mensagens do log"
+Painel auditoriaeleicoes.com,"2026, 1º turno: 3.806 seções com mais de 90% para um candidato",3806,3823,Dependente de metodologia ou definição,o painel declara universo de 499.038 seções (210 a menos que o oficial)
+Painel auditoriaeleicoes.com,"2026, 1º turno: 34 seções com 100%",34,40,Dependente de metodologia ou definição,mesmo motivo
+Painel auditoriaeleicoes.com,2022: 5.947 (1º) e 9.606 (2º) seções com mais de 90%,5947 / 9606,5970 / 9646,Dependente de metodologia ou definição,mesmo motivo
+Painel auditoriaeleicoes.com,2022: 55 (1º) e 132 (2º) seções com 100%,55 / 132,62 / 147,Dependente de metodologia ou definição,mesmo motivo
+Painel auditoriaeleicoes.com,"2026, 1º turno: soma dos BUs difere do oficial em MG e no exterior",MG −233/−242; ZZ −391/−310,BU em CSV = oficial em todas as UFs,Dependente de metodologia ou definição,o painel soma só seções com arquivo de urna; faltam 2 em MG (RED e Sistema de Apuração) e 70 no exterior
+Observatório (destaque anterior do painel),"SP, encerramento após 19h: 13 com 57,12% dos válidos em 1.676 seções","57,12% / 1.676",57.12% / 1676,Confirmada pelos dados,diferença bruta; no mesmo local de votação o efeito ajustado é ~0
+kakaroto.dev,afirmações sobre arquivos e totalização do 2º turno,,,Não verificável com as fontes disponíveis,site fora do ar desde 26/10/2026 e sem código público
+Relatório externo com recortes 17h01–17h15 / 17h16–18h59,valores por recorte de horário,,,Não verificável com as fontes disponíveis,os valores não foram fornecidos ao Observatório; nossos recortes estão em resultados/2026/horario_recortes_votos.csv
+Afirmações gerais de inconsistência na totalização do 2º turno,BU ≠ resultado oficial,,0 divergências em 499.205 seções,Contrariada pelos dados,"BU em CSV consolidado, BU binário assinado e tabelas oficiais coincidem em todos os campos de votos"
+"2026, 2º turno (cálculo próprio, sem afirmação externa)",seções com mais de 90% / com 100%,,7194 / 110,Referência,mesma definição aplicada a todos os anos

@@ -1,0 +1,45 @@
+teste,descricao,campo,fonte_a,fonte_b,registros_comparados,divergencias,ausencias,soma_abs_diferencas,explicadas
+A2,Seção presente no BU-CSV e ausente no pacote de arquivos de urna (e vice-versa),presenca,BWEB,BUBIN,499207,1,1,0,0
+A2o,"Seção no resultado oficial por seção e ausente no pacote de arquivos de urna (e vice-versa), turno sem BU-CSV",presenca,DSEC+VSEC,BUBIN,499207,0,0,0,0
+A3,Seções no Detalhe por seção sem BU-CSV (e vice-versa),presenca,DSEC,BWEB,499248,42,42,0,42
+B1,"Comparecimento = nominais + brancos + nulos (BU-CSV, Presidente)",comparecimento_vs_soma_votos,BWEB,BWEB,499206,0,0,0,0
+B2,BU-CSV x BU binário (.bu),aptos,BWEB,BUBIN,499206,0,0,0,0
+B2,BU-CSV x BU binário (.bu),biometria_nh_vs_lib_codigo,BWEB,BUBIN,499206,1311,1311,0,1309
+B2,BU-CSV x BU binário (.bu),brancos,BWEB,BUBIN,499206,0,0,0,0
+B2,BU-CSV x BU binário (.bu),comparecimento,BWEB,BUBIN,499206,0,0,0,0
+B2,BU-CSV x BU binário (.bu),nulos,BWEB,BUBIN,499206,0,0,0,0
+B2,BU-CSV x BU binário (.bu),votos_nominais,BWEB,BUBIN,499206,0,0,0,0
+B2,BU-CSV x BU binário (.bu),votos_por_candidato_soma_dif_abs,BWEB,BUBIN,499206,0,0,0,0
+B2c,Candidatos presentes no .bu e ausentes no BU-CSV,votos_extra_no_bu,BUBIN,BWEB,499206,0,0,0,0
+B3,BU-CSV x Detalhe da apuração por seção,abstencoes,BWEB,DSEC,499206,0,0,0,0
+B3,BU-CSV x Detalhe da apuração por seção,aptos,BWEB,DSEC,499206,0,0,0,0
+B3,BU-CSV x Detalhe da apuração por seção,brancos,BWEB,DSEC,499206,0,0,0,0
+B3,BU-CSV x Detalhe da apuração por seção,comparecimento,BWEB,DSEC,499206,0,0,0,0
+B3,BU-CSV x Detalhe da apuração por seção,nulos,BWEB,DSEC,499206,0,0,0,0
+B3,BU-CSV x Detalhe da apuração por seção,votos_nominais,BWEB,DSEC,499206,0,0,0,0
+B4,Soma das seções (BU-CSV) x Votação nominal por município e zona,votos_candidato_zona,BWEB,CMZ,62388,2148,2148,0,2148
+B5,Soma das seções (BU-CSV) x Detalhe por município e zona,abstencoes,BWEB,DMZ,6292,41,41,0,41
+B5,Soma das seções (BU-CSV) x Detalhe por município e zona,aptos,BWEB,DMZ,6292,41,41,0,41
+B5,Soma das seções (BU-CSV) x Detalhe por município e zona,brancos,BWEB,DMZ,6292,41,41,0,41
+B5,Soma das seções (BU-CSV) x Detalhe por município e zona,comparecimento,BWEB,DMZ,6292,41,41,0,41
+B5,Soma das seções (BU-CSV) x Detalhe por município e zona,nulos,BWEB,DMZ,6292,2189,41,5246,2189
+B5,Soma das seções (BU-CSV) x Detalhe por município e zona,validos,BWEB,DMZ,6292,2189,41,5246,2189
+B6,BU-CSV x log da urna (contagens),biometria_nh_vs_liberacao_manual_no_log,BWEB,LOG,499176,3,0,4,0
+B6,BU-CSV x log da urna (contagens),comparecimento_vs_votos_computados,BWEB,LOG,499176,9,0,59,0
+B6,BU-CSV x log da urna (contagens),comparecimento_vs_votos_presidente_mais_nulos_suspensao,BWEB,LOG,499176,154,0,205,148
+B6o,Resultado oficial por seção x log da urna (turno sem BU-CSV),comparecimento_vs_votos_computados,DSEC+VSEC,LOG,499177,6,0,54,0
+B6o,Resultado oficial por seção x log da urna (turno sem BU-CSV),comparecimento_vs_votos_presidente_mais_nulos_suspensao,DSEC+VSEC,LOG,499177,53,0,103,48
+B7,"Resultado oficial por seção (DSEC+VSEC) x BU binário (.bu), turno sem BU-CSV",aptos,DSEC+VSEC,BUBIN,499207,0,0,0,0
+B7,"Resultado oficial por seção (DSEC+VSEC) x BU binário (.bu), turno sem BU-CSV",brancos,DSEC+VSEC,BUBIN,499207,0,0,0,0
+B7,"Resultado oficial por seção (DSEC+VSEC) x BU binário (.bu), turno sem BU-CSV",comparecimento,DSEC+VSEC,BUBIN,499207,0,0,0,0
+B7,"Resultado oficial por seção (DSEC+VSEC) x BU binário (.bu), turno sem BU-CSV",nulos,DSEC+VSEC,BUBIN,499207,0,0,0,0
+B7,"Resultado oficial por seção (DSEC+VSEC) x BU binário (.bu), turno sem BU-CSV",votos_nominais,DSEC+VSEC,BUBIN,499207,0,0,0,0
+B7,"Resultado oficial por seção (DSEC+VSEC) x BU binário (.bu), turno sem BU-CSV",votos_por_candidato_soma_dif_abs,DSEC+VSEC,BUBIN,499207,0,0,0,0
+B8,BU binário (detalhamento por forma de habilitação) x log da urna,habilitados_por_biografia_vs_manual_apos_falha,BUBIN,LOG,995791,6,0,21,0
+B8,BU binário (detalhamento por forma de habilitação) x log da urna,habilitados_por_biometria,BUBIN,LOG,995791,8346,0,8464,8330
+B8,BU binário (detalhamento por forma de habilitação) x log da urna,sem_biometria_cadastrada,BUBIN,LOG,995791,3,0,6,0
+C1,Aptos = comparecimento + abstenções (BU-CSV),aptos_vs_comp_mais_abst,BWEB,BWEB,499206,0,0,0,0
+K1,"BU-CSV x Votação por seção (caminho independente), por candidato",votos_votavel,BWEB,VSEC,3800511,0,0,0,0
+K2,Detalhe por seção x Votação por seção (soma dos votáveis),brancos,DSEC,VSEC,998414,0,0,0,0
+K2,Detalhe por seção x Votação por seção (soma dos votáveis),nulos,DSEC,VSEC,998414,0,0,0,0
+K2,Detalhe por seção x Votação por seção (soma dos votáveis),votos_nominais,DSEC,VSEC,998414,0,0,0,0

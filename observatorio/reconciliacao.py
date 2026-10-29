@@ -129,6 +129,13 @@ def explicar(con, disp) -> None:
                        "AND d.uf=incompat.uf AND d.cd_municipio=incompat.cd_municipio AND d.nr_zona=incompat.nr_zona "
                        "AND d.nr_secao=incompat.nr_secao AND d.ST_SECAO_INSTALADA IN ('Não','N'))",
                        "Seção não instalada (ST_SECAO_INSTALADA = Não no Detalhe por seção): não há BU."))
+        # só onde foi conferido no CSV bruto (2026, 2º turno); no 1º turno a seção ZZ 29564/1/91 está ausente do CSV
+        regras.append(("teste='A2' AND turno=2 AND valor_a IS NULL AND EXISTS (SELECT 1 FROM dsec d WHERE d.turno=incompat.turno "
+                       "AND d.uf=incompat.uf AND d.cd_municipio=incompat.cd_municipio AND d.nr_zona=incompat.nr_zona "
+                       "AND d.nr_secao=incompat.nr_secao AND d.qt_comparecimento = 0)",
+                       "Seção sem nenhum votante: no BU em CSV ela aparece numa única linha com CD_CARGO_PERGUNTA = -1 "
+                       "(#NULO#) e é excluída pelo filtro do cargo Presidente na conversão; o BU binário e o Detalhe por "
+                       "seção registram comparecimento 0 (conferido no CSV: ZZ 29564/1/91 e 30686/1/443, 2º turno de 2026)."))
         regras.append(("teste='A2' AND valor_b IS NULL AND EXISTS (SELECT 1 FROM dsec d WHERE d.turno=incompat.turno "
                        "AND d.uf=incompat.uf AND d.cd_municipio=incompat.cd_municipio AND d.nr_zona=incompat.nr_zona "
                        "AND d.nr_secao=incompat.nr_secao AND d.DS_ORIGEM_VOTO IN ('Sistema de apuração','Totalização'))",

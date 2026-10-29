@@ -1,0 +1,5 @@
+uf,cd_municipio,nr_zona,nr_secao,campo,valor_fonte_anterior,valor_consolidado,fonte_anterior
+ZZ,30686,1,443,presenca,1,,resultado oficial por seção (DSEC+VSEC) usado antes
+ZZ,29564,1,91,presenca,1,,resultado oficial por seção (DSEC+VSEC) usado antes
+ZZ,29564,1,91,presenca,1,,BU binário coletado no Portal de Resultados
+ZZ,30686,1,443,presenca,1,,BU binário coletado no Portal de Resultados

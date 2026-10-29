@@ -1,0 +1,4 @@
+teste,descricao,secoes,ate_2s,ate_60s,diferenca_maior_60s,sem_registro_no_log
+E1,abertura no BU × primeira 'Urna pronta para receber votos' no log,499177,499149.0,499166.0,11,0.0
+E2,encerramento no BU × 'Procedimento de encerramento confirmado' no log,499177,499169.0,499171.0,1,5.0
+E3,urna efetivada no BU presente entre os identificadores de urna do log,499177,,,1,
