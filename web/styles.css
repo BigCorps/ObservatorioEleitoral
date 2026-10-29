@@ -364,3 +364,10 @@ html{scroll-padding-bottom:calc(var(--dock-current-height) + 20px)}
 .horario-links a{font-size:11px;font-weight:800;color:#0c7169;text-decoration:underline;text-underline-offset:3px}
 @media(max-width:900px){.horario-heading{display:block}.horario-fixed{display:inline-block;margin-top:17px}.horario-cards{grid-template-columns:1fr}}
 @media(max-width:600px){.horario-feature{padding:45px 0}.horario-card{padding:20px}.horario-heading h2{font-size:28px}.horario-facts>div{padding:12px}.horario-facts strong{font-size:21px}.horario-summary{grid-template-columns:1fr}.horario-summary>div{border-right:0;border-bottom:1px solid #e0e9e4;padding:16px 20px}.horario-summary>div:last-child{border-bottom:0}.horario-bottom{display:block}.horario-links{margin-top:18px}}
+
+.horario-historico{margin-top:22px;padding:22px;border:1px solid #dce5e4;border-radius:14px;background:#fff}
+.horario-historico h3{margin:0 0 14px;font-size:17px}
+.horario-historico .comparison-table{min-width:520px}
+.horario-historico .comparison-table td small{color:#697d81;font-weight:600}
+.horario-historico .horario-links{margin-top:12px}
+@media(max-width:640px){.horario-historico{padding:14px}}

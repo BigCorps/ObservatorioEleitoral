@@ -1,0 +1,9 @@
+grupo_tardio,comparacao,controles,variavel,locais_comparaveis,secoes,secoes_tardias,efeito_pp,erro_padrao_pp,ic95_inf,ic95_sup
+voto após 17h em 2026,mesmo_local,nenhum,delta_13_pp_2026_menos_2022,11928,110128,18678,-0.0277,0.0212,-0.0692,0.0139
+voto após 17h em 2026,mesmo_local,"s13_2022,s13_1t_2026,pct_comparecimento26,log_aptos26",delta_13_pp_2026_menos_2022,11928,110128,18678,0.0123,0.0148,-0.0167,0.0413
+voto após 17h em 2022,mesmo_local,nenhum,delta_13_pp_2026_menos_2022,14259,129376,22997,-0.053,0.0192,-0.0907,-0.0153
+voto após 17h em 2022,mesmo_local,"s13_2022,s13_1t_2026,pct_comparecimento26,log_aptos26",delta_13_pp_2026_menos_2022,14259,129376,22997,-0.0058,0.0133,-0.0318,0.0202
+voto após 17h em 2026,mesmo_municipio,nenhum,delta_13_pp_2026_menos_2022,2662,275028,19441,-0.0605,0.0302,-0.1197,-0.0012
+voto após 17h em 2026,mesmo_municipio,"s13_2022,s13_1t_2026,pct_comparecimento26,log_aptos26",delta_13_pp_2026_menos_2022,2662,275028,19441,0.0691,0.0159,0.0379,0.1003
+voto após 17h em 2022,mesmo_municipio,nenhum,delta_13_pp_2026_menos_2022,2946,282393,23846,-0.0326,0.0258,-0.0832,0.018
+voto após 17h em 2022,mesmo_municipio,"s13_2022,s13_1t_2026,pct_comparecimento26,log_aptos26",delta_13_pp_2026_menos_2022,2946,282393,23846,0.0832,0.0179,0.0481,0.1183

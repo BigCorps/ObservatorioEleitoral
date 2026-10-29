@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=horario-destaque-20261029">
+  <link rel="stylesheet" href="./styles.css?v=horario-historico-20261029">
   <script src="./app.js?v=eleitorado-simulador-20261027" defer></script>
 </head>
 <body>
@@ -98,6 +98,22 @@
           <div><span>Seções com voto após 17h</span><strong>29.609</strong><small>34.050 votos efetivamente após 17h</small></div>
           <div><span>Seções com voto após 19h</span><strong>11</strong><small>11 votos efetivamente após 19h</small></div>
           <div><span>Seções encerradas após 19h</span><strong>6.766</strong><small>1.984.670 votos durante todo o dia</small></div>
+        </div>
+        <div class="horario-historico" aria-labelledby="horario-hist-title">
+          <h3 id="horario-hist-title">Seções com voto após 17h: 2022 × 2026 (2º turno)</h3>
+          <div class="comparison-scroll"><table class="comparison-table">
+            <thead><tr><th scope="col">Indicador</th><th scope="col">2022</th><th scope="col">2026</th></tr></thead>
+            <tbody>
+              <tr><td>Seções com voto após 17h</td><td>34.455</td><td>29.609</td></tr>
+              <tr><td>Votos efetivamente após 17h</td><td>40.698</td><td>34.050</td></tr>
+              <tr><td>% do 13 nessas seções (dia inteiro)</td><td>50,42%</td><td>54,02%</td></tr>
+              <tr><td>Diferença bruta em relação ao Brasil</td><td>−0,48 p.p.</td><td>+2,24 p.p.</td></tr>
+              <tr><td>Mesma diferença já no 1º turno</td><td>−0,59 p.p.</td><td>+1,58 p.p.</td></tr>
+              <tr><td><strong>Ajustada, no mesmo local de votação</strong></td><td><strong>−0,04 p.p.</strong><br><small>IC 95% −0,06 a −0,01</small></td><td><strong>+0,06 p.p.</strong><br><small>IC 95% +0,03 a +0,08</small></td></tr>
+            </tbody>
+          </table></div>
+          <p class="horario-caution">A diferença bruta muda de sinal entre os anos e já existia no 1º turno nas mesmas seções: é efeito de <strong>localização</strong>. Dentro do mesmo local, sobram centésimos de ponto, com sinais opostos — estatisticamente detectáveis pelo tamanho da amostra, sem relevância prática. Nas 318.674 seções comparáveis entre os anos, a evolução 2022 → 2026 das seções tardias não difere da das vizinhas, e nenhuma UF tem efeito ajustado acima de 0,34 p.p. (nenhum significativo após correção de Holm).</p>
+          <div class="horario-links"><a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/docs/horarios-2022-2026.md" target="_blank" rel="noopener noreferrer">Ler comparação 2022 × 2026 ↗</a><a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/resultados/comparativo/horario_historico_uf_controlado.csv" target="_blank" rel="noopener noreferrer">Conferir por UF ↗</a></div>
         </div>
         <div class="horario-bottom">
           <details class="horario-explainer">

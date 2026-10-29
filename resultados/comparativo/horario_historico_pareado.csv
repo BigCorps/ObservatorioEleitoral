@@ -1,0 +1,9 @@
+ano,criterio,comparacao,controles,locais_comparaveis,secoes,secoes_tardias,efeito_pp,erro_padrao_pp,ic95_inf,ic95_sup
+2022,seção com voto após 17h,mesmo_local,nenhum,20544,191711,33458,-0.0148,0.0226,-0.059,0.0294
+2022,seção com voto após 17h,mesmo_local,"s13_1t,comp_pct,log_aptos",20544,191711,33458,-0.0367,0.0118,-0.0599,-0.0135
+2022,seção com voto após 17h,mesmo_municipio,nenhum,3504,428442,34445,0.4096,0.2379,-0.0567,0.8759
+2022,seção com voto após 17h,mesmo_municipio,"s13_1t,comp_pct,log_aptos",3504,428442,34445,-0.1886,0.0423,-0.2715,-0.1056
+2026,seção com voto após 17h,mesmo_local,nenhum,18213,172840,28788,-0.0545,0.0249,-0.1033,-0.0057
+2026,seção com voto após 17h,mesmo_local,"s13_1t,comp_pct,log_aptos",18213,172840,28788,0.0556,0.0135,0.0292,0.0821
+2026,seção com voto após 17h,mesmo_municipio,nenhum,3336,447260,29603,0.4488,0.401,-0.3373,1.2348
+2026,seção com voto após 17h,mesmo_municipio,"s13_1t,comp_pct,log_aptos",3336,447260,29603,0.1802,0.0279,0.1254,0.2349

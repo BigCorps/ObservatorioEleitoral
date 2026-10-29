@@ -272,7 +272,57 @@ def executar() -> dict:
     return {"resumo":resumo,"controle":controle,"pares":pares,"historico":historico,"por_uf":por_uf}
 
 
+
+
+
+def consolidar() -> dict:
+    """Pós-processamento dos CSVs gerados por executar(): tabela 2022 × 2026, diferença das seções
+    tardias em relação à própria UF e correção de Holm nos testes por UF."""
+    from scipy import stats
+    r = pd.read_csv(SAIDA / "horario_historico_por_uf.csv")
+    soma = ["secoes", "aptos", "comparecimento", "validos", "votos_13", "votos_22", "brancos", "nulos",
+            "votos_apos_17h", "votos_apos_19h", "validos_1t", "votos_13_1t", "votos_22_1t"]
+
+    def taxas(d):
+        d = d.copy()
+        d["pct_13"] = (100 * d.votos_13 / d.validos).round(3)
+        d["pct_22"] = (100 * d.votos_22 / d.validos).round(3)
+        d["pct_13_1t"] = (100 * d.votos_13_1t / d.validos_1t).round(3)
+        d["pct_22_1t"] = (100 * d.votos_22_1t / d.validos_1t).round(3)
+        d["residuo_soma"] = d.comparecimento - d.votos_13 - d.votos_22 - d.brancos - d.nulos
+        return d
+    br = taxas(r.groupby(["ano", "grupo"])[soma].sum().reset_index())
+    tot = br[br.grupo == "todos"].set_index("ano")
+    br["dif_13_vs_brasil_pp"] = (br.pct_13 - br.ano.map(tot.pct_13)).round(3)
+    br["dif_13_1t_vs_brasil_pp"] = (br.pct_13_1t - br.ano.map(tot.pct_13_1t)).round(3)
+    br.to_csv(SAIDA / "horario_historico_brasil.csv", index=False)
+    uf = taxas(r[r.grupo.isin(["A", "todos"])])
+    w = uf.pivot_table(index=["ano", "uf"], columns="grupo",
+                       values=["secoes", "votos_apos_17h", "validos", "pct_13", "pct_22", "pct_13_1t"]).reset_index()
+    w.columns = ["_".join(c).strip("_") for c in w.columns]
+    w["dif_13_A_vs_uf_pp"] = (w.pct_13_A - w.pct_13_todos).round(3)
+    w["dif_13_1t_A_vs_uf_pp"] = (w.pct_13_1t_A - w.pct_13_1t_todos).round(3)
+    w["dif_13_A_vs_uf_alem_do_1t_pp"] = (w.dif_13_A_vs_uf_pp - w.dif_13_1t_A_vs_uf_pp).round(3)
+    p = pd.read_csv(SAIDA / "horario_historico_pareado_uf.csv")
+    p["p"] = 2 * stats.norm.sf((p.efeito_pp / p.erro_padrao_pp).abs())
+    p["p_holm"] = np.nan
+    for c, g in p.groupby("controles"):
+        ordem = g.p.sort_values()
+        m, acc = len(ordem), 0.0
+        for k, (i, v) in enumerate(ordem.items()):
+            acc = max(acc, min(1.0, (m - k) * v))
+            p.loc[i, "p_holm"] = acc
+    p.to_csv(SAIDA / "horario_historico_pareado_uf.csv", index=False)
+    ctl = p[p.controles != "nenhum"][["ano", "uf", "efeito_pp", "ic95_inf", "ic95_sup", "p_holm", "secoes_tardias"]]
+    w = w.merge(ctl.rename(columns={"efeito_pp": "efeito_ajustado_mesmo_local_pp", "ic95_inf": "ajustado_ic95_inf",
+                                    "ic95_sup": "ajustado_ic95_sup", "secoes_tardias": "secoes_tardias_em_locais_mistos"}),
+                on=["ano", "uf"], how="left")
+    w.to_csv(SAIDA / "horario_historico_uf_controlado.csv", index=False)
+    return {"brasil": br, "uf": w, "pareado_uf": p}
+
+
 if __name__ == "__main__":
     r=executar()
     for nome,df in r.items():
         print(nome, len(df),"linhas")
+    print({k: len(v) for k, v in consolidar().items()})
