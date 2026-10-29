@@ -276,9 +276,9 @@ def executar(ano: int) -> dict:
                     b.votos_nominais n1, u.bu_votos_nominais n2, b.votos_brancos br1, u.bu_votos_brancos br2,
                     b.votos_nulos nu1, u.bu_votos_nulos nu2,
                     b.qt_eleitores_biometria_nh nh, {lib_expr} lib,
-                    list_sum(list_transform(map_keys(b.votos_candidato), lambda k: abs(b.votos_candidato[k]
+                    coalesce(list_sum(list_transform(map_keys(b.votos_candidato), lambda k: abs(b.votos_candidato[k]
                       - coalesce(list_sum(list_transform(list_filter(u.bu_votos_candidato, lambda e: e.k = k),
-                                                        lambda e: e.v)), 0)))) dif_cand
+                                                        lambda e: e.v)), 0)))), 0) dif_cand
                   FROM bweb b JOIN bubin u USING ({CHAVE})""",
               [("aptos", "a1", "a2"), ("comparecimento", "c1", "c2"), ("votos_nominais", "n1", "n2"),
                ("brancos", "br1", "br2"), ("nulos", "nu1", "nu2"),
