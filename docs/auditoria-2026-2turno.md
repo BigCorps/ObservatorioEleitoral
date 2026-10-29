@@ -95,12 +95,22 @@ A série de quatro turnos (2022 e 2026) está em `docs/comparativo-historico.md`
 
 Testes executáveis sem o BU em CSV (ainda não publicado nos Dados Abertos): A2o (seção oficial × pacote), B7 (resultado oficial por seção × BU binário: aptos, comparecimento, nominais, brancos, nulos e votos por candidato), B6o (resultado oficial × log), B8 (BU binário por forma de habilitação × log) e K2.
 
-- B7 e A2o: **0 divergências** em 499.207 seções — o BU de cada urna reproduz exatamente o resultado oficial por seção, voto a voto por candidato.
+- B7 e A2o: **0 divergências** em — seções — o BU de cada urna reproduz exatamente o resultado oficial por seção, voto a voto por candidato.
 
 | teste | campo | divergencias | explicadas | nao_explicadas | soma_abs_diferencas_nao_explicadas |
 |---|---|---|---|---|---|
-| B6o | comparecimento_vs_votos_computados | 6 | 0 | 6 | 54 |
-| B6o | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 53 | 48 | 5 | 55 |
+| A2 | presenca | 2 | 2 | 0 | — |
+| A3 | presenca | 43 | 43 | 0 | — |
+| B2 | biometria_nh_vs_lib_codigo | 1.308 | 1.308 | 0 | — |
+| B5 | abstencoes | 42 | 42 | 0 | — |
+| B5 | aptos | 42 | 42 | 0 | — |
+| B5 | brancos | 42 | 42 | 0 | — |
+| B5 | comparecimento | 42 | 42 | 0 | — |
+| B5 | nulos | 42 | 42 | 0 | — |
+| B5 | validos | 42 | 42 | 0 | — |
+| B6 | biometria_nh_vs_liberacao_manual_no_log | 3 | 0 | 3 | 17 |
+| B6 | comparecimento_vs_votos_computados | 6 | 0 | 6 | 54 |
+| B6 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 53 | 48 | 5 | 55 |
 | B8 | habilitados_por_biografia_vs_manual_apos_falha | 3 | 0 | 3 | 17 |
 | B8 | habilitados_por_biometria | 4.338 | 4.333 | 5 | 36 |
 | B8 | sem_biometria_cadastrada | 1 | 0 | 1 | 1 |
@@ -131,11 +141,10 @@ B8 (habilitados por biometria no BU um a mais que no log): a diferença é igual
 
 | categoria | itens | apontamentos | votos |
 |---|---|---|---|
-| Conferido sem diferença | 39 | 0 | 0 |
-| Diferença estatística | 26 | 0 | 0 |
-| Diferença explicada | 2 | 4.381 | 0 |
-| Incompatibilidade documental pendente | 5 | 20 | 54 |
-| Não verificado | 6 | 0 | 0 |
+| Conferido sem diferença | 20 | 0 | 0 |
+| Diferença estatística | 28 | 33 | 0 |
+| Diferença explicada | 11 | 5.986 | 0 |
+| Incompatibilidade documental pendente | 6 | 23 | 54 |
 
 
 Votos só são contados quando a diferença é contagem de votos registrados entre duas fontes (B6/B6o); nos demais testes a coluna fica vazia. Detalhe: `resultados/quadro_discrepancias.csv`.

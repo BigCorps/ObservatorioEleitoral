@@ -1,6 +1,6 @@
 # Fontes, versões e hashes
 
-_Gerado em 27/10/2026 19:23 UTC a partir de `manifestos/`._
+_Gerado em 29/10/2026 14:37 UTC a partir de `manifestos/`._
 
 Catálogos consultados (API CKAN do Portal de Dados Abertos do TSE): `eleitorado-2022`, `eleitorado-2026`, `resultados-2022`, `resultados-2022-arquivos-transmitidos-para-totalizacao`, `resultados-2022-boletim-de-urna`, `resultados-2026`, `resultados-2026-arquivos-transmitidos-para-totalizacao`, `resultados-2026-boletim-de-urna`. Cópias dos metadados em `manifestos/ckan/`.
 
@@ -20,30 +20,30 @@ Catálogos consultados (API CKAN do Portal de Dados Abertos do TSE): `eleitorado
 | 2.022 | secoes_agregadas | 1 | 0 |
 | 2.022 | transf_temporaria_secao | 1 | 0,020 |
 | 2.022 | transferencia_temporaria | 1 | 0 |
-| 2.022 | votacao_candidato_munzona | 1 | 0,640 |
+| 2.022 | votacao_candidato_munzona | 1 | 0,580 |
 | 2.022 | votacao_partido_munzona | 1 | 0,030 |
 | 2.022 | votacao_secao | 28 | 3,350 |
 | 2.026 | arquivos_urna | 28 | 95,070 |
-| 2.026 | bu_csv | 28 | 5,080 |
+| 2.026 | bu_csv | 56 | 5,220 |
 | 2.026 | detalhe_votacao_munzona | 1 | 0 |
 | 2.026 | detalhe_votacao_secao | 1 | 0,230 |
 | 2.026 | eleitorado_local_votacao | 1 | 0,170 |
 | 2.026 | perfil_eleitor_deficiencia | 1 | 0,090 |
 | 2.026 | perfil_eleitor_secao | 28 | 2,820 |
 | 2.026 | perfil_eleitorado | 1 | 0,410 |
-| 2.026 | relatorio_totalizacao | 29 | 0,020 |
+| 2.026 | relatorio_totalizacao | 29 | 0,030 |
 | 2.026 | transf_temporaria_secao | 1 | 0,020 |
 | 2.026 | transferencia_temporaria | 1 | 0 |
-| 2.026 | votacao_candidato_munzona | 1 | 0,450 |
+| 2.026 | votacao_candidato_munzona | 1 | 0,400 |
 | 2.026 | votacao_partido_munzona | 1 | 0,020 |
-| 2.026 | votacao_secao | 28 | 2,770 |
+| 2.026 | votacao_secao | 28 | 2,970 |
 
 
 O inventário completo (URL, datas do catálogo, `ETag`, `Last-Modified`, tamanho) está em `manifestos/inventario_fontes.csv`.
 
 ## Arquivos baixados integralmente
 
-238 arquivos; status: ok = 238. Hash SHA-512 oficial (BU em CSV): sem hash publicado = 154, True = 84.
+266 arquivos; status: ok = 266. Hash SHA-512 oficial (BU em CSV): sem hash publicado = 154, True = 112.
 
 | arquivo_local | status | hash_oficial_confere | tamanho_bytes | last_modified | sha256 |
 |---|---|---|---|---|---|
@@ -134,36 +134,64 @@ O inventário completo (URL, datas do catálogo, `ETag`, `Last-Modified`, tamanh
 | bweb_1t_TO_051020261403.zip | ok | True | 29.667.347 | Tue, 06 Oct 2026 15:52:33 GMT | 896fa2b3057eb4a1… |
 | bweb_1t_ZZ_051020221321.zip | ok | True | 503.717 | Wed, 05 Oct 2022 22:30:05 GMT | c8daf4a7b2200355… |
 | bweb_1t_ZZ_051020261403.zip | ok | True | 1.039.125 | Tue, 06 Oct 2026 15:17:19 GMT | 8512a5230c9e7927… |
+| bweb_2t_AC_261020260742.zip | ok | True | 1.254.611 | Mon, 26 Oct 2026 11:59:50 GMT | 35c1f1676e04d082… |
 | bweb_2t_AC_311020221535.zip | ok | True | 538.139 | Mon, 31 Oct 2022 19:06:55 GMT | c7c1e1dd9d752f47… |
+| bweb_2t_AL_261020260742.zip | ok | True | 1.945.168 | Mon, 26 Oct 2026 11:59:45 GMT | c42eb06a14d00901… |
 | bweb_2t_AL_311020221535.zip | ok | True | 1.341.316 | Mon, 31 Oct 2022 19:06:55 GMT | 934a061e9f9905c9… |
+| bweb_2t_AM_261020260742.zip | ok | True | 4.276.454 | Mon, 26 Oct 2026 12:00:46 GMT | c6312af9d2553320… |
 | bweb_2t_AM_311020221535.zip | ok | True | 1.480.749 | Mon, 31 Oct 2022 19:06:55 GMT | 05549e4562a3022c… |
+| bweb_2t_AP_261020260742.zip | ok | True | 596.704 | Mon, 26 Oct 2026 11:59:43 GMT | 56e4ac4f714d84f1… |
 | bweb_2t_AP_311020221535.zip | ok | True | 501.229 | Mon, 31 Oct 2022 19:06:55 GMT | 3f79d99e643930ca… |
+| bweb_2t_BA_261020260742.zip | ok | True | 9.513.048 | Mon, 26 Oct 2026 11:59:49 GMT | b7da4dd73937c74a… |
 | bweb_2t_BA_311020221535.zip | ok | True | 5.522.366 | Mon, 31 Oct 2022 19:06:55 GMT | 47d236cabb758c9b… |
+| bweb_2t_CE_261020260742.zip | ok | True | 6.151.144 | Mon, 26 Oct 2026 11:59:50 GMT | e06473e8f738e7d3… |
 | bweb_2t_CE_311020221535.zip | ok | True | 2.613.744 | Mon, 31 Oct 2022 19:06:55 GMT | ee7da46cdb0141c5… |
+| bweb_2t_DF_261020260742.zip | ok | True | 3.846.786 | Mon, 26 Oct 2026 11:59:51 GMT | da7ea3674e771acc… |
 | bweb_2t_DF_311020221535.zip | ok | True | 998.403 | Mon, 31 Oct 2022 19:06:55 GMT | 373b91674c437468… |
+| bweb_2t_ES_261020260742.zip | ok | True | 5.275.706 | Mon, 26 Oct 2026 12:01:08 GMT | 54d636f7d22d5182… |
 | bweb_2t_ES_311020221535.zip | ok | True | 1.717.142 | Mon, 31 Oct 2022 19:06:56 GMT | cd62f7f13731f570… |
+| bweb_2t_GO_261020260742.zip | ok | True | 4.248.869 | Mon, 26 Oct 2026 12:01:03 GMT | f2c29ffbf465dbaf… |
 | bweb_2t_GO_311020221535.zip | ok | True | 1.786.175 | Mon, 31 Oct 2022 19:06:56 GMT | 817a8cde9e399b8b… |
+| bweb_2t_MA_261020260742.zip | ok | True | 4.609.442 | Mon, 26 Oct 2026 12:00:03 GMT | 38b2a6180190729d… |
 | bweb_2t_MA_311020221535.zip | ok | True | 1.965.703 | Mon, 31 Oct 2022 19:06:56 GMT | 2eafff0950e35bed… |
+| bweb_2t_MG_261020260742.zip | ok | True | 14.071.007 | Mon, 26 Oct 2026 12:00:49 GMT | 56a96873e0c03508… |
 | bweb_2t_MG_311020221535.zip | ok | True | 5.283.911 | Mon, 31 Oct 2022 19:06:56 GMT | fd139fb63ea5cd06… |
+| bweb_2t_MS_261020260742.zip | ok | True | 1.863.398 | Mon, 26 Oct 2026 11:59:53 GMT | c47916ff1aca6d5c… |
 | bweb_2t_MS_311020221535.zip | ok | True | 1.380.373 | Mon, 31 Oct 2022 19:06:56 GMT | d979e0a0ca91948d… |
+| bweb_2t_MT_261020260742.zip | ok | True | 2.204.666 | Mon, 26 Oct 2026 12:01:03 GMT | 5303d588838ed3b4… |
 | bweb_2t_MT_311020221535.zip | ok | True | 1.081.503 | Mon, 31 Oct 2022 19:06:56 GMT | 1db6887cc3012472… |
+| bweb_2t_PA_261020260742.zip | ok | True | 5.158.441 | Mon, 26 Oct 2026 12:01:06 GMT | f50720b4ef7a99f1… |
 | bweb_2t_PA_311020221535.zip | ok | True | 2.118.855 | Mon, 31 Oct 2022 19:06:56 GMT | f8de600ece5af4a4… |
+| bweb_2t_PB_261020260742.zip | ok | True | 2.871.353 | Mon, 26 Oct 2026 12:00:06 GMT | 07cac4be3e1ab493… |
 | bweb_2t_PB_311020221535.zip | ok | True | 1.806.259 | Mon, 31 Oct 2022 19:06:56 GMT | 43db324f0166f28a… |
+| bweb_2t_PE_261020260742.zip | ok | True | 5.761.723 | Mon, 26 Oct 2026 12:00:01 GMT | 9c917e885a2d0688… |
 | bweb_2t_PE_311020221535.zip | ok | True | 3.469.891 | Mon, 31 Oct 2022 19:06:56 GMT | 023aa5a0584bfd89… |
+| bweb_2t_PI_261020260742.zip | ok | True | 2.648.710 | Mon, 26 Oct 2026 12:01:11 GMT | d0fd3ff93cc97ef0… |
 | bweb_2t_PI_311020221535.zip | ok | True | 1.227.487 | Mon, 31 Oct 2022 19:06:56 GMT | f85d2b5348ab32c1… |
+| bweb_2t_PR_261020260742.zip | ok | True | 7.189.112 | Mon, 26 Oct 2026 11:59:36 GMT | 32e8a0bfc7e9fe76… |
 | bweb_2t_PR_311020221535.zip | ok | True | 2.855.742 | Mon, 31 Oct 2022 19:06:56 GMT | a6324ed276d1d4e4… |
+| bweb_2t_RJ_261020260742.zip | ok | True | 10.004.912 | Mon, 26 Oct 2026 12:00:05 GMT | d13abd46e8f36590… |
 | bweb_2t_RJ_311020221535.zip | ok | True | 3.728.044 | Mon, 31 Oct 2022 19:06:57 GMT | 9dd10ef9599d37dd… |
+| bweb_2t_RN_261020260742.zip | ok | True | 4.424.654 | Mon, 26 Oct 2026 12:00:04 GMT | cf48f4e878bace44… |
 | bweb_2t_RN_311020221535.zip | ok | True | 1.090.336 | Mon, 31 Oct 2022 19:06:57 GMT | b3aad33d132cdb0e… |
+| bweb_2t_RO_261020260742.zip | ok | True | 1.250.142 | Mon, 26 Oct 2026 12:01:21 GMT | dec6d43ae423a667… |
 | bweb_2t_RO_311020221535.zip | ok | True | 959.055 | Mon, 31 Oct 2022 19:06:57 GMT | 2cedffb216d5de03… |
+| bweb_2t_RR_261020260742.zip | ok | True | 500.520 | Mon, 26 Oct 2026 12:01:26 GMT | 6554fcbd0c55cf90… |
 | bweb_2t_RR_311020221535.zip | ok | True | 450.233 | Mon, 31 Oct 2022 19:06:57 GMT | d3681e90acf07117… |
+| bweb_2t_RS_261020260742.zip | ok | True | 7.410.270 | Mon, 26 Oct 2026 12:01:11 GMT | e4e7fff8d09e5882… |
 | bweb_2t_RS_311020221535.zip | ok | True | 4.537.987 | Mon, 31 Oct 2022 19:06:57 GMT | 6870c7f4666ae129… |
+| bweb_2t_SC_261020260742.zip | ok | True | 4.487.185 | Mon, 26 Oct 2026 11:59:46 GMT | 6f169b88a07858e9… |
 | bweb_2t_SC_311020221535.zip | ok | True | 2.776.735 | Mon, 31 Oct 2022 19:06:57 GMT | cf67057ad095817a… |
+| bweb_2t_SE_261020260742.zip | ok | True | 1.645.477 | Mon, 26 Oct 2026 12:01:08 GMT | 4dfc5ee64ed4f6e7… |
 | bweb_2t_SE_311020221535.zip | ok | True | 1.168.873 | Mon, 31 Oct 2022 19:06:57 GMT | 6906894047561b84… |
+| bweb_2t_SP_261020260742.zip | ok | True | 28.188.300 | Mon, 26 Oct 2026 12:00:04 GMT | ffadfa193e68261e… |
 | bweb_2t_SP_311020221535.zip | ok | True | 16.096.583 | Mon, 31 Oct 2022 19:06:57 GMT | 6a36f44f7cc7712b… |
+| bweb_2t_TO_261020260742.zip | ok | True | 2.383.586 | Mon, 26 Oct 2026 12:00:02 GMT | f2dfdafb28d13aae… |
 | bweb_2t_TO_311020221535.zip | ok | True | 721.111 | Mon, 31 Oct 2022 19:06:57 GMT | f1832b3b5a8a15a6… |
+| bweb_2t_ZZ_261020260742.zip | ok | True | 502.322 | Mon, 26 Oct 2026 19:49:12 GMT | f088ff08053c1d95… |
 | bweb_2t_ZZ_311020221535.zip | ok | True | 433.558 | Mon, 31 Oct 2022 19:06:58 GMT | 7be450456258a2f0… |
 | detalhe_votacao_munzona_2022.zip | ok | sem hash publicado | 4.429.327 | Sat, 24 Oct 2026 06:52:18 GMT | dbf41c5e95c2efed… |
-| detalhe_votacao_munzona_2026.zip | ok | sem hash publicado | 2.511.067 | Sun, 25 Oct 2026 15:58:00 GMT | 7f6f40a14ba805b4… |
+| detalhe_votacao_munzona_2026.zip | ok | sem hash publicado | 3.155.181 | Wed, 28 Oct 2026 22:48:47 GMT | 717dc1bd7f92c5d4… |
 | detalhe_votacao_secao_2022.zip | ok | sem hash publicado | 243.822.213 | Fri, 31 Jul 2026 19:47:56 GMT | ad22c50b9e6d9dfb… |
 | detalhe_votacao_secao_2026.zip | ok | sem hash publicado | 234.357.769 | Mon, 26 Oct 2026 15:35:35 GMT | 8ef9ce3a85cde260… |
 | perfil_eleitor_secao_2022_AC.zip | ok | sem hash publicado | 3.008.283 | Tue, 26 Aug 2025 00:05:59 GMT | 19a39068ffe5a467… |
@@ -228,7 +256,7 @@ O inventário completo (URL, datas do catálogo, `ETag`, `Last-Modified`, tamanh
 | transf_temporaria_secao_2022.zip | ok | sem hash publicado | 20.064.503 | Wed, 07 Aug 2024 09:18:00 GMT | d27c219dde7c6f3f… |
 | transf_temporaria_secao_2026.zip | ok | sem hash publicado | 23.039.781 | Mon, 26 Oct 2026 09:32:17 GMT | 7c7cf0b4b9c8bd32… |
 | votacao_candidato_munzona_2022.zip | ok | sem hash publicado | 642.592.078 | Sat, 24 Oct 2026 07:24:58 GMT | 56265a50afc3765e… |
-| votacao_candidato_munzona_2026.zip | ok | sem hash publicado | 452.159.174 | Sun, 25 Oct 2026 16:16:37 GMT | cef14bbf848da85c… |
+| votacao_candidato_munzona_2026.zip | ok | sem hash publicado | 398.952.011 | Thu, 29 Oct 2026 12:12:13 GMT | 5d854d61f82d859a… |
 | votacao_secao_2022_AC.zip | ok | sem hash publicado | 6.680.201 | Mon, 22 Jun 2026 14:45:09 GMT | d17b815a4d6faa49… |
 | votacao_secao_2022_AL.zip | ok | sem hash publicado | 30.273.477 | Mon, 22 Jun 2026 14:45:25 GMT | d5ae3a20a8ecc32b… |
 | votacao_secao_2022_AM.zip | ok | sem hash publicado | 44.046.931 | Mon, 22 Jun 2026 14:45:22 GMT | 1ba6c258320799f5… |

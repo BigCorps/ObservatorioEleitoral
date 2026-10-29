@@ -1,6 +1,6 @@
 # Relatório público — o que os dados oficiais das eleições presidenciais mostram
 
-_Versão de 27/10/2026. Todos os números foram calculados por nós a partir dos arquivos publicados pelo TSE. Detalhes técnicos em `docs/auditoria-2022.md` e `docs/metodologia.md`._
+_Versão de 29/10/2026. Todos os números foram calculados por nós a partir dos arquivos publicados pelo TSE. Detalhes técnicos em `docs/auditoria-2022.md` e `docs/metodologia.md`._
 
 ## Em uma frase
 
