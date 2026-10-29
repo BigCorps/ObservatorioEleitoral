@@ -1,0 +1,16 @@
+uf,arquivo,cd_municipio,nr_zona,nr_secao,motivo,vsc_sha256_igual_hash_portal,log_sha512_no_vsc,log_reinterpretado_igual,log_arquivos_no_pacote,situacao
+BA,o03221ba3565301730235,35653,173,235,log com menos votos computados que o BU,True,True,True,0165655725102026100507-01.jez/logd.dat|0168198625102026084139-01.jez/logd.dat|logd.dat,conferido
+BA,o03221ba3471100210178,34711,21,178,log com menos votos computados que o BU,True,True,True,logd.dat,conferido
+CE,o03221ce1529600110258,15296,11,258,pendência BU × log (E1/E2),True,True,True,logd.dat,conferido
+CE,o03221ce1389700820490,13897,82,490,pendência BU × log (E1/E2),True,True,True,logd.dat,conferido
+MA,o03221ma0889300470609,8893,47,609,log com menos votos computados que o BU,True,True,True,0166403725102026105122-01.jez/logd.dat|logd.dat,conferido
+MG,o03221mg4625601310046,46256,131,46,pendência BU × log (E1/E2),True,True,True,logd.dat,conferido
+PB,o03221pb2175000020254,21750,2,254,log com menos votos computados que o BU,True,True,True,logd.dat,conferido
+PI,o03221pi1153300030216,11533,3,216,log com menos votos computados que o BU,True,True,True,logd.dat,conferido
+RJ,o03221rj6001101910045,60011,191,45,pendência BU × log (E1/E2),True,True,True,logd.dat,conferido
+RS,o03221rs8963000720054,89630,72,54,pendência BU × log (E1/E2),True,True,True,logd.dat,conferido
+RS,o03221rs8906000170191,89060,17,191,log com menos votos computados que o BU,True,True,True,0231745025102026095816-01.jez/logd.dat|logd.dat,conferido
+SC,o03221sc8359300080143,83593,8,143,pendência BU × log (E1/E2),True,True,True,logd.dat,conferido
+SP,o03221sp7107204200322,71072,420,322,pendência BU × log (E1/E2),True,True,True,logd.dat,conferido
+SP,o03221sp6477703950298,64777,395,298,sem log no Portal,True,,,,sem log no pacote
+ZZ,o03221zz3096100013869,30961,1,3869,pendência BU × log (E1/E2),True,True,True,logd.dat,conferido

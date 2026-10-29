@@ -1,6 +1,12 @@
 # Reconciliação do BU em CSV consolidado — 2º turno de 2026
 
-> **Atualização posterior no dia 29/10/2026:** após o inventário abaixo, o Portal de Dados Abertos do TSE passou a exibir recursos do **2º turno de 2026 para os arquivos transmitidos para totalização**, incluindo SP e RR (recursos cadastrados em 28/10). As informações históricas deste relatório reproduzem o estado da coleta anterior e não devem ser interpretadas como status atual. O confronto individual com esses novos pacotes ainda não foi executado. Ver [verificação complementar de horários, pacotes e códigos de local](verificacao-final-horarios-2026.md).
+> **Correção e atualização (29/10/2026, tarde):** os pacotes de **arquivos transmitidos do 2º turno** estão no CKAN
+> desde 28/10 14:07 UTC (Last-Modified 26/10). O registro "não publicado" abaixo veio de uma resposta desatualizada do
+> `package_show` do CKAN. O BU em CSV de RR também está cadastrado, mas o recurso aponta para o `.sha512` (erro de
+> cadastro). O confronto já foi executado: **BU idêntico em 499.207/499.207 seções**; em PE, `vsc` e log idênticos
+> em 618/618 seções conferidas; nas pendências das demais UFs, logs idênticos (as pendências continuam). Ver
+> [verificação de horários, códigos de local e pacotes oficiais](verificacao-final-horarios-2026.md). Os trechos
+> corrigidos estão marcados abaixo.
 
 _Executada em 29/10/2026 a partir de arquivos oficiais do TSE com hash conferido. Código:
 `observatorio/consolidado_2t.py`, `observatorio/reconciliacao.py`, `observatorio/cronologia.py`. Saídas em
@@ -12,9 +18,9 @@ tratada como ausência de voto._
 | conjunto (CKAN) | arquivos | situação em 29/10/2026 14:21 UTC |
 |---|---|---|
 | `resultados-2026-boletim-de-urna` | **28 BU em CSV do 2º turno** (27 UFs + exterior, 144,3 MB) e **28 hashes `.sha512`** | baixados; **SHA-512 oficial confere nos 28** |
-| idem | BU de **RR** | **não listado no CKAN**; existe no CDN pelo padrão oficial (`bweb_2t_RR_261020260742.zip`, Last-Modified 26/10 12:01 UTC) com `.sha512` publicado, que confere |
+| idem | BU de **RR** | ~~não listado no CKAN~~ **corrigido:** cadastrado em 27/10 19:12 UTC, mas o recurso aponta para o `.sha512` (erro de cadastro); o `.zip` existe no CDN pelo padrão oficial (`bweb_2t_RR_261020260742.zip`, Last-Modified 26/10 12:01 UTC) com `.sha512` publicado, que confere |
 | `resultados-2026` | Detalhe e Votação por seção (já usados antes), Votação/Detalhe por município-zona, Relatórios de totalização | munzona atualizados em 28–29/10 e baixados novamente (as versões antigas tinham só o 1º turno); por seção: versão local = versão vigente |
-| `resultados-2026-arquivos-transmitidos-para-totalizacao` | só o 1º turno (28 pacotes) | **2º turno não publicado**; os arquivos do 2º turno (BU, log, RDV, VOTA) foram coletados em 27/10 no Portal de Resultados (499.207 seções, hash conferido) |
+| `resultados-2026-arquivos-transmitidos-para-totalizacao` | 1º turno (28 pacotes); ~~2º turno não publicado~~ **corrigido:** 2º turno cadastrado em 28/10 14:07 UTC (28 pacotes, 124,1 GB), mas ausente da resposta do `package_show` | BU dos pacotes = BU coletado em 499.207/499.207 seções; os arquivos do 2º turno (BU, log, RDV, VOTA) foram coletados em 27/10 no Portal de Resultados (499.207 seções, hash conferido) |
 
 Inventário completo com URL, data de acesso, tamanho, ETag, Last-Modified, SHA-256, SHA-512 e hash oficial:
 `resultados/2026/consolidado_2t/inventario_arquivos_oficiais_2026.csv` e `manifestos/inventario_fontes.csv`.
@@ -31,7 +37,7 @@ Inventário completo com URL, data de acesso, tamanho, ETag, Last-Modified, SHA-
 | A. BU em CSV × BU binário coletado no Portal (assinado; hash publicado = SHA-256 do `vsc`) | 499.207 | **0** | aptos, comparecimento, abstenções, válidos, brancos, nulos, 13, 22 e votos por candidato |
 | B. BU em CSV × resultado oficial por seção (Detalhe + Votação por seção) | 499.207 | **0** | mesmos campos; **local de votação difere em 7.315 seções** (metadado, ver §4) |
 | B'. BU em CSV × Votação nominal e Detalhe por município/zona (B4, B5) | 6.292 zonas | **0** | B5: 40 zonas com seções não instaladas, explicadas |
-| C. BU em CSV × pacotes de totalização | — | — | pacotes do 2º turno não publicados nos Dados Abertos; a comparação A usa os mesmos arquivos obtidos no Portal |
+| C. BU dos pacotes de totalização (Dados Abertos) × BU coletado no Portal | 499.207 | **0** | tamanho e CRC32 idênticos em todas as seções (comparação executada depois, ver verificação de 29/10) |
 | D. BU em CSV × log (votos computados) | 499.177 com log | 6 seções (54 votos) | lacunas de registro no log, já conhecidas (§3) |
 
 Totais do BU em CSV = totais oficiais: comparecimento 128.236.074; 13: 64.256.232; 22: 59.826.041; brancos
@@ -60,7 +66,7 @@ O BU binário assinado registra o tipo de urna: `secao` 493.464, **`reservaSecao
 | caso | com o BU consolidado |
 |---|---|
 | 6 seções / 54 votos sem "voto computado" no log | **inalterado**: BU em CSV = BU binário = oficial; a lacuna é do log. MA 8893/47/609: BU registra abertura 08:00:01, log publicado só a partir de 10:57 (urna de reserva `reservaSecao`; o anexo do log é de urna carregada para a seção 445). BA 35653/173/235: abertura 08:48:54 no BU, log a partir de 10:10 (reserva). Os resíduos de biometria (B6, B8) concentram-se nessas mesmas seções. |
-| SP 64777/395/298 sem log | BU em CSV confirma seção normal (268 votantes, encerramento 17:03:46); **log continua não publicado** em 29/10 (aux.json lista só bu, rdv e vota). |
+| SP 64777/395/298 sem log | BU em CSV confirma seção normal (268 votantes, encerramento 17:03:46); **log continua não publicado** em 29/10 (aux.json lista só bu, rdv e vota); o pacote oficial dos Dados Abertos **também não traz o log** dessa seção. |
 | 29 seções do exterior pelo Sistema de Apuração | presentes no BU em CSV, com os mesmos votos; o BU binário as classifica como `contingencia`; não há log por natureza. |
 | 2 seções do exterior sem votantes (ZZ 29564/1/91 e 30686/1/443) | presentes no BU em CSV numa linha `#NULO#` (cargo −1); **corrigida a conversão**, que as descartava. No **1º turno** a seção ZZ 29564/1/91 não aparece no CSV — continua pendente. |
 | Classificação biométrica (B8: 5 + 3 + 1) | inalterada; concentrada nas seções com log incompleto. |
@@ -83,16 +89,18 @@ Arquivo: `resultados/comparativo/cronologia_publicacao.csv`. Datas em UTC.
 | arquivo | eleição | geração (nome) | Last-Modified | criação no CKAN | dias até CKAN |
 |---|---|---|---|---|---|
 | BU em CSV, 2º turno 2022 | 30/10 | 31/10 15:35 | 31/10 19:06 | 01/11 18:13 | 2,8 |
-| BU em CSV, 2º turno 2026 | 25/10 | 26/10 07:42 | 26/10 11:59–19:49 | 27/10 18:59 (RR fora do CKAN) | 2,8 |
+| BU em CSV, 2º turno 2026 | 25/10 | 26/10 07:42 | 26/10 11:59–19:49 | 27/10 18:59 (RR: recurso aponta para o `.sha512`) | 2,8 |
 | BU em CSV, 1º turno 2022 / 2026 | 02/10 / 04/10 | 05/10 / 05/10 | 05/10 / 06/10 | 05/10 / 06/10 | 3,9 / 2,8 |
 | Arquivos transmitidos, 2º turno 2022 | 30/10 | — | 02/11 21:41 | 02/11 21:46 | 3,9 |
-| Arquivos transmitidos, 2º turno 2026 | 25/10 | — | — | **não publicado** até 29/10 14:21 (≥ 4,6 dias) | — |
+| Arquivos transmitidos, 2º turno 2026 | 25/10 | — | 26/10 18:03–21:31 | 28/10 14:07 (corrigido; antes registrado como "não publicado") | 3,6 |
 | Arquivos de urna no Portal, 2º turno 2026 | 25/10 | versões de 25/10 17:04 a 27/10 14:56 (hora do portal) | aux.json 25/10 20:04 a 27/10 17:56 | — | coletados por nós em 27/10 |
 
 - O BU em CSV do 2º turno saiu com o **mesmo intervalo** de 2022 (2,8 dias até o CKAN; o arquivo existia no servidor
   1,5 dia após a eleição). Nosso inventário de 26/10 23:25 UTC ainda não o listava no CKAN.
-- Os pacotes de arquivos transmitidos do 2º turno de 2026 **estão mais atrasados** que os de 2022; os mesmos arquivos
-  estavam acessíveis seção a seção no Portal de Resultados desde a noite da eleição.
+- ~~Os pacotes de arquivos transmitidos do 2º turno de 2026 estão mais atrasados que os de 2022~~ **Corrigido:** os
+  pacotes chegaram ao CKAN 3,6 dias após a eleição (arquivo no servidor em 1,8 dia), contra 3,9 em 2022. Os mesmos
+  arquivos já estavam acessíveis seção a seção no Portal de Resultados desde a noite da eleição. A resposta do
+  `package_show` do CKAN estava desatualizada; o catálogo agora confere também `resource_show` e a página do conjunto.
 - No Portal, 10.893 seções tinham, na nossa coleta, versão "Recebido" (não "Totalizado"), 2.044 delas recebidas em
   26–27/10; seus BUs coincidem com o BU em CSV gerado em 26/10 07:42 e com o resultado oficial.
 - Pacotes do 1º turno de 2026: listados no CKAN em 06/10, mas a versão vigente (a que processamos) tem
@@ -122,6 +130,7 @@ Arquivo: `resultados/2026/consolidado_2t/afirmacoes_externas_confronto.csv` (22 
 ## 7. Pendências
 
 Logs ausentes ou incompletos (MA 609, BA 235, RS 191, BA 178, PB 254, PI 216; SP 64777/395/298), 5 + 5 seções de
-E1/E2 sem substituição de urna registrada, B8 residual, seção ZZ 29564/1/91 ausente do BU em CSV do 1º turno, pacotes
-de arquivos transmitidos do 2º turno e assinatura digital criptográfica — todas dependem de documentos ou arquivos
-que o TSE ainda não publicou (atas, relatórios de contingência, pacotes).
+E1/E2 sem substituição de urna registrada, B8 residual, seção ZZ 29564/1/91 ausente do BU em CSV do 1º turno e
+assinatura digital criptográfica — todas dependem de documentos que o TSE ainda não publicou (atas, relatórios de
+contingência). Os pacotes do 2º turno foram conferidos e não alteram essas pendências: os logs do pacote são idênticos
+aos do Portal. As duas pendências E1 de PE ficaram parcialmente esclarecidas (ver verificação de 29/10).

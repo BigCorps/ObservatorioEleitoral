@@ -9,6 +9,7 @@ Sem baixar o pacote inteiro:
      = indicadores já extraídos (votos computados, primeiro/último voto, encerramento, urnas).
 
 Uso: python -m observatorio.confronto_pacotes_2t PE
+     bu_todas_ufs() — só diretórios, todas as UFs; pendencias_outras_ufs() — vsc e log das pendências fora de PE
 """
 from __future__ import annotations
 
@@ -41,7 +42,9 @@ def diretorio(uf: str):
 
 
 def comparar_bu(uf: str, membros) -> pd.DataFrame:
-    pac = {m.nome[:-len("-bu.dat")]: (m.tamanho, m.crc) for m in membros if m.nome.endswith("-bu.dat")}
+    # seções apuradas pelo Sistema de Apuração (SA) vêm no pacote como -busa.dat
+    pac = {m.nome.rsplit("-", 1)[0]: (m.tamanho, m.crc) for m in membros
+           if m.nome.endswith("-bu.dat") or m.nome.endswith("-busa.dat")}
     with zipfile.ZipFile(BRUTOS / "bu" / f"2026_2t_{uf}.zip") as z:
         por = {i.filename[:-len(".bu")]: (i.file_size, i.CRC) for i in z.infolist()}
     linhas = []
@@ -143,9 +146,6 @@ def executar(uf: str = "PE") -> dict:
     return {"resumo": resumo, "bu": bu, "detalhe": det}
 
 
-if __name__ == "__main__":
-    executar(sys.argv[1] if len(sys.argv) > 1 else "PE")
-
 
 def bu_todas_ufs() -> pd.DataFrame:
     """Só o diretório de cada pacote (sem baixar arquivos): BU do pacote × BU do Portal, todas as UFs."""
@@ -161,3 +161,48 @@ def bu_todas_ufs() -> pd.DataFrame:
     d = pd.DataFrame(linhas).fillna(0)
     d.to_csv(SAIDA / "pacote_oficial_2t_bu_x_portal_todas_ufs.csv", index=False)
     return d
+
+
+def pendencias_outras_ufs() -> pd.DataFrame:
+    """Pendências fora de PE (E1/E2 não explicadas, lacunas de 'voto computado' no log, seção sem log):
+    baixa só vsc e log dessas seções no pacote oficial e confere com a coleta do Portal."""
+    from .config import UFS_COM_EXTERIOR
+    con = duckdb.connect()
+    pend = pd.read_csv(SAIDA / "divergencias_bu_csv_x_log_horarios_urna.csv")
+    pend = pend[pend.classificacao != "Diferença explicada"][["uf", "cd_municipio", "nr_zona", "nr_secao"]]
+    pend["motivo"] = "pendência BU × log (E1/E2)"
+    lacunas = con.execute(f"""SELECT b.uf, b.cd_municipio, b.nr_zona, b.nr_secao,
+          'log com menos votos computados que o BU' motivo
+        FROM '{PROCESSADOS}/secoes_bu_2026.parquet' b
+        JOIN read_parquet('{PROCESSADOS}/logs/2026_2t_*.parquet', union_by_name=true) l
+          USING (cd_municipio, nr_zona, nr_secao)
+        WHERE b.turno = 2 AND l.tem_log AND l.n_votos_computados < b.qt_comparecimento""").df()
+    sem_log = pd.DataFrame([{"uf": "SP", "cd_municipio": 64777, "nr_zona": 395, "nr_secao": 298,
+                             "motivo": "sem log no Portal"}])
+    alvo = pd.concat([pend, lacunas, sem_log]).query("uf != 'PE'")
+    linhas = []
+    for uf, g in alvo.groupby("uf"):
+        assert uf in UFS_COM_EXTERIOR
+        arq, membros, cab = diretorio(uf)
+        idx = {m.nome: m for m in membros}
+        lg = con.execute(f"""SELECT l.arquivo, l.cd_municipio, l.nr_zona, l.nr_secao, {', '.join('l.' + c for c in CAMPOS_LOG)},
+              m.hash_publicado FROM '{PROCESSADOS}/logs/2026_2t_{uf}.parquet' l
+            LEFT JOIN '{PROCESSADOS}/manifestos_portal/2026_2t_{uf}.parquet' m USING (arquivo)""").df()
+        g = g.merge(lg, on=["cd_municipio", "nr_zona", "nr_secao"], how="left")
+        for r in g.itertuples():
+            if not isinstance(r.arquivo, str):
+                nome = f"o03221{uf.lower()}{r.cd_municipio:05d}{r.nr_zona:04d}{r.nr_secao:04d}"
+                membros_secao = sorted(n.rsplit("-", 1)[-1] for n in idx if n.startswith(nome))
+                linhas.append({"uf": uf, "cd_municipio": r.cd_municipio, "nr_zona": r.nr_zona, "nr_secao": r.nr_secao,
+                               "motivo": r.motivo, "situacao": "sem log no pacote" if "log.jez" not in membros_secao
+                               else "log no pacote", "membros_no_pacote": "|".join(membros_secao)})
+                continue
+            linhas.append({"uf": uf, **conferir(arq, idx, r)})
+    con.close()
+    d = pd.DataFrame(linhas)
+    d.to_csv(SAIDA / "pacote_oficial_2t_pendencias_outras_ufs.csv", index=False)
+    return d
+
+
+if __name__ == "__main__":
+    executar(sys.argv[1] if len(sys.argv) > 1 else "PE")
