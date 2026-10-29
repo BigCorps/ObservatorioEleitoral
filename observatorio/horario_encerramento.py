@@ -98,46 +98,44 @@ def _pareado(con) -> pd.DataFrame:
         (encerramento_brt > {H19})::INT d_tarde, (encerramento_brt > 62100)::INT e_tarde,
         (votos_apos_17h > 0)::INT a_tarde
       FROM base WHERE uf <> 'ZZ' AND validos >= 50 AND aptos > 0""").df()
-    df = df.dropna(subset=["s13_1t"])
+    for c in ("s13", "s13_1t", "comp_pct", "validos", "aptos"):
+        df[c] = pd.to_numeric(df[c], errors="coerce").astype(float)
     df["log_aptos"] = np.log(df.aptos)
-    linhas = []
+    df = df[np.isfinite(df[["s13", "s13_1t", "comp_pct", "log_aptos"]]).all(axis=1)].reset_index(drop=True)
     nomes = {"a_tarde": "A (voto após 17h)", "d_tarde": "D (encerramento após 19h)",
              "e_tarde": "encerramento após 17h15 (auxiliar)"}
-    for grp in ("a_tarde", "d_tarde", "e_tarde"):
-        for nivel, cols in (("mesmo local de votação", ["uf", "cd_municipio", "nr_zona", "nr_local_votacao"]),
-                            ("mesmo município", ["uf", "cd_municipio"])):
-            key = df[cols].astype(str).agg("|".join, axis=1)
-            mix = df.groupby(key)[grp].transform(lambda s: 0 < s.mean() < 1)
-            d = df[mix].copy()
-            k = key[mix]
-            if len(d) < 30:
+    linhas = []
+    for nivel, cols in (("mesmo local de votação", ["uf", "cd_municipio", "nr_zona", "nr_local_votacao"]),
+                        ("mesmo município", ["uf", "cd_municipio"])):
+        cel = df.groupby(cols, sort=False).ngroup().to_numpy()
+        for grp in ("a_tarde", "d_tarde", "e_tarde"):
+            m = pd.Series(df[grp].to_numpy(float)).groupby(cel).transform("mean").to_numpy()
+            sel = (m > 0) & (m < 1)
+            if sel.sum() < 30:
                 continue
+            d = df[sel]
+            k = pd.factorize(cel[sel])[0]
             w = d.validos.to_numpy(float)
+            wg = np.bincount(k, w)
             for controles in ([], ["s13_1t", "comp_pct", "log_aptos"]):
                 cols_x = [grp] + controles
                 Y = d["s13"].to_numpy(float)
                 X = d[cols_x].to_numpy(float)
-                # retira a média ponderada de cada célula (efeito fixo)
-                wg = pd.Series(w, index=d.index).groupby(k).transform("sum").to_numpy()
-                ym = pd.Series(Y * w, index=d.index).groupby(k).transform("sum").to_numpy() / wg
-                Xm = np.column_stack([pd.Series(X[:, j] * w, index=d.index).groupby(k).transform("sum").to_numpy() / wg
-                                      for j in range(X.shape[1])])
-                yt, Xt = Y - ym, X - Xm
+                yt = Y - (np.bincount(k, Y * w) / wg)[k]
+                Xt = np.column_stack([X[:, c] - (np.bincount(k, X[:, c] * w) / wg)[k] for c in range(X.shape[1])])
                 sw = np.sqrt(w)
-                beta, *_ = np.linalg.lstsq(Xt * sw[:, None], yt * sw, rcond=None)
-                # erro-padrão robusto agrupado pela célula
-                resid = (yt - Xt @ beta) * sw
-                Xs = Xt * sw[:, None]
-                bread = np.linalg.pinv(Xs.T @ Xs)
-                sc = pd.DataFrame(Xs * resid[:, None]).groupby(k.to_numpy()).sum().to_numpy()
-                V = bread @ (sc.T @ sc) @ bread
-                linhas.append({"grupo_tardio": nomes[grp],
-                               "comparacao": nivel, "controles": ", ".join(controles) or "nenhum",
-                               "celulas_com_tardias_e_cedo": int(k.nunique()), "secoes": len(d),
+                Xs, ys = Xt * sw[:, None], yt * sw
+                xtx_inv = np.linalg.pinv(Xs.T @ Xs)
+                beta = xtx_inv @ (Xs.T @ ys)
+                u = ys - Xs @ beta
+                sc = np.column_stack([np.bincount(k, Xs[:, c] * u) for c in range(Xs.shape[1])])
+                V = xtx_inv @ (sc.T @ sc) @ xtx_inv
+                ep = float(np.sqrt(V[0, 0]))
+                linhas.append({"grupo_tardio": nomes[grp], "comparacao": nivel, "controles": ", ".join(controles) or "nenhum",
+                               "celulas_com_tardias_e_cedo": int(k.max() + 1), "secoes": int(len(d)),
                                "secoes_tardias": int(d[grp].sum()),
-                               "dif_pct_13_pp": round(beta[0], 3), "erro_padrao_pp": round(float(np.sqrt(V[0, 0])), 3),
-                               "ic95_inf": round(beta[0] - 1.96 * float(np.sqrt(V[0, 0])), 3),
-                               "ic95_sup": round(beta[0] + 1.96 * float(np.sqrt(V[0, 0])), 3)})
+                               "dif_pct_13_pp": round(float(beta[0]), 3), "erro_padrao_pp": round(ep, 3),
+                               "ic95_inf": round(float(beta[0]) - 1.96 * ep, 3), "ic95_sup": round(float(beta[0]) + 1.96 * ep, 3)})
     return pd.DataFrame(linhas)
 
 
