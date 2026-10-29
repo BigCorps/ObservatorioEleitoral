@@ -145,3 +145,19 @@ def executar(uf: str = "PE") -> dict:
 
 if __name__ == "__main__":
     executar(sys.argv[1] if len(sys.argv) > 1 else "PE")
+
+
+def bu_todas_ufs() -> pd.DataFrame:
+    """Só o diretório de cada pacote (sem baixar arquivos): BU do pacote × BU do Portal, todas as UFs."""
+    from .config import UFS_COM_EXTERIOR
+    linhas = []
+    for uf in UFS_COM_EXTERIOR:
+        _, membros, cab = diretorio(uf)
+        bu = comparar_bu(uf, membros)
+        c = bu.situacao.value_counts().to_dict()
+        linhas.append({"uf": uf, "pacote": cab["url"], "etag": cab["etag"], "tamanho_bytes": cab["tamanho"],
+                       "membros": len(membros), "secoes": len(bu), **c})
+        print(uf, c, flush=True)
+    d = pd.DataFrame(linhas).fillna(0)
+    d.to_csv(SAIDA / "pacote_oficial_2t_bu_x_portal_todas_ufs.csv", index=False)
+    return d
