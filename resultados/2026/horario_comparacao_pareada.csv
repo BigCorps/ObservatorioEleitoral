@@ -1,0 +1,13 @@
+grupo_tardio,comparacao,controles,celulas_com_tardias_e_cedo,secoes,secoes_tardias,dif_pct_13_pp,erro_padrao_pp,ic95_inf,ic95_sup
+A (voto após 17h),mesmo local de votação,nenhum,18213,172839,28788,-0.055,0.025,-0.103,-0.006
+A (voto após 17h),mesmo local de votação,"s13_1t, comp_pct, log_aptos",18213,172839,28788,0.056,0.013,0.029,0.082
+D (encerramento após 19h),mesmo local de votação,nenhum,775,9571,3231,-0.067,0.101,-0.265,0.131
+D (encerramento após 19h),mesmo local de votação,"s13_1t, comp_pct, log_aptos",775,9571,3231,-0.002,0.054,-0.108,0.105
+encerramento após 17h15 (auxiliar),mesmo local de votação,nenhum,2978,31519,7276,-0.033,0.059,-0.148,0.082
+encerramento após 17h15 (auxiliar),mesmo local de votação,"s13_1t, comp_pct, log_aptos",2978,31519,7276,-0.056,0.031,-0.116,0.005
+A (voto após 17h),mesmo município,nenhum,3336,447255,29603,0.449,0.401,-0.337,1.235
+A (voto após 17h),mesmo município,"s13_1t, comp_pct, log_aptos",3336,447255,29603,0.18,0.028,0.125,0.235
+D (encerramento após 19h),mesmo município,nenhum,154,117530,6766,-2.105,1.823,-5.679,1.469
+D (encerramento após 19h),mesmo município,"s13_1t, comp_pct, log_aptos",154,117530,6766,-0.281,0.08,-0.438,-0.125
+encerramento após 17h15 (auxiliar),mesmo município,nenhum,1068,292599,11978,-1.032,1.277,-3.535,1.47
+encerramento após 17h15 (auxiliar),mesmo município,"s13_1t, comp_pct, log_aptos",1068,292599,11978,-0.215,0.044,-0.302,-0.128

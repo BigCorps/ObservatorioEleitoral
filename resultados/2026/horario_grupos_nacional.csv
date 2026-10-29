@@ -1,0 +1,7 @@
+abrangencia,grupo,descricao,secoes,secoes_distintas,aptos,comparecimento,votos_13,votos_22,brancos,nulos,validos,pct_validos_13,pct_validos_22,votos_registrados_apos_17h,votos_registrados_apos_19h,residuo_soma,pct_validos_13_1t_mesmas_secoes,pct_validos_22_1t_mesmas_secoes,pct_comparecimento
+Brasil (hora de Brasília),A,Seções com pelo menos um voto após 17h,29609,29609,10058548.0,8123964.0,4236980.0,3607087.0,94695.0,185202.0,7844067.0,54.015,45.985,34050.0,11.0,0.0,46.738,45.18,80.767
+Exterior (hora local),A,Seções com pelo menos um voto após 17h,252,252,187830.0,82800.0,46349.0,34324.0,1058.0,1069.0,80673.0,57.453,42.547,416.0,0.0,0.0,51.099,39.932,44.082
+Brasil (hora de Brasília),B,Seções com pelo menos um voto após 19h,11,11,4302.0,3398.0,1957.0,1316.0,39.0,86.0,3273.0,59.792,40.208,25.0,11.0,0.0,51.799,39.352,78.987
+Brasil (hora de Brasília),C,Início do encerramento após 17h,497891,497891,157826779.0,127853012.0,64055492.0,59653559.0,1425804.0,2718157.0,123709051.0,51.779,48.221,34050.0,11.0,0.0,45.154,47.035,81.008
+Exterior (hora local),C,Início do encerramento após 17h,1280,1280,913807.0,380404.0,199628.0,171018.0,4662.0,5096.0,370646.0,53.859,46.141,414.0,0.0,0.0,47.547,43.473,41.628
+Brasil (hora de Brasília),D,Início do encerramento após 19h,6766,6766,2463073.0,1984670.0,1051828.0,861378.0,22387.0,49077.0,1913206.0,54.977,45.023,4693.0,11.0,0.0,47.354,44.197,80.577
