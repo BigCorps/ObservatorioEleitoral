@@ -1,6 +1,6 @@
 # Fontes, versões e hashes
 
-_Gerado em 29/10/2026 14:37 UTC a partir de `manifestos/`._
+_Gerado em 29/10/2026 14:44 UTC a partir de `manifestos/`._
 
 Catálogos consultados (API CKAN do Portal de Dados Abertos do TSE): `eleitorado-2022`, `eleitorado-2026`, `resultados-2022`, `resultados-2022-arquivos-transmitidos-para-totalizacao`, `resultados-2022-boletim-de-urna`, `resultados-2026`, `resultados-2026-arquivos-transmitidos-para-totalizacao`, `resultados-2026-boletim-de-urna`. Cópias dos metadados em `manifestos/ckan/`.
 

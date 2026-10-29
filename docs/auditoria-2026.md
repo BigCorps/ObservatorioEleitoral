@@ -1,6 +1,6 @@
 # Auditoria 2026 — Presidente
 
-_Gerado automaticamente por `scripts/gerar_relatorios.py` em 29/10/2026 14:37 UTC. Todos os números vêm de `resultados/2026/`. Ver método em `docs/metodologia.md`._
+_Gerado automaticamente por `scripts/gerar_relatorios.py` em 29/10/2026 14:44 UTC. Todos os números vêm de `resultados/2026/`. Ver método em `docs/metodologia.md`._
 
 ## Cobertura dos arquivos de urna (logs e BU binário)
 
@@ -12,7 +12,7 @@ _Gerado automaticamente por `scripts/gerar_relatorios.py` em 29/10/2026 14:37 UT
 | turno | seções | aptos | comparecimento | abstenções | válidos | brancos | nulos | % abstenção | % brancos | % nulos |
 |---|---|---|---|---|---|---|---|---|---|---|
 | 1º | 499.206 | 158.745.007 | 125.275.835 | 33.469.172 | 119.306.034 | 2.300.798 | 3.669.003 | 21,084 | 1,837 | 2,929 |
-| 2º | 499.205 | 158.744.977 | 128.236.074 | 30.508.903 | 124.082.273 | 1.430.496 | 2.723.305 | 19,219 | 1,115 | 2,124 |
+| 2º | 499.207 | 158.745.079 | 128.236.074 | 30.509.005 | 124.082.273 | 1.430.496 | 2.723.305 | 19,219 | 1,115 | 2,124 |
 
 
 Os totais nacionais publicados pelo TSE (histórico de totalização e detalhe por município/zona) são reproduzidos pela soma das seções; a única diferença em *aptos* corresponde a eleitores de seções não instaladas, que não têm BU (ver B5 abaixo).
@@ -32,37 +32,37 @@ Os totais nacionais publicados pelo TSE (histórico de totalização e detalhe p
 
 | teste | campo | fonte_a | fonte_b | registros_comparados | divergencias | explicadas | não_explicadas |
 |---|---|---|---|---|---|---|---|
-| A2 | presenca | BWEB | BUBIN | 998.414 | 3 | 2 | 1 |
-| A3 | presenca | DSEC | BWEB | 998.496 | 85 | 85 | 0 |
-| B1 | comparecimento_vs_soma_votos | BWEB | BWEB | 998.411 | 0 | 0 | 0 |
-| B2 | aptos | BWEB | BUBIN | 998.411 | 0 | 0 | 0 |
-| B2 | biometria_nh_vs_lib_codigo | BWEB | BUBIN | 998.411 | 2.619 | 2.617 | 2 |
-| B2 | brancos | BWEB | BUBIN | 998.411 | 0 | 0 | 0 |
-| B2 | comparecimento | BWEB | BUBIN | 998.411 | 0 | 0 | 0 |
-| B2 | nulos | BWEB | BUBIN | 998.411 | 0 | 0 | 0 |
-| B2 | votos_nominais | BWEB | BUBIN | 998.411 | 0 | 0 | 0 |
-| B2 | votos_por_candidato_soma_dif_abs | BWEB | BUBIN | 998.411 | 0 | 0 | 0 |
-| B2c | votos_extra_no_bu | BUBIN | BWEB | 998.411 | 0 | 0 | 0 |
-| B3 | abstencoes | BWEB | DSEC | 998.411 | 0 | 0 | 0 |
-| B3 | aptos | BWEB | DSEC | 998.411 | 0 | 0 | 0 |
-| B3 | brancos | BWEB | DSEC | 998.411 | 0 | 0 | 0 |
-| B3 | comparecimento | BWEB | DSEC | 998.411 | 0 | 0 | 0 |
-| B3 | nulos | BWEB | DSEC | 998.411 | 0 | 0 | 0 |
-| B3 | votos_nominais | BWEB | DSEC | 998.411 | 0 | 0 | 0 |
+| A2 | presenca | BWEB | BUBIN | 998.414 | 1 | 0 | 1 |
+| A3 | presenca | DSEC | BWEB | 998.496 | 83 | 83 | 0 |
+| B1 | comparecimento_vs_soma_votos | BWEB | BWEB | 998.413 | 0 | 0 | 0 |
+| B2 | aptos | BWEB | BUBIN | 998.413 | 0 | 0 | 0 |
+| B2 | biometria_nh_vs_lib_codigo | BWEB | BUBIN | 998.413 | 2.621 | 2.619 | 2 |
+| B2 | brancos | BWEB | BUBIN | 998.413 | 0 | 0 | 0 |
+| B2 | comparecimento | BWEB | BUBIN | 998.413 | 0 | 0 | 0 |
+| B2 | nulos | BWEB | BUBIN | 998.413 | 0 | 0 | 0 |
+| B2 | votos_nominais | BWEB | BUBIN | 998.413 | 0 | 0 | 0 |
+| B2 | votos_por_candidato_soma_dif_abs | BWEB | BUBIN | 998.413 | 2 | 0 | 2 |
+| B2c | votos_extra_no_bu | BUBIN | BWEB | 998.413 | 0 | 0 | 0 |
+| B3 | abstencoes | BWEB | DSEC | 998.413 | 0 | 0 | 0 |
+| B3 | aptos | BWEB | DSEC | 998.413 | 0 | 0 | 0 |
+| B3 | brancos | BWEB | DSEC | 998.413 | 0 | 0 | 0 |
+| B3 | comparecimento | BWEB | DSEC | 998.413 | 0 | 0 | 0 |
+| B3 | nulos | BWEB | DSEC | 998.413 | 0 | 0 | 0 |
+| B3 | votos_nominais | BWEB | DSEC | 998.413 | 0 | 0 | 0 |
 | B4 | votos_candidato_zona | BWEB | CMZ | 74.888 | 2.148 | 2.148 | 0 |
-| B5 | abstencoes | BWEB | DMZ | 12.584 | 83 | 83 | 0 |
-| B5 | aptos | BWEB | DMZ | 12.584 | 83 | 83 | 0 |
-| B5 | brancos | BWEB | DMZ | 12.584 | 83 | 83 | 0 |
-| B5 | comparecimento | BWEB | DMZ | 12.584 | 83 | 83 | 0 |
-| B5 | nulos | BWEB | DMZ | 12.584 | 2.231 | 2.231 | 0 |
-| B5 | validos | BWEB | DMZ | 12.584 | 2.231 | 2.231 | 0 |
+| B5 | abstencoes | BWEB | DMZ | 12.584 | 81 | 81 | 0 |
+| B5 | aptos | BWEB | DMZ | 12.584 | 81 | 81 | 0 |
+| B5 | brancos | BWEB | DMZ | 12.584 | 81 | 81 | 0 |
+| B5 | comparecimento | BWEB | DMZ | 12.584 | 81 | 81 | 0 |
+| B5 | nulos | BWEB | DMZ | 12.584 | 2.229 | 2.229 | 0 |
+| B5 | validos | BWEB | DMZ | 12.584 | 2.229 | 2.229 | 0 |
 | B6 | biometria_nh_vs_liberacao_manual_no_log | BWEB | LOG | 998.353 | 6 | 0 | 6 |
 | B6 | comparecimento_vs_votos_computados | BWEB | LOG | 998.353 | 15 | 0 | 15 |
 | B6 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | BWEB | LOG | 998.353 | 207 | 196 | 11 |
 | B8 | habilitados_por_biografia_vs_manual_apos_falha | BUBIN | LOG | 995.791 | 6 | 0 | 6 |
 | B8 | habilitados_por_biometria | BUBIN | LOG | 995.791 | 8.346 | 8.330 | 16 |
 | B8 | sem_biometria_cadastrada | BUBIN | LOG | 995.791 | 3 | 0 | 3 |
-| C1 | aptos_vs_comp_mais_abst | BWEB | BWEB | 998.411 | 0 | 0 | 0 |
+| C1 | aptos_vs_comp_mais_abst | BWEB | BWEB | 998.413 | 0 | 0 | 0 |
 | K1 | votos_votavel | BWEB | VSEC | 5.731.614 | 0 | 0 | 0 |
 | K2 | brancos | DSEC | VSEC | 998.414 | 0 | 0 | 0 |
 | K2 | nulos | DSEC | VSEC | 998.414 | 0 | 0 | 0 |
@@ -76,7 +76,7 @@ Legenda: BWEB = BU publicado em CSV; BUBIN = arquivo .bu transmitido pela urna; 
 **Classificação:** Conferido (com diferenças explicadas e incompatibilidades listadas)
 
 - **O que verificamos?** Se o mesmo número aparece igual em todas as publicações oficiais que deveriam coincidir, seção a seção (BU em CSV, BU binário, detalhe por seção, votação por seção) e na soma por zona.
-- **O que os números mostram?** 19 de 35 comparações sem nenhuma divergência; 60 divergências ainda sem explicação documental (listadas abaixo).
+- **O que os números mostram?** 18 de 35 comparações sem nenhuma divergência; 62 divergências ainda sem explicação documental (listadas abaixo).
 - **O que significa?** Os votos publicados por seção são os mesmos do arquivo binário assinado gerado pela urna e das demais tabelas do TSE.
 - **Existe explicação conhecida?** As divergências explicadas decorrem de seções não instaladas, seções apuradas pelo Sistema de Apuração (cédulas), campos opcionais omitidos no exterior e eleitores de seções não instaladas incluídos nos aptos por zona.
 - **O que ainda não sabemos?** A verificação criptográfica das assinaturas dos arquivos (.vscmr) não foi feita nesta etapa.
@@ -89,6 +89,8 @@ Legenda: BWEB = BU publicado em CSV; BUBIN = arquivo .bu transmitido pela urna; 
 | A2 | 1 | ZZ | 29.564 | 1 | 91 | presenca | — | BWEB | 1 | BUBIN |
 | B2 | 1 | MG | 41.238 | 39 | 168 | biometria_nh_vs_lib_codigo | 0 | BWEB | — | BUBIN |
 | B2 | 1 | MG | 50.075 | 47 | 41 | biometria_nh_vs_lib_codigo | 0 | BWEB | — | BUBIN |
+| B2 | 2 | ZZ | 29.564 | 1 | 91 | votos_por_candidato_soma_dif_abs | — | BWEB | 0 | BUBIN |
+| B2 | 2 | ZZ | 30.686 | 1 | 443 | votos_por_candidato_soma_dif_abs | — | BWEB | 0 | BUBIN |
 | B6 | 1 | BA | 39.934 | 183 | 175 | biometria_nh_vs_liberacao_manual_no_log | 17 | BWEB | 16 | LOG |
 | B6 | 1 | RJ | 60.011 | 8 | 61 | biometria_nh_vs_liberacao_manual_no_log | 38 | BWEB | 37 | LOG |
 | B6 | 1 | SP | 71.072 | 2 | 35 | biometria_nh_vs_liberacao_manual_no_log | 18 | BWEB | 16 | LOG |
@@ -233,43 +235,43 @@ Intervalo = tempo entre dois registros consecutivos de voto concluído na mesma 
 
 | turno | controle | indicador | diferenca_ingenua_pp | diferenca_controlada_pp | ic95_inf | ic95_sup | grupos_comparaveis | secoes_ref | secoes_outras |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | mesmo_local | pct_validos_22 | 0,489 | -0,016 | -0,116 | 0,078 | 5.243 | 22.416 | 21.726 |
-| 1 | mesmo_local | pct_validos_13 | -0,284 | 0,027 | -0,070 | 0,128 | 5.243 | 22.416 | 21.726 |
-| 1 | mesmo_local | pct_comparecimento | -0,172 | 0,120 | 0,029 | 0,219 | 5.243 | 22.416 | 21.726 |
-| 1 | mesmo_local | pct_brancos_nulos | 0,012 | 0,012 | -0,025 | 0,049 | 5.243 | 22.416 | 21.726 |
-| 1 | mesmo_local | pct_biometria_nh | -1,213 | -0,026 | -0,086 | 0,033 | 5.243 | 22.416 | 21.726 |
-| 1 | mesma_zona | pct_validos_22 | 0,489 | -0,055 | -0,398 | 0,293 | 1.048 | 63.329 | 84.411 |
-| 1 | mesma_zona | pct_validos_13 | -0,284 | -0,023 | -0,425 | 0,344 | 1.048 | 63.329 | 84.411 |
-| 1 | mesma_zona | pct_comparecimento | -0,172 | 0,080 | -0,062 | 0,221 | 1.048 | 63.329 | 84.411 |
-| 1 | mesma_zona | pct_brancos_nulos | 0,012 | 0,014 | -0,047 | 0,076 | 1.048 | 63.329 | 84.411 |
-| 1 | mesma_zona | pct_biometria_nh | -1,213 | -0,821 | -0,922 | -0,717 | 1.048 | 63.329 | 84.411 |
-| 1 | mesmo_municipio | pct_validos_22 | 0,489 | 0,266 | -0,355 | 0,931 | 879 | 76.226 | 110.528 |
-| 1 | mesmo_municipio | pct_validos_13 | -0,284 | -0,312 | -0,979 | 0,380 | 879 | 76.226 | 110.528 |
-| 1 | mesmo_municipio | pct_comparecimento | -0,172 | 0,146 | -0,046 | 0,309 | 879 | 76.226 | 110.528 |
-| 1 | mesmo_municipio | pct_brancos_nulos | 0,012 | -0,042 | -0,129 | 0,050 | 879 | 76.226 | 110.528 |
-| 1 | mesmo_municipio | pct_biometria_nh | -1,213 | -1,068 | -1,536 | -0,663 | 879 | 76.226 | 110.528 |
-| 2 | mesmo_local | pct_validos_22 | 0,422 | 0,011 | -0,084 | 0,104 | 5.398 | 23.124 | 22.731 |
-| 2 | mesmo_local | pct_validos_13 | -0,422 | -0,011 | -0,106 | 0,083 | 5.398 | 23.124 | 22.731 |
-| 2 | mesmo_local | pct_comparecimento | -0,193 | 0,070 | -0,023 | 0,159 | 5.398 | 23.124 | 22.731 |
-| 2 | mesmo_local | pct_brancos_nulos | -0,047 | 0,007 | -0,025 | 0,037 | 5.398 | 23.124 | 22.731 |
-| 2 | mesmo_local | pct_biometria_nh | -1,226 | -0,057 | -0,114 | 0,002 | 5.398 | 23.124 | 22.731 |
-| 2 | mesma_zona | pct_validos_22 | 0,422 | -0,150 | -0,498 | 0,203 | 1.078 | 63.943 | 87.847 |
-| 2 | mesma_zona | pct_validos_13 | -0,422 | 0,150 | -0,201 | 0,489 | 1.078 | 63.943 | 87.847 |
-| 2 | mesma_zona | pct_comparecimento | -0,193 | -0,004 | -0,141 | 0,133 | 1.078 | 63.943 | 87.847 |
-| 2 | mesma_zona | pct_brancos_nulos | -0,047 | 0,023 | -0,014 | 0,059 | 1.078 | 63.943 | 87.847 |
-| 2 | mesma_zona | pct_biometria_nh | -1,226 | -0,770 | -0,878 | -0,659 | 1.078 | 63.943 | 87.847 |
-| 2 | mesmo_municipio | pct_validos_22 | 0,422 | 0,064 | -0,641 | 0,816 | 902 | 78.264 | 116.479 |
-| 2 | mesmo_municipio | pct_validos_13 | -0,422 | -0,064 | -0,825 | 0,675 | 902 | 78.264 | 116.479 |
-| 2 | mesmo_municipio | pct_comparecimento | -0,193 | -0,194 | -0,962 | 0,218 | 902 | 78.264 | 116.479 |
-| 2 | mesmo_municipio | pct_brancos_nulos | -0,047 | -0,024 | -0,124 | 0,063 | 902 | 78.264 | 116.479 |
-| 2 | mesmo_municipio | pct_biometria_nh | -1,226 | -0,728 | -1,467 | 0,199 | 902 | 78.264 | 116.479 |
+| 1 | mesmo_local | pct_validos_22 | 0,489 | -0,016 | -0,114 | 0,086 | 5.243 | 22.416 | 21.726 |
+| 1 | mesmo_local | pct_validos_13 | -0,284 | 0,027 | -0,071 | 0,125 | 5.243 | 22.416 | 21.726 |
+| 1 | mesmo_local | pct_comparecimento | -0,172 | 0,120 | 0,023 | 0,221 | 5.243 | 22.416 | 21.726 |
+| 1 | mesmo_local | pct_brancos_nulos | 0,012 | 0,012 | -0,023 | 0,052 | 5.243 | 22.416 | 21.726 |
+| 1 | mesmo_local | pct_biometria_nh | -1,213 | -0,026 | -0,083 | 0,032 | 5.243 | 22.416 | 21.726 |
+| 1 | mesma_zona | pct_validos_22 | 0,489 | -0,055 | -0,400 | 0,298 | 1.048 | 63.329 | 84.411 |
+| 1 | mesma_zona | pct_validos_13 | -0,284 | -0,023 | -0,402 | 0,345 | 1.048 | 63.329 | 84.411 |
+| 1 | mesma_zona | pct_comparecimento | -0,172 | 0,080 | -0,068 | 0,225 | 1.048 | 63.329 | 84.411 |
+| 1 | mesma_zona | pct_brancos_nulos | 0,012 | 0,014 | -0,049 | 0,077 | 1.048 | 63.329 | 84.411 |
+| 1 | mesma_zona | pct_biometria_nh | -1,213 | -0,821 | -0,926 | -0,711 | 1.048 | 63.329 | 84.411 |
+| 1 | mesmo_municipio | pct_validos_22 | 0,489 | 0,266 | -0,392 | 0,984 | 879 | 76.226 | 110.528 |
+| 1 | mesmo_municipio | pct_validos_13 | -0,284 | -0,312 | -1,026 | 0,355 | 879 | 76.226 | 110.528 |
+| 1 | mesmo_municipio | pct_comparecimento | -0,172 | 0,146 | -0,055 | 0,312 | 879 | 76.226 | 110.528 |
+| 1 | mesmo_municipio | pct_brancos_nulos | 0,012 | -0,042 | -0,127 | 0,056 | 879 | 76.226 | 110.528 |
+| 1 | mesmo_municipio | pct_biometria_nh | -1,213 | -1,068 | -1,524 | -0,662 | 879 | 76.226 | 110.528 |
+| 2 | mesmo_local | pct_validos_22 | 0,422 | 0,011 | -0,088 | 0,111 | 5.398 | 23.124 | 22.731 |
+| 2 | mesmo_local | pct_validos_13 | -0,422 | -0,011 | -0,108 | 0,082 | 5.398 | 23.124 | 22.731 |
+| 2 | mesmo_local | pct_comparecimento | -0,193 | 0,070 | -0,026 | 0,160 | 5.398 | 23.124 | 22.731 |
+| 2 | mesmo_local | pct_brancos_nulos | -0,047 | 0,007 | -0,023 | 0,039 | 5.398 | 23.124 | 22.731 |
+| 2 | mesmo_local | pct_biometria_nh | -1,226 | -0,057 | -0,114 | 0,005 | 5.398 | 23.124 | 22.731 |
+| 2 | mesma_zona | pct_validos_22 | 0,422 | -0,150 | -0,512 | 0,197 | 1.078 | 63.943 | 87.847 |
+| 2 | mesma_zona | pct_validos_13 | -0,422 | 0,150 | -0,198 | 0,489 | 1.078 | 63.943 | 87.847 |
+| 2 | mesma_zona | pct_comparecimento | -0,193 | -0,004 | -0,134 | 0,122 | 1.078 | 63.943 | 87.847 |
+| 2 | mesma_zona | pct_brancos_nulos | -0,047 | 0,023 | -0,014 | 0,061 | 1.078 | 63.943 | 87.847 |
+| 2 | mesma_zona | pct_biometria_nh | -1,226 | -0,770 | -0,877 | -0,655 | 1.078 | 63.943 | 87.847 |
+| 2 | mesmo_municipio | pct_validos_22 | 0,422 | 0,064 | -0,710 | 0,832 | 902 | 78.264 | 116.479 |
+| 2 | mesmo_municipio | pct_validos_13 | -0,422 | -0,064 | -0,795 | 0,641 | 902 | 78.264 | 116.479 |
+| 2 | mesmo_municipio | pct_comparecimento | -0,193 | -0,194 | -0,903 | 0,219 | 902 | 78.264 | 116.479 |
+| 2 | mesmo_municipio | pct_brancos_nulos | -0,047 | -0,024 | -0,119 | 0,063 | 902 | 78.264 | 116.479 |
+| 2 | mesmo_municipio | pct_biometria_nh | -1,226 | -0,728 | -1,417 | 0,210 | 902 | 78.264 | 116.479 |
 
 ### UE2020 × demais modelos: proporção de votos do nº 22
 
 **Classificação:** Diferença estatística (controles fracos) / Conferido sem diferença (mesmo local)
 
 - **O que verificamos?** Se seções com urna modelo 2020 têm resultado diferente de seções com outros modelos, comparando seções próximas (mesmo local de votação, mesma zona, mesmo município).
-- **O que os números mostram?** Sem controle geográfico a diferença é grande (1º t.: 0,49 p.p., 2º t.: 0,42 p.p.). No mesmo local: 1º t. -0,02 p.p. (IC95% -0,12 a 0,08); 2º t. 0,01 p.p. (IC95% -0,08 a 0,10). Na mesma zona: 1º t. -0,06 p.p. (IC95% -0,40 a 0,29); 2º t. -0,15 p.p. (IC95% -0,50 a 0,20).
+- **O que os números mostram?** Sem controle geográfico a diferença é grande (1º t.: 0,49 p.p., 2º t.: 0,42 p.p.). No mesmo local: 1º t. -0,02 p.p. (IC95% -0,11 a 0,09); 2º t. 0,01 p.p. (IC95% -0,09 a 0,11). Na mesma zona: 1º t. -0,06 p.p. (IC95% -0,40 a 0,30); 2º t. -0,15 p.p. (IC95% -0,51 a 0,20).
 - **O que significa?** A maior parte da diferença bruta é geográfica. No controle mais forte (mesmo local) o intervalo inclui zero; com controles mais fracos (zona, município) resta diferença de cerca de 1 p.p., que pode refletir diferenças entre bairros/locais dentro da zona.
 - **Existe explicação conhecida?** A distribuição dos modelos não é aleatória (logística do TSE por zona/local). O modelo 2020 tem leitor biométrico mais novo: a taxa de liberação manual é ~5 p.p. menor nas mesmas localidades, diferença técnica esperada.
 - **O que ainda não sabemos?** Sem covariáveis anteriores à eleição por seção (ex.: resultado de 2018 na mesma seção), não é possível separar efeito do modelo de efeito de localização. Diferença estatística ≠ causalidade.
@@ -280,9 +282,9 @@ Intervalo = tempo entre dois registros consecutivos de voto concluído na mesma 
 | teste | testes | rejeitados_holm_1pct | cramer_v_mediano | maior_desvio_pp_mediano |
 |---|---|---|---|---|
 | segundo_digito_benford_descritivo | 116 | 105 | 0,062 | 3,158 |
-| segundo_digito_vs_simulacao_binomial_zona | 116 | 65 | 0,021 | 1,103 |
+| segundo_digito_vs_simulacao_binomial_zona | 116 | 64 | 0,022 | 1,161 |
 | ultimo_digito_uniforme | 116 | 13 | 0,011 | 0,642 |
-| ultimo_digito_vs_simulacao_binomial_zona | 116 | 0 | 0,010 | 0,535 |
+| ultimo_digito_vs_simulacao_binomial_zona | 116 | 0 | 0,010 | 0,566 |
 
 ### Dígitos das contagens por seção
 

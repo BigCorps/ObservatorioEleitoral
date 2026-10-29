@@ -1,6 +1,6 @@
 # Comparação histórica 2022 × 2026 — Presidente
 
-_Gerado em 29/10/2026 14:37 UTC a partir de `resultados/comparativo/`._
+_Gerado em 29/10/2026 14:44 UTC a partir de `resultados/comparativo/`._
 
 **Pergunta central:** quais diferenças observadas em 2026 também ocorreram em 2022, quais podem ser explicadas pelas condições eleitorais e quais exigem verificação documental adicional?
 
@@ -12,7 +12,7 @@ Os totais eleitorais nacionais (aptos, seções, comparecimento, abstenção, vo
 
 | indicador | 2022_1t | 2022_2t | 2026_1t | 2026_2t | dif_turnos_2022 | dif_1t_2026_menos_2022 |
 |---|---|---|---|---|---|---|
-| Eleitores aptos | 156.453.354 | 156.453.354 | 158.745.007 | 158.744.977 | 0 | 2.291.653 |
+| Eleitores aptos | 156.453.354 | 156.453.354 | 158.745.007 | 158.745.079 | 0 | 2.291.653 |
 | Comparecimento | 123.682.372 | 124.252.796 | 125.275.835 | 128.236.074 | 570.424 | 1.593.463 |
 | Duração média 1º→último voto (h) | 9,068 | 8,775 | 9,054 | 8,774 | -0,293 | -0,014 |
 | Mediana habilitação→voto (s) | 51 | 15 | 55 | 10 | -36 | 4 |
@@ -31,7 +31,7 @@ Os totais eleitorais nacionais (aptos, seções, comparecimento, abstenção, vo
 | Votos antes das 8h (% votos do log) | 0 | 0 | 0 | 0 | 0 | 0 |
 | Votos após 17h (%) | 3,506 | 0,033 | 2,981 | 0,027 | -3,473 | -0,525 |
 | Votos após 19h (%) | 0,196 | 0 | 0,105 | 0 | -0,196 | -0,091 |
-| Seções eleitorais apuradas | 472.028 | 472.028 | 499.206 | 499.205 | 0 | 27.178 |
+| Seções eleitorais apuradas | 472.028 | 472.028 | 499.206 | 499.207 | 0 | 27.178 |
 | Seções com log | 470.998 | 470.999 | 497.895 | 497.896 | 1 | 26.897 |
 
 

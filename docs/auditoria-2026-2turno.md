@@ -99,15 +99,15 @@ Testes executáveis sem o BU em CSV (ainda não publicado nos Dados Abertos): A2
 
 | teste | campo | divergencias | explicadas | nao_explicadas | soma_abs_diferencas_nao_explicadas |
 |---|---|---|---|---|---|
-| A2 | presenca | 2 | 2 | 0 | — |
-| A3 | presenca | 43 | 43 | 0 | — |
-| B2 | biometria_nh_vs_lib_codigo | 1.308 | 1.308 | 0 | — |
-| B5 | abstencoes | 42 | 42 | 0 | — |
-| B5 | aptos | 42 | 42 | 0 | — |
-| B5 | brancos | 42 | 42 | 0 | — |
-| B5 | comparecimento | 42 | 42 | 0 | — |
-| B5 | nulos | 42 | 42 | 0 | — |
-| B5 | validos | 42 | 42 | 0 | — |
+| A3 | presenca | 41 | 41 | 0 | — |
+| B2 | biometria_nh_vs_lib_codigo | 1.310 | 1.310 | 0 | — |
+| B2 | votos_por_candidato_soma_dif_abs | 2 | 0 | 2 | — |
+| B5 | abstencoes | 40 | 40 | 0 | — |
+| B5 | aptos | 40 | 40 | 0 | — |
+| B5 | brancos | 40 | 40 | 0 | — |
+| B5 | comparecimento | 40 | 40 | 0 | — |
+| B5 | nulos | 40 | 40 | 0 | — |
+| B5 | validos | 40 | 40 | 0 | — |
 | B6 | biometria_nh_vs_liberacao_manual_no_log | 3 | 0 | 3 | 17 |
 | B6 | comparecimento_vs_votos_computados | 6 | 0 | 6 | 54 |
 | B6 | comparecimento_vs_votos_presidente_mais_nulos_suspensao | 53 | 48 | 5 | 55 |
@@ -143,8 +143,8 @@ B8 (habilitados por biometria no BU um a mais que no log): a diferença é igual
 |---|---|---|---|
 | Conferido sem diferença | 20 | 0 | 0 |
 | Diferença estatística | 28 | 33 | 0 |
-| Diferença explicada | 11 | 5.986 | 0 |
-| Incompatibilidade documental pendente | 6 | 23 | 54 |
+| Diferença explicada | 10 | 5.972 | 0 |
+| Incompatibilidade documental pendente | 7 | 25 | 54 |
 
 
 Votos só são contados quando a diferença é contagem de votos registrados entre duas fontes (B6/B6o); nos demais testes a coluna fica vazia. Detalhe: `resultados/quadro_discrepancias.csv`.
