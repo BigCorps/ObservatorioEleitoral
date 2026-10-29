@@ -313,3 +313,54 @@ html{scroll-padding-bottom:calc(var(--dock-current-height) + 20px)}
 .sim-section .audit-source{margin-top:19px}
 @media(max-width:850px){.sim-layout{grid-template-columns:1fr}}
 @media(max-width:650px){.municipal-section,.sim-section{padding:45px 0}.municipal-cards{grid-template-columns:1fr}.municipal-cards article,.municipal-box,.sim-panel,.sim-result{padding:18px}.sim-head output{font-size:16px}.sim-total{font-size:33px}}
+
+/* Destaque de auditoria — 2º turno 2026, fontes estáticas e reproduzíveis */
+.horario-feature{padding:72px 0 66px;background:#ecf3f0;border-bottom:1px solid #d5e1dd;scroll-margin-top:36px}
+.horario-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:27px}
+.horario-heading h2{font-size:clamp(28px,4vw,43px);line-height:1.14;margin:10px 0 12px;max-width:790px}
+.horario-heading p{max-width:780px;font-size:14px;line-height:1.8;color:#537074;margin:0}
+.horario-fixed{border:1px solid #c3dbd2;border-radius:99px;color:#1b665e;background:#dceddf;padding:10px 14px;font-size:11px;font-weight:800;letter-spacing:.025em;white-space:nowrap}
+.horario-cards{display:grid;grid-template-columns:1.1fr .9fr;gap:20px}
+.horario-card{min-width:0;padding:31px;border-radius:19px;border:1px solid #d9e6e0;background:#fff;box-shadow:0 12px 32px rgba(14,50,55,.035)}
+.horario-card h3{font-size:clamp(19px,2.2vw,24px);line-height:1.3;margin:11px 0}
+.horario-card p{color:#526c74;font-size:13px;line-height:1.8}
+.horario-bar-item{margin:23px 0}
+.horario-bar-top{display:flex;justify-content:space-between;align-items:center;gap:15px;font-size:12px;color:#3c5b62;font-weight:700;margin-bottom:10px}
+.horario-bar-top strong{color:#143d46;font:800 20px Manrope,sans-serif;font-variant-numeric:tabular-nums}
+.horario-track{height:15px;border-radius:20px;overflow:hidden;background:#eaf0ec}
+.horario-bar{height:100%;border-radius:20px}
+.horario-bar-all{background:#94b6af}
+.horario-bar-late{background:#087d77}
+.horario-facts{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin:28px 0 15px}
+.horario-facts>div{padding:18px 16px;background:#f1f7f4;border:1px solid #dfebe5;border-radius:12px;min-width:0}
+.horario-facts small,.horario-controlled-stats small{display:block;line-height:1.55;font-size:11px;color:#5f7b7b}
+.horario-facts strong{display:block;margin-top:9px;font:800 clamp(20px,2.7vw,29px) Manrope,sans-serif;color:#066e64;font-variant-numeric:tabular-nums;letter-spacing:-.04em}
+.horario-card .horario-caution{font-size:11px;line-height:1.8;margin:18px 0 0;color:#648084}
+.horario-controlled{background:#163940;border-color:#163940;color:#fff}
+.horario-controlled .card-eyebrow{color:#a0d9cb}
+.horario-controlled h3{color:#fff}
+.horario-controlled p{color:#c3d8d6}
+.horario-result{border-top:1px solid #426269;border-bottom:1px solid #426269;padding:25px 0 22px;margin:28px 0 17px}
+.horario-result strong{display:block;font:800 clamp(31px,4.1vw,53px) Manrope,sans-serif;color:#c0f2e2;letter-spacing:-.05em;font-variant-numeric:tabular-nums}
+.horario-result strong span{font-size:.45em;letter-spacing:normal}
+.horario-result small{display:block;font-size:12px;line-height:1.6;color:#d1e1dc;margin-top:5px}
+.horario-interval{font-size:12px;line-height:1.7;color:#c7d9d5}
+.horario-interval strong{color:#fff}
+.horario-controlled-stats{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:24px}
+.horario-controlled-stats>div{padding:16px;border:1px solid #446368;border-radius:12px;background:#1e454a}
+.horario-controlled-stats strong{display:block;font:800 22px Manrope,sans-serif;margin-bottom:6px;font-variant-numeric:tabular-nums}
+.horario-controlled-stats small,.horario-controlled .horario-caution{color:#bad4cf}
+.horario-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:19px 0 0;background:#fff;border:1px solid #d9e6e0;border-radius:16px;overflow:hidden}
+.horario-summary>div{min-width:0;padding:21px 23px;border-right:1px solid #e0e9e4}
+.horario-summary>div:last-child{border-right:0}
+.horario-summary span{display:block;font-size:11px;font-weight:700;color:#5a767a;line-height:1.5}
+.horario-summary strong{display:block;font:800 26px Manrope,sans-serif;color:#184b4d;letter-spacing:-.03em;margin:8px 0;font-variant-numeric:tabular-nums}
+.horario-summary small{display:block;font-size:11px;color:#617a7c;line-height:1.6}
+.horario-bottom{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:21px}
+.horario-explainer{flex:1 1 320px}
+.horario-explainer summary{color:#21695f;font-size:12px;font-weight:800;cursor:pointer;line-height:1.6}
+.horario-explainer p{max-width:850px;font-size:12px;line-height:1.9;color:#5b777a;padding-top:8px}
+.horario-links{display:flex;align-items:center;gap:12px 18px;flex-wrap:wrap}
+.horario-links a{font-size:11px;font-weight:800;color:#0c7169;text-decoration:underline;text-underline-offset:3px}
+@media(max-width:900px){.horario-heading{display:block}.horario-fixed{display:inline-block;margin-top:17px}.horario-cards{grid-template-columns:1fr}}
+@media(max-width:600px){.horario-feature{padding:45px 0}.horario-card{padding:20px}.horario-heading h2{font-size:28px}.horario-facts>div{padding:12px}.horario-facts strong{font-size:21px}.horario-summary{grid-template-columns:1fr}.horario-summary>div{border-right:0;border-bottom:1px solid #e0e9e4;padding:16px 20px}.horario-summary>div:last-child{border-bottom:0}.horario-bottom{display:block}.horario-links{margin-top:18px}}

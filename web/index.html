@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=eleitorado-simulador-20261027">
+  <link rel="stylesheet" href="./styles.css?v=horario-destaque-20261029">
   <script src="./app.js?v=eleitorado-simulador-20261027" defer></script>
 </head>
 <body>
@@ -18,7 +18,7 @@
   <header class="site-header">
     <div class="wrap nav">
       <a class="brand" href="./" aria-label="Observatório Eleitoral, início"><span class="brand-symbol" aria-hidden="true"><i></i><i></i><i></i></span><span>OBSERVATÓRIO <small>ELEITORAL</small></span></a>
-      <nav aria-label="Principal"><a href="#painel">Painel</a><a href="#mapa">Mapa</a><a href="#estados">Estados</a><a href="#comparacao">Comparativo</a><a href="#metodologia">Metodologia</a><a href="#verificacoes">Verificações</a><a href="#triagem">Por seção</a></nav>
+      <nav aria-label="Principal"><a href="#painel">Painel</a><a href="#horarios">Destaque</a><a href="#mapa">Mapa</a><a href="#estados">Estados</a><a href="#comparacao">Comparativo</a><a href="#metodologia">Metodologia</a><a href="#verificacoes">Verificações</a><a href="#triagem">Por seção</a></nav>
       <a class="nav-github" href="https://github.com/BigCorps/ObservatorioEleitoral" target="_blank" rel="noopener noreferrer">Ver código <span aria-hidden="true">↗</span></a>
     </div>
   </header>
@@ -42,6 +42,75 @@
         </aside>
       </div>
       <div class="wrap hero-bottom"><span><span class="hero-cross">+</span> 27 UFs analisadas</span><span><span class="hero-cross">+</span> Metodologia aberta</span><span><span class="hero-cross">+</span> Resultados verificáveis</span></div>
+    </section>
+
+
+    <!-- Recorte fixo do segundo turno de 2026; valores auditáveis nos CSVs vinculados. -->
+    <section class="horario-feature" id="horarios" aria-labelledby="horario-title">
+      <div class="wrap">
+        <div class="horario-heading">
+          <div>
+            <span class="section-kicker">ACHADO EM DESTAQUE / 2º TURNO DE 2026</span>
+            <h2 id="horario-title">Encerrar mais tarde mudou a votação?</h2>
+            <p>Em São Paulo, existe uma diferença bruta expressiva nas seções encerradas após 19h. Ao comparar seções semelhantes do mesmo local de votação no Brasil, ela praticamente desaparece.</p>
+          </div>
+          <span class="horario-fixed">Recorte fixo · SP e Brasil</span>
+        </div>
+
+        <div class="horario-cards">
+          <article class="horario-card horario-sp">
+            <span class="card-eyebrow">O ACHADO BRUTO · SÃO PAULO</span>
+            <h3>+10,96 pontos percentuais para o 13</h3>
+            <p>Participação do candidato 13 entre os votos válidos do estado, comparada com a das seções que <strong>iniciaram o encerramento após 19h</strong>.</p>
+            <div class="horario-bar-item">
+              <div class="horario-bar-top"><span>SP inteiro</span><strong>46,15%</strong></div>
+              <div class="horario-track" aria-label="46,15% para o 13 em São Paulo"><div class="horario-bar horario-bar-all" style="width:46.154%"></div></div>
+            </div>
+            <div class="horario-bar-item">
+              <div class="horario-bar-top"><span>Encerramento após 19h</span><strong>57,12%</strong></div>
+              <div class="horario-track" aria-label="57,12% para o 13 nas seções de São Paulo encerradas após 19h"><div class="horario-bar horario-bar-late" style="width:57.118%"></div></div>
+            </div>
+            <div class="horario-facts">
+              <div><small>Seções no grupo</small><strong>1.676</strong></div>
+              <div><small>Votos recebidos durante todo o dia</small><strong>453.865</strong></div>
+            </div>
+            <p class="horario-caution">Esses 453.865 votos foram registrados ao longo de todo o dia, não depois das 19h. A diferença bruta não demonstra causalidade.</p>
+          </article>
+
+          <article class="horario-card horario-controlled">
+            <span class="card-eyebrow">TESTE DE CONTROLE · BRASIL</span>
+            <h3>O que acontece ao comparar seções do mesmo local?</h3>
+            <p>Comparação das seções encerradas após 19h com outras do mesmo local de votação, controlando o resultado do 1º turno, comparecimento e tamanho da seção.</p>
+            <div class="horario-result">
+              <strong>−0,002 <span>p.p.</span></strong>
+              <small>Diferença ajustada no percentual do 13</small>
+            </div>
+            <div class="horario-interval">Intervalo de confiança de 95%: <strong>−0,108 a +0,105 p.p.</strong></div>
+            <div class="horario-controlled-stats">
+              <div><strong>775</strong><small>locais comparáveis</small></div>
+              <div><strong>3.231</strong><small>seções tardias nesses locais</small></div>
+            </div>
+            <p class="horario-caution">Este resultado é <strong>nacional, não específico de SP</strong>. A associação ajustada é próxima de zero, sem evidência de um efeito relevante no recorte comparado.</p>
+          </article>
+        </div>
+
+        <div class="horario-summary" aria-label="Diferentes critérios para o horário">
+          <div><span>Seções com voto após 17h</span><strong>29.609</strong><small>34.050 votos efetivamente após 17h</small></div>
+          <div><span>Seções com voto após 19h</span><strong>11</strong><small>11 votos efetivamente após 19h</small></div>
+          <div><span>Seções encerradas após 19h</span><strong>6.766</strong><small>1.984.670 votos durante todo o dia</small></div>
+        </div>
+        <div class="horario-bottom">
+          <details class="horario-explainer">
+            <summary>Como interpretar os números e os horários?</summary>
+            <p>“Voto após 19h” é diferente de “início do encerramento após 19h”. O segundo grupo contém muitos votos registrados pela manhã e à tarde. Os votos por candidato são resultados de seções inteiras: o sigilo do voto impede associar candidato e horário individual. Os grupos acima se sobrepõem. A comparação pareada é observacional, feita apenas entre seções dos mesmos locais que possuem seções dos dois tipos; não é uma estimativa causal e não equivale a prova de irregularidade.</p>
+          </details>
+          <div class="horario-links">
+            <a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/resultados/2026/horario_votacao_encerramento.md" target="_blank" rel="noopener noreferrer">Ler análise e metodologia ↗</a>
+            <a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/resultados/2026/horario_grupos_uf.csv" target="_blank" rel="noopener noreferrer">Conferir números por UF ↗</a>
+            <a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/resultados/2026/horario_comparacao_pareada.csv" target="_blank" rel="noopener noreferrer">Ver teste pareado ↗</a>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="dashboard-section" id="painel">
