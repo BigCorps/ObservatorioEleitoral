@@ -1,9 +1,9 @@
 {
   "ano": 2026,
-  "gerado_utc": "2026-10-27T20:16:26.625880+00:00",
+  "gerado_utc": "2026-10-29T14:37:27.050054+00:00",
   "fontes_por_turno": {
     "1": "BU-CSV",
-    "2": "DSEC+VSEC"
+    "2": "BU-CSV"
   },
   "cobertura_por_uf": {
     "AC": {
@@ -115,12 +115,12 @@
       "secoes_quarentena": 0
     },
     "ZZ": {
-      "secoes_processadas": 2619,
+      "secoes_processadas": 2617,
       "secoes_quarentena": 0
     }
   },
   "ufs_ausentes": [],
-  "secoes_incluidas": 998413,
+  "secoes_incluidas": 998411,
   "secoes_excluidas_por_inconsistencia": 0,
   "criterios": "docs/triagem-secoes.md",
   "aviso": "Seção destacada NÃO significa voto irregular; votos nos recortes NÃO são votos afetados."
