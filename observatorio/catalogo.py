@@ -63,12 +63,53 @@ def classificar(url: str) -> dict:
     return out
 
 
+def _recursos_da_pagina(conjunto: str, conhecidos: set, sess: requests.Session) -> list[dict]:
+    """A resposta de package_show da API pode vir desatualizada (observado em 29/10/2026: recursos do 2º turno
+    de 2026 presentes na página do conjunto e em resource_show, ausentes de package_show). Completa a lista
+    com os recursos da página web, consultando cada um por resource_show."""
+    base = CKAN_API.rsplit("/api/", 1)[0]
+    try:
+        html = sess.get(f"{base}/dataset/{conjunto}", timeout=60).text
+    except requests.RequestException:
+        return []
+    extras = []
+    for rid in sorted(set(re.findall(r"/resource/([0-9a-f-]{36})", html)) - conhecidos):
+        try:
+            x = sess.get(f"{CKAN_API}/resource_show", params={"id": rid}, timeout=60).json()["result"]
+        except Exception:
+            continue
+        x["_origem"] = "resource_show (ausente de package_show)"
+        extras.append(x)
+    return extras
+
+
 def baixar_catalogo(conjunto: str, sess: requests.Session) -> dict:
     r = sess.get(f"{CKAN_API}/package_show", params={"id": conjunto}, timeout=60)
     r.raise_for_status()
     dados = r.json()
     if not dados.get("success"):
         raise RuntimeError(f"CKAN sem sucesso para {conjunto}")
+    extras = _recursos_da_pagina(conjunto, {x["id"] for x in dados["result"]["resources"]}, sess)
+    # Confere cada recurso de package_show com resource_show; quando divergem, adota a versão mais recente
+    # e registra a divergência (observado: URL de RR corrigida em resource_show e ainda errada em package_show).
+    atual, divergencias = [], []
+    for x in dados["result"]["resources"]:
+        try:
+            y = sess.get(f"{CKAN_API}/resource_show", params={"id": x["id"]}, timeout=60).json()["result"]
+        except Exception:
+            atual.append(x)
+            continue
+        dif = {k: (x.get(k), y.get(k)) for k in ("url", "name", "created", "metadata_modified") if x.get(k) != y.get(k)}
+        if dif:
+            divergencias.append({"conjunto": conjunto, "id": x["id"], **{f"{k}_package_show": v[0] for k, v in dif.items()},
+                                 **{f"{k}_resource_show": v[1] for k, v in dif.items()}})
+            if (y.get("metadata_modified") or "") >= (x.get("metadata_modified") or ""):
+                y["_origem"] = "resource_show (difere de package_show)"
+                x = y
+        atual.append(x)
+    dados["result"]["resources"] = atual + extras
+    dados["result"]["_divergencias_package_show"] = divergencias
+    dados["result"]["_recursos_fora_de_package_show"] = len(extras)
     destino = MANIFESTOS / "ckan" / f"{conjunto}.json"
     destino.parent.mkdir(parents=True, exist_ok=True)
     destino.write_text(json.dumps(dados["result"], ensure_ascii=False, indent=1, sort_keys=True))
@@ -110,12 +151,25 @@ def inventariar(anos=(2022, 2026), com_head: bool = True) -> list[dict]:
                     continue  # registrado como hash do arquivo principal
                 c = classificar(url)
                 linhas.append({
-                    "conjunto": conjunto, "nome": x["name"].strip(), "url": url,
+                    "conjunto": conjunto, "nome": x["name"].strip() + (f" [{x['_origem']}]" if x.get("_origem") else ""),
+                    "url": url,
                     "formato": x.get("format", ""), "ano": ano, **c,
                     "ckan_created": x.get("created", ""), "ckan_modified": x.get("last_modified") or "",
                     "hash_publicado_url": url + ".sha512" if url + ".sha512" in urls else "",
                     "consultado_em": agora,
                 })
+    import pandas as _pd
+    div = []
+    for ano in anos:
+        for conjunto in DATASETS[ano]:
+            f = MANIFESTOS / "ckan" / f"{conjunto}.json"
+            if f.exists():
+                div += json.loads(f.read_text()).get("_divergencias_package_show", [])
+    if div:
+        d = _pd.DataFrame(div)
+        d.insert(0, "consultado_em", agora)
+        destino = MANIFESTOS / "ckan_divergencias_package_show.csv"
+        d.to_csv(destino, mode="a", header=not destino.exists(), index=False)
     if com_head:
         with ThreadPoolExecutor(8) as ex:
             heads = list(ex.map(lambda l: head(l["url"], sess) if l.get("url") else {}, linhas))

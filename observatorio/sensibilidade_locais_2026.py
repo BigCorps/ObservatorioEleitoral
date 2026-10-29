@@ -17,6 +17,9 @@ from .horario_historico import (
 
 ANTERIOR = (PROCESSADOS / "historico" / "antes_consolidado_2026-10-29"
             / "secoes_oficiais_2026_2t.parquet")
+# A base de horario_historico.carregar(2026) já usa o local do Detalhe por seção (secoes_oficiais_2026_2t);
+# o código alternativo vem do BU em CSV consolidado (secoes_bu_2026.parquet, turno 2).
+BU_CSV = PROCESSADOS / "secoes_bu_2026.parquet"
 SAIDA = RESULTADOS / "2026" / "consolidado_2t"
 
 
@@ -35,6 +38,12 @@ def executar() -> pd.DataFrame:
     con.execute(f"""CREATE TABLE tabela_local_detalhe AS SELECT uf, cd_municipio, nr_zona, nr_secao,
                  nr_local_votacao
                  FROM '{ANTERIOR}' WHERE uf <> 'ZZ'""")
+    con.execute(f"""CREATE TABLE tabela_local_bu AS SELECT uf, cd_municipio, nr_zona, nr_secao, nr_local_votacao
+                 FROM '{BU_CSV}' WHERE turno = 2 AND uf <> 'ZZ'""")
+    iguais = con.execute("""SELECT count(*) FILTER (b.nr_local_votacao IS DISTINCT FROM d.nr_local_votacao)
+        FROM b2026_original b JOIN tabela_local_detalhe d USING (uf, cd_municipio, nr_zona, nr_secao)""").fetchone()[0]
+    if iguais:
+        raise AssertionError("A base carregada deveria usar o local do Detalhe por seção")
     originais_detalhe = con.execute("""SELECT
         count(*) n, count(DISTINCT (uf, cd_municipio, nr_zona, nr_secao)) n_dist
         FROM tabela_local_detalhe""").fetchone()
@@ -42,18 +51,18 @@ def executar() -> pd.DataFrame:
         raise AssertionError("Detalhe por seção possui chaves duplicadas")
     contagem = con.execute("""SELECT count(*),
        count(*) FILTER (b.nr_local_votacao IS DISTINCT FROM d.nr_local_votacao)
-       FROM b2026_original b JOIN tabela_local_detalhe d
+       FROM b2026_original b JOIN tabela_local_bu d
        USING (uf, cd_municipio, nr_zona, nr_secao)""").fetchone()
     if contagem[0] != n_original:
         raise AssertionError("Amostra de seções mudou no pareamento dos metadados")
     diferem = int(contagem[1])
     saida = []
     for fonte in ("BU_CSV", "DETALHE_SECAO"):
-        if fonte == "DETALHE_SECAO":
+        if fonte == "BU_CSV":
             con.execute("""CREATE OR REPLACE TABLE b2026 AS SELECT
                 b.* EXCLUDE (nr_local_votacao),
                 d.nr_local_votacao AS nr_local_votacao
-                FROM b2026_original b JOIN tabela_local_detalhe d
+                FROM b2026_original b JOIN tabela_local_bu d
                 USING (uf, cd_municipio, nr_zona, nr_secao)""")
         else:
             con.execute("CREATE OR REPLACE TABLE b2026 AS SELECT * FROM b2026_original")

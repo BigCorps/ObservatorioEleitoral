@@ -1,0 +1,619 @@
+arquivo,cd_municipio,nr_zona,nr_secao,motivo,vsc_sha256_igual_hash_portal,log_sha512_no_vsc,log_reinterpretado_igual,log_arquivos_no_pacote,situacao
+o03221pe2302700200201,23027,20,201,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2315900480032,23159,48,32,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2318301370042,23183,137,42,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2321300840070,23213,84,70,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2331000730029,23310,73,29,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2332900820115,23329,82,115,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2332900820226,23329,82,226,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2333700450080,23337,45,80,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2333700450128,23337,45,128,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2337000350045,23370,35,45,pendência BU × log (E1/E2),True,True,True,logd.dat,conferido
+o03221pe2339600800013,23396,80,13,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2339600800028,23396,80,28,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2343400330098,23434,33,98,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2349300990001,23493,99,1,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2351500540003,23515,54,3,pendência BU × log (E1/E2),True,True,True,logd.dat,conferido
+o03221pe2351500540007,23515,54,7,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2357400150028,23574,15,28,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2357401210113,23574,121,113,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2357401210125,23574,121,125,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2357401210182,23574,121,182,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2357401210188,23574,121,188,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2357401210209,23574,121,209,voto após 18h,True,True,True,0217124325102026181115-01.jez/logd.dat|logd.dat,conferido
+o03221pe2357401210205,23574,121,205,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2357401210232,23574,121,232,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2357401210223,23574,121,223,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2369801320088,23698,132,88,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2381701050082,23817,105,82,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2381701050335,23817,105,335,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2381701060198,23817,106,198,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2383300430026,23833,43,26,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2385000760005,23850,76,5,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2385000760002,23850,76,2,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2385000760006,23850,76,6,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2385000760001,23850,76,1,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2385000760007,23850,76,7,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2385000760072,23850,76,72,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2385000760012,23850,76,12,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2385000760004,23850,76,4,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2385000760008,23850,76,8,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2385000760010,23850,76,10,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2385000760003,23850,76,3,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2385000760014,23850,76,14,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2385000760082,23850,76,82,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2385000760070,23850,76,70,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2385000760016,23850,76,16,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2385000760011,23850,76,11,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2385000760013,23850,76,13,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2385000760015,23850,76,15,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2385000760089,23850,76,89,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2385000760075,23850,76,75,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2385000760099,23850,76,99,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2385000760076,23850,76,76,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2385000760093,23850,76,93,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2385000760104,23850,76,104,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2385000760073,23850,76,73,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2385000760105,23850,76,105,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2385000760090,23850,76,90,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2385000760094,23850,76,94,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2393000590006,23930,59,6,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2395700280018,23957,28,18,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2397300910086,23973,91,86,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2397300910103,23973,91,103,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2397300910097,23973,91,97,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2397300910090,23973,91,90,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2397300910093,23973,91,93,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2397300910132,23973,91,132,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2403100190013,24031,19,13,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2411200670083,24112,67,83,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2413900720020,24139,72,20,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2413900720066,24139,72,66,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2417100280155,24171,28,155,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2419800560073,24198,56,73,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2419800560462,24198,56,462,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2419800560465,24198,56,465,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2419800560464,24198,56,464,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2419800560521,24198,56,521,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2427900300106,24279,30,106,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2427900300119,24279,30,119,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2427900300228,24279,30,228,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2435000850171,24350,85,171,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2437600660050,24376,66,50,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2443000160190,24430,16,190,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2447300730057,24473,73,57,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2447300730054,24473,73,54,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2451101310019,24511,131,19,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2453800990018,24538,99,18,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2453800990047,24538,99,47,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2453800990028,24538,99,28,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2457001010327,24570,101,327,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2457001010477,24570,101,477,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2457001010552,24570,101,552,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2457001010567,24570,101,567,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2457001010725,24570,101,725,voto após 18h,True,True,True,021727790410202610201001ME.jez/logd.dat|logd.dat,conferido
+o03221pe2457001010705,24570,101,705,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2457001010722,24570,101,722,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2457001010697,24570,101,697,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2457001010715,24570,101,715,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2457001010752,24570,101,752,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2457001180220,24570,118,220,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2481300880128,24813,88,128,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2487200140051,24872,14,51,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2487200140082,24872,14,82,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2487200140089,24872,14,89,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2491000100112,24910,10,112,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2491000100246,24910,10,246,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2491001000043,24910,100,43,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2491001000046,24910,100,46,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2491001000479,24910,100,479,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2491001000486,24910,100,486,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2491001000473,24910,100,473,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2491001000475,24910,100,475,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2491001000506,24910,100,506,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2497000820142,24970,82,142,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2499600370069,24996,37,69,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2509700910010,25097,91,10,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2509700910018,25097,91,18,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2509700910022,25097,91,22,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2509700910048,25097,91,48,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2509700910074,25097,91,74,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2513500120066,25135,12,66,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2513500120453,25135,12,453,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2513500120490,25135,12,490,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2513501140107,25135,114,107,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2513501140136,25135,114,136,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2513501460154,25135,146,154,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2513501460151,25135,146,151,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2513501460178,25135,146,178,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2513501460209,25135,146,209,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2513501460227,25135,146,227,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2513501460231,25135,146,231,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2513501460277,25135,146,277,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2513501460344,25135,146,344,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2531300010239,25313,1,239,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2531300010397,25313,1,397,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2531300020065,25313,2,65,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2531300020515,25313,2,515,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2531300030698,25313,3,698,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2531300040023,25313,4,23,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2531300050050,25313,5,50,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2531300050147,25313,5,147,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2531300050241,25313,5,241,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2531300050510,25313,5,510,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2531300060163,25313,6,163,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2531300060170,25313,6,170,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2531300060366,25313,6,366,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2531300070274,25313,7,274,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2531300080005,25313,8,5,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080001,25313,8,1,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080010,25313,8,10,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080006,25313,8,6,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080056,25313,8,56,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080007,25313,8,7,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080011,25313,8,11,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080055,25313,8,55,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080014,25313,8,14,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080013,25313,8,13,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080002,25313,8,2,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080053,25313,8,53,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080009,25313,8,9,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080008,25313,8,8,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080061,25313,8,61,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080062,25313,8,62,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080003,25313,8,3,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080059,25313,8,59,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080057,25313,8,57,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080012,25313,8,12,voto após 18h; versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080058,25313,8,58,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080066,25313,8,66,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080068,25313,8,68,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080015,25313,8,15,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080054,25313,8,54,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080075,25313,8,75,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080067,25313,8,67,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080004,25313,8,4,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080052,25313,8,52,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080085,25313,8,85,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080069,25313,8,69,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080070,25313,8,70,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080063,25313,8,63,voto após 18h; versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080065,25313,8,65,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080060,25313,8,60,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080079,25313,8,79,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080078,25313,8,78,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080077,25313,8,77,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080064,25313,8,64,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080071,25313,8,71,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080076,25313,8,76,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080072,25313,8,72,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080074,25313,8,74,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080084,25313,8,84,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080082,25313,8,82,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080080,25313,8,80,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080081,25313,8,81,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080086,25313,8,86,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080073,25313,8,73,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080083,25313,8,83,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080090,25313,8,90,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080089,25313,8,89,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080088,25313,8,88,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080087,25313,8,87,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080128,25313,8,128,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080116,25313,8,116,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080091,25313,8,91,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080114,25313,8,114,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080117,25313,8,117,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080118,25313,8,118,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080122,25313,8,122,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080123,25313,8,123,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080120,25313,8,120,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080127,25313,8,127,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080121,25313,8,121,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080129,25313,8,129,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080132,25313,8,132,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080130,25313,8,130,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080137,25313,8,137,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080133,25313,8,133,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080131,25313,8,131,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080092,25313,8,92,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080144,25313,8,144,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080145,25313,8,145,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080125,25313,8,125,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080136,25313,8,136,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080119,25313,8,119,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080126,25313,8,126,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080142,25313,8,142,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080154,25313,8,154,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080160,25313,8,160,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080150,25313,8,150,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080134,25313,8,134,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080158,25313,8,158,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080115,25313,8,115,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080093,25313,8,93,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080157,25313,8,157,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080152,25313,8,152,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080166,25313,8,166,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080168,25313,8,168,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080135,25313,8,135,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080165,25313,8,165,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080167,25313,8,167,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080151,25313,8,151,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080124,25313,8,124,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080170,25313,8,170,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080147,25313,8,147,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080143,25313,8,143,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080164,25313,8,164,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080162,25313,8,162,versão 'Recebido' em 26–27/10,True,True,True,0235868104102026113617-01.jez/logd.dat|logd.dat,conferido
+o03221pe2531300080175,25313,8,175,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080156,25313,8,156,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080172,25313,8,172,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080171,25313,8,171,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080163,25313,8,163,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080174,25313,8,174,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080198,25313,8,198,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080181,25313,8,181,versão 'Recebido' em 26–27/10,True,True,True,0232023104102026140217-01.jez/logd.dat|logd.dat,conferido
+o03221pe2531300080201,25313,8,201,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080185,25313,8,185,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080178,25313,8,178,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080202,25313,8,202,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080193,25313,8,193,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080191,25313,8,191,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080194,25313,8,194,versão 'Recebido' em 26–27/10,True,True,True,0235093524102026102800-01.jez/logd.dat|logd.dat,conferido
+o03221pe2531300080192,25313,8,192,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080197,25313,8,197,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080207,25313,8,207,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080173,25313,8,173,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080183,25313,8,183,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080200,25313,8,200,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080214,25313,8,214,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080177,25313,8,177,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080226,25313,8,226,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080196,25313,8,196,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080189,25313,8,189,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080238,25313,8,238,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080222,25313,8,222,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080248,25313,8,248,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080217,25313,8,217,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080215,25313,8,215,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080227,25313,8,227,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080212,25313,8,212,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080211,25313,8,211,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080235,25313,8,235,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080234,25313,8,234,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080208,25313,8,208,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080236,25313,8,236,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080230,25313,8,230,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080229,25313,8,229,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080219,25313,8,219,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080232,25313,8,232,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080237,25313,8,237,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080243,25313,8,243,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080250,25313,8,250,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080221,25313,8,221,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080273,25313,8,273,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080257,25313,8,257,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080220,25313,8,220,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080255,25313,8,255,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080244,25313,8,244,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080239,25313,8,239,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080256,25313,8,256,voto após 18h; versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080265,25313,8,265,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080241,25313,8,241,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080278,25313,8,278,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080258,25313,8,258,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080261,25313,8,261,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080252,25313,8,252,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080245,25313,8,245,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080251,25313,8,251,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080262,25313,8,262,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080260,25313,8,260,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080254,25313,8,254,voto após 18h; versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080267,25313,8,267,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080266,25313,8,266,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080249,25313,8,249,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080263,25313,8,263,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080259,25313,8,259,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080253,25313,8,253,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080246,25313,8,246,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080279,25313,8,279,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080218,25313,8,218,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080264,25313,8,264,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080276,25313,8,276,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080269,25313,8,269,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080275,25313,8,275,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080274,25313,8,274,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080272,25313,8,272,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080282,25313,8,282,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080268,25313,8,268,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080280,25313,8,280,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080283,25313,8,283,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080284,25313,8,284,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080287,25313,8,287,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080277,25313,8,277,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080301,25313,8,301,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080289,25313,8,289,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080296,25313,8,296,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080291,25313,8,291,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080271,25313,8,271,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080288,25313,8,288,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080293,25313,8,293,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080300,25313,8,300,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080270,25313,8,270,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080298,25313,8,298,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080294,25313,8,294,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080295,25313,8,295,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080290,25313,8,290,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080292,25313,8,292,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080281,25313,8,281,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080286,25313,8,286,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080285,25313,8,285,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080316,25313,8,316,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080304,25313,8,304,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080297,25313,8,297,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080302,25313,8,302,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080309,25313,8,309,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080314,25313,8,314,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080310,25313,8,310,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080306,25313,8,306,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080317,25313,8,317,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080327,25313,8,327,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080307,25313,8,307,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080299,25313,8,299,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080323,25313,8,323,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080315,25313,8,315,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080319,25313,8,319,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080303,25313,8,303,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080326,25313,8,326,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080324,25313,8,324,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080321,25313,8,321,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080308,25313,8,308,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080322,25313,8,322,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080328,25313,8,328,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080305,25313,8,305,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080312,25313,8,312,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080325,25313,8,325,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080332,25313,8,332,versão 'Recebido' em 26–27/10,True,True,True,023893990410202615304901ME.jez/logd.dat|logd.dat,conferido
+o03221pe2531300080334,25313,8,334,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080330,25313,8,330,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080359,25313,8,359,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080339,25313,8,339,versão 'Recebido' em 26–27/10,True,True,True,0235676224092026094936-01.jez/logd.dat|logd.dat,conferido
+o03221pe2531300080329,25313,8,329,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080320,25313,8,320,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080333,25313,8,333,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080335,25313,8,335,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080361,25313,8,361,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080364,25313,8,364,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080362,25313,8,362,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080352,25313,8,352,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080343,25313,8,343,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080338,25313,8,338,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080346,25313,8,346,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080342,25313,8,342,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080369,25313,8,369,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080331,25313,8,331,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080344,25313,8,344,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080336,25313,8,336,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080341,25313,8,341,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080371,25313,8,371,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080358,25313,8,358,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080370,25313,8,370,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080372,25313,8,372,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080360,25313,8,360,versão 'Recebido' em 26–27/10,True,True,True,023761680310202610083101ME.jez/logd.dat|logd.dat,conferido
+o03221pe2531300080363,25313,8,363,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080349,25313,8,349,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080348,25313,8,348,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080347,25313,8,347,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080357,25313,8,357,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080377,25313,8,377,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080375,25313,8,375,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080376,25313,8,376,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080365,25313,8,365,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080345,25313,8,345,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080367,25313,8,367,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080389,25313,8,389,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080340,25313,8,340,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080374,25313,8,374,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080366,25313,8,366,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080368,25313,8,368,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080379,25313,8,379,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080355,25313,8,355,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080354,25313,8,354,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080378,25313,8,378,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080337,25313,8,337,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080350,25313,8,350,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080318,25313,8,318,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080356,25313,8,356,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080353,25313,8,353,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080383,25313,8,383,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080380,25313,8,380,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080351,25313,8,351,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080382,25313,8,382,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080381,25313,8,381,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080373,25313,8,373,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080385,25313,8,385,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080386,25313,8,386,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080384,25313,8,384,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080387,25313,8,387,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080391,25313,8,391,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080393,25313,8,393,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080390,25313,8,390,voto após 18h; versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080392,25313,8,392,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080388,25313,8,388,versão 'Recebido' em 26–27/10,True,True,True,023212530410202615151901ME.jez/logd.dat|logd.dat,conferido
+o03221pe2531300080395,25313,8,395,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080397,25313,8,397,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080399,25313,8,399,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080394,25313,8,394,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080400,25313,8,400,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080398,25313,8,398,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080401,25313,8,401,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080402,25313,8,402,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080396,25313,8,396,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080404,25313,8,404,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080414,25313,8,414,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080409,25313,8,409,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080408,25313,8,408,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080407,25313,8,407,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300090009,25313,9,9,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2531300080403,25313,8,403,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080405,25313,8,405,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080416,25313,8,416,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080406,25313,8,406,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080412,25313,8,412,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080413,25313,8,413,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080415,25313,8,415,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080410,25313,8,410,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300080411,25313,8,411,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2531300090273,25313,9,273,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2531300090349,25313,9,349,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2531300090373,25313,9,373,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2531300090385,25313,9,385,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2531300090451,25313,9,451,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2531300090460,25313,9,460,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2531300090465,25313,9,465,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2531300090490,25313,9,490,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2531300090491,25313,9,491,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2531300090497,25313,9,497,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2531300090525,25313,9,525,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2531301490049,25313,149,49,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2531301490403,25313,149,403,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2531301500093,25313,150,93,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2531301500095,25313,150,95,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2531301500206,25313,150,206,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2531301500217,25313,150,217,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2531301500218,25313,150,218,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2531301500253,25313,150,253,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2531301500261,25313,150,261,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2531301500294,25313,150,294,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2531301500329,25313,150,329,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2531301500350,25313,150,350,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2531301500356,25313,150,356,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2543700750065,25437,75,65,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2551800810156,25518,81,156,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2555000990095,25550,99,95,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2555000990084,25550,99,84,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2563101160017,25631,116,17,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2565801320096,25658,132,96,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2569000740027,25690,74,27,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2573900130040,25739,13,40,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2573900130058,25739,13,58,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2573900130072,25739,13,72,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2573900130059,25739,13,59,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2573900130081,25739,13,81,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2573900130079,25739,13,79,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2573900130071,25739,13,71,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2573900130095,25739,13,95,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2573900130080,25739,13,80,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2573900130115,25739,13,115,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2573900130113,25739,13,113,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2573900130143,25739,13,143,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2573900130164,25739,13,164,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2573900130171,25739,13,171,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2573900130175,25739,13,175,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2573900130158,25739,13,158,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2573900130166,25739,13,166,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2573900130172,25739,13,172,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2573900130180,25739,13,180,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2573900130190,25739,13,190,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2573900130204,25739,13,204,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2573900130220,25739,13,220,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2573900130211,25739,13,211,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2573900130217,25739,13,217,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2573900130233,25739,13,233,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2573900130231,25739,13,231,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2573900130235,25739,13,235,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2573900130253,25739,13,253,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2573900130237,25739,13,237,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2573900130227,25739,13,227,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2579800760036,25798,76,36,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2579800760035,25798,76,35,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2579800760037,25798,76,37,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2579800760040,25798,76,40,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2579800760043,25798,76,43,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2579800760042,25798,76,42,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2579800760038,25798,76,38,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2579800760044,25798,76,44,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2579800760045,25798,76,45,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2579800760039,25798,76,39,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2579800760084,25798,76,84,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2579800760047,25798,76,47,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2579800760041,25798,76,41,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2579800760046,25798,76,46,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2579800760078,25798,76,78,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2579800760079,25798,76,79,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2579800760103,25798,76,103,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2579800760048,25798,76,48,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2579800760083,25798,76,83,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2595000890024,25950,89,24,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2595000890025,25950,89,25,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2595000890022,25950,89,22,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2595000890026,25950,89,26,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2595000890016,25950,89,16,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2595000890023,25950,89,23,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2595000890021,25950,89,21,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2595000890028,25950,89,28,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2595000890031,25950,89,31,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2595000890032,25950,89,32,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2595000890020,25950,89,20,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2595000890030,25950,89,30,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2595000890019,25950,89,19,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2595000890043,25950,89,43,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2595000890037,25950,89,37,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2595000890036,25950,89,36,versão 'Recebido' em 26–27/10,True,True,True,0231914325102026112220-01.jez/logd.dat|logd.dat,conferido
+o03221pe2595000890053,25950,89,53,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2595000890042,25950,89,42,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2595000890047,25950,89,47,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2595000890034,25950,89,34,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2595000890048,25950,89,48,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2595000890056,25950,89,56,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2595000890055,25950,89,55,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2595000890046,25950,89,46,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2595000890054,25950,89,54,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2595000890050,25950,89,50,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2595000890058,25950,89,58,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2595000890018,25950,89,18,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2595000890039,25950,89,39,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2595000890052,25950,89,52,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2595000890038,25950,89,38,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2595000890057,25950,89,57,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2595000890100,25950,89,100,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2595000890040,25950,89,40,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2595000890061,25950,89,61,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2605000360056,26050,36,56,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2605000360077,26050,36,77,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2605000360071,26050,36,71,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2605000360076,26050,36,76,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2605000360074,26050,36,74,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2605000360079,26050,36,79,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2605000360075,26050,36,75,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2605000360088,26050,36,88,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2605000360069,26050,36,69,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2605000360078,26050,36,78,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2605000360083,26050,36,83,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2605000360073,26050,36,73,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2605000360106,26050,36,106,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2605000360114,26050,36,114,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2605000360128,26050,36,128,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2607701120018,26077,112,18,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2605000360130,26050,36,130,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2611501330035,26115,133,35,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2613100670102,26131,67,102,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2613100670101,26131,67,101,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2615801430105,26158,143,105,versão 'Recebido' em 26–27/10,True,True,True,logd.dat,conferido
+o03221pe2617400680090,26174,68,90,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2623900460066,26239,46,66,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2627100180209,26271,18,209,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2627100180249,26271,18,249,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2627100180239,26271,18,239,voto após 18h,True,True,True,logd.dat,conferido
+o03221pe2629801380029,26298,138,29,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe2631001190230,26310,119,230,controle aleatório,True,True,True,logd.dat,conferido
+o03221pe3001500040146,30015,4,146,Fernando de Noronha (fuso UTC−2),True,True,True,logd.dat,conferido
+o03221pe3001500040215,30015,4,215,Fernando de Noronha (fuso UTC−2),True,True,True,logd.dat,conferido
+o03221pe3001500040186,30015,4,186,Fernando de Noronha (fuso UTC−2),True,True,True,logd.dat,conferido
+o03221pe3001500040147,30015,4,147,Fernando de Noronha (fuso UTC−2),True,True,True,logd.dat,conferido
+o03221pe3001500040234,30015,4,234,Fernando de Noronha (fuso UTC−2),True,True,True,logd.dat,conferido
+o03221pe3001500040227,30015,4,227,Fernando de Noronha (fuso UTC−2),True,True,True,logd.dat,conferido
+o03221pe3001500040192,30015,4,192,Fernando de Noronha (fuso UTC−2),True,True,True,logd.dat,conferido
+o03221pe3001500040384,30015,4,384,Fernando de Noronha (fuso UTC−2),True,True,True,logd.dat,conferido
+o03221pe3001500040372,30015,4,372,Fernando de Noronha (fuso UTC−2); voto após 18h,True,True,True,logd.dat,conferido
+o03221pe3001500040370,30015,4,370,Fernando de Noronha (fuso UTC−2),True,True,True,logd.dat,conferido

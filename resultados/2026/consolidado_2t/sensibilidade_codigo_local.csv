@@ -1,0 +1,9 @@
+fonte_codigo_local,teste,controles,codigos_divergentes_brasil,locais_comparaveis,secoes,secoes_tardias,efeito_pp,erro_padrao_pp,ic95_inf,ic95_sup,secoes_correspondentes
+BU_CSV,efeito_2026_mesmo_local,nenhum,7315,18211,172515,28758,-0.0523,0.0248,-0.1009,-0.0037,
+BU_CSV,efeito_2026_mesmo_local,"s13_1t,comp_pct,log_aptos",7315,18211,172515,28758,0.0558,0.0135,0.0294,0.0822,
+BU_CSV,evolucao_2022_2026_voto após 17h em 2026,"s13_2022,s13_1t_2026,pct_comparecimento26,log_aptos26",7315,12064,111335,18891,0.0139,0.0147,-0.0149,0.0428,322703.0
+BU_CSV,evolucao_2022_2026_voto após 17h em 2022,"s13_2022,s13_1t_2026,pct_comparecimento26,log_aptos26",7315,14424,130794,23261,-0.0075,0.0132,-0.0333,0.0184,322703.0
+DETALHE_SECAO,efeito_2026_mesmo_local,nenhum,7315,18213,172840,28788,-0.0545,0.0249,-0.1033,-0.0057,
+DETALHE_SECAO,efeito_2026_mesmo_local,"s13_1t,comp_pct,log_aptos",7315,18213,172840,28788,0.0556,0.0135,0.0292,0.0821,
+DETALHE_SECAO,evolucao_2022_2026_voto após 17h em 2026,"s13_2022,s13_1t_2026,pct_comparecimento26,log_aptos26",7315,11928,110128,18678,0.0123,0.0148,-0.0167,0.0413,318674.0
+DETALHE_SECAO,evolucao_2022_2026_voto após 17h em 2022,"s13_2022,s13_1t_2026,pct_comparecimento26,log_aptos26",7315,14259,129376,22997,-0.0058,0.0133,-0.0318,0.0202,318674.0
