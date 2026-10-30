@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css?v=consolidado-20261029">
-  <script src="./app.js?v=eleitorado-simulador-20261027" defer></script>
+  <link rel="stylesheet" href="./styles.css?v=biometria-horario-20261030">
+  <script src="./app.js?v=biometria-horario-20261030" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#conteudo">Pular para os dados</a>
@@ -18,7 +18,7 @@
   <header class="site-header">
     <div class="wrap nav">
       <a class="brand" href="./" aria-label="Observatório Eleitoral, início"><span class="brand-symbol" aria-hidden="true"><i></i><i></i><i></i></span><span>OBSERVATÓRIO <small>ELEITORAL</small></span></a>
-      <nav aria-label="Principal"><a href="#painel">Painel</a><a href="#horarios">Destaque</a><a href="#mapa">Mapa</a><a href="#estados">Estados</a><a href="#comparacao">Comparativo</a><a href="#metodologia">Metodologia</a><a href="#verificacoes">Verificações</a><a href="#triagem">Por seção</a></nav>
+      <nav aria-label="Principal"><a href="#painel">Painel</a><a href="#horarios">Destaque</a><a href="#biometria-horarios">Biometria</a><a href="#mapa">Mapa</a><a href="#estados">Estados</a><a href="#comparacao">Comparativo</a><a href="#metodologia">Metodologia</a><a href="#verificacoes">Verificações</a><a href="#triagem">Por seção</a></nav>
       <a class="nav-github" href="https://github.com/BigCorps/ObservatorioEleitoral" target="_blank" rel="noopener noreferrer">Ver código <span aria-hidden="true">↗</span></a>
     </div>
   </header>
@@ -126,6 +126,90 @@
             <a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/resultados/2026/horario_comparacao_pareada.csv" target="_blank" rel="noopener noreferrer">Ver teste pareado ↗</a>
           </div>
         </div>
+      </div>
+    </section>
+
+
+    <section id="biometria-horarios" class="bio-hora" aria-labelledby="bioHoraTitle">
+      <div class="wrap">
+        <header class="bio-hora-head">
+          <div>
+            <span class="section-kicker">ANÁLISE BIOMÉTRICA · 2022 E 2026</span>
+            <h2 id="bioHoraTitle">Biometria, horário e resultados por seção</h2>
+            <p>Dados dos quatro turnos e comparações entre seções. A modalidade de identificação de um eleitor não revela em quem ele votou.</p>
+          </div>
+          <a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/docs/biometria-horario-2022-2026.md" target="_blank" rel="noopener noreferrer">Metodologia ↗</a>
+        </header>
+        <div class="bio-hora-grid">
+          <article class="bio-hora-card">
+            <span class="card-eyebrow">MEDIDO · LOGS DOS QUATRO TURNOS</span>
+            <h3>Liberações manuais após falha biométrica por horário</h3>
+            <p>Percentual de habilitações classificadas antes e a partir das 17h, sem exterior.</p>
+            <div class="bio-hora-scroll"><table class="bio-hora-table">
+              <thead><tr><th>Eleição</th><th>Antes 17h</th><th>Desde 17h</th><th>Diferença</th></tr></thead>
+              <tbody>
+                <tr><th>2022 · 1º</th><td>8,81%</td><td>9,02%</td><td>+0,21 p.p.</td></tr>
+                <tr><th>2022 · 2º</th><td>8,15%</td><td>9,72%</td><td>+1,57 p.p.</td></tr>
+                <tr><th>2026 · 1º</th><td>6,72%</td><td>5,17%</td><td>−1,56 p.p.</td></tr>
+                <tr><th>2026 · 2º</th><td>6,75%</td><td>8,09%</td><td>+1,34 p.p.</td></tr>
+              </tbody>
+            </table></div>
+            <p class="bio-hora-note">O horário é da habilitação, não necessariamente do voto computado. O comportamento não foi igual nos quatro turnos.</p>
+          </article>
+          <article class="bio-hora-card">
+            <span class="card-eyebrow">MEDIDO · SEÇÕES CONCENTRADAS</span>
+            <h3>Seções com mais de 80% para o mesmo candidato nos dois turnos</h3>
+            <p>Taxa de liberação manual após falha nas seções concentradas e nas demais.</p>
+            <div class="bio-hora-scroll"><table class="bio-hora-table">
+              <thead><tr><th>Grupo de seções</th><th>2022</th><th>2026</th></tr></thead>
+              <tbody>
+                <tr><th>Concentradas no 13</th><td>12,81%</td><td>8,75%</td></tr>
+                <tr><th>Concentradas no 22</th><td>11,01%</td><td>8,08%</td></tr>
+                <tr><th>Demais</th><td>7,80%</td><td>6,67%</td></tr>
+              </tbody>
+            </table></div>
+            <p class="bio-hora-note">Controlando município, idade e escolaridade, os excessos são +0,26/+0,57 p.p. (2022) e +0,35/+0,38 p.p. (2026), respectivamente nos grupos do 13/22.</p>
+          </article>
+        </div>
+        <article class="bio-hora-card bio-hora-detail">
+          <div class="bio-hora-flex">
+            <div>
+              <span class="card-eyebrow">CRUZAMENTO POR SEÇÃO · RESULTADOS AUDITÁVEIS</span>
+              <h3>Seções com votos após 17h versus demais seções</h3>
+              <p>Grupo definido por pelo menos um voto computado estritamente após as 17h no segundo turno. Os resultados abaixo só aparecem quando os Parquets locais forem processados e os CSVs publicados.</p>
+            </div>
+            <label class="bio-hora-select">Ano
+              <select id="bioHoraYear"><option value="2026">2026</option><option value="2022">2022</option></select>
+            </label>
+          </div>
+          <p id="bioHoraStatus" class="bio-hora-status" role="status">Aguardando cruzamento individual das seções; os indicadores históricos acima já foram calculados.</p>
+          <div class="bio-hora-scroll"><table class="bio-hora-table">
+            <thead><tr><th>Grupo</th><th>Seções</th><th>Habilitações classificadas</th><th>Manual após falha</th><th>Sem cadastro biométrico</th></tr></thead>
+            <tbody id="bioHoraCohorts"><tr><td colspan="5">Cruzamento de seções ainda não publicado.</td></tr></tbody>
+          </table></div>
+          <div class="bio-hora-flex bio-hora-secondary">
+            <div>
+              <h3>Resultados por faixa de liberação manual</h3>
+              <p>Faixas de 0–5%, 5–10%, 10–15%, 15–20% e 20%+. Os percentuais dos candidatos são calculados sobre os <strong>votos da seção inteira</strong>.</p>
+            </div>
+            <label class="bio-hora-select">Grupo
+              <select id="bioHoraScope"><option value="1">Com voto após 17h</option><option value="0">Demais seções</option></select>
+            </label>
+          </div>
+          <div class="bio-hora-scroll"><table class="bio-hora-table">
+            <thead><tr><th>Faixa manual</th><th>Seções</th><th>Habilitações manuais</th><th>% dos válidos: 13</th><th>% dos válidos: 22</th></tr></thead>
+            <tbody id="bioHoraBands"><tr><td colspan="5">Resultados por faixa ainda não publicados.</td></tr></tbody>
+          </table></div>
+          <details class="bio-hora-explainer">
+            <summary>Por que não sabemos o voto apenas das pessoas liberadas sem biometria?</summary>
+            <p>O sigilo do voto impede associar a forma de identificação à escolha do candidato. A análise por seção é observacional: pode mostrar associações de grupos, mas não revela votos individuais nem prova causalidade ou irregularidade. Também diferencia a falha de reconhecimento biométrico da ausência de cadastro biométrico.</p>
+          </details>
+          <div class="bio-hora-links">
+            <a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/docs/biometria-perfil-e-abstencao-por-idade.md" target="_blank" rel="noopener noreferrer">Estudo biométrico e perfil ↗</a>
+            <a href="https://github.com/BigCorps/ObservatorioEleitoral/blob/main/observatorio/biometria_secoes_tardias.py" target="_blank" rel="noopener noreferrer">Código da análise ↗</a>
+            <a href="https://github.com/BigCorps/ObservatorioEleitoral/tree/main/resultados/comparativo" target="_blank" rel="noopener noreferrer">Arquivos comparativos ↗</a>
+          </div>
+        </article>
       </div>
     </section>
 
