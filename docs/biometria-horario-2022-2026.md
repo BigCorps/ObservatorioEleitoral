@@ -1,6 +1,6 @@
 # Biometria nas seções com votos após 17h — quatro turnos (2022 e 2026)
 
-Esta nota registra um resultado **já reproduzível com os CSVs por hora** do Observatório e descreve o cruzamento por seção preparado, mas ainda **não executado neste ambiente**. Não atribui votos individuais a candidatos.
+Esta nota registra o resultado agregado por hora e o **cruzamento por seção executado em 30/10/2026** nos Parquets locais (sem novos downloads). Nenhum voto individual é atribuído a candidato nem a eleitor identificado sem biometria: os resultados por candidato são sempre os da **seção inteira**.
 
 Fontes: `resultados/2022/biometria_modalidade_por_hora.csv`, `resultados/2026/biometria_modalidade_por_hora.csv`, `observatorio/logs.py`, `observatorio/biometria.py`.
 
@@ -15,25 +15,87 @@ Fontes: `resultados/2022/biometria_modalidade_por_hora.csv`, `resultados/2026/bi
 
 **Limitação importante:** as porcentagens acima agregam todas as urnas por horário, não apenas as seções com voto após 17h. Não se pode usá-las para concluir que as seções tardias tinham taxas diferentes das vizinhas. Ademais, a codificação e a cobertura de biometria evoluíram entre 2022 e 2026.
 
-## Teste por seção que falta executar
+## Cruzamento por seção (executado em 30/10/2026)
 
-O código `observatorio/biometria_secoes_tardias.py` usa os Parquets locais já processados e gera:
+Código: `observatorio/biometria_secoes_tardias.py`. Execução: `python -m observatorio.biometria_secoes_tardias` (3 min, sem
+downloads). Arquivos em `resultados/comparativo/`:
 
-- `resultados/comparativo/biometria_secoes_tardias_por_uf.csv`: taxas ponderadas de biometria, falha e ausência de cadastro nas seções tardias versus não tardias, por UF e turno; marca tardia se houve ao menos **um voto computado estritamente após 17:00:00 no segundo turno daquele ano**.
-- `resultados/comparativo/biometria_secoes_tardias_mesmas_secoes.csv`: quatro turnos nas correspondências conservadoras 2022×2026, com as quatro transições de presença de voto tardio.
-- `resultados/comparativo/biometria_secoes_tardias_pareado.csv`: comparação ponderada dentro do mesmo local/município, com e sem controles (taxa manual no primeiro turno daquela seção, ausência de cadastro, comparecimento e aptos), incluindo mudança 2022→2026 nas seções correspondentes.
-- `resultados/comparativo/biometria_secoes_tardias_faixas_votos.csv`: resultados por seção em faixas fixas da proporção de liberação manual (0–5%, 5–10%, 10–15%, 15–20%, 20%+), separados por presença de voto após 17h, UF e cada um dos quatro turnos. **A porcentagem por candidato refere-se à seção inteira, jamais somente às pessoas liberadas manualmente.**
+- `biometria_secoes_tardias_por_uf.csv`: seções com voto após 17h no 2º turno × demais, por UF e turno (224 linhas);
+- `biometria_secoes_tardias_mesmas_secoes.csv`: seções correspondidas 2022×2026 pelas quatro transições de voto tardio (448 linhas);
+- `biometria_secoes_tardias_pareado.csv`: 12 comparações dentro do mesmo local ou município;
+- `biometria_secoes_tardias_faixas_votos.csv`: votos da seção inteira por faixa de liberação manual (1.098 linhas).
 
-Os totais nacionais de seções com voto após 17h são validados contra a auditoria anterior: **34.455 (2022, 2º turno) e 29.609 (2026, 2º turno)**. Toda diferença persistente precisa ser comparada com tamanho e cobertura da amostra; a regressão é observacional e não prova causalidade.
+**Grupo tardio:** seção com ao menos um voto computado **estritamente após 17:00:00** (horário de Brasília, fuso legal de
+cada município) no 2º turno daquele ano. O mesmo grupo é usado para os dois turnos. Exterior excluído.
 
-Para executar **sem novos downloads**:
+### Validação
 
-```bash
-python -m observatorio.biometria_secoes_tardias
-```
+| verificação | resultado |
+|---|---|
+| Seções tardias × auditoria de horários | **34.455 (2022) e 29.609 (2026)**, iguais às já publicadas; votos após 17h nelas: 40.698 e **34.050** |
+| BR = soma das UFs | sim, em todas as colunas de contagem dos quatro CSVs |
+| Manuais e habilitações a partir de 17h × tabela por hora já publicada | 2026 2º turno 2.507 / 30.991 e 2022 2º turno 3.415 / 35.380: **iguais**; 1º turno com diferença ≤ 105 habilitações (seções sem log no 2º turno) |
+| Liberação manual no log × "biometria não habilitada" no BU | 2026 2º turno: 8.633.583 × 8.632.462 (diferença de 0,01%) |
+| Cobertura dos logs | 2022: 470.998 (1º) e 470.999 (2º) de 471.010 seções; 2026: 497.895 (1º) e 497.896 (2º) de 497.897 |
+| Votos por faixa × BU em CSV | fecham exatamente: a diferença é só das seções sem log no turno ou no 2º turno — 23, 11, 3 e 1 seções, com 4.593, 2.234, 776 e 260 votos válidos (2022 1º/2º, 2026 1º/2º) |
+| Seções sem etapa biométrica | 2022: 4.184 seções no 2º turno (3.350 ES, 830 MT, 4 outras) têm log, mas nenhuma habilitação com modalidade — coincide com "sem etapa biométrica" já publicado (886.371 eleitores no ES e 184.378 no MT). Ficam numa faixa própria, e não nas taxas. |
 
-O BU com biometria não habilitada é lido do **turno correto**, inclusive quando a seção do 1º turno é associada ao grupo tardio definido pelo 2º turno.
+**Correção feita na execução:** a primeira versão descartava silenciosamente essas 4.184 seções da tabela de faixas, e
+as somas de 2022 não fechavam. Os votos do 2º turno de 2026 passaram a vir do BU em CSV consolidado (fonte principal);
+os votos são idênticos aos do Detalhe por seção.
 
-Depois, revisar a integridade e a cobertura dos logs nas seções do grupo, verificar o alinhamento entre modalidade e horário de habilitação, conferir os totais do BU em CSV e comparar resultados com e sem seções incompletas. Excluir grupos do exterior do teste em horário de Brasília e relatar separadamente. **Só atualizar o painel depois de calcular e validar os novos CSVs.**
+### Resultados — 2º turno, Brasil sem exterior
 
-No âmbito jurídico, voto não depende exclusivamente da leitura biométrica: há conferência de documento, ano de nascimento e procedimentos alternativos; vide Resolução TSE 23.751/2026, arts. 133 a 135.
+| ano | grupo | seções | habilitações classificadas | liberação manual após falha | sem cadastro biométrico |
+|---|---|---:|---:|---:|---:|
+| 2022 | com voto após 17h | 34.455 | 9.652.697 | **7,07%** | 17,17% |
+| 2022 | demais | 436.544 | 113.236.341 | **8,24%** | 15,17% |
+| 2026 | com voto após 17h | 29.609 | 8.124.280 | **6,13%** | 5,83% |
+| 2026 | demais | 468.287 | 119.734.840 | **6,79%** | 5,66% |
+
+As seções com voto após 17h têm taxa de liberação manual **menor**, e não maior, nos dois anos, e também no 1º turno
+(2026: 6,04% × 6,72%; 2022: 7,58% × 8,92%). Entre as habilitações feitas a partir de 17h nessas seções, a taxa manual é
+8,09% (2026) e 9,72% (2022).
+
+**Comparação no mesmo local de votação** (mínimos quadrados ponderados por habilitações, efeitos fixos de local; em p.p.):
+
+| ano | sem controles | com controles (taxa manual do 1º turno, sem cadastro, comparecimento, aptos) |
+|---|---:|---:|
+| 2022 | −0,064 [−0,106; −0,023] | −0,015 [−0,047; 0,016] |
+| 2026 | −0,064 [−0,099; −0,028] | −0,027 [−0,053; −0,001] |
+
+No mesmo município as diferenças sem controles são maiores (−0,28 e −0,33 p.p.), mas caem para −0,04 e −0,08 p.p.
+com controles. **Nas mesmas seções, de 2022 para 2026** (128.507 e 109.580 seções correspondidas), a mudança da taxa
+manual nas seções tardias não é maior que a das vizinhas: −0,074 p.p. com controles (grupo de 2022) e −0,027
+[−0,068; 0,015] (grupo de 2026). As diferenças são de centésimos de ponto percentual e não indicam liberação manual
+concentrada nas seções com votos após 17h.
+
+**Votos da seção inteira por faixa de liberação manual — 2026, 2º turno:**
+
+| faixa manual | seções tardias | % 13 | % 22 | demais seções | % 13 | % 22 |
+|---|---:|---:|---:|---:|---:|---:|
+| 0–5% | 12.410 | 53,34 | 46,66 | 161.865 | 50,96 | 49,04 |
+| 5–10% | 13.689 | 54,01 | 45,99 | 224.521 | 51,32 | 48,68 |
+| 10–15% | 2.836 | 55,93 | 44,07 | 63.698 | 53,45 | 46,55 |
+| 15–20% | 533 | 58,82 | 41,18 | 14.183 | 55,66 | 44,34 |
+| 20%+ | 141 | 63,08 | 36,92 | 4.020 | 58,05 | 41,95 |
+
+- **Gradiente por faixa:** a participação do 13 cresce com a taxa de liberação manual nos dois grupos e nos dois anos (2022,
+  seções sem voto tardio: 49,79% na faixa 0–5% e 60,84% na faixa 20%+). A taxa de falha biométrica acompanha o perfil da
+  seção (região, idade e ocupação dos eleitores, ver `docs/biometria-perfil-e-abstencao-por-idade.md`).
+- **Seções tardias × demais na mesma faixa:** em 2026 as seções tardias dão de 2,4 a 5,0 p.p. a mais ao 13 em todas as
+  faixas. A mesma diferença já existia **no 1º turno** nessas mesmas seções (faixa 0–5%: 46,19% × 44,57%; faixa 20%+:
+  59,05% × 52,08%), portanto não surge com os votos após 17h do 2º turno. Em 2022 os dois grupos ficaram próximos
+  (faixa 0–5%: 49,74% × 49,79%). O efeito controlado sobre o resultado já está estimado em
+  `docs/horarios-2022-2026.md` e na verificação de 29/10 (+0,056 p.p. no mesmo local). **Essas porcentagens são da seção inteira e não mostram em quem votaram os eleitores liberados manualmente**: o
+sigilo do voto impede essa associação.
+
+### Limites
+
+- Observacional: diferenças entre grupos não provam causa.
+- A codificação das modalidades mudou entre 2022 e 2026 ("sem cadastro" 15–17% em 2022 contra 6% em 2026), então só se
+  comparam níveis dentro do mesmo ano; entre anos, apenas mudanças nas mesmas seções.
+- O horário é o da **habilitação**, que pode anteceder o voto computado.
+
+No âmbito jurídico, o voto não depende exclusivamente da leitura biométrica: há conferência de documento, ano de
+nascimento e procedimentos alternativos; vide Resolução TSE 23.751/2026, arts. 133 a 135.
