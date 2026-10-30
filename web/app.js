@@ -949,12 +949,50 @@ function setUpSimulator(){
  document.getElementById('simReset').addEventListener('click',simReset);
 }
 
+
+function renderBioHora(){
+  const year=document.getElementById('bioHoraYear')?.value||'2026';
+  const group=document.getElementById('bioHoraScope')?.value||'1';
+  const all=(data?.bioHoraCoortes||[]).filter(x=>x.ano===year&&x.turno==='2'&&x.uf==='BR');
+  const body=document.getElementById('bioHoraCohorts');
+  if(!body)return;
+  body.replaceChildren();
+  if(all.length===2 && all.some(x=>x.tardia_2t==='1') && all.some(x=>x.tardia_2t==='0')){
+    document.getElementById('bioHoraStatus').textContent='Cruzamento publicado: '+year+', segundo turno, Brasil sem exterior. As taxas são calculadas sobre habilitações classificadas.';
+    for(const flag of ['1','0']){
+      const r=all.find(x=>x.tardia_2t===flag);
+      const tr=node('tr');tr.append(node('th',null,flag==='1'?'Com voto após 17h':'Demais seções'));
+      tr.append(node('td',null,number(r.secoes)));tr.append(node('td',null,number(r.classificados)));
+      tr.append(node('td',null,percent(r.pct_manual)));tr.append(node('td',null,percent(r.pct_sem_cadastro)));
+      body.append(tr);
+    }
+  }else{
+    document.getElementById('bioHoraStatus').textContent='Cruzamento individual ainda não publicado. Os números horários e de seções concentradas acima já estão calculados.';
+    const tr=node('tr'),td=node('td',null,'Aguardando execução do módulo nos Parquets locais e publicação dos CSVs.');td.colSpan=5;tr.append(td);body.append(tr);
+  }
+  const bands=(data?.bioHoraFaixas||[]).filter(x=>x.ano===year&&x.turno==='2'&&x.uf==='BR'&&x.tardia_2t===group).sort((a,b)=>a.faixa_manual.localeCompare(b.faixa_manual));
+  const b=document.getElementById('bioHoraBands');b.replaceChildren();
+  if(!bands.length){
+    const tr=node('tr'),td=node('td',null,'Os valores por faixa ainda não foram calculados no ambiente local.');td.colSpan=5;tr.append(td);b.append(tr);
+  }else for(const r of bands){
+    const tr=node('tr');tr.append(node('th',null,r.faixa_manual));
+    tr.append(node('td',null,number(r.secoes)));
+    tr.append(node('td',null,number(r.manuais_apos_falha)));
+    tr.append(node('td',null,percent(r.pct13_validos_secao)));
+    tr.append(node('td',null,percent(r.pct22_validos_secao)));
+    b.append(tr);
+  }
+}
 function render() {
   if(!data)return;
+  renderBioHora();
   renderSimulator();syncControls();renderTriagem();renderAudit();renderDiscrepancies();renderCoverage();renderKpis();renderScopeInfo();renderMap();renderPresidentialVotes();renderTrend();renderTimeline();renderRanking();renderComparison();renderDelta();renderAbsoluteDeltas();
 }
 async function init() {
   setUpFilters();setUpSimulator();
+  for(const id of ['bioHoraYear','bioHoraScope']){
+    document.getElementById(id)?.addEventListener('change',renderBioHora);
+  }
   try{
     const entries=await Promise.all(Object.entries(files).map(async ([name,path])=>{
       const response=await fetch(path,{cache:'no-cache'});
@@ -962,6 +1000,13 @@ async function init() {
       return [name,parseCSV(await response.text())];
     }));
     const loaded=Object.fromEntries(entries);
+    // CSVs por seção: só existem quando a análise nos Parquets locais foi concluída.
+    const [bioHoraCoortes,bioHoraFaixas]=await Promise.all([
+      fetch('./dados/biometria_secoes_tardias_por_uf.csv',{cache:'no-cache'})
+        .then(r=>r.ok?r.text():'').then(s=>s?parseCSV(s):[]).catch(()=>[]),
+      fetch('./dados/biometria_secoes_tardias_faixas_votos.csv',{cache:'no-cache'})
+        .then(r=>r.ok?r.text():'').then(s=>s?parseCSV(s):[]).catch(()=>[])
+    ]);
     const mapResponse=await fetch('./dados/brasil-ufs.geojson',{cache:'no-cache'});
     if(!mapResponse.ok)throw new Error('Malha territorial: '+mapResponse.status);
     const geometry=await mapResponse.json();
@@ -976,7 +1021,7 @@ async function init() {
       };
       [triagemResumos[year],triagemExemplos[year]]=await Promise.all([load('resumo'),load('exemplos')]);
     }));
-    data={indicators:new Map(loaded.indicators.map(r=>[key(r.ano,r.turno,r.abrangencia),r])),timeline2022:loaded.timeline2022,timeline2026:loaded.timeline2026,
+    data={bioHoraCoortes,bioHoraFaixas,indicators:new Map(loaded.indicators.map(r=>[key(r.ano,r.turno,r.abrangencia),r])),timeline2022:loaded.timeline2022,timeline2026:loaded.timeline2026,
       votesByYear:{'2022':new Map(loaded.votes2022.map(r=>[r.uf,r])),'2026':new Map(loaded.votes2026.map(r=>[r.uf,r]))},
       biometryByYear:{'2022':new Map(loaded.bio2022.map(r=>[r.turno+'-'+r.uf,r])),'2026':new Map(loaded.bio2026.map(r=>[r.turno+'-'+r.uf,r]))},
       temporalUFByYear:{'2022':new Map(loaded.temporalUF2022.map(r=>[r.turno+'-'+r.uf,r])),'2026':new Map(loaded.temporalUF2026.map(r=>[r.turno+'-'+r.uf,r]))},

@@ -6,6 +6,7 @@ on:
     paths:
       - 'web/**'
       - 'resultados/comparativo/indicadores_2022_2026.csv'
+      - 'resultados/comparativo/biometria_secoes_tardias_*.csv'
       - 'resultados/2022/biometria_por_uf.csv'
       - 'resultados/2022/temporal_por_uf.csv'
       - 'resultados/2026/biometria_por_uf.csv'
@@ -63,6 +64,15 @@ jobs:
           cp resultados/2022/reconciliacao_resumo.csv _site/dados/reconciliacao_2022.csv
           cp resultados/2026/reconciliacao_resumo.csv _site/dados/reconciliacao_2026.csv
           cp resultados/quadro_discrepancias.csv _site/dados/quadro_discrepancias.csv
+          # Opcional até a execução/validação dos Parquets por seção.
+          if test -s resultados/comparativo/biometria_secoes_tardias_por_uf.csv &&
+             test -s resultados/comparativo/biometria_secoes_tardias_faixas_votos.csv; then
+            cp resultados/comparativo/biometria_secoes_tardias_por_uf.csv _site/dados/
+            cp resultados/comparativo/biometria_secoes_tardias_faixas_votos.csv _site/dados/
+          else
+            printf 'ano,turno,uf,tardia_2t,secoes,classificados,pct_manual,pct_sem_cadastro\n' > _site/dados/biometria_secoes_tardias_por_uf.csv
+            printf 'ano,turno,uf,tardia_2t,faixa_manual,secoes,manuais_apos_falha,pct13_validos_secao,pct22_validos_secao\n' > _site/dados/biometria_secoes_tardias_faixas_votos.csv
+          fi
           # A triagem é opcional até estar validada; a página deve funcionar sem esses CSVs.
           for ano in 2022 2026; do
             if test -s "resultados/$ano/triagem_secoes_resumo.csv" && test -s "resultados/$ano/triagem_secoes_exemplos.csv"; then
@@ -85,6 +95,9 @@ jobs:
           test -s _site/dados/reconciliacao_2022.csv
           test -s _site/dados/reconciliacao_2026.csv
           test -s _site/dados/quadro_discrepancias.csv
+          test -s _site/dados/biometria_secoes_tardias_por_uf.csv
+          test -s _site/dados/biometria_secoes_tardias_faixas_votos.csv
+          node --check _site/app.js
           python -c 'import csv; r=list(csv.DictReader(open("_site/dados/indicadores.csv", encoding="utf-8"))); assert len(r)>=100 and all(x in r[0] for x in ("ano", "turno", "abrangencia", "pct_abstencao")); print("Dados disponíveis:", len(r), "recortes")'
 
       - name: Configurar GitHub Pages
