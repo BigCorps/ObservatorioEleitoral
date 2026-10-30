@@ -117,13 +117,14 @@ def _locations(con: duckdb.DuckDBPyConnection) -> None:
     # BU: "com biometria, não habilitado por biometria"; difere de "sem
     # cadastro biométrico". Mantê-lo separado da modalidade registrada no log.
     for year in (2022, 2026):
-        con.execute(f"""
-          CREATE OR REPLACE TABLE bu{year} AS
-          SELECT {KEY}, qt_eleitores_biometria_nh
-                 bu_biometria_nao_habilitados
-          FROM '{PROCESSADOS}/secoes_bu_{year}.parquet'
-          WHERE turno=2 AND uf <> 'ZZ'
-        """)
+        for turno in (1, 2):
+            con.execute(f"""
+              CREATE OR REPLACE TABLE bu{year}_{turno} AS
+              SELECT {KEY}, qt_eleitores_biometria_nh
+                     bu_biometria_nao_habilitados
+              FROM '{PROCESSADOS}/secoes_bu_{year}.parquet'
+              WHERE turno={turno} AND uf <> 'ZZ'
+            """)
 
 
 def _sumarizar(con: duckdb.DuckDBPyConnection, src: str, dims: str) -> pd.DataFrame:
@@ -167,7 +168,7 @@ def _coortes(con: duckdb.DuckDBPyConnection) -> tuple[pd.DataFrame, pd.DataFrame
                          bu_biometria_nao_habilitados
               FROM s{year}_{turno} b
               JOIN s{year}_2 g USING ({KEY})
-              LEFT JOIN bu{year} bu USING ({KEY})
+              LEFT JOIN bu{year}_{turno} bu USING ({KEY})
             """)
             src = f"(SELECT {year} ano, {turno} turno, uf, tardia_2t, " + ", ".join(METRICS[1:]) + f" FROM e{year}_{turno})"
             # normaliza 'secoes' não é coluna de linha, agregado só
@@ -197,7 +198,7 @@ def _matched(con: duckdb.DuckDBPyConnection) -> pd.DataFrame:
                       coalesce(bu.bu_biometria_nao_habilitados, NULL::BIGINT)
                          bu_biometria_nao_habilitados
                    FROM matches m JOIN s{year}_{turno} s USING ({KEY})
-                   LEFT JOIN bu{year} bu USING ({KEY}))"""
+                   LEFT JOIN bu{year}_{turno} bu USING ({KEY}))"""
             d=_sumarizar(con,src,"ano, turno, uf, transicao")
             data.append(d)
     return pd.concat(data,ignore_index=True)
@@ -258,6 +259,63 @@ def _regressao(con: duckdb.DuckDBPyConnection) -> pd.DataFrame:
     return pd.DataFrame(saida)
 
 
+
+def _faixas_votos(con: duckdb.DuckDBPyConnection) -> pd.DataFrame:
+    """Votos de TODA a seção, por faixa de falha biométrica — nunca voto individual.
+
+    Faixas nacionais fixas (0–5, 5–10, 10–15, 15–20, >=20%);
+    separa seções com voto após 17h no segundo turno das demais.
+    Em 1º turno, %13 e %22 referem-se a todos os válidos, incluindo terceiros.
+    """
+    linhas = []
+    for year in (2022, 2026):
+        for turno in (1, 2):
+            fonte = (PROCESSADOS / f"secoes_bu_{year}.parquet"
+                     if year == 2022 or turno == 1
+                     else PROCESSADOS / "secoes_oficiais_2026_2t.parquet")
+            if not fonte.exists():
+                raise FileNotFoundError(f"Resultados da seção ausentes: {fonte}")
+            con.execute(f"""
+              CREATE OR REPLACE TEMP TABLE f{year}_{turno} AS
+              SELECT s.uf, s.tardia_2t,
+                CASE
+                  WHEN 100.0*s.manual_apos_falha/s.classificados < 5 THEN '00-05%'
+                  WHEN 100.0*s.manual_apos_falha/s.classificados < 10 THEN '05-10%'
+                  WHEN 100.0*s.manual_apos_falha/s.classificados < 15 THEN '10-15%'
+                  WHEN 100.0*s.manual_apos_falha/s.classificados < 20 THEN '15-20%'
+                  ELSE '20%+'
+                END faixa_manual, s.classificados, s.manual_apos_falha,
+                s.sem_cadastro, s.bio, o.votos_nominais validos,
+                coalesce(o.votos_candidato[13],0) votos13,
+                coalesce(o.votos_candidato[22],0) votos22
+              FROM (SELECT a.*, b.tardia tardia_2t
+                    FROM s{year}_{turno} a
+                    JOIN s{year}_2 b USING ({KEY})) s
+              JOIN (SELECT {KEY}, votos_nominais, votos_candidato
+                    FROM '{fonte}' WHERE turno={turno} AND uf<>'ZZ') o USING ({KEY})
+              WHERE s.classificados>0 AND o.votos_nominais>0
+            """)
+            campos = """count(*) secoes, sum(classificados) habilitacoes_classificadas,
+                sum(manual_apos_falha) manuais_apos_falha, sum(sem_cadastro) sem_cadastro,
+                sum(bio) biometrica, sum(validos) votos_validos_dia,
+                sum(votos13) votos13_dia, sum(votos22) votos22_dia"""
+            d = con.execute(f"""
+              SELECT {year} ano, {turno} turno, uf, tardia_2t, faixa_manual, {campos}
+              FROM f{year}_{turno} GROUP BY ALL
+              UNION ALL
+              SELECT {year} ano, {turno} turno, 'BR' uf, tardia_2t, faixa_manual, {campos}
+              FROM f{year}_{turno} GROUP BY ALL
+            """).df()
+            linhas.append(d)
+    tabela = pd.concat(linhas, ignore_index=True)
+    tabela["pct_manual_efetiva"] = (
+        100*tabela.manuais_apos_falha/tabela.habilitacoes_classificadas).round(4)
+    tabela["pct13_validos_secao"] = (100*tabela.votos13_dia/tabela.votos_validos_dia).round(4)
+    tabela["pct22_validos_secao"] = (100*tabela.votos22_dia/tabela.votos_validos_dia).round(4)
+    tabela["interpretacao"] = "Resultados de seções inteiras; não de eleitores sem biometria"
+    return tabela.sort_values(["ano","turno","uf","tardia_2t","faixa_manual"]).reset_index(drop=True)
+
+
 def executar() -> dict:
     SAIDA.mkdir(parents=True,exist_ok=True)
     con=duckdb.connect()
@@ -274,15 +332,18 @@ def executar() -> dict:
     _locations(con)
     resumo,matched=_coortes(con)
     pareado=_regressao(con)
+    faixas=_faixas_votos(con)
     con.close()
     # Metadados e taxas agregadas apenas; nunca publicar eventos identificáveis
     # nem um ranking de seções sem contextualização.
     resumo.to_csv(SAIDA/"biometria_secoes_tardias_por_uf.csv",index=False)
     matched.to_csv(SAIDA/"biometria_secoes_tardias_mesmas_secoes.csv",index=False)
     pareado.to_csv(SAIDA/"biometria_secoes_tardias_pareado.csv",index=False)
+    faixas.to_csv(SAIDA/"biometria_secoes_tardias_faixas_votos.csv",index=False)
     print("Análise de biometria tardia concluída:",len(resumo),"linhas de coorte,",
-          len(matched),"linhas históricas,",len(pareado),"testes controlados")
-    return {"resumo":resumo,"historico":matched,"pareado":pareado}
+          len(matched),"linhas históricas,",len(pareado),"testes controlados,",
+          len(faixas),"faixas de votação por seção")
+    return {"resumo":resumo,"historico":matched,"pareado":pareado,"faixas":faixas}
 
 
 if __name__=="__main__":

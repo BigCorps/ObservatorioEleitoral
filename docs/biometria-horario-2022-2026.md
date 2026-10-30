@@ -22,6 +22,7 @@ O código `observatorio/biometria_secoes_tardias.py` usa os Parquets locais já 
 - `resultados/comparativo/biometria_secoes_tardias_por_uf.csv`: taxas ponderadas de biometria, falha e ausência de cadastro nas seções tardias versus não tardias, por UF e turno; marca tardia se houve ao menos **um voto computado estritamente após 17:00:00 no segundo turno daquele ano**.
 - `resultados/comparativo/biometria_secoes_tardias_mesmas_secoes.csv`: quatro turnos nas correspondências conservadoras 2022×2026, com as quatro transições de presença de voto tardio.
 - `resultados/comparativo/biometria_secoes_tardias_pareado.csv`: comparação ponderada dentro do mesmo local/município, com e sem controles (taxa manual no primeiro turno daquela seção, ausência de cadastro, comparecimento e aptos), incluindo mudança 2022→2026 nas seções correspondentes.
+- `resultados/comparativo/biometria_secoes_tardias_faixas_votos.csv`: resultados por seção em faixas fixas da proporção de liberação manual (0–5%, 5–10%, 10–15%, 15–20%, 20%+), separados por presença de voto após 17h, UF e cada um dos quatro turnos. **A porcentagem por candidato refere-se à seção inteira, jamais somente às pessoas liberadas manualmente.**
 
 Os totais nacionais de seções com voto após 17h são validados contra a auditoria anterior: **34.455 (2022, 2º turno) e 29.609 (2026, 2º turno)**. Toda diferença persistente precisa ser comparada com tamanho e cobertura da amostra; a regressão é observacional e não prova causalidade.
 
@@ -30,6 +31,8 @@ Para executar **sem novos downloads**:
 ```bash
 python -m observatorio.biometria_secoes_tardias
 ```
+
+O BU com biometria não habilitada é lido do **turno correto**, inclusive quando a seção do 1º turno é associada ao grupo tardio definido pelo 2º turno.
 
 Depois, revisar a integridade e a cobertura dos logs nas seções do grupo, verificar o alinhamento entre modalidade e horário de habilitação, conferir os totais do BU em CSV e comparar resultados com e sem seções incompletas. Excluir grupos do exterior do teste em horário de Brasília e relatar separadamente. **Só atualizar o painel depois de calcular e validar os novos CSVs.**
 

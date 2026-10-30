@@ -19,3 +19,37 @@ def test_tabela_resumo_agrega_nacional_por_contagens():
     assert br.secoes==2 and br.manual_apos_falha==6 and br.classificados==30
     assert abs(br.pct_manual-20.0)<1e-8
     con.close()
+
+
+def test_faixas_resultados_de_secoes_inteiras(tmp_path, monkeypatch):
+    import duckdb
+    import observatorio.biometria_secoes_tardias as mod
+    monkeypatch.setattr(mod,"PROCESSADOS",tmp_path)
+    con=duckdb.connect()
+    for year in (2022,2026):
+        for turno in (1,2):
+            con.execute(f"""CREATE TABLE s{year}_{turno} AS
+              SELECT 'SP' uf, 123 cd_municipio, 1 nr_zona, 1 nr_secao,
+                 10 classificados, 1 manual_apos_falha, 3 sem_cadastro,
+                 6 bio, 1 tardia""")
+        if year==2022:
+            con.execute("""COPY (
+               SELECT 2022 ano,turno,'SP' uf,123 cd_municipio,1 nr_zona,1 nr_secao,
+                100 votos_nominais,map([13,22],[60,40]) votos_candidato
+               FROM (VALUES (1),(2)) t(turno)
+             ) TO ? (FORMAT PARQUET)""",[str(tmp_path/"secoes_bu_2022.parquet")])
+        else:
+            con.execute("""COPY (
+               SELECT 2026 ano,1 turno,'SP' uf,123 cd_municipio,1 nr_zona,1 nr_secao,
+                 100 votos_nominais,map([13,22],[55,45]) votos_candidato
+             ) TO ? (FORMAT PARQUET)""",[str(tmp_path/"secoes_bu_2026.parquet")])
+            con.execute("""COPY (
+               SELECT 2026 ano,2 turno,'SP' uf,123 cd_municipio,1 nr_zona,1 nr_secao,
+                 100 votos_nominais,map([13,22],[58,42]) votos_candidato
+             ) TO ? (FORMAT PARQUET)""",[str(tmp_path/"secoes_oficiais_2026_2t.parquet")])
+    d=mod._faixas_votos(con)
+    r=d[(d.ano==2026)&(d.turno==2)&(d.uf=="BR")].iloc[0]
+    assert r.faixa_manual=="10-15%" and r.secoes==1
+    assert r.pct13_validos_secao==58 and r.pct22_validos_secao==42
+    assert r.manuais_apos_falha==1
+    con.close()
