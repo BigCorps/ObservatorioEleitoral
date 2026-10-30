@@ -40,16 +40,33 @@ def test_faixas_resultados_de_secoes_inteiras(tmp_path, monkeypatch):
              ) TO ? (FORMAT PARQUET)""",[str(tmp_path/"secoes_bu_2022.parquet")])
         else:
             con.execute("""COPY (
-               SELECT 2026 ano,1 turno,'SP' uf,123 cd_municipio,1 nr_zona,1 nr_secao,
-                 100 votos_nominais,map([13,22],[55,45]) votos_candidato
+               SELECT 2026 ano,turno,'SP' uf,123 cd_municipio,1 nr_zona,1 nr_secao,
+                 100 votos_nominais,
+                 CASE turno WHEN 1 THEN map([13,22],[55,45]) ELSE map([13,22],[58,42]) END votos_candidato
+               FROM (VALUES (1),(2)) t(turno)
              ) TO ? (FORMAT PARQUET)""",[str(tmp_path/"secoes_bu_2026.parquet")])
-            con.execute("""COPY (
-               SELECT 2026 ano,2 turno,'SP' uf,123 cd_municipio,1 nr_zona,1 nr_secao,
-                 100 votos_nominais,map([13,22],[58,42]) votos_candidato
-             ) TO ? (FORMAT PARQUET)""",[str(tmp_path/"secoes_oficiais_2026_2t.parquet")])
     d=mod._faixas_votos(con)
     r=d[(d.ano==2026)&(d.turno==2)&(d.uf=="BR")].iloc[0]
     assert r.faixa_manual=="10-15%" and r.secoes==1
     assert r.pct13_validos_secao==58 and r.pct22_validos_secao==42
     assert r.manuais_apos_falha==1
+    con.close()
+
+
+def test_secao_sem_etapa_biometrica_fica_em_faixa_propria(tmp_path, monkeypatch):
+    import duckdb
+    import observatorio.biometria_secoes_tardias as mod
+    monkeypatch.setattr(mod,"PROCESSADOS",tmp_path)
+    con=duckdb.connect()
+    for year in (2022,2026):
+        for turno in (1,2):
+            con.execute(f"""CREATE TABLE s{year}_{turno} AS
+              SELECT 'ES' uf, 1 cd_municipio, 1 nr_zona, 1 nr_secao,
+                 0 classificados, 0 manual_apos_falha, 0 sem_cadastro, 0 bio, 0 tardia""")
+        con.execute(f"""COPY (SELECT {year} ano,turno,'ES' uf,1 cd_municipio,1 nr_zona,1 nr_secao,
+            10 votos_nominais,map([13,22],[6,4]) votos_candidato FROM (VALUES (1),(2)) t(turno))
+            TO '{tmp_path}/secoes_bu_{year}.parquet' (FORMAT PARQUET)""")
+    d=mod._faixas_votos(con)
+    r=d[(d.ano==2022)&(d.turno==2)&(d.uf=="BR")].iloc[0]
+    assert r.faixa_manual=="sem etapa biométrica" and r.votos13_dia==6 and pd.isna(r.pct_manual_efetiva)
     con.close()

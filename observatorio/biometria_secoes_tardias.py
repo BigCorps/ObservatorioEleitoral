@@ -263,22 +263,22 @@ def _regressao(con: duckdb.DuckDBPyConnection) -> pd.DataFrame:
 def _faixas_votos(con: duckdb.DuckDBPyConnection) -> pd.DataFrame:
     """Votos de TODA a seção, por faixa de falha biométrica — nunca voto individual.
 
-    Faixas nacionais fixas (0–5, 5–10, 10–15, 15–20, >=20%);
-    separa seções com voto após 17h no segundo turno das demais.
+    Faixas nacionais fixas (0–5, 5–10, 10–15, 15–20, >=20%), mais "sem etapa biométrica"
+    para seções cujo log não registra nenhuma modalidade (2022: 4.184 no 2º turno, quase todas no ES e no MT);
+    separa seções com voto após 17h no segundo turno das demais. Fonte dos votos: BU em CSV.
     Em 1º turno, %13 e %22 referem-se a todos os válidos, incluindo terceiros.
     """
     linhas = []
     for year in (2022, 2026):
         for turno in (1, 2):
-            fonte = (PROCESSADOS / f"secoes_bu_{year}.parquet"
-                     if year == 2022 or turno == 1
-                     else PROCESSADOS / "secoes_oficiais_2026_2t.parquet")
+            fonte = PROCESSADOS / f"secoes_bu_{year}.parquet"
             if not fonte.exists():
                 raise FileNotFoundError(f"Resultados da seção ausentes: {fonte}")
             con.execute(f"""
               CREATE OR REPLACE TEMP TABLE f{year}_{turno} AS
               SELECT s.uf, s.tardia_2t,
                 CASE
+                  WHEN s.classificados = 0 THEN 'sem etapa biométrica'
                   WHEN 100.0*s.manual_apos_falha/s.classificados < 5 THEN '00-05%'
                   WHEN 100.0*s.manual_apos_falha/s.classificados < 10 THEN '05-10%'
                   WHEN 100.0*s.manual_apos_falha/s.classificados < 15 THEN '10-15%'
@@ -293,7 +293,7 @@ def _faixas_votos(con: duckdb.DuckDBPyConnection) -> pd.DataFrame:
                     JOIN s{year}_2 b USING ({KEY})) s
               JOIN (SELECT {KEY}, votos_nominais, votos_candidato
                     FROM '{fonte}' WHERE turno={turno} AND uf<>'ZZ') o USING ({KEY})
-              WHERE s.classificados>0 AND o.votos_nominais>0
+              WHERE o.votos_nominais>0
             """)
             campos = """count(*) secoes, sum(classificados) habilitacoes_classificadas,
                 sum(manual_apos_falha) manuais_apos_falha, sum(sem_cadastro) sem_cadastro,
@@ -309,7 +309,7 @@ def _faixas_votos(con: duckdb.DuckDBPyConnection) -> pd.DataFrame:
             linhas.append(d)
     tabela = pd.concat(linhas, ignore_index=True)
     tabela["pct_manual_efetiva"] = (
-        100*tabela.manuais_apos_falha/tabela.habilitacoes_classificadas).round(4)
+        100*tabela.manuais_apos_falha/tabela.habilitacoes_classificadas.replace(0, np.nan)).round(4)
     tabela["pct13_validos_secao"] = (100*tabela.votos13_dia/tabela.votos_validos_dia).round(4)
     tabela["pct22_validos_secao"] = (100*tabela.votos22_dia/tabela.votos_validos_dia).round(4)
     tabela["interpretacao"] = "Resultados de seções inteiras; não de eleitores sem biometria"
